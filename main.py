@@ -1,7 +1,9 @@
 import asyncio
 import datetime
+import glob
 import json
 import os
+import re
 import sys
 import socketio
 import httpx
@@ -84,6 +86,29 @@ def handle_cookies(cookies):
 
     cookies_str = f"access_token_cookie={access_token_cookie_value}; csrf_access_token={csrf_access_token_value}"
     return cookies_str, access_token_cookie_value, csrf_access_token_value
+
+
+def read_and_group_results(results_path):
+    results = {}
+    # Pattern to extract request_id from file name
+    pattern = re.compile(r"(\d+)_at_.*\.json")
+
+    # List all json files in the results directory
+    for file_path in glob.glob(os.path.join(results_path, "*.json")):
+        match = pattern.match(os.path.basename(file_path))
+        if match:
+            request_id = match.group(1)
+            with open(file_path, 'r') as file:
+                data = json.load(file)
+                results.setdefault(request_id, []).append(data)
+
+    return results
+
+
+def compare_results(results):
+    for request_id, data_list in results.items():
+        LOGGER.info(f"Comparing results for Request ID: {request_id}")
+        # comparison logic here
 
 
 class WiserTester:
@@ -217,7 +242,7 @@ class WiserTester:
                 request_id, _ = response
                 responses.append(response)
                 self.logger.info(f'response: {response}')
-                await asyncio.sleep(1)
+                await asyncio.sleep(2)
 
         self.logger.info(f'all requests completed for {rec_dir}')
 
@@ -242,6 +267,8 @@ def parse_args():
                         help="Path to the recordings directory")
     parser.add_argument("--results_path", type=str, default="data/results",
                         help="Path to save results")
+    parser.add_argument("--compare", type=str, choices=['yes', 'no'], default='yes',
+                        help="Compare to previous results: 'yes' or 'no'")
     return parser.parse_args()
 
 
@@ -262,6 +289,13 @@ async def main():
         LOGGER.error(f"An error occurred: {e}")
     finally:
         await test.close()
+
+    if args.compare == 'yes':
+        LOGGER.info('comparing results')
+        # Read and group results
+        grouped_results = read_and_group_results(results_path)
+        # Compare results
+        compare_results(grouped_results)
 
 
 if __name__ == "__main__":

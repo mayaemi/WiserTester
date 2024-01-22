@@ -1,1 +1,0 @@
-{"messageType":"chronicDiseaseCohorts.genReport","cohortId":"c_ca688279ff7732ea0e4cb3251e49f0f2","report":{"type":"relative_risk","timeWindow":[-1825,-1],"timeScope":[{"day":1,"month":1,"year":2004},{"day":1,"month":1,"year":2018}],"ageBreaks":[60,70],"minRiskCount":100,"minPredCount":20,"minRiskValue":2,"cohortSet":"med"}}

@@ -350,8 +350,8 @@ class WiserTester:
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Run Wiser Tester")
-    parser.add_argument("--username", type=str, help="Username for login", default='maya')
-    parser.add_argument("--password", type=str, help="Password for login", default='mayah')
+    parser.add_argument("--username", type=str, required=True, help="Username for login")
+    parser.add_argument("--password", type=str, required=True, help="Password for login")
     parser.add_argument("--mode", type=str, choices=['all', 'specific'], default='all',
                         help="Testing mode: 'all' or 'specific'")
     parser.add_argument("--input", type=str, default="data/inputs",

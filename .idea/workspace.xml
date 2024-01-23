@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="new exe &amp; batch file">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="added comparison report">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/data/expectations/expected_447368d6-68ca-4018-8008-7ac379fb85c7.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/data/inputs/rec1/req1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/data/inputs/rec1/req2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testlog.log" beforeDir="false" afterPath="$PROJECT_DIR$/testlog.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiser_tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/wiser_tester.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testlog.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiserTester.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiserTester.zip" beforeDir="false" afterPath="$PROJECT_DIR$/WiserTester.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +27,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/mayah/PycharmProjects/WiserTester/dist",
+    "last_opened_file_path": "C:/Users/mayah/PycharmProjects/WiserTester",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -40,6 +37,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mayah\PycharmProjects\WiserTester" />
       <recent name="C:\Users\mayah\PycharmProjects\WiserTester\dist" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -83,7 +81,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1705932051929</updated>
-      <workItem from="1705932052953" duration="5749000" />
+      <workItem from="1705932052953" duration="6352000" />
     </task>
     <task id="LOCAL-00001" summary="created new exe">
       <created>1705932305667</created>
@@ -106,7 +104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705933105204</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added comparison report">
+      <created>1706008548939</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1706008548939</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,7 +132,8 @@
     <MESSAGE value="created new exe" />
     <MESSAGE value="minor changes" />
     <MESSAGE value="new exe &amp; batch file" />
-    <option name="LAST_COMMIT_MESSAGE" value="new exe &amp; batch file" />
+    <MESSAGE value="added comparison report" />
+    <option name="LAST_COMMIT_MESSAGE" value="added comparison report" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/WiserTester$wiser_tester.coverage" NAME="wiser_tester Coverage Results" MODIFIED="1706008412326" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

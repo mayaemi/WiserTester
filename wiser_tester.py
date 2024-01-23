@@ -125,6 +125,16 @@ def get_most_recent_outputs(outputs_path):
     return {req_id: path for req_id, (path, _) in most_recent_outputs.items()}
 
 
+def save_comparison_report(report_json):
+    """save comparison report to a json file."""
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    file_name = f"comparison_{report_json['request_id']}_at_{timestamp}.json"
+    output_path = os.path.join(os.getcwd(), file_name)
+    with open(output_path, "w") as file:
+        json.dump(report_json, file, indent=2)
+    return output_path
+
+
 def compare_outputs_with_expectations(most_recent_outputs, expectations_path):
     """
     Compares the most recent outputs with expected outputs stored in a specified directory.
@@ -133,28 +143,37 @@ def compare_outputs_with_expectations(most_recent_outputs, expectations_path):
         expectations_path: Path to the directory containing expected outputs files.
     """
     LOGGER.info(f"comparing {most_recent_outputs} to expectations")
+    report_paths = []
     for request_id, output_file in most_recent_outputs.items():
         expected_file_path = os.path.join(expectations_path, f"expected_{request_id}.json")
+        report = {}
         if os.path.exists(expected_file_path):
             with open(output_file, 'r') as file:
                 output_data = json.load(file)
             with open(expected_file_path, 'r') as file:
                 expected_data = json.load(file)
-
+            report['request_id'] = request_id
+            report['latest_output_file'] = output_file
+            report['expected_output_file'] = expected_file_path
             diff = DeepDiff(output_data, expected_data, ignore_order=True)
+            report['diff'] = diff.to_json()
             if diff == {}:
-                LOGGER.info(f"Output for Request ID {request_id} matches the expectation.")
+                msg = f"Output for Request ID {request_id} matches the expectation."
             else:
-                LOGGER.info(f"Output for Request ID {request_id} does not match the expectation. Differences:")
-                LOGGER.info(diff)
+                msg = f"Output for Request ID {request_id} does not match the expectation. Differences: {diff}"
+            report['summary'] = msg
+            report_paths.append(save_comparison_report(report))
         else:
-            LOGGER.info(f"No expectation file found for Request ID {request_id}.")
+            msg = f"No expectation file found for Request ID {request_id}."
+        LOGGER.info(msg)
+    return report_paths
 
 
 class WiserTester:
     """
     A class to handle automated testing using Selenium WebDriver and SocketIO.
     """
+
     def __init__(self, input_path, ouputs_path, username, password):
         """
         Initializes the WiserTester instance.
@@ -191,7 +210,7 @@ class WiserTester:
                     request_id = report_data['requestId']
                     self.outputs[report_id] = report_data
                     self.logger.info(f"Received data for request ID {request_id}: {report_data}")
-                    await self.save_output(request_id, {"data": report_data, "id": report_data})
+                    await self.save_output(request_id, {"data": report_data, "id": report_id})
 
         @self.socket.event
         async def error(data):
@@ -392,7 +411,8 @@ async def main():
         # Read and get most recent outputs
         most_recent_outputs = get_most_recent_outputs(outputs_path)
         # Compare outputs
-        compare_outputs_with_expectations(most_recent_outputs, expectations_path)
+        report_paths = compare_outputs_with_expectations(most_recent_outputs, expectations_path)
+        LOGGER.info(f'comparison reports: {report_paths}')
 
 
 if __name__ == "__main__":

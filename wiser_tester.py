@@ -149,9 +149,9 @@ def compare_outputs_with_expectations(most_recent_outputs, expectations_path):
         report = {}
         if os.path.exists(expected_file_path):
             with open(output_file, 'r') as file:
-                output_data = json.load(file)
+                output_data = json.load(file).get('data')
             with open(expected_file_path, 'r') as file:
-                expected_data = json.load(file)
+                expected_data = json.load(file).get('data')
             report['request_id'] = request_id
             report['latest_output_file'] = output_file
             report['expected_output_file'] = expected_file_path
@@ -191,6 +191,8 @@ class WiserTester:
         self.driver = login(username, password)
         self.input_path = input_path
         self.outputs_path = ouputs_path
+        self.current_input_dir = None
+        self.cookies = None
 
         # Event handlers
         @self.socket.event
@@ -248,21 +250,14 @@ class WiserTester:
         return output_path
 
     async def get_output(self, req_id):
-        """
-        Retrieves the test output associated with the given request ID.
-        Args:
-            req_id (str): The request ID for which to retrieve the output.
-        Returns:
-            dict: The test output data associated with the request ID, if available.
-        """
+        """ Retrieves the test output associated with the given request ID. """
         return self.outputs.get(req_id)
 
-    async def send_request_get_response(self, json_request_path, cookies):
+    async def send_request_get_response(self, json_request_path):
         """
-        Sends a request to the server using the data in the specified JSON file and the provided cookies.
+        Sends a request to the server using the data in the specified JSON file.
         Args:
             json_request_path (str): The file path of the JSON file containing the request data.
-            cookies (list): A list of cookies to be included in the request.
         Returns:
             tuple: A tuple containing the request ID and the server's response object.
         """
@@ -270,7 +265,7 @@ class WiserTester:
             json_request_str = file.read()
 
         json_request = json.loads(json_request_str)
-        cookies_str, access_token_cookie_value, csrf_access_token_value = handle_cookies(cookies)
+        cookies_str, access_token_cookie_value, csrf_access_token_value = handle_cookies(self.cookies)
         req_headers = {
             'Accept': 'application/json',
             'Accept-Encoding': 'gzip, deflate, br',
@@ -333,13 +328,12 @@ class WiserTester:
         Args:
             inp_dir (str): The directory containing an input to be tested.
         """
-        cookies = self.driver.get_cookies()
-        self.logger.info(f'Cookies obtained')
+
         responses = []
         for filename in os.listdir(inp_dir):
             file_path = os.path.join(inp_dir, filename)
             if file_path.endswith(".json"):
-                response = await self.send_request_get_response(file_path, cookies)
+                response = await self.send_request_get_response(file_path)
                 self.logger.info(f'request sent for file: {file_path}')
                 request_id, _ = response
                 responses.append(response)
@@ -355,6 +349,8 @@ class WiserTester:
                 specific_inputs (list, optional): A list of specific inputs to be tested. If None, all inputs will be tested.
         """
         await self.connect_to_server()
+        self.cookies = self.driver.get_cookies()
+        self.logger.info(f'Cookies obtained')
         if specific_inputs:
             await self.test_specific(specific_inputs)
         else:

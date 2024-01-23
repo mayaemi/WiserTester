@@ -84,6 +84,9 @@ def login(username, password):
     return driver
 
 
+# login using normal requests
+
+
 # helpers
 
 def handle_cookies(cookies):

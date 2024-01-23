@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="minor comparison changes -&gt; new exe">
-      <change afterPath="$PROJECT_DIR$/buildNewExe.bat" afterDir="false" />
+    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="added automated exe buildNewExe.bat">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WiserTester.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipdeptree.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiser_tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/wiser_tester.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,6 +17,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2bJTCAxtsT1t1W7q9nWRd8sCaJM" />
@@ -80,7 +87,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1705932051929</updated>
-      <workItem from="1705932052953" duration="13688000" />
+      <workItem from="1705932052953" duration="15378000" />
     </task>
     <task id="LOCAL-00001" summary="created new exe">
       <created>1705932305667</created>
@@ -131,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706018240827</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added automated exe buildNewExe.bat">
+      <created>1706020071817</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1706020071817</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,9 +169,10 @@
     <MESSAGE value="new exe with comparison report" />
     <MESSAGE value="minor changes" />
     <MESSAGE value="minor comparison changes -&gt; new exe" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor comparison changes -&gt; new exe" />
+    <MESSAGE value="added automated exe buildNewExe.bat" />
+    <option name="LAST_COMMIT_MESSAGE" value="added automated exe buildNewExe.bat" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/WiserTester$wiser_tester.coverage" NAME="wiser_tester Coverage Results" MODIFIED="1706017230721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/WiserTester$wiser_tester.coverage" NAME="wiser_tester Coverage Results" MODIFIED="1706021516443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -7,10 +7,6 @@ import re
 import sys
 import socketio
 import httpx
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
 import logging
 import argparse
 from deepdiff import DeepDiff
@@ -35,68 +31,49 @@ SERVER_PATH = "http://localhost:5000/"
 ORIGIN = "http://localhost:5050/"
 
 
-# selenium
+# login using httpx
 
-def driver_setup():
-    """
-    Sets up a headless Chrome WebDriver.
-    Returns:
-        A WebDriver instance with a 10-second implicit wait.
-    """
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.implicitly_wait(10)
-    return driver
-
-
-def login(username, password):
+async def login(username, password):
     """
     Logs into the application using provided credentials.
     Args:
         username: Username for login.
         password: Password for login.
     Returns:
-        A WebDriver instance after successful login.
+        HTTPX response object and cookies after successful login.
     """
-    driver = driver_setup()
-    driver.get(ORIGIN)
+    url = SERVER_PATH + "login"
+    headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        # Other headers as necessary
+    }
+    data = {
+        "username": username,
+        "password": password
+    }
 
-    # print(self.driver.current_url)
-    driver.maximize_window()
-
-    WebDriverWait(driver, timeout=100).until(lambda d: d.find_element(By.NAME, "username"))
-    driver.find_element(By.NAME, "username").click()
-    driver.find_element(By.NAME, "username").send_keys(username)
-
-    driver.find_element(By.NAME, "password").click()
-    driver.find_element(By.NAME, "password").send_keys(password)
-    driver.find_element(By.XPATH, "//button[contains(.,'Login')]").click()
-
-    # print(driver.current_url)
-    # Wait for the authentication to complete
-    WebDriverWait(driver, timeout=10).until(
-        lambda d: d.find_element(By.XPATH, "//a[contains(text(),'Cohort Builder')]"))
-
-    print(driver.title)
-
-    return driver
-
-
-# login using normal requests
+    try:
+        with httpx.Client() as client:
+            response = client.post(url, json=data, headers=headers)
+            response.raise_for_status()
+            cookies = response.cookies
+            return response, cookies
+    except Exception as e:
+        LOGGER.error(f"Login failed: {e}")
+        return None, None
 
 
 # helpers
 
-def handle_cookies(cookies):
+def handle_cookies(response_cookies):
     """
-    Extracts and formats required cookies from the WebDriver.
-    Returns:
-        A tuple containing formatted cookies string, access token value, and CSRF token value.
-    """
-    access_token_cookie = next((cookie['value'] for cookie in cookies if cookie['name'] == 'access_token_cookie'), None)
-    csrf_token = next((cookie['value'] for cookie in cookies if cookie['name'] == 'csrf_access_token'), None)
+        Extracts and formats required cookies from the HTTPX response.
+        Returns:
+            Formatted cookies string.
+        """
+    access_token_cookie = response_cookies.get('access_token_cookie')
+    csrf_token = response_cookies.get('csrf_access_token')
 
     if not all([access_token_cookie, csrf_token]):
         LOGGER.error('Error: Missing required cookies')
@@ -174,7 +151,7 @@ def compare_outputs_with_expectations(most_recent_outputs, expectations_path):
 
 class WiserTester:
     """
-    A class to handle automated testing using Selenium WebDriver and SocketIO.
+    A class to handle automated testing using HTTP requests and SocketIO.
     """
 
     def __init__(self, input_path, ouputs_path, username, password):
@@ -187,11 +164,12 @@ class WiserTester:
         self.logger = LOGGER
         # self.socket = socketio.AsyncClient(logger=True, engineio_logger=True)
         self.socket = socketio.AsyncClient()
+        self.username = username
+        self.password = password
         self.outputs = {}
         self.server_path = SERVER_PATH
         self.client_lock = asyncio.Lock()
         self.s_id = None
-        self.driver = login(username, password)
         self.input_path = input_path
         self.outputs_path = ouputs_path
         self.current_input_dir = None
@@ -351,9 +329,12 @@ class WiserTester:
             Args:
                 specific_inputs (list, optional): A list of specific inputs to be tested. If None, all inputs will be tested.
         """
+        # Perform login and store cookies
+        _, self.cookies = await login(self.username, self.password)
+        self.logger.info(f'Logged in and obtained cookies {self.cookies}')
+
         await self.connect_to_server()
-        self.cookies = self.driver.get_cookies()
-        self.logger.info(f'Cookies obtained')
+
         if specific_inputs:
             await self.test_specific(specific_inputs)
         else:
@@ -401,7 +382,7 @@ async def main():
             specific_inputs = []
             await test.start_test(specific_inputs)
     except Exception as e:
-        LOGGER.error(f"An error occurred: {e}")
+        LOGGER.error(f"An error occurred: {e.with_traceback()}")
     finally:
         await test.close()
 

@@ -23,3 +23,5 @@ Using the Standalone Executable:
                        [--output OUTPUT] [--expected_output EXPECTED_OUTPUT]
                        [--compare {yes,no}]
 
+Using the buildNewExe script
+       .\buildNewExe.bat

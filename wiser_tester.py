@@ -91,31 +91,37 @@ def get_most_recent_outputs(outputs_path):
     Returns:
         A dictionary mapping each request ID to its most recent output file path.
     """
-    most_recent_outputs = {}
     pattern = re.compile(r"([a-f0-9\-]+)_at_(\d{8}_\d{6})\.json")
+    most_recent_outputs = {}
+    LOGGER.info(f"Scanning directories: {outputs_path}")
 
-    for file_path in glob.glob(os.path.join(outputs_path, "*.json")):
-        match = pattern.match(os.path.basename(file_path))
-        if match:
-            request_id, timestamp = match.groups()
-            timestamp = datetime.datetime.strptime(timestamp, "%Y%m%d_%H%M%S")
-            if request_id not in most_recent_outputs or most_recent_outputs[request_id][1] < timestamp:
-                most_recent_outputs[request_id] = (file_path, timestamp)
+    for output in os.listdir(outputs_path):
+        most_recent_output = {}
+        LOGGER.info(f"Scanning directory: {output}")
+        for file_path in glob.glob(os.path.join(outputs_path, output, "*.json")):
+            match = pattern.match(os.path.basename(file_path))
+            if match:
+                request_id, timestamp = match.groups()
+                timestamp = datetime.datetime.strptime(timestamp, "%Y%m%d_%H%M%S")
+                if request_id not in most_recent_output or most_recent_output[request_id][1] < timestamp:
+                    most_recent_output[request_id] = (file_path, timestamp)
 
-    return {req_id: path for req_id, (path, _) in most_recent_outputs.items()}
+        rec_most_recent_output = {req_id: path for req_id, (path, _) in most_recent_output.items()}
+        most_recent_outputs[output] = rec_most_recent_output
+    return most_recent_outputs
 
 
-def save_comparison_report(report_json):
+def save_comparison_report(report_json, path):
     """save comparison report to a json file."""
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     file_name = f"comparison_{report_json['request_id']}_at_{timestamp}.json"
-    output_path = os.path.join(os.getcwd(), file_name)
+    output_path = os.path.join(path, file_name)
     with open(output_path, "w") as file:
         json.dump(report_json, file, indent=2)
     return output_path
 
 
-def compare_outputs_with_expectations(most_recent_outputs, expectations_path):
+def compare_outputs_with_expectations(most_recent_outputs, expectations_path, reports_path):
     """
     Compares the most recent outputs with expected outputs stored in a specified directory.
     Args:
@@ -124,28 +130,38 @@ def compare_outputs_with_expectations(most_recent_outputs, expectations_path):
     """
     LOGGER.info(f"comparing {most_recent_outputs} to expectations")
     report_paths = []
-    for request_id, output_file in most_recent_outputs.items():
-        expected_file_path = os.path.join(expectations_path, f"expected_{request_id}.json")
-        report = {}
-        if os.path.exists(expected_file_path):
-            with open(output_file, 'r') as file:
-                output_data = json.load(file).get('data')
-            with open(expected_file_path, 'r') as file:
-                expected_data = json.load(file).get('data')
-            report['request_id'] = request_id
-            report['latest_output_file'] = output_file
-            report['expected_output_file'] = expected_file_path
-            diff = DeepDiff(output_data, expected_data, ignore_order=True)
-            report['diff'] = diff.to_json()
-            if diff == {}:
-                msg = f"Output for Request ID {request_id} matches the expectation."
+    for output in most_recent_outputs:
+        path = os.path.join(reports_path, output)
+        if not os.path.isdir(path):
+            os.mkdir(path)
+            LOGGER.info(f'created dir {path}')
+        most_recent_output = most_recent_outputs[output]
+        LOGGER.info(f'most recent is {most_recent_output}')
+
+        for request_id, output_file in most_recent_output.items():
+            expected_file_path = os.path.join(expectations_path, output, f"expected_{request_id}.json")
+            LOGGER.info(f'expected_file_path is {most_recent_output}')
+
+            report = {}
+            if os.path.exists(expected_file_path):
+                with open(output_file, 'r') as file:
+                    output_data = json.load(file).get('data')
+                with open(expected_file_path, 'r') as file:
+                    expected_data = json.load(file).get('data')
+                report['request_id'] = request_id
+                report['latest_output_file'] = output_file
+                report['expected_output_file'] = expected_file_path
+                diff = DeepDiff(output_data, expected_data, ignore_order=True)
+                report['diff'] = diff.to_json()
+                if diff == {}:
+                    msg = f"Output for Request ID {request_id} matches the expectation."
+                else:
+                    msg = f"Output for Request ID {request_id} does not match the expectation. Differences: {diff}"
+                report['summary'] = msg
+                report_paths.append(save_comparison_report(report, path))
             else:
-                msg = f"Output for Request ID {request_id} does not match the expectation. Differences: {diff}"
-            report['summary'] = msg
-            report_paths.append(save_comparison_report(report))
-        else:
-            msg = f"No expectation file found for Request ID {request_id}."
-        LOGGER.info(msg)
+                msg = f"No expectation file found for Request ID {request_id}."
+            LOGGER.info(msg)
     return report_paths
 
 
@@ -378,6 +394,8 @@ def parse_args():
                         help="path to expectations")
     parser.add_argument("--compare", type=str, choices=['yes', 'no'], default='yes',
                         help="Compare to previous outputs: 'yes' or 'no'")
+    parser.add_argument("--comparison_reports", type=str, default='data/comparison_reports',
+                        help="path to comparison reports")
 
     return parser.parse_args()
 
@@ -387,6 +405,7 @@ async def main():
     inputs_path = args.input
     outputs_path = args.output
     expectations_path = args.expected_output
+    comparison_reports_path = args.comparison_reports
     username = args.username
     password = args.password
     test = WiserTester(inputs_path, outputs_path, username, password)
@@ -409,7 +428,7 @@ async def main():
         # Read and get most recent outputs
         most_recent_outputs = get_most_recent_outputs(outputs_path)
         # Compare outputs
-        report_paths = compare_outputs_with_expectations(most_recent_outputs, expectations_path)
+        report_paths = compare_outputs_with_expectations(most_recent_outputs, expectations_path, comparison_reports_path)
         LOGGER.info(f'comparison reports: {report_paths}')
 
 

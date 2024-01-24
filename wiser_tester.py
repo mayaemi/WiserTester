@@ -173,6 +173,7 @@ class WiserTester:
         self.input_path = input_path
         self.outputs_path = ouputs_path
         self.current_input_dir = None
+        self.current_output_dir = None
         self.cookies = None
 
         # Event handlers
@@ -190,10 +191,13 @@ class WiserTester:
             if report_id:
                 async with self.client_lock:
                     report_data = json.loads(data.get('data'))
-                    request_id = report_data['requestId']
-                    self.outputs[report_id] = report_data
-                    self.logger.info(f"Received data for request ID {request_id}: {report_data}")
-                    await self.save_output(request_id, {"data": report_data, "id": report_id})
+                    if not (report_data.get('requestId') is None):
+                        request_id = report_data['requestId']
+                        self.outputs[report_id] = report_data
+                        self.logger.info(f"Received data for request ID {request_id}")
+                        await self.save_output(request_id, {"data": report_data, "id": report_id})
+                    else:
+                        self.logger.info(f"Received data without request ID {report_data}")
 
         @self.socket.event
         async def error(data):
@@ -214,6 +218,14 @@ class WiserTester:
             self.logger.error(f"Socket connection failed: {e}")
             raise
 
+    async def make_output_dir(self):
+        input_folder = os.path.basename(self.current_input_dir)
+        path = os.path.join(self.outputs_path, input_folder)
+        if not os.path.isdir(path):
+            os.mkdir(path)
+            LOGGER.info(f'created dir {path}')
+        return path
+
     async def save_output(self, request_id, output_data):
         """
         Saves the test output to a JSON file, naming it with the request ID and a timestamp.
@@ -225,7 +237,7 @@ class WiserTester:
         """
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         file_name = f"{request_id}_at_{timestamp}.json"
-        output_path = os.path.join(self.outputs_path, file_name)
+        output_path = os.path.join(self.current_output_dir, file_name)
         with open(output_path, "w") as file:
             json.dump(output_data, file, indent=2)
         return output_path
@@ -309,7 +321,10 @@ class WiserTester:
         Args:
             inp_dir (str): The directory containing an input to be tested.
         """
-
+        self.logger.info(f'testing {inp_dir}')
+        self.current_input_dir = inp_dir
+        self.current_output_dir = await self.make_output_dir()
+        self.logger.info(f'made directory {self.current_output_dir}')
         responses = []
         for filename in os.listdir(inp_dir):
             file_path = os.path.join(inp_dir, filename)
@@ -353,6 +368,8 @@ def parse_args():
     parser.add_argument("--password", type=str, required=True, help="Password for login")
     parser.add_argument("--mode", type=str, choices=['all', 'specific'], default='all',
                         help="Testing mode: 'all' or 'specific'")
+    parser.add_argument("--specific_list", type=str,
+                        help="specific list of input directories")
     parser.add_argument("--input", type=str, default="data/inputs",
                         help="Path to the inputs directory")
     parser.add_argument("--output", type=str, default="data/outputs",
@@ -378,8 +395,9 @@ async def main():
         if args.mode == 'all':
             await test.start_test()
         elif args.mode == 'specific':
-            # need to define how to handle specific inputs
-            specific_inputs = []
+            specific_inputs_str = args.specific_list
+            specific_inputs = specific_inputs_str.split(',')
+            LOGGER.info(specific_inputs)
             await test.start_test(specific_inputs)
     except Exception as e:
         LOGGER.error(f"An error occurred: {e.with_traceback()}")

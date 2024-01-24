@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="added exported har-&gt;input folder builder&#10;added specific testing mode logic&#10;outputs are now seperated into different inputs/recordings folder">
-      <change beforePath="$PROJECT_DIR$/WiserTesterNoSelenium.zip" beforeDir="false" />
-    </list>
+    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="added new exe as zip with data&amp;batch" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -113,7 +111,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1705932051929</updated>
-      <workItem from="1705932052953" duration="26633000" />
+      <workItem from="1705932052953" duration="27002000" />
     </task>
     <task id="LOCAL-00001" summary="created new exe">
       <created>1705932305667</created>
@@ -199,7 +197,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706103978195</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="added new exe as zip with data&amp;batch">
+      <created>1706104174235</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1706104174235</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,7 +233,8 @@
     <MESSAGE value="created new exe for the no selenium script + minor changes" />
     <MESSAGE value="adding exported har-&gt;input folder builder" />
     <MESSAGE value="added exported har-&gt;input folder builder&#10;added specific testing mode logic&#10;outputs are now seperated into different inputs/recordings folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="added exported har-&gt;input folder builder&#10;added specific testing mode logic&#10;outputs are now seperated into different inputs/recordings folder" />
+    <MESSAGE value="added new exe as zip with data&amp;batch" />
+    <option name="LAST_COMMIT_MESSAGE" value="added new exe as zip with data&amp;batch" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/WiserTester$input_from_har.coverage" NAME="input_from_har Coverage Results" MODIFIED="1706102246914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

@@ -8,18 +8,18 @@ Using python
         pyinstaller --onefile wiser_tester.py
     running script
         usage: wiser_tester.py [-h] --username USERNAME --password PASSWORD
-                       [--mode {all,specific}] [--input INPUT]
+                       [--mode {all,specific}] [--specific_list LIST_OF_INPUTS (example1,example2,...)] [--input INPUT]
                        [--output OUTPUT] [--expected_output EXPECTED_OUTPUT]
                        [--compare {yes,no}]
 
 
 Using the Standalone Executable:
     basic execution:
-        .\dist\wiser_tester.exe
+        wiser_tester.exe
 
     command line arguments:
-        .\dist\wiser_tester --username USERNAME --password PASSWORD
-                       [--mode {all,specific}] [--input INPUT]
+        wiser_tester --username USERNAME --password PASSWORD
+                       [--mode {all,specific}] [--specific_list LIST_OF_INPUTS (example1,example2,...)] [--input INPUT]
                        [--output OUTPUT] [--expected_output EXPECTED_OUTPUT]
                        [--compare {yes,no}]
 

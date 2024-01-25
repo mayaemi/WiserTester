@@ -83,9 +83,10 @@ def save_comparison_report(report_json, path, input_file_name):
     """save comparison report to a json file."""
     file_name = f"{input_file_name}_comparison.json"
     output_path = os.path.join(path, file_name)
+    report_path = output_path
     with open(output_path, "w") as file:
         json.dump(report_json, file, indent=2)
-    return output_path
+    return report_path
 
 
 def compare_outputs_with_expectations(outputs_path, expectations_path, reports_path):
@@ -276,7 +277,6 @@ class WiserTester:
                                              headers=req_headers)
                 response.raise_for_status()
                 response_json = response.json()
-                self.logger.info(f"response {response_json}")
                 request_id = response_json.get('id')  # Assuming the response contains the request ID
 
                 if request_id:

@@ -1,10 +1,9 @@
 import asyncio
-import datetime
-import glob
 import json
 import os
-import re
 import sys
+from pathlib import Path
+
 import socketio
 import httpx
 import logging
@@ -80,85 +79,50 @@ def handle_cookies(response_cookies):
     return cookies_str, access_token_cookie, csrf_token
 
 
-def get_most_recent_outputs(outputs_path):
-    """
-    Finds the most recent output file for each request ID in the specified directory.
-    Args:
-        outputs_path: Path to the directory containing output files.
-    Returns:
-        A dictionary mapping each request ID to its most recent output file path.
-    """
-    pattern = re.compile(r"([a-f0-9\-]+)_at_(\d{8}_\d{6})\.json")
-    most_recent_outputs = {}
-    LOGGER.info(f"Scanning directories: {outputs_path}")
-
-    for output in os.listdir(outputs_path):
-        most_recent_output = {}
-        LOGGER.info(f"Scanning directory: {output}")
-        for file_path in glob.glob(os.path.join(outputs_path, output, "*.json")):
-            match = pattern.match(os.path.basename(file_path))
-            if match:
-                request_id, timestamp = match.groups()
-                timestamp = datetime.datetime.strptime(timestamp, "%Y%m%d_%H%M%S")
-                if request_id not in most_recent_output or most_recent_output[request_id][1] < timestamp:
-                    most_recent_output[request_id] = (file_path, timestamp)
-
-        rec_most_recent_output = {req_id: path for req_id, (path, _) in most_recent_output.items()}
-        most_recent_outputs[output] = rec_most_recent_output
-    return most_recent_outputs
-
-
-def save_comparison_report(report_json, path):
+def save_comparison_report(report_json, path, input_file_name):
     """save comparison report to a json file."""
-    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    file_name = f"comparison_{report_json['request_id']}_at_{timestamp}.json"
+    file_name = f"{input_file_name}_comparison.json"
     output_path = os.path.join(path, file_name)
     with open(output_path, "w") as file:
         json.dump(report_json, file, indent=2)
     return output_path
 
 
-def compare_outputs_with_expectations(most_recent_outputs, expectations_path, reports_path):
+def compare_outputs_with_expectations(outputs_path, expectations_path, reports_path):
     """
-    Compares the most recent outputs with expected outputs stored in a specified directory.
-    Args:
-        most_recent_outputs: A dictionary mapping request IDs to their most recent output file path.
-        expectations_path: Path to the directory containing expected outputs files.
+    Compare the output files with expected outputs stored in a specified directory.
     """
-    LOGGER.info(f"comparing {most_recent_outputs} to expectations")
+    LOGGER.info(f"Comparing outputs to expectations")
     report_paths = []
-    for output in most_recent_outputs:
-        path = os.path.join(reports_path, output)
-        if not os.path.isdir(path):
-            os.mkdir(path)
-            LOGGER.info(f'created dir {path}')
-        most_recent_output = most_recent_outputs[output]
-        LOGGER.info(f'most recent is {most_recent_output}')
+    for output_folder in os.listdir(outputs_path):
+        if os.path.isdir(os.path.join(expectations_path, output_folder)):
+            output_folder_path = os.path.join(outputs_path, output_folder)
+            LOGGER.info(f"Comparing results for {output_folder}")
+            for output_file in os.listdir(output_folder_path):
+                input_file_name, _ = os.path.splitext(output_file)
+                expected_file_name = f"{input_file_name}.json"
+                expected_file_path = os.path.join(expectations_path, output_folder, expected_file_name)
+                output_file_path = os.path.join(output_folder_path, output_file)
+                report_path = os.path.join(reports_path, output_folder)
 
-        for request_id, output_file in most_recent_output.items():
-            expected_file_path = os.path.join(expectations_path, output, f"expected_{request_id}.json")
-            LOGGER.info(f'expected_file_path is {most_recent_output}')
+                if not os.path.isdir(report_path):
+                    os.mkdir(report_path)
+                    LOGGER.info(f'Created directory {report_path}')
 
-            report = {}
-            if os.path.exists(expected_file_path):
-                with open(output_file, 'r') as file:
-                    output_data = json.load(file).get('data')
-                with open(expected_file_path, 'r') as file:
-                    expected_data = json.load(file).get('data')
-                report['request_id'] = request_id
-                report['latest_output_file'] = output_file
-                report['expected_output_file'] = expected_file_path
-                diff = DeepDiff(output_data, expected_data, ignore_order=True)
-                report['diff'] = diff.to_json()
-                if diff == {}:
-                    msg = f"Output for Request ID {request_id} matches the expectation."
+                report = {}
+                if os.path.exists(expected_file_path):
+                    with open(output_file_path, 'r') as file:
+                        output_data = json.load(file).get('data')
+                    with open(expected_file_path, 'r') as file:
+                        expected_data = json.load(file).get('data')
+                    report['request_id'] = output_data.get('requestId')
+                    report['output_file'] = output_file_path
+                    report['expected_output_file'] = expected_file_path
+                    report['diff'] = DeepDiff(output_data, expected_data, ignore_order=True).to_json()
+                    report_paths.append(save_comparison_report(report, report_path, input_file_name))
+                    LOGGER.info(f"Comparison report generated for {input_file_name}")
                 else:
-                    msg = f"Output for Request ID {request_id} does not match the expectation. Differences: {diff}"
-                report['summary'] = msg
-                report_paths.append(save_comparison_report(report, path))
-            else:
-                msg = f"No expectation file found for Request ID {request_id}."
-            LOGGER.info(msg)
+                    LOGGER.warning(f"No expectation file found for {input_file_name}")
     return report_paths
 
 
@@ -190,6 +154,9 @@ class WiserTester:
         self.current_input_dir = None
         self.current_output_dir = None
         self.cookies = None
+        self.request_to_input_map = {}  # dictionary to map request IDs to input file names
+        self.request_id_lock = asyncio.Lock()  # Lock for synchronizing request ID mapping
+        self.report_queue = asyncio.Queue()  # Initialize a queue for reports
 
         # Event handlers
         @self.socket.event
@@ -202,17 +169,8 @@ class WiserTester:
 
         @self.socket.event
         async def report_ready(data):
-            report_id = data.get('id')
-            if report_id:
-                async with self.client_lock:
-                    report_data = json.loads(data.get('data'))
-                    if not (report_data.get('requestId') is None):
-                        request_id = report_data['requestId']
-                        self.outputs[report_id] = report_data
-                        self.logger.info(f"Received data for request ID {request_id}")
-                        await self.save_output(request_id, {"data": report_data, "id": report_id})
-                    else:
-                        self.logger.info(f"Received data without request ID {report_data}")
+            await self.report_queue.put(data)  # Enqueue the report data
+            self.logger.info(f"Report queued with ID {data.get('id')}")
 
         @self.socket.event
         async def error(data):
@@ -233,6 +191,22 @@ class WiserTester:
             self.logger.error(f"Socket connection failed: {e}")
             raise
 
+    async def process_report_queue(self):
+        while not self.report_queue.empty():
+            data = await self.report_queue.get()
+            report_id = data.get('id')
+            if report_id:
+                async with self.client_lock:
+                    async with self.request_id_lock:
+                        if report_id in self.request_to_input_map:
+                            report_data = json.loads(data.get('data'))
+                            self.outputs[report_id] = report_data
+                            self.logger.info(f"Processing report with ID {report_id}")
+                            await self.save_output({"data": report_data, "id": report_id})
+                        else:
+                            self.logger.error(f"Report ID {report_id} not found in request mapping")
+            self.report_queue.task_done()
+
     async def make_output_dir(self):
         input_folder = os.path.basename(self.current_input_dir)
         path = os.path.join(self.outputs_path, input_folder)
@@ -241,7 +215,7 @@ class WiserTester:
             LOGGER.info(f'created dir {path}')
         return path
 
-    async def save_output(self, request_id, output_data):
+    async def save_output(self, output_data):
         """
         Saves the test output to a JSON file, naming it with the request ID and a timestamp.
         Args:
@@ -250,8 +224,8 @@ class WiserTester:
         Returns:
             str: The path to the saved output file.
         """
-        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        file_name = f"{request_id}_at_{timestamp}.json"
+        input_file_name = self.request_to_input_map.get(output_data['id'], "unknown")
+        file_name = f"{input_file_name}.json"
         output_path = os.path.join(self.current_output_dir, file_name)
         with open(output_path, "w") as file:
             json.dump(output_data, file, indent=2)
@@ -295,13 +269,26 @@ class WiserTester:
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-platform': '"Windows"'
         }
+
         try:
             async with httpx.AsyncClient() as client:
-                response = await client.post(f'{self.server_path}report', json=json_request, headers=req_headers)
+                response = await client.post(f'{self.server_path}report', json=json_request,
+                                             headers=req_headers)
                 response.raise_for_status()
                 response_json = response.json()
+                self.logger.info(f"response {response_json}")
                 request_id = response_json.get('id')  # Assuming the response contains the request ID
-                return request_id, response
+
+                if request_id:
+                    # Lock the section where the request ID is mapped to the input file name
+                    async with self.request_id_lock:
+                        input_file_name = Path(json_request_path).stem
+                        self.request_to_input_map[request_id] = input_file_name
+                        self.logger.info(f"request: {request_id}, input file name {input_file_name}")
+                    return request_id, response
+                else:
+                    self.logger.error("No request ID found in response")
+                    return None, None
 
         except Exception as e:
             self.logger.error(f"Request failed: {e}")
@@ -341,11 +328,14 @@ class WiserTester:
         self.current_output_dir = await self.make_output_dir()
         self.logger.info(f'made directory {self.current_output_dir}')
         responses = []
-        for filename in os.listdir(inp_dir):
+        lst = os.listdir(inp_dir)
+        lst.sort()
+        self.logger.info(lst)
+        for filename in lst:
             file_path = os.path.join(inp_dir, filename)
             if file_path.endswith(".json"):
+                self.logger.info(f'sending request for file: {file_path}')
                 response = await self.send_request_get_response(file_path)
-                self.logger.info(f'request sent for file: {file_path}')
                 request_id, _ = response
                 responses.append(response)
                 self.logger.info(f'response: {response}')
@@ -370,17 +360,20 @@ class WiserTester:
         else:
             await self.test_all()
         await self.socket.wait()
+        await self.process_report_queue()  # Process the queued reports
 
     async def close(self):
         """ Closes the WebSocket connection if it is open. """
         if self.socket:
             await self.socket.disconnect()
 
+
 '''
 HOST = "localhost:5000"
 SERVER_PATH = f"http://{HOST}/"
 ORIGIN = "http://localhost:5050"
 '''
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Run Wiser Tester")
@@ -434,10 +427,9 @@ async def main():
 
     if args.compare == 'yes':
         LOGGER.info('comparing outputs')
-        # Read and get most recent outputs
-        most_recent_outputs = get_most_recent_outputs(outputs_path)
+
         # Compare outputs
-        report_paths = compare_outputs_with_expectations(most_recent_outputs, expectations_path,
+        report_paths = compare_outputs_with_expectations(outputs_path, expectations_path,
                                                          comparison_reports_path)
         LOGGER.info(f'comparison reports: {report_paths}')
 

@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="fixed comparison logic for folder separation, created new exe &amp; zipped tester, added argument comparison_reports, edited README.txt">
+    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="new exe zip for - host and origin values are no longer hard coded">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RunWiserTester.bat" beforeDir="false" afterPath="$PROJECT_DIR$/RunWiserTester.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WiserTester24011721.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WiserTester25011305.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/rec1/expected_447368d6-68ca-4018-8008-7ac379fb85c7.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/rec1/req1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/rec1/req2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examplehar.har" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/input_from_har.py" beforeDir="false" afterPath="$PROJECT_DIR$/input_from_har.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiser_tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/wiser_tester.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +56,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/mayah/PycharmProjects/WiserTester",
+    "last_opened_file_path": "C:/Users/mayah/PycharmProjects/WiserTester/data/expectations",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -63,12 +66,14 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mayah\PycharmProjects\WiserTester\data\expectations" />
       <recent name="C:\Users\mayah\PycharmProjects\WiserTester" />
       <recent name="C:\Users\mayah\PycharmProjects\WiserTester\dist" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\mayah\PycharmProjects\WiserTester\data\expectations\rec1" />
+      <recent name="C:\Users\mayah\PycharmProjects\WiserTester\har_files" />
       <recent name="C:\Users\mayah\PycharmProjects\WiserTester" />
+      <recent name="C:\Users\mayah\PycharmProjects\WiserTester\data\expectations\rec1" />
     </key>
   </component>
   <component name="RunManager" selected="Python.input_from_har">
@@ -131,7 +136,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1705932051929</updated>
-      <workItem from="1705932052953" duration="34904000" />
+      <workItem from="1705932052953" duration="48238000" />
     </task>
     <task id="LOCAL-00001" summary="created new exe">
       <created>1705932305667</created>
@@ -238,7 +243,21 @@
       <option name="project" value="LOCAL" />
       <updated>1706109916864</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="host and origin values are no longer hard coded">
+      <created>1706180548742</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1706180548742</updated>
+    </task>
+    <task id="LOCAL-00017" summary="new exe zip for - host and origin values are no longer hard coded">
+      <created>1706180779719</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1706180779719</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,10 +289,12 @@
     <MESSAGE value="added new exe as zip with data&amp;batch" />
     <MESSAGE value="edited readme file" />
     <MESSAGE value="fixed comparison logic for folder separation, created new exe &amp; zipped tester, added argument comparison_reports, edited README.txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed comparison logic for folder separation, created new exe &amp; zipped tester, added argument comparison_reports, edited README.txt" />
+    <MESSAGE value="host and origin values are no longer hard coded" />
+    <MESSAGE value="new exe zip for - host and origin values are no longer hard coded" />
+    <option name="LAST_COMMIT_MESSAGE" value="new exe zip for - host and origin values are no longer hard coded" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/WiserTester$input_from_har.coverage" NAME="input_from_har Coverage Results" MODIFIED="1706180437106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/WiserTester$input_from_har.coverage" NAME="input_from_har Coverage Results" MODIFIED="1706188505894" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/WiserTester$wiser_tester.coverage" NAME="wiser_tester Coverage Results" MODIFIED="1706021516443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

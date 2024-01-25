@@ -2,6 +2,7 @@ import json
 import logging
 import os
 import sys
+from pathlib import Path
 
 from haralyzer import HarParser, HarPage
 
@@ -22,13 +23,15 @@ LOGGER.addHandler(file_handler)
 LOGGER.addHandler(stdout_handler)
 
 INPUTS_DIR = 'data/inputs'
-HAR_PATH = 'diabetes_complication_comparison.har'
+HAR_PATH = 'har_files/tracks_builder.har'
+INITIAL_REQUESTS_PATH = 'har_files/initial_requests.har'
 PAGE_TITLE = 'http://localhost:5050/'
 FILE_NAME_FORMAT = '%Y%m%d%H%M%S%f'
+REMOVE_INITIAL_DATA = True
 
 
 def make_dir():
-    path = os.path.join(INPUTS_DIR, HAR_PATH.strip('.har'))
+    path = os.path.join(INPUTS_DIR, Path(HAR_PATH).stem)
     if not os.path.isdir(path):
         os.mkdir(path)
         LOGGER.info(f'created dir {path}')
@@ -58,6 +61,12 @@ entries = har_page.filter_entries(request_type='POST', status_code='2.*')
 for entry in entries:
     req_txt = entry.request.text
     json_req = json.loads(req_txt)
-    name = entry.startTime.strftime(FILE_NAME_FORMAT)[:-3]+'.json'
-    saved = save_request_file(new_rec_dir, json_req, name)
-    LOGGER.info(saved)
+    if REMOVE_INITIAL_DATA:
+        if json_req.get("messageType") != "getData" and json_req.get("messageType") != "userCohortCatalog":
+            name = entry.startTime.strftime(FILE_NAME_FORMAT)[:-3] + '.json'
+            saved = save_request_file(new_rec_dir, json_req, name)
+            LOGGER.info(saved)
+    else:
+        name = entry.startTime.strftime(FILE_NAME_FORMAT)[:-3] + '.json'
+        saved = save_request_file(new_rec_dir, json_req, name)
+        LOGGER.info(saved)

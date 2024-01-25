@@ -27,13 +27,10 @@ file_handler.setFormatter(formatter)
 LOGGER.addHandler(file_handler)
 LOGGER.addHandler(stdout_handler)
 
-SERVER_PATH = "http://localhost:5000/"
-ORIGIN = "http://localhost:5050/"
-
 
 # login using httpx
 
-async def login(username, password):
+async def login(username, password, server_path):
     """
     Logs into the application using provided credentials.
     Args:
@@ -42,7 +39,7 @@ async def login(username, password):
     Returns:
         HTTPX response object and cookies after successful login.
     """
-    url = SERVER_PATH + "login"
+    url = server_path + "login"
     headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -170,7 +167,7 @@ class WiserTester:
     A class to handle automated testing using HTTP requests and SocketIO.
     """
 
-    def __init__(self, input_path, ouputs_path, username, password):
+    def __init__(self, input_path, ouputs_path, username, password, host, origin):
         """
         Initializes the WiserTester instance.
         Args:
@@ -183,7 +180,9 @@ class WiserTester:
         self.username = username
         self.password = password
         self.outputs = {}
-        self.server_path = SERVER_PATH
+        self.host = host
+        self.server_path = f"http://{host}/"
+        self.origin = origin
         self.client_lock = asyncio.Lock()
         self.s_id = None
         self.input_path = input_path
@@ -282,9 +281,9 @@ class WiserTester:
             'Connection': 'keep-alive',
             'Content-Type': 'application/json',
             'Cookie': f'{cookies_str}',
-            'Host': 'localhost:5000',
-            'Origin': 'http://localhost:5050',
-            'Referer': 'http://localhost:5050/',
+            'Host': f'{self.host}',
+            'Origin': f"{self.origin}",
+            'Referer': f'{self.origin}/',
             'S_ID': f'{self.s_id}',
             'Sec-Fetch-Dest': 'empty',
             'Sec-Fetch-Mode': 'cors',
@@ -298,7 +297,7 @@ class WiserTester:
         }
         try:
             async with httpx.AsyncClient() as client:
-                response = await client.post('http://localhost:5000/report', json=json_request, headers=req_headers)
+                response = await client.post(f'{self.server_path}report', json=json_request, headers=req_headers)
                 response.raise_for_status()
                 response_json = response.json()
                 request_id = response_json.get('id')  # Assuming the response contains the request ID
@@ -361,7 +360,7 @@ class WiserTester:
                 specific_inputs (list, optional): A list of specific inputs to be tested. If None, all inputs will be tested.
         """
         # Perform login and store cookies
-        _, self.cookies = await login(self.username, self.password)
+        _, self.cookies = await login(self.username, self.password, self.server_path)
         self.logger.info(f'Logged in and obtained cookies {self.cookies}')
 
         await self.connect_to_server()
@@ -377,9 +376,16 @@ class WiserTester:
         if self.socket:
             await self.socket.disconnect()
 
+'''
+HOST = "localhost:5000"
+SERVER_PATH = f"http://{HOST}/"
+ORIGIN = "http://localhost:5050"
+'''
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Run Wiser Tester")
+    parser.add_argument("--host", type=str, required=True, help="host name (ex. localhost:5000")
+    parser.add_argument("--origin", type=str, required=True, help="origin  (ex. http://localhost:5050")
     parser.add_argument("--username", type=str, required=True, help="Username for login")
     parser.add_argument("--password", type=str, required=True, help="Password for login")
     parser.add_argument("--mode", type=str, choices=['all', 'specific'], default='all',
@@ -402,13 +408,16 @@ def parse_args():
 
 async def main():
     args = parse_args()
+    host = args.host
+    origin = args.origin
     inputs_path = args.input
     outputs_path = args.output
     expectations_path = args.expected_output
     comparison_reports_path = args.comparison_reports
     username = args.username
     password = args.password
-    test = WiserTester(inputs_path, outputs_path, username, password)
+
+    test = WiserTester(inputs_path, outputs_path, username, password, host, origin)
 
     try:
         if args.mode == 'all':
@@ -428,7 +437,8 @@ async def main():
         # Read and get most recent outputs
         most_recent_outputs = get_most_recent_outputs(outputs_path)
         # Compare outputs
-        report_paths = compare_outputs_with_expectations(most_recent_outputs, expectations_path, comparison_reports_path)
+        report_paths = compare_outputs_with_expectations(most_recent_outputs, expectations_path,
+                                                         comparison_reports_path)
         LOGGER.info(f'comparison reports: {report_paths}')
 
 

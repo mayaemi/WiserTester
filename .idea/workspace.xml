@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="edited readme file">
+    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="fixed comparison logic for folder separation, created new exe &amp; zipped tester, added argument comparison_reports, edited README.txt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WiserTester.zip" beforeDir="false" afterPath="$PROJECT_DIR$/WiserTester24011721.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/expected_447368d6-68ca-4018-8008-7ac379fb85c7.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/rec1/expected_447368d6-68ca-4018-8008-7ac379fb85c7.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input_from_har.py" beforeDir="false" afterPath="$PROJECT_DIR$/input_from_har.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RunWiserTester.bat" beforeDir="false" afterPath="$PROJECT_DIR$/RunWiserTester.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WiserTester24011721.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/wiser_tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/wiser_tester.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +30,19 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="28a25b0c-06fd-4466-b56d-e2113d3ac2f5" />
+        <option name="url" value="https://github.com/mayaemi/WiserTester.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectId" id="2bJTCAxtsT1t1W7q9nWRd8sCaJM" />
   <component name="ProjectViewState">
@@ -119,7 +131,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1705932051929</updated>
-      <workItem from="1705932052953" duration="31972000" />
+      <workItem from="1705932052953" duration="34904000" />
     </task>
     <task id="LOCAL-00001" summary="created new exe">
       <created>1705932305667</created>
@@ -219,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706104703702</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fixed comparison logic for folder separation, created new exe &amp; zipped tester, added argument comparison_reports, edited README.txt">
+      <created>1706109916864</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1706109916864</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,10 +269,11 @@
     <MESSAGE value="added exported har-&gt;input folder builder&#10;added specific testing mode logic&#10;outputs are now seperated into different inputs/recordings folder" />
     <MESSAGE value="added new exe as zip with data&amp;batch" />
     <MESSAGE value="edited readme file" />
-    <option name="LAST_COMMIT_MESSAGE" value="edited readme file" />
+    <MESSAGE value="fixed comparison logic for folder separation, created new exe &amp; zipped tester, added argument comparison_reports, edited README.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed comparison logic for folder separation, created new exe &amp; zipped tester, added argument comparison_reports, edited README.txt" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/WiserTester$input_from_har.coverage" NAME="input_from_har Coverage Results" MODIFIED="1706106784562" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/WiserTester$input_from_har.coverage" NAME="input_from_har Coverage Results" MODIFIED="1706180437106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/WiserTester$wiser_tester.coverage" NAME="wiser_tester Coverage Results" MODIFIED="1706021516443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

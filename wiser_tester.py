@@ -14,15 +14,12 @@ from deepdiff import DeepDiff
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s | %(levelname)s | %(message)s')
-
 stdout_handler = logging.StreamHandler(sys.stdout)
 stdout_handler.setLevel(logging.INFO)
 stdout_handler.setFormatter(formatter)
-
 file_handler = logging.FileHandler('testlog.log')
 file_handler.setLevel(logging.DEBUG)
 file_handler.setFormatter(formatter)
-
 LOGGER.addHandler(file_handler)
 LOGGER.addHandler(stdout_handler)
 
@@ -32,32 +29,21 @@ LOGGER.addHandler(stdout_handler)
 async def login(username, password, server_path):
     """
     Logs into the application using provided credentials.
-    Args:
-        username: Username for login.
-        password: Password for login.
     Returns:
         HTTPX response object and cookies after successful login.
     """
     url = server_path + "login"
-    headers = {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        # Other headers as necessary
-    }
-    data = {
-        "username": username,
-        "password": password
-    }
+    headers = {"Accept": "application/json", "Content-Type": "application/json"}
+    data = {"username": username, "password": password}
 
     try:
         with httpx.Client() as client:
             response = client.post(url, json=data, headers=headers)
             response.raise_for_status()
-            cookies = response.cookies
-            return response, cookies
+            return response, response.cookies
     except Exception as e:
         LOGGER.error(f"Login failed: {e}")
-        return None, None
+        raise
 
 
 # helpers
@@ -73,7 +59,7 @@ def handle_cookies(response_cookies):
 
     if not all([access_token_cookie, csrf_token]):
         LOGGER.error('Error: Missing required cookies')
-        return None, None, None
+        raise ValueError("Missing required cookies")
 
     cookies_str = f"access_token_cookie={access_token_cookie}; csrf_access_token={csrf_token}"
     return cookies_str, access_token_cookie, csrf_token
@@ -161,12 +147,10 @@ class WiserTester:
 
         # Event handlers
         @self.socket.event
-        async def connect():
-            self.logger.info("Socket connected")
+        async def connect(): self.logger.info("Socket connected")
 
         @self.socket.event
-        async def disconnect():
-            self.logger.info("Socket disconnected")
+        async def disconnect(): self.logger.info("Socket disconnected")
 
         @self.socket.event
         async def report_ready(data):
@@ -383,13 +367,6 @@ class WiserTester:
             await self.socket.disconnect()
 
 
-'''
-HOST = "localhost:5000"
-SERVER_PATH = f"http://{HOST}/"
-ORIGIN = "http://localhost:5050"
-'''
-
-
 def parse_args():
     parser = argparse.ArgumentParser(description="Run Wiser Tester")
     parser.add_argument("--host", type=str, required=True, help="host name (ex. localhost:5000")
@@ -416,37 +393,19 @@ def parse_args():
 
 async def main():
     args = parse_args()
-    host = args.host
-    origin = args.origin
-    inputs_path = args.input
-    outputs_path = args.output
-    expectations_path = args.expected_output
-    comparison_reports_path = args.comparison_reports
-    username = args.username
-    password = args.password
 
-    test = WiserTester(inputs_path, outputs_path, username, password, host, origin)
+    tester = WiserTester(args.input, args.output, args.username, args.password, args.host, args.origin)
 
     try:
-        if args.mode == 'all':
-            await test.start_test()
-        elif args.mode == 'specific':
-            specific_inputs_str = args.specific_list
-            specific_inputs = specific_inputs_str.split(',')
-            LOGGER.info(specific_inputs)
-            await test.start_test(specific_inputs)
+        await tester.start_test(args.specific_list.split(',') if args.mode == 'specific' else None)
+        if args.compare == 'yes':
+            LOGGER.info('Comparing outputs')
+            report_paths = compare_outputs_with_expectations(args.output, args.expected_output, args.comparison_reports)
+            LOGGER.info(f'Comparison reports: {report_paths}')
     except Exception as e:
-        LOGGER.error(f"An error occurred: {e.__traceback__}")
+        LOGGER.error(f"An error occurred: {e}")
     finally:
-        await test.close()
-
-    if args.compare == 'yes':
-        LOGGER.info('comparing outputs')
-
-        # Compare outputs
-        report_paths = compare_outputs_with_expectations(outputs_path, expectations_path,
-                                                         comparison_reports_path)
-        LOGGER.info(f'comparison reports: {report_paths}')
+        await tester.close()
 
 
 if __name__ == "__main__":

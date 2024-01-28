@@ -15410,9 +15410,8 @@
     ],
     "figures": null,
     "messageType": "chronicDiseaseCohorts.report",
-    "requestId": "ef469879-1504-46e1-8d65-cfff73d90157",
-    "dbDir": "/post_etl_db",
+    "requestId": "292f7e80-af65-47da-a3ee-42e7d1158c6a",
     "cohortId": "c_a571c2d5f1ac98681d70635e4a8afbe6"
   },
-  "id": "bbabb335-71c2-4558-a624-e01fe79805fa"
+  "id": "83baca5a-40d8-4f53-b5bf-7918549b2d06"
 }

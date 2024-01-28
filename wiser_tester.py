@@ -29,8 +29,7 @@ LOGGER.addHandler(stdout_handler)
 async def login(username, password, server_path):
     """
     Logs into the application using provided credentials.
-    Returns:
-        HTTPX response object and cookies after successful login.
+    Returns: HTTPX response object and cookies after successful login.
     """
     url = server_path + "login"
     headers = {"Accept": "application/json", "Content-Type": "application/json"}
@@ -53,7 +52,7 @@ def handle_cookies(response_cookies):
         Extracts and formats required cookies from the HTTPX response.
         Returns:
             Formatted cookies string.
-        """
+    """
     access_token_cookie = response_cookies.get('access_token_cookie')
     csrf_token = response_cookies.get('csrf_access_token')
 
@@ -76,9 +75,7 @@ def save_comparison_report(report_json, path, input_file_name):
 
 
 def compare_outputs_with_expectations(outputs_path, expectations_path, reports_path):
-    """
-    Compare the output files with expected outputs stored in a specified directory.
-    """
+    """ Compare the output files with expected outputs stored in a specified directory. """
     LOGGER.info(f"Comparing outputs to expectations")
     report_paths = []
     for output_folder in os.listdir(outputs_path):
@@ -114,9 +111,7 @@ def compare_outputs_with_expectations(outputs_path, expectations_path, reports_p
 
 
 class WiserTester:
-    """
-    A class to handle automated testing using HTTP requests and SocketIO.
-    """
+    """ A class to handle automated testing using HTTP requests and SocketIO. """
 
     def __init__(self, input_path, outputs_path, username, password, host, origin):
         """

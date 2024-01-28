@@ -132,12 +132,12 @@ class WiserTester:
     A class to handle automated testing using HTTP requests and SocketIO.
     """
 
-    def __init__(self, input_path, ouputs_path, username, password, host, origin):
+    def __init__(self, input_path, outputs_path, username, password, host, origin):
         """
         Initializes the WiserTester instance.
         Args:
             input_path: Path to the directory containing inputs for tests.
-            ouputs_path: Path to the directory to save test outputs.
+            outputs_path: Path to the directory to save test outputs.
         """
         self.logger = LOGGER
         # self.socket = socketio.AsyncClient(logger=True, engineio_logger=True)
@@ -151,7 +151,7 @@ class WiserTester:
         self.client_lock = asyncio.Lock()
         self.s_id = None
         self.input_path = input_path
-        self.outputs_path = ouputs_path
+        self.outputs_path = outputs_path
         self.current_input_dir = None
         self.current_output_dir = None
         self.cookies = None
@@ -194,7 +194,11 @@ class WiserTester:
 
     async def process_report_queue(self):
         while not self.report_queue.empty():
-            data = await self.report_queue.get()
+            try:
+                data = await asyncio.wait_for(self.report_queue.get(), timeout=1.0)
+            except asyncio.TimeoutError:
+                continue
+
             report_id = data.get('id')
             if report_id:
                 async with self.client_lock:
@@ -208,6 +212,14 @@ class WiserTester:
                             self.logger.error(f"Report ID {report_id} not found in request mapping")
             self.report_queue.task_done()
 
+    async def check_for_reports(self, req_lst):
+        not_ready = []
+        for req in req_lst:
+            file_path = os.path.join(self.current_output_dir, req)
+            if not os.path.isfile(file_path):
+                not_ready.append(file_path)
+        return not_ready
+
     async def make_output_dir(self):
         input_folder = os.path.basename(self.current_input_dir)
         path = os.path.join(self.outputs_path, input_folder)
@@ -220,7 +232,6 @@ class WiserTester:
         """
         Saves the test output to a JSON file, naming it with the request ID and a timestamp.
         Args:
-            request_id (str): The ID of the request associated with the test output.
             output_data (dict): The data to be saved as the test output.
         Returns:
             str: The path to the saved output file.
@@ -294,29 +305,6 @@ class WiserTester:
             self.logger.error(f"Request failed: {e}")
             return None, None
 
-    async def test_all(self):
-        """ Tests all inputs in the input directory. """
-        self.logger.info(f'started testing all inputs')
-        for rec in os.listdir(self.input_path):
-            rec_dir = os.path.join(self.input_path, rec)
-            await self.test_input(rec_dir)
-            await asyncio.sleep(1)
-
-        await self.close()
-
-    async def test_specific(self, inputs_list):
-        """
-        Tests a specific list of inputs.
-        Args:
-            inputs_list (list): A list of specific inputs to be tested.
-        """
-        self.logger.info(f'started testing inputs {inputs_list}')
-        for rec in inputs_list:
-            rec_dir = os.path.join(self.input_path, rec)
-            await self.test_input(rec_dir)
-            await asyncio.sleep(1)
-        await self.close()
-
     async def test_input(self, inp_dir):
         """
         Tests an input directory.
@@ -340,8 +328,36 @@ class WiserTester:
                 responses.append(response)
                 self.logger.info(f'response: {response}')
                 await asyncio.sleep(2)
-
         self.logger.info(f'all requests completed for {inp_dir}')
+        await self.process_report_queue()  # Process the queued reports for this input folder
+        not_ready = await self.check_for_reports(lst)
+        while not_ready:
+            self.logger.info(f"reports: {not_ready} are not ready")
+            await self.process_report_queue()  # Process the queued reports for this input folder
+            not_ready = await self.check_for_reports(lst)
+
+    async def test_all(self):
+        """ Tests all inputs in the input directory. """
+        self.logger.info(f'started testing all inputs')
+        for rec in os.listdir(self.input_path):
+            rec_dir = os.path.join(self.input_path, rec)
+            await self.test_input(rec_dir)
+            await asyncio.sleep(1)
+
+        await self.close()
+
+    async def test_specific(self, inputs_list):
+        """
+        Tests a specific list of inputs.
+        Args:
+            inputs_list (list): A list of specific inputs to be tested.
+        """
+        self.logger.info(f'started testing inputs {inputs_list}')
+        for rec in inputs_list:
+            rec_dir = os.path.join(self.input_path, rec)
+            await self.test_input(rec_dir)
+            await asyncio.sleep(1)
+        await self.close()
 
     async def start_test(self, specific_inputs=None):
         """
@@ -360,7 +376,6 @@ class WiserTester:
         else:
             await self.test_all()
         await self.socket.wait()
-        await self.process_report_queue()  # Process the queued reports
 
     async def close(self):
         """ Closes the WebSocket connection if it is open. """
@@ -421,7 +436,7 @@ async def main():
             LOGGER.info(specific_inputs)
             await test.start_test(specific_inputs)
     except Exception as e:
-        LOGGER.error(f"An error occurred: {e.with_traceback()}")
+        LOGGER.error(f"An error occurred: {e.__traceback__}")
     finally:
         await test.close()
 

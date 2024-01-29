@@ -1,0 +1,339 @@
+{
+  "data": {
+    "type": "prevalence",
+    "data": null,
+    "figures": {
+      "data": [
+        {
+          "x": [
+            10,
+            25,
+            35,
+            45,
+            55,
+            65,
+            75,
+            100
+          ],
+          "y": [
+            0,
+            5.6310855763911e-05,
+            0.000371593066490714,
+            0.00100345383520272,
+            0.00199221862131442,
+            0.00338888824908758,
+            0.0057240942304447,
+            0.00716744021579151
+          ],
+          "text": [
+            "age_mid:  10<br />est: 0.000000e+00<br />lwr.ci: 0.000000e+00<br />upr.ci: 0.000000e+00<br />sex: male",
+            "age_mid:  25<br />est: 5.631086e-05<br />lwr.ci: 5.418768e-05<br />upr.ci: 5.843403e-05<br />sex: male",
+            "age_mid:  35<br />est: 3.715931e-04<br />lwr.ci: 3.666386e-04<br />upr.ci: 3.765475e-04<br />sex: male",
+            "age_mid:  45<br />est: 1.003454e-03<br />lwr.ci: 9.936143e-04<br />upr.ci: 1.013293e-03<br />sex: male",
+            "age_mid:  55<br />est: 1.992219e-03<br />lwr.ci: 1.977006e-03<br />upr.ci: 2.007431e-03<br />sex: male",
+            "age_mid:  65<br />est: 3.388888e-03<br />lwr.ci: 3.365407e-03<br />upr.ci: 3.412369e-03<br />sex: male",
+            "age_mid:  75<br />est: 5.724094e-03<br />lwr.ci: 5.678020e-03<br />upr.ci: 5.770169e-03<br />sex: male",
+            "age_mid: 100<br />est: 7.167440e-03<br />lwr.ci: 7.054959e-03<br />upr.ci: 7.279922e-03<br />sex: male"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "opacity": 1,
+          "line": {
+            "color": "rgba(51,102,204,1)",
+            "width": 3.77952755905512,
+            "dash": "solid"
+          },
+          "error_y": {
+            "array": [
+              0,
+              2.12317268368661e-06,
+              4.95447976610292e-06,
+              9.83956130895069e-06,
+              1.52126254035342e-05,
+              2.34808463812318e-05,
+              4.60743324296907e-05,
+              0.000112481357321888
+            ],
+            "arrayminus": [
+              0,
+              2.12317268368661e-06,
+              4.95447976610292e-06,
+              9.83956130895069e-06,
+              1.52126254035342e-05,
+              2.34808463812318e-05,
+              4.60743324296907e-05,
+              0.000112481357321888
+            ],
+            "type": "data",
+            "width": 1.92019201920192,
+            "symmetric": false,
+            "color": "rgba(51,102,204,1)"
+          },
+          "name": "male",
+          "legendgroup": "male",
+          "showlegend": true,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "hoveron": "points",
+          "frame": null
+        },
+        {
+          "x": [
+            10,
+            25,
+            35,
+            45,
+            55,
+            65,
+            75,
+            100
+          ],
+          "y": [
+            0,
+            1.07485972159982e-05,
+            0.000146750374628004,
+            0.000789428622286395,
+            0.00177735761032913,
+            0.0032249468013518,
+            0.00533971101324903,
+            0.00640087524196949
+          ],
+          "text": [
+            "age_mid:  10<br />est: 0.000000e+00<br />lwr.ci: 0.000000e+00<br />upr.ci: 0.000000e+00<br />sex: female",
+            "age_mid:  25<br />est: 1.074860e-05<br />lwr.ci: 9.773744e-06<br />upr.ci: 1.172345e-05<br />sex: female",
+            "age_mid:  35<br />est: 1.467504e-04<br />lwr.ci: 1.435278e-04<br />upr.ci: 1.499729e-04<br />sex: female",
+            "age_mid:  45<br />est: 7.894286e-04<br />lwr.ci: 7.809612e-04<br />upr.ci: 7.978960e-04<br />sex: female",
+            "age_mid:  55<br />est: 1.777358e-03<br />lwr.ci: 1.764128e-03<br />upr.ci: 1.790587e-03<br />sex: female",
+            "age_mid:  65<br />est: 3.224947e-03<br />lwr.ci: 3.204346e-03<br />upr.ci: 3.245548e-03<br />sex: female",
+            "age_mid:  75<br />est: 5.339711e-03<br />lwr.ci: 5.304047e-03<br />upr.ci: 5.375375e-03<br />sex: female",
+            "age_mid: 100<br />est: 6.400875e-03<br />lwr.ci: 6.330533e-03<br />upr.ci: 6.471217e-03<br />sex: female"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "opacity": 1,
+          "line": {
+            "color": "rgba(220,57,18,1)",
+            "width": 3.77952755905512,
+            "dash": "solid"
+          },
+          "error_y": {
+            "array": [
+              0,
+              9.74852939347318e-07,
+              3.22257141719255e-06,
+              8.46740657103027e-06,
+              1.32291934921058e-05,
+              2.06009285967238e-05,
+              3.56639473252721e-05,
+              7.03420719341558e-05
+            ],
+            "arrayminus": [
+              0,
+              9.74852939347318e-07,
+              3.22257141719255e-06,
+              8.46740657103027e-06,
+              1.32291934921058e-05,
+              2.06009285967238e-05,
+              3.56639473252721e-05,
+              7.03420719341558e-05
+            ],
+            "type": "data",
+            "width": 1.92019201920192,
+            "symmetric": false,
+            "color": "rgba(220,57,18,1)"
+          },
+          "name": "female",
+          "legendgroup": "female",
+          "showlegend": true,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "hoveron": "points",
+          "frame": null
+        }
+      ],
+      "layout": {
+        "margin": {
+          "t": 25.7412480974125,
+          "r": 7.30593607305936,
+          "b": 39.6955859969559,
+          "l": 54.7945205479452
+        },
+        "plot_bgcolor": "rgba(255,255,255,1)",
+        "paper_bgcolor": "rgba(255,255,255,1)",
+        "font": {
+          "color": "rgba(0,0,0,1)",
+          "family": "",
+          "size": 14.6118721461187
+        },
+        "xaxis": {
+          "domain": [
+            0,
+            1
+          ],
+          "automargin": true,
+          "type": "linear",
+          "autorange": false,
+          "range": [
+            5.005,
+            104.995
+          ],
+          "tickmode": "array",
+          "ticktext": [
+            "25",
+            "50",
+            "75",
+            "100"
+          ],
+          "tickvals": [
+            25,
+            50,
+            75,
+            100
+          ],
+          "categoryorder": "array",
+          "categoryarray": [
+            "25",
+            "50",
+            "75",
+            "100"
+          ],
+          "nticks": null,
+          "ticks": "outside",
+          "tickcolor": "rgba(51,51,51,1)",
+          "ticklen": 3.65296803652968,
+          "tickwidth": 0.66417600664176,
+          "showticklabels": true,
+          "tickfont": {
+            "color": "rgba(77,77,77,1)",
+            "family": "",
+            "size": 11.689497716895
+          },
+          "tickangle": 0,
+          "showline": false,
+          "linecolor": null,
+          "linewidth": 0,
+          "showgrid": true,
+          "gridcolor": "rgba(235,235,235,1)",
+          "gridwidth": 0.66417600664176,
+          "zeroline": false,
+          "anchor": "y",
+          "title": {
+            "text": "Age",
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 14.6118721461187
+            }
+          },
+          "hoverformat": ".2f"
+        },
+        "yaxis": {
+          "domain": [
+            0,
+            1
+          ],
+          "automargin": true,
+          "type": "linear",
+          "autorange": false,
+          "range": [
+            -0.00036399607865567,
+            0.00764391765176907
+          ],
+          "tickmode": "array",
+          "ticktext": [
+            "0.000",
+            "0.002",
+            "0.004",
+            "0.006"
+          ],
+          "tickvals": [
+            0,
+            0.002,
+            0.004,
+            0.006
+          ],
+          "categoryorder": "array",
+          "categoryarray": [
+            "0.000",
+            "0.002",
+            "0.004",
+            "0.006"
+          ],
+          "nticks": null,
+          "ticks": "outside",
+          "tickcolor": "rgba(51,51,51,1)",
+          "ticklen": 3.65296803652968,
+          "tickwidth": 0.66417600664176,
+          "showticklabels": true,
+          "tickfont": {
+            "color": "rgba(77,77,77,1)",
+            "family": "",
+            "size": 11.689497716895
+          },
+          "tickangle": 0,
+          "showline": false,
+          "linecolor": null,
+          "linewidth": 0,
+          "showgrid": true,
+          "gridcolor": "rgba(235,235,235,1)",
+          "gridwidth": 0.66417600664176,
+          "zeroline": false,
+          "anchor": "x",
+          "title": {
+            "text": "Prevalence",
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 14.6118721461187
+            }
+          },
+          "hoverformat": ".2f"
+        },
+        "shapes": [
+          {
+            "type": "rect",
+            "fillcolor": "transparent",
+            "line": {
+              "color": "rgba(51,51,51,1)",
+              "width": 0.66417600664176,
+              "linetype": "solid"
+            },
+            "yref": "paper",
+            "xref": "paper",
+            "x0": 0,
+            "x1": 1,
+            "y0": 0,
+            "y1": 1
+          }
+        ],
+        "showlegend": true,
+        "legend": {
+          "bgcolor": "rgba(255,255,255,1)",
+          "bordercolor": "transparent",
+          "borderwidth": 1.88976377952756,
+          "font": {
+            "color": "rgba(0,0,0,1)",
+            "family": "",
+            "size": 11.689497716895
+          },
+          "title": {
+            "text": "",
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 14.6118721461187
+            }
+          }
+        },
+        "hovermode": "closest",
+        "barmode": "relative"
+      }
+    },
+    "messageType": "chronicDiseaseCohorts.report",
+    "requestId": "8e9b0006-916d-40c1-8d98-a9156b7359c9",
+    "cohortId": "c_4e119a7b3d6488e8bfae3b8a184279f2"
+  },
+  "id": "8e9b0006-916d-40c1-8d98-a9156b7359c9"
+}

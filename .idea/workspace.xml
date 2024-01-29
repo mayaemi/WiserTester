@@ -5,6 +5,89 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="minor changes + new exe">
+      <change afterPath="$PROJECT_DIR$/data/comparison_reports/patients_viewer/20240125130222110_comparison.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/comparison_reports/patients_viewer/20240125130222173_comparison.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/comparison_reports/patients_viewer/20240125130308090_comparison.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112438567.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501263.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501491.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501572.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501599.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501627.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501658.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501687.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501716.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501773.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501842.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501876.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501903.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501931.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501960.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501992.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112502073.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112502101.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112502131.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112502161.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112502190.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_comparison/20240124143150309.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_comparison/20240124143151371.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_comparison/20240124143151449.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_comparison/20240124143152515.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_comparison/20240124143152989.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_comparison/20240124143153840.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_comparison/20240124143154013.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_comparison/20240124143154114.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_comparison/20240124143154205.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/cohort_comparison/20240124143154308.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/patients_viewer/20240125130222110.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/patients_viewer/20240125130222173.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/patients_viewer/20240125130308090.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/tracks_builder/20240125130831227.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/tracks_builder/20240125130839722.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/inputs/tracks_builder/20240125131156443.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112438567.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501263.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501491.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501572.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501599.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501627.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501658.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501687.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501716.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501773.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501842.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501876.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501903.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501931.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501960.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501992.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112502073.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112502101.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112502131.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112502161.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112502190.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143150309.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143151371.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143151449.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143152515.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143152989.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143153840.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143154013.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143154114.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143154205.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143154308.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/patients_viewer/20240125130222110.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/patients_viewer/20240125130222173.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/patients_viewer/20240125130308090.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/tracks_builder/20240125130831227.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/tracks_builder/20240125130839722.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/outputs/tracks_builder/20240125131156443.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WiserTester2801241715.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/patients_viewer/20240125130222110.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/patients_viewer/20240125130222110.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/patients_viewer/20240125130222173.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/patients_viewer/20240125130222173.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/patients_viewer/20240125130308090.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/patients_viewer/20240125130308090.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiser_tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/wiser_tester.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,23 +134,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/mayah/PycharmProjects/WiserTester/data/expectations&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/mayah/PycharmProjects/WiserTester",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\mayah\PycharmProjects\WiserTester\data\expectations" />
       <recent name="C:\Users\mayah\PycharmProjects\WiserTester" />
+      <recent name="C:\Users\mayah\PycharmProjects\WiserTester\data\expectations" />
       <recent name="C:\Users\mayah\PycharmProjects\WiserTester\dist" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -76,7 +159,29 @@
       <recent name="C:\Users\mayah\PycharmProjects\WiserTester\data\expectations\rec1" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.input_from_har">
+  <component name="RunManager" selected="Python.helpers">
+    <configuration name="helpers" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="WiserTester" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/helpers.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="input_from_har" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="WiserTester" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -123,6 +228,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.helpers" />
         <item itemvalue="Python.input_from_har" />
         <item itemvalue="Python.wiser_tester" />
       </list>
@@ -285,7 +391,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706455432294</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="minor changes + new exe">
+      <created>1706455691229</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1706455691229</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,6 +450,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="minor changes + new exe" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/WiserTester$helpers.coverage" NAME="helpers Coverage Results" MODIFIED="1706532034193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/WiserTester$input_from_har.coverage" NAME="input_from_har Coverage Results" MODIFIED="1706188505894" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/WiserTester$wiser_tester.coverage" NAME="wiser_tester Coverage Results" MODIFIED="1706021516443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>

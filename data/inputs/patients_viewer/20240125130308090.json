@@ -1,0 +1,35 @@
+{
+  "messageType": "chronicDiseaseCohorts.genReport",
+  "cohortId": "c_a571c2d5f1ac98681d70635e4a8afbe6",
+  "report": {
+    "type": "cohort_data",
+    "selectedTracks": [
+      {
+        "behavior": "Both",
+        "label": "428.0* CONGESTIVE HEART FAILURE",
+        "color": 0,
+        "comparison": "Any",
+        "compareValue": 0,
+        "timeRange": [
+          -20,
+          20
+        ],
+        "track": "icd9_428.0"
+      },
+      {
+        "behavior": "Both",
+        "label": "250* DIABETES MELLITUS",
+        "color": 1,
+        "comparison": "Any",
+        "compareValue": 0,
+        "timeRange": [
+          -20,
+          20
+        ],
+        "track": "icd9_250"
+      }
+    ],
+    "maxPatientCount": 50,
+    "align": "Yes"
+  }
+}

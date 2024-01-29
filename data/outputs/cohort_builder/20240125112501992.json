@@ -1,0 +1,13 @@
+{
+  "data": {
+    "type": "survival",
+    "data": null,
+    "figures": {
+      "[70,80)": "c22549c0-318a-4379-a8d2-7e282ff9db8e.c_c_4e119a7b3d6488e8bfae3b8a184279f2.survival_[70,80).png"
+    },
+    "messageType": "chronicDiseaseCohorts.report",
+    "requestId": "c22549c0-318a-4379-a8d2-7e282ff9db8e",
+    "cohortId": "c_4e119a7b3d6488e8bfae3b8a184279f2"
+  },
+  "id": "c22549c0-318a-4379-a8d2-7e282ff9db8e"
+}

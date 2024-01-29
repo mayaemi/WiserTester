@@ -1,0 +1,10 @@
+{
+  "data": {
+    "messageType": "chronicDiseaseCohorts.retBuildCohort",
+    "requestId": "c9441dba-0488-49b3-83c1-cc17b22112cf",
+    "cohortId": "c_304ba6a56f0a55408fffeb33c57eb6cc",
+    "success": true,
+    "size": 11964
+  },
+  "id": "c9441dba-0488-49b3-83c1-cc17b22112cf"
+}

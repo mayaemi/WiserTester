@@ -1,0 +1,1234 @@
+{
+  "data": {
+    "messageType": "analysisDocument.report",
+    "requestId": "6373078c-069b-4037-9cc0-013f67fe184c",
+    "NA": null,
+    "cohortIds": [
+      "c_79b7bedd53776ecb75c2c8e42b01997f",
+      "c_304ba6a56f0a55408fffeb33c57eb6cc",
+      "c_3fec116466a007cbef77008da3eaedc9",
+      "c_7a43cf1b93cde9ef4db07e1a5013111f"
+    ],
+    "type": "incidence_rate",
+    "data": null,
+    "figures": {
+      "data": [
+        {
+          "x": [
+            65,
+            75,
+            100,
+            10,
+            25,
+            35,
+            45,
+            55
+          ],
+          "y": [
+            59.663,
+            90.973,
+            101.41,
+            0,
+            0.709,
+            2.679,
+            11.846,
+            39.339
+          ],
+          "text": [
+            "age_mid:  65<br />est:  59.663<br />lwr.ci:  56.208<br />upr.ci:  63.117<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  75<br />est:  90.973<br />lwr.ci:  84.513<br />upr.ci:  97.432<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid: 100<br />est: 101.410<br />lwr.ci:  86.513<br />upr.ci: 116.308<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  10<br />est:   0.000<br />lwr.ci:   0.000<br />upr.ci:   0.000<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  25<br />est:   0.709<br />lwr.ci:   0.447<br />upr.ci:   0.972<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  35<br />est:   2.679<br />lwr.ci:   2.215<br />upr.ci:   3.143<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  45<br />est:  11.846<br />lwr.ci:  10.666<br />upr.ci:  13.026<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  55<br />est:  39.339<br />lwr.ci:  36.975<br />upr.ci:  41.703<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "opacity": 1,
+          "line": {
+            "color": "transparent"
+          },
+          "error_y": {
+            "array": [
+              3.454,
+              6.459,
+              14.898,
+              0,
+              0.263,
+              0.464,
+              1.18,
+              2.364
+            ],
+            "arrayminus": [
+              3.455,
+              6.45999999999999,
+              14.897,
+              0,
+              0.262,
+              0.464,
+              1.18,
+              2.364
+            ],
+            "type": "data",
+            "width": 1.92019201920193,
+            "symmetric": false,
+            "color": "rgba(255,0,0,1)"
+          },
+          "name": "cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+          "legendgroup": "cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+          "showlegend": true,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null,
+          "cohortId": "DIABETES_WITH_NEUROLOGICAL_MANIFESTATIONS"
+        },
+        {
+          "x": [
+            75,
+            100,
+            45,
+            55,
+            65,
+            10,
+            25,
+            35
+          ],
+          "y": [
+            102.178,
+            113.514,
+            8.814,
+            34.039,
+            51.034,
+            0,
+            0.952,
+            2.511
+          ],
+          "text": [
+            "age_mid:  75<br />est: 102.178<br />lwr.ci:  96.696<br />upr.ci: 107.661<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid: 100<br />est: 113.514<br />lwr.ci: 103.084<br />upr.ci: 123.943<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  45<br />est:   8.814<br />lwr.ci:   7.826<br />upr.ci:   9.801<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  55<br />est:  34.039<br />lwr.ci:  32.015<br />upr.ci:  36.062<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  65<br />est:  51.034<br />lwr.ci:  48.164<br />upr.ci:  53.905<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  10<br />est:   0.000<br />lwr.ci:   0.000<br />upr.ci:   0.000<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  25<br />est:   0.952<br />lwr.ci:   0.632<br />upr.ci:   1.272<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  35<br />est:   2.511<br />lwr.ci:   2.046<br />upr.ci:   2.976<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "opacity": 1,
+          "line": {
+            "color": "transparent"
+          },
+          "error_y": {
+            "array": [
+              5.483,
+              10.429,
+              0.987,
+              2.023,
+              2.871,
+              0,
+              0.32,
+              0.465
+            ],
+            "arrayminus": [
+              5.482,
+              10.43,
+              0.988,
+              2.024,
+              2.87,
+              0,
+              0.32,
+              0.465
+            ],
+            "type": "data",
+            "width": 1.92019201920193,
+            "symmetric": false,
+            "color": "rgba(255,0,0,1)"
+          },
+          "name": "cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+          "legendgroup": "cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+          "showlegend": false,
+          "xaxis": "x2",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null,
+          "cohortId": "DIABETES_WITH_NEUROLOGICAL_MANIFESTATIONS"
+        },
+        {
+          "x": [
+            65,
+            75,
+            100,
+            35,
+            45,
+            55,
+            10,
+            25
+          ],
+          "y": [
+            102.291,
+            140.076,
+            122.951,
+            2.93,
+            14.235,
+            54.175,
+            0,
+            0.354
+          ],
+          "text": [
+            "age_mid:  65<br />est: 102.291<br />lwr.ci:  97.762<br />upr.ci: 106.821<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  75<br />est: 140.076<br />lwr.ci: 132.040<br />upr.ci: 148.112<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid: 100<br />est: 122.951<br />lwr.ci: 106.517<br />upr.ci: 139.385<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  35<br />est:   2.930<br />lwr.ci:   2.445<br />upr.ci:   3.416<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  45<br />est:  14.235<br />lwr.ci:  12.942<br />upr.ci:  15.529<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  55<br />est:  54.175<br />lwr.ci:  51.400<br />upr.ci:  56.950<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  10<br />est:   0.000<br />lwr.ci:   0.000<br />upr.ci:   0.000<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  25<br />est:   0.354<br />lwr.ci:   0.169<br />upr.ci:   0.540<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "opacity": 1,
+          "line": {
+            "color": "transparent"
+          },
+          "error_y": {
+            "array": [
+              4.53,
+              8.036,
+              16.434,
+              0.486,
+              1.294,
+              2.77500000000001,
+              0,
+              0.186
+            ],
+            "arrayminus": [
+              4.529,
+              8.036,
+              16.434,
+              0.485,
+              1.293,
+              2.775,
+              0,
+              0.185
+            ],
+            "type": "data",
+            "width": 1.92019201920193,
+            "symmetric": false,
+            "color": "rgba(255,0,0,1)"
+          },
+          "name": "cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+          "legendgroup": "cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+          "showlegend": true,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null,
+          "cohortId": "DIABETES_WITH_OPHTHALMIC_MANIFESTATIONS"
+        },
+        {
+          "x": [
+            45,
+            55,
+            65,
+            75,
+            100,
+            10,
+            25,
+            35
+          ],
+          "y": [
+            12.185,
+            38.212,
+            80.026,
+            144.882,
+            118.675,
+            0,
+            1.036,
+            2.331
+          ],
+          "text": [
+            "age_mid:  45<br />est:  12.185<br />lwr.ci:  11.024<br />upr.ci:  13.347<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  55<br />est:  38.212<br />lwr.ci:  36.067<br />upr.ci:  40.356<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  65<br />est:  80.026<br />lwr.ci:  76.428<br />upr.ci:  83.625<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  75<br />est: 144.882<br />lwr.ci: 138.339<br />upr.ci: 151.426<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid: 100<br />est: 118.675<br />lwr.ci: 107.992<br />upr.ci: 129.358<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  10<br />est:   0.000<br />lwr.ci:   0.000<br />upr.ci:   0.000<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  25<br />est:   1.036<br />lwr.ci:   0.702<br />upr.ci:   1.370<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  35<br />est:   2.331<br />lwr.ci:   1.883<br />upr.ci:   2.779<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "opacity": 1,
+          "line": {
+            "color": "transparent"
+          },
+          "error_y": {
+            "array": [
+              1.162,
+              2.144,
+              3.599,
+              6.54399999999998,
+              10.683,
+              0,
+              0.334,
+              0.448
+            ],
+            "arrayminus": [
+              1.161,
+              2.145,
+              3.598,
+              6.54300000000001,
+              10.683,
+              0,
+              0.334,
+              0.448
+            ],
+            "type": "data",
+            "width": 1.92019201920193,
+            "symmetric": false,
+            "color": "rgba(255,0,0,1)"
+          },
+          "name": "cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+          "legendgroup": "cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+          "showlegend": false,
+          "xaxis": "x2",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null,
+          "cohortId": "DIABETES_WITH_OPHTHALMIC_MANIFESTATIONS"
+        },
+        {
+          "x": [
+            10,
+            25,
+            35,
+            45,
+            55,
+            65,
+            75,
+            100
+          ],
+          "y": [
+            0,
+            10.91,
+            16.732,
+            36.246,
+            66.544,
+            69.334,
+            57.419,
+            46.177
+          ],
+          "text": [
+            "age_mid:  10<br />est:   0.000<br />lwr.ci:   0.000<br />upr.ci:   0.000<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid:  25<br />est:  10.910<br />lwr.ci:   9.878<br />upr.ci:  11.941<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid:  35<br />est:  16.732<br />lwr.ci:  15.571<br />upr.ci:  17.893<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid:  45<br />est:  36.246<br />lwr.ci:  34.179<br />upr.ci:  38.314<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid:  55<br />est:  66.544<br />lwr.ci:  63.463<br />upr.ci:  69.625<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid:  65<br />est:  69.334<br />lwr.ci:  65.601<br />upr.ci:  73.067<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid:  75<br />est:  57.419<br />lwr.ci:  52.277<br />upr.ci:  62.560<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid: 100<br />est:  46.177<br />lwr.ci:  36.121<br />upr.ci:  56.233<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "opacity": 1,
+          "line": {
+            "color": "rgba(255,0,0,1)",
+            "width": 3.77952755905512,
+            "dash": "solid"
+          },
+          "error_y": {
+            "array": [
+              0,
+              1.031,
+              1.161,
+              2.068,
+              3.081,
+              3.73299999999999,
+              5.14100000000001,
+              10.056
+            ],
+            "arrayminus": [
+              0,
+              1.032,
+              1.161,
+              2.067,
+              3.081,
+              3.733,
+              5.142,
+              10.056
+            ],
+            "type": "data",
+            "width": 1.92019201920192,
+            "symmetric": false,
+            "color": "rgba(255,0,0,1)"
+          },
+          "name": "cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+          "legendgroup": "cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+          "showlegend": true,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "hoveron": "points",
+          "frame": null,
+          "cohortId": "DIABETES_WITH_KETOACIDOSIS"
+        },
+        {
+          "x": [
+            75,
+            10,
+            100,
+            45,
+            55,
+            65,
+            25,
+            35
+          ],
+          "y": [
+            56.396,
+            0,
+            30.122,
+            29.843,
+            65.037,
+            63.048,
+            7.369,
+            8.776
+          ],
+          "text": [
+            "age_mid:  75<br />est:  56.396<br />lwr.ci:  52.317<br />upr.ci:  60.476<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid:  10<br />est:   0.000<br />lwr.ci:   0.000<br />upr.ci:   0.000<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid: 100<br />est:  30.122<br />lwr.ci:  24.755<br />upr.ci:  35.489<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid:  45<br />est:  29.843<br />lwr.ci:  28.024<br />upr.ci:  31.662<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid:  55<br />est:  65.037<br />lwr.ci:  62.234<br />upr.ci:  67.840<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid:  65<br />est:  63.048<br />lwr.ci:  59.848<br />upr.ci:  66.249<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid:  25<br />est:   7.369<br />lwr.ci:   6.478<br />upr.ci:   8.259<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid:  35<br />est:   8.776<br />lwr.ci:   7.906<br />upr.ci:   9.646<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "opacity": 1,
+          "line": {
+            "color": "transparent"
+          },
+          "error_y": {
+            "array": [
+              4.08,
+              0,
+              5.367,
+              1.819,
+              2.803,
+              3.20099999999999,
+              0.890000000000001,
+              0.870000000000001
+            ],
+            "arrayminus": [
+              4.079,
+              0,
+              5.367,
+              1.819,
+              2.803,
+              3.2,
+              0.891,
+              0.87
+            ],
+            "type": "data",
+            "width": 1.92019201920193,
+            "symmetric": false,
+            "color": "rgba(255,0,0,1)"
+          },
+          "name": "cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+          "legendgroup": "cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+          "showlegend": false,
+          "xaxis": "x2",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null,
+          "cohortId": "DIABETES_WITH_KETOACIDOSIS"
+        },
+        {
+          "x": [
+            65,
+            75,
+            35,
+            45,
+            55,
+            10,
+            100,
+            25
+          ],
+          "y": [
+            25.205,
+            23.865,
+            5.192,
+            17.183,
+            32.325,
+            0,
+            23.905,
+            1.546
+          ],
+          "text": [
+            "age_mid:  65<br />est:  25.205<br />lwr.ci:  22.959<br />upr.ci:  27.450<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid:  75<br />est:  23.865<br />lwr.ci:  20.557<br />upr.ci:  27.172<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid:  35<br />est:   5.192<br />lwr.ci:   4.546<br />upr.ci:   5.838<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid:  45<br />est:  17.183<br />lwr.ci:  15.761<br />upr.ci:  18.605<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid:  55<br />est:  32.325<br />lwr.ci:  30.180<br />upr.ci:  34.469<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid:  10<br />est:   0.000<br />lwr.ci:   0.000<br />upr.ci:   0.000<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid: 100<br />est:  23.905<br />lwr.ci:  16.675<br />upr.ci:  31.134<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid:  25<br />est:   1.546<br />lwr.ci:   1.158<br />upr.ci:   1.934<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "opacity": 1,
+          "line": {
+            "color": "transparent"
+          },
+          "error_y": {
+            "array": [
+              2.245,
+              3.307,
+              0.646,
+              1.422,
+              2.144,
+              0,
+              7.229,
+              0.388
+            ],
+            "arrayminus": [
+              2.246,
+              3.308,
+              0.646,
+              1.422,
+              2.145,
+              0,
+              7.23,
+              0.388
+            ],
+            "type": "data",
+            "width": 1.92019201920193,
+            "symmetric": false,
+            "color": "rgba(255,0,0,1)"
+          },
+          "name": "cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+          "legendgroup": "cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+          "showlegend": true,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null,
+          "cohortId": "DIABETES_WITH_OTHER_SPECIFIED_MANIFESTATIONS"
+        },
+        {
+          "x": [
+            10,
+            25,
+            35,
+            45,
+            55,
+            65,
+            75,
+            100
+          ],
+          "y": [
+            0,
+            1.792,
+            3.475,
+            12.477,
+            27.944,
+            29.253,
+            35.073,
+            25.344
+          ],
+          "text": [
+            "age_mid:  10<br />est:   0.000<br />lwr.ci:   0.000<br />upr.ci:   0.000<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid:  25<br />est:   1.792<br />lwr.ci:   1.353<br />upr.ci:   2.231<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid:  35<br />est:   3.475<br />lwr.ci:   2.928<br />upr.ci:   4.022<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid:  45<br />est:  12.477<br />lwr.ci:  11.301<br />upr.ci:  13.652<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid:  55<br />est:  27.944<br />lwr.ci:  26.110<br />upr.ci:  29.778<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid:  65<br />est:  29.253<br />lwr.ci:  27.080<br />upr.ci:  31.426<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid:  75<br />est:  35.073<br />lwr.ci:  31.865<br />upr.ci:  38.282<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid: 100<br />est:  25.344<br />lwr.ci:  20.426<br />upr.ci:  30.262<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "opacity": 1,
+          "line": {
+            "color": "rgba(255,0,0,1)",
+            "width": 3.77952755905512,
+            "dash": "solid"
+          },
+          "error_y": {
+            "array": [
+              0,
+              0.439,
+              0.547,
+              1.175,
+              1.834,
+              2.173,
+              3.209,
+              4.918
+            ],
+            "arrayminus": [
+              0,
+              0.439,
+              0.547,
+              1.176,
+              1.834,
+              2.173,
+              3.208,
+              4.918
+            ],
+            "type": "data",
+            "width": 1.92019201920192,
+            "symmetric": false,
+            "color": "rgba(255,0,0,1)"
+          },
+          "name": "cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+          "legendgroup": "cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+          "showlegend": false,
+          "xaxis": "x2",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "hoveron": "points",
+          "frame": null,
+          "cohortId": "DIABETES_WITH_OTHER_SPECIFIED_MANIFESTATIONS"
+        },
+        {
+          "x": [
+            10,
+            25,
+            35,
+            45,
+            55,
+            65,
+            75,
+            100
+          ],
+          "y": [
+            0,
+            0.709,
+            2.679,
+            11.846,
+            39.339,
+            59.663,
+            90.973,
+            101.41
+          ],
+          "text": [
+            "age_mid:  10<br />est:   0.000<br />lwr.ci:   0.000<br />upr.ci:   0.000<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  25<br />est:   0.709<br />lwr.ci:   0.447<br />upr.ci:   0.972<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  35<br />est:   2.679<br />lwr.ci:   2.215<br />upr.ci:   3.143<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  45<br />est:  11.846<br />lwr.ci:  10.666<br />upr.ci:  13.026<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  55<br />est:  39.339<br />lwr.ci:  36.975<br />upr.ci:  41.703<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  65<br />est:  59.663<br />lwr.ci:  56.208<br />upr.ci:  63.117<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  75<br />est:  90.973<br />lwr.ci:  84.513<br />upr.ci:  97.432<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid: 100<br />est: 101.410<br />lwr.ci:  86.513<br />upr.ci: 116.308<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "line": {
+            "width": 3.77952755905512,
+            "color": "rgba(255,0,0,1)",
+            "dash": "solid"
+          },
+          "hoveron": "points",
+          "name": "cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+          "legendgroup": "cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+          "showlegend": false,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null,
+          "cohortId": "DIABETES_WITH_NEUROLOGICAL_MANIFESTATIONS"
+        },
+        {
+          "x": [
+            10,
+            25,
+            35,
+            45,
+            55,
+            65,
+            75,
+            100
+          ],
+          "y": [
+            0,
+            0.952,
+            2.511,
+            8.814,
+            34.039,
+            51.034,
+            102.178,
+            113.514
+          ],
+          "text": [
+            "age_mid:  10<br />est:   0.000<br />lwr.ci:   0.000<br />upr.ci:   0.000<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  25<br />est:   0.952<br />lwr.ci:   0.632<br />upr.ci:   1.272<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  35<br />est:   2.511<br />lwr.ci:   2.046<br />upr.ci:   2.976<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  45<br />est:   8.814<br />lwr.ci:   7.826<br />upr.ci:   9.801<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  55<br />est:  34.039<br />lwr.ci:  32.015<br />upr.ci:  36.062<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  65<br />est:  51.034<br />lwr.ci:  48.164<br />upr.ci:  53.905<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid:  75<br />est: 102.178<br />lwr.ci:  96.696<br />upr.ci: 107.661<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+            "age_mid: 100<br />est: 113.514<br />lwr.ci: 103.084<br />upr.ci: 123.943<br />cohort: cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "line": {
+            "width": 3.77952755905512,
+            "color": "rgba(255,0,0,1)",
+            "dash": "solid"
+          },
+          "hoveron": "points",
+          "name": "cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+          "legendgroup": "cohort.5Fc.5F304ba6a56f0a55408fffeb33c57eb6cc",
+          "showlegend": false,
+          "xaxis": "x2",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null,
+          "cohortId": "DIABETES_WITH_NEUROLOGICAL_MANIFESTATIONS"
+        },
+        {
+          "x": [
+            10,
+            25,
+            35,
+            45,
+            55,
+            65,
+            75,
+            100
+          ],
+          "y": [
+            0,
+            0.354,
+            2.93,
+            14.235,
+            54.175,
+            102.291,
+            140.076,
+            122.951
+          ],
+          "text": [
+            "age_mid:  10<br />est:   0.000<br />lwr.ci:   0.000<br />upr.ci:   0.000<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  25<br />est:   0.354<br />lwr.ci:   0.169<br />upr.ci:   0.540<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  35<br />est:   2.930<br />lwr.ci:   2.445<br />upr.ci:   3.416<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  45<br />est:  14.235<br />lwr.ci:  12.942<br />upr.ci:  15.529<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  55<br />est:  54.175<br />lwr.ci:  51.400<br />upr.ci:  56.950<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  65<br />est: 102.291<br />lwr.ci:  97.762<br />upr.ci: 106.821<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  75<br />est: 140.076<br />lwr.ci: 132.040<br />upr.ci: 148.112<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid: 100<br />est: 122.951<br />lwr.ci: 106.517<br />upr.ci: 139.385<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "line": {
+            "width": 3.77952755905512,
+            "color": "rgba(255,0,0,1)",
+            "dash": "solid"
+          },
+          "hoveron": "points",
+          "name": "cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+          "legendgroup": "cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+          "showlegend": false,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null,
+          "cohortId": "DIABETES_WITH_OPHTHALMIC_MANIFESTATIONS"
+        },
+        {
+          "x": [
+            10,
+            25,
+            35,
+            45,
+            55,
+            65,
+            75,
+            100
+          ],
+          "y": [
+            0,
+            1.036,
+            2.331,
+            12.185,
+            38.212,
+            80.026,
+            144.882,
+            118.675
+          ],
+          "text": [
+            "age_mid:  10<br />est:   0.000<br />lwr.ci:   0.000<br />upr.ci:   0.000<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  25<br />est:   1.036<br />lwr.ci:   0.702<br />upr.ci:   1.370<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  35<br />est:   2.331<br />lwr.ci:   1.883<br />upr.ci:   2.779<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  45<br />est:  12.185<br />lwr.ci:  11.024<br />upr.ci:  13.347<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  55<br />est:  38.212<br />lwr.ci:  36.067<br />upr.ci:  40.356<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  65<br />est:  80.026<br />lwr.ci:  76.428<br />upr.ci:  83.625<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid:  75<br />est: 144.882<br />lwr.ci: 138.339<br />upr.ci: 151.426<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+            "age_mid: 100<br />est: 118.675<br />lwr.ci: 107.992<br />upr.ci: 129.358<br />cohort: cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "line": {
+            "width": 3.77952755905512,
+            "color": "rgba(255,0,0,1)",
+            "dash": "solid"
+          },
+          "hoveron": "points",
+          "name": "cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+          "legendgroup": "cohort.5Fc.5F3fec116466a007cbef77008da3eaedc9",
+          "showlegend": false,
+          "xaxis": "x2",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null,
+          "cohortId": "DIABETES_WITH_OPHTHALMIC_MANIFESTATIONS"
+        },
+        {
+          "x": [
+            10,
+            25,
+            35,
+            45,
+            55,
+            65,
+            75,
+            100
+          ],
+          "y": [
+            0,
+            7.369,
+            8.776,
+            29.843,
+            65.037,
+            63.048,
+            56.396,
+            30.122
+          ],
+          "text": [
+            "age_mid:  10<br />est:   0.000<br />lwr.ci:   0.000<br />upr.ci:   0.000<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid:  25<br />est:   7.369<br />lwr.ci:   6.478<br />upr.ci:   8.259<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid:  35<br />est:   8.776<br />lwr.ci:   7.906<br />upr.ci:   9.646<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid:  45<br />est:  29.843<br />lwr.ci:  28.024<br />upr.ci:  31.662<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid:  55<br />est:  65.037<br />lwr.ci:  62.234<br />upr.ci:  67.840<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid:  65<br />est:  63.048<br />lwr.ci:  59.848<br />upr.ci:  66.249<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid:  75<br />est:  56.396<br />lwr.ci:  52.317<br />upr.ci:  60.476<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+            "age_mid: 100<br />est:  30.122<br />lwr.ci:  24.755<br />upr.ci:  35.489<br />cohort: cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "line": {
+            "width": 3.77952755905512,
+            "color": "rgba(255,0,0,1)",
+            "dash": "solid"
+          },
+          "hoveron": "points",
+          "name": "cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+          "legendgroup": "cohort.5Fc.5F79b7bedd53776ecb75c2c8e42b01997f",
+          "showlegend": false,
+          "xaxis": "x2",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null,
+          "cohortId": "DIABETES_WITH_KETOACIDOSIS"
+        },
+        {
+          "x": [
+            10,
+            25,
+            35,
+            45,
+            55,
+            65,
+            75,
+            100
+          ],
+          "y": [
+            0,
+            1.546,
+            5.192,
+            17.183,
+            32.325,
+            25.205,
+            23.865,
+            23.905
+          ],
+          "text": [
+            "age_mid:  10<br />est:   0.000<br />lwr.ci:   0.000<br />upr.ci:   0.000<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid:  25<br />est:   1.546<br />lwr.ci:   1.158<br />upr.ci:   1.934<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid:  35<br />est:   5.192<br />lwr.ci:   4.546<br />upr.ci:   5.838<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid:  45<br />est:  17.183<br />lwr.ci:  15.761<br />upr.ci:  18.605<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid:  55<br />est:  32.325<br />lwr.ci:  30.180<br />upr.ci:  34.469<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid:  65<br />est:  25.205<br />lwr.ci:  22.959<br />upr.ci:  27.450<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid:  75<br />est:  23.865<br />lwr.ci:  20.557<br />upr.ci:  27.172<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+            "age_mid: 100<br />est:  23.905<br />lwr.ci:  16.675<br />upr.ci:  31.134<br />cohort: cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "line": {
+            "width": 3.77952755905512,
+            "color": "rgba(255,0,0,1)",
+            "dash": "solid"
+          },
+          "hoveron": "points",
+          "name": "cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+          "legendgroup": "cohort.5Fc.5F7a43cf1b93cde9ef4db07e1a5013111f",
+          "showlegend": false,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null,
+          "cohortId": "DIABETES_WITH_OTHER_SPECIFIED_MANIFESTATIONS"
+        }
+      ],
+      "layout": {
+        "margin": {
+          "t": 37.4307458143075,
+          "r": 7.30593607305936,
+          "b": 39.6955859969559,
+          "l": 43.1050228310502
+        },
+        "plot_bgcolor": "rgba(255,255,255,1)",
+        "paper_bgcolor": "rgba(255,255,255,1)",
+        "font": {
+          "color": "rgba(0,0,0,1)",
+          "family": "",
+          "size": 14.6118721461187
+        },
+        "xaxis": {
+          "domain": [
+            0,
+            0.491438356164384
+          ],
+          "automargin": true,
+          "type": "linear",
+          "autorange": false,
+          "range": [
+            5.005,
+            104.995
+          ],
+          "tickmode": "array",
+          "ticktext": [
+            "25",
+            "50",
+            "75",
+            "100"
+          ],
+          "tickvals": [
+            25,
+            50,
+            75,
+            100
+          ],
+          "categoryorder": "array",
+          "categoryarray": [
+            "25",
+            "50",
+            "75",
+            "100"
+          ],
+          "nticks": null,
+          "ticks": "outside",
+          "tickcolor": "rgba(51,51,51,1)",
+          "ticklen": 3.65296803652968,
+          "tickwidth": 0.66417600664176,
+          "showticklabels": true,
+          "tickfont": {
+            "color": "rgba(77,77,77,1)",
+            "family": "",
+            "size": 11.689497716895
+          },
+          "tickangle": 0,
+          "showline": false,
+          "linecolor": null,
+          "linewidth": 0,
+          "showgrid": true,
+          "gridcolor": "rgba(235,235,235,1)",
+          "gridwidth": 0.66417600664176,
+          "zeroline": false,
+          "anchor": "y",
+          "title": "",
+          "hoverformat": ".2f"
+        },
+        "annotations": [
+          {
+            "text": "Age",
+            "x": 0.5,
+            "y": 0,
+            "showarrow": false,
+            "ax": 0,
+            "ay": 0,
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 14.6118721461187
+            },
+            "xref": "paper",
+            "yref": "paper",
+            "textangle": 0,
+            "xanchor": "center",
+            "yanchor": "top",
+            "annotationType": "axis",
+            "yshift": -21.9178082191781
+          },
+          {
+            "text": "Incidence rate (per 100K per year)",
+            "x": 0,
+            "y": 0.5,
+            "showarrow": false,
+            "ax": 0,
+            "ay": 0,
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 14.6118721461187
+            },
+            "xref": "paper",
+            "yref": "paper",
+            "textangle": -90,
+            "xanchor": "right",
+            "yanchor": "center",
+            "annotationType": "axis",
+            "xshift": -27.7625570776256
+          },
+          {
+            "text": "male",
+            "x": 0.245719178082192,
+            "y": 1,
+            "showarrow": false,
+            "ax": 0,
+            "ay": 0,
+            "font": {
+              "color": "rgba(26,26,26,1)",
+              "family": "",
+              "size": 11.689497716895
+            },
+            "xref": "paper",
+            "yref": "paper",
+            "textangle": 0,
+            "xanchor": "center",
+            "yanchor": "bottom"
+          },
+          {
+            "text": "female",
+            "x": 0.754280821917808,
+            "y": 1,
+            "showarrow": false,
+            "ax": 0,
+            "ay": 0,
+            "font": {
+              "color": "rgba(26,26,26,1)",
+              "family": "",
+              "size": 11.689497716895
+            },
+            "xref": "paper",
+            "yref": "paper",
+            "textangle": 0,
+            "xanchor": "center",
+            "yanchor": "bottom"
+          }
+        ],
+        "yaxis": {
+          "domain": [
+            0,
+            1
+          ],
+          "automargin": true,
+          "type": "linear",
+          "autorange": false,
+          "range": [
+            -7.5713,
+            158.9973
+          ],
+          "tickmode": "array",
+          "ticktext": [
+            "0",
+            "50",
+            "100",
+            "150"
+          ],
+          "tickvals": [
+            8.88178419700125e-16,
+            50,
+            100,
+            150
+          ],
+          "categoryorder": "array",
+          "categoryarray": [
+            "0",
+            "50",
+            "100",
+            "150"
+          ],
+          "nticks": null,
+          "ticks": "outside",
+          "tickcolor": "rgba(51,51,51,1)",
+          "ticklen": 3.65296803652968,
+          "tickwidth": 0.66417600664176,
+          "showticklabels": true,
+          "tickfont": {
+            "color": "rgba(77,77,77,1)",
+            "family": "",
+            "size": 11.689497716895
+          },
+          "tickangle": 0,
+          "showline": false,
+          "linecolor": null,
+          "linewidth": 0,
+          "showgrid": true,
+          "gridcolor": "rgba(235,235,235,1)",
+          "gridwidth": 0.66417600664176,
+          "zeroline": false,
+          "anchor": "x",
+          "title": "",
+          "hoverformat": ".2f"
+        },
+        "shapes": [
+          {
+            "type": "rect",
+            "fillcolor": "transparent",
+            "line": {
+              "color": "rgba(51,51,51,1)",
+              "width": 0.66417600664176,
+              "linetype": "solid"
+            },
+            "yref": "paper",
+            "xref": "paper",
+            "x0": 0,
+            "x1": 0.491438356164384,
+            "y0": 0,
+            "y1": 1
+          },
+          {
+            "type": "rect",
+            "fillcolor": null,
+            "line": {
+              "color": null,
+              "width": 0,
+              "linetype": []
+            },
+            "yref": "paper",
+            "xref": "paper",
+            "x0": 0,
+            "x1": 0.491438356164384,
+            "y0": 0,
+            "y1": 23.37899543379,
+            "yanchor": 1,
+            "ysizemode": "pixel"
+          },
+          {
+            "type": "rect",
+            "fillcolor": "transparent",
+            "line": {
+              "color": "rgba(51,51,51,1)",
+              "width": 0.66417600664176,
+              "linetype": "solid"
+            },
+            "yref": "paper",
+            "xref": "paper",
+            "x0": 0.508561643835616,
+            "x1": 1,
+            "y0": 0,
+            "y1": 1
+          },
+          {
+            "type": "rect",
+            "fillcolor": null,
+            "line": {
+              "color": null,
+              "width": 0,
+              "linetype": []
+            },
+            "yref": "paper",
+            "xref": "paper",
+            "x0": 0.508561643835616,
+            "x1": 1,
+            "y0": 0,
+            "y1": 23.37899543379,
+            "yanchor": 1,
+            "ysizemode": "pixel"
+          }
+        ],
+        "xaxis2": {
+          "type": "linear",
+          "autorange": false,
+          "range": [
+            5.005,
+            104.995
+          ],
+          "tickmode": "array",
+          "ticktext": [
+            "25",
+            "50",
+            "75",
+            "100"
+          ],
+          "tickvals": [
+            25,
+            50,
+            75,
+            100
+          ],
+          "categoryorder": "array",
+          "categoryarray": [
+            "25",
+            "50",
+            "75",
+            "100"
+          ],
+          "nticks": null,
+          "ticks": "outside",
+          "tickcolor": "rgba(51,51,51,1)",
+          "ticklen": 3.65296803652968,
+          "tickwidth": 0.66417600664176,
+          "showticklabels": true,
+          "tickfont": {
+            "color": "rgba(77,77,77,1)",
+            "family": "",
+            "size": 11.689497716895
+          },
+          "tickangle": 0,
+          "showline": false,
+          "linecolor": null,
+          "linewidth": 0,
+          "showgrid": true,
+          "domain": [
+            0.508561643835616,
+            1
+          ],
+          "gridcolor": "rgba(235,235,235,1)",
+          "gridwidth": 0.66417600664176,
+          "zeroline": false,
+          "anchor": "y",
+          "title": "",
+          "hoverformat": ".2f"
+        },
+        "showlegend": true,
+        "legend": {
+          "bgcolor": "rgba(255,255,255,1)",
+          "bordercolor": "transparent",
+          "borderwidth": 1.88976377952756,
+          "font": {
+            "color": "rgba(0,0,0,1)",
+            "family": "",
+            "size": 11.689497716895
+          },
+          "title": {
+            "text": "",
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 14.6118721461187
+            }
+          }
+        },
+        "hovermode": "closest",
+        "barmode": "relative"
+      }
+    }
+  },
+  "id": "6373078c-069b-4037-9cc0-013f67fe184c"
+}

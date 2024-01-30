@@ -4,55 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="report logic changes + new exe">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/WiserTester.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WiserTester.iml" afterDir="false" />
+    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="comparison logic changes + new wait for pending requests logic + new exe">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/comparison_reports/patients_viewer/20240125130222110_comparison.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/comparison_reports/patients_viewer/20240125130222173_comparison.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/comparison_reports/patients_viewer/20240125130308090_comparison.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/patients_viewer/20240125130222110.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/patients_viewer/20240125130222173.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/patients_viewer/20240125130308090.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112438567.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112438567.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501263.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501263.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501491.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501491.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501572.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501572.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501599.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501599.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501627.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501627.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501658.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501658.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501687.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501687.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501716.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501716.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501773.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501773.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501842.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501842.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501876.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501876.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501903.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501903.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501931.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501931.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501960.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501960.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112501992.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501992.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112502073.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112502073.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112502101.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112502101.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112502131.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112502131.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112502161.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112502161.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_builder/20240125112502190.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112502190.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143150309.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143151371.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143151449.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143152515.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143152989.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143153840.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143154013.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143154114.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143154205.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/cohort_comparison/20240124143154308.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/patients_viewer/20240125130222110.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/patients_viewer/20240125130222173.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/patients_viewer/20240125130308090.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/tracks_builder/20240125130831227.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/tracks_builder/20240125130839722.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/outputs/tracks_builder/20240125130839722.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/outputs/tracks_builder/20240125131156443.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/outputs/tracks_builder/20240125131156443.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WiserTester2901241500.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112438567.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501263.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501491.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501572.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501599.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501627.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501658.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501687.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501716.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501773.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501842.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501876.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501903.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501931.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501960.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501992.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112502073.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112502101.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112502131.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112502161.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112502190.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/wiser_tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/wiser_tester.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,8 +95,8 @@
       <recent name="C:\Users\mayah\PycharmProjects\WiserTester\dist" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\mayah\PycharmProjects\WiserTester\data\expectations" />
       <recent name="C:\Users\mayah\PycharmProjects\WiserTester" />
+      <recent name="C:\Users\mayah\PycharmProjects\WiserTester\data\expectations" />
       <recent name="C:\Users\mayah\PycharmProjects\WiserTester\har_files" />
       <recent name="C:\Users\mayah\PycharmProjects\WiserTester\data\expectations\rec1" />
     </key>
@@ -210,7 +185,7 @@
       <option name="presentableId" value="Default" />
       <updated>1705932051929</updated>
       <workItem from="1705932052953" duration="62139000" />
-      <workItem from="1706614346564" duration="6358000" />
+      <workItem from="1706614346564" duration="15537000" />
     </task>
     <task id="LOCAL-00001" summary="created new exe">
       <created>1705932305667</created>
@@ -373,7 +348,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706533440953</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="comparison logic changes + new wait for pending requests logic + new exe">
+      <created>1706621136664</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1706621136664</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -423,7 +405,8 @@
     <MESSAGE value="fixed report classification + new exe" />
     <MESSAGE value="minor changes + new exe" />
     <MESSAGE value="report logic changes + new exe" />
-    <option name="LAST_COMMIT_MESSAGE" value="report logic changes + new exe" />
+    <MESSAGE value="comparison logic changes + new wait for pending requests logic + new exe" />
+    <option name="LAST_COMMIT_MESSAGE" value="comparison logic changes + new wait for pending requests logic + new exe" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/WiserTester$helpers.coverage" NAME="helpers Coverage Results" MODIFIED="1706618735318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

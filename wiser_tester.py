@@ -122,7 +122,8 @@ class Compare:
             expected_data = json.load(file).get('data')
         if not output_data.get('requestId') is None:
             report['request_id'] = output_data.get('requestId')
-        diff = DeepDiff(output_data, expected_data, ignore_order=True, report_repetition=True, exclude_paths=["root['requestId']"])
+        diff = DeepDiff(output_data, expected_data, ignore_order=True, report_repetition=True,
+                        exclude_paths=["root['requestId']"])
         delta = Delta(diff, bidirectional=True)
         flat_dicts = delta.to_flat_dicts()
         if diff or len(diff) != 0:
@@ -223,6 +224,9 @@ class WiserTester:
             else:
                 self.logger.error(f"Report ID {report_id} not found in request mapping")
             # Set the event to signal that the report has been processed
+            # Remove the report ID from pending requests
+            if report_id in self.pending_requests:
+                self.pending_requests.remove(report_id)
             self.report_event.set()
 
         @self.socket.event
@@ -259,12 +263,16 @@ class WiserTester:
         Returns:
             str: The path to the saved output file.
         """
-        input_file_name = self.request_to_input_map.get(output_data['id'], "unknown")
-        file_name = f"{input_file_name}.json"
-        output_path = os.path.join(output_dir, file_name)
-        with open(output_path, "w") as file:
-            json.dump(output_data, file, indent=2)
-        return output_path
+        try:
+            input_file_name = self.request_to_input_map.get(output_data['id'], "unknown")
+            file_name = f"{input_file_name}.json"
+            output_path = os.path.join(output_dir, file_name)
+            with open(output_path, "w") as file:
+                json.dump(output_data, file, indent=2)
+            self.logger.info(f'saved report {output_path}')
+            return output_path
+        except Exception as e:
+            self.logger.error(f"Failed to save output for request ID {output_data['id']}: {e}")
 
     def prepare_request_data(self, json_request_path):
         with open(json_request_path, "r") as file:
@@ -344,13 +352,11 @@ class WiserTester:
         path = os.path.join(self.outputs_path, input_folder)
         self.logger.warning(f"Late report received for ID {report_id} which should be in {inp_dir}")
         await self.save_output({"data": data, "id": report_id}, path)
-        self.pending_requests.discard(report_id)
 
     async def handle_response(self, request_id):
         try:
             await asyncio.wait_for(self.report_event.wait(), timeout=self.request_timeout)
             self.logger.info(f"Report processed for request ID {request_id}")
-            self.pending_requests.discard(request_id)
         except asyncio.TimeoutError:
             input_file_name = self.request_to_input_map.get(request_id, "unknown")
             self.logger.warning(f"Timeout occurred for request ID {request_id}, input file: {input_file_name}")
@@ -377,7 +383,7 @@ class WiserTester:
         except Exception as e:
             self.logger.error(f"An error occurred during testing {inp_dir}: {e}")
 
-    async def wait_for_all_reports(self, timeout=120):  # Default timeout of 2 minutes
+    async def wait_for_all_reports(self, timeout=120):
         """
         Waits for all reports to be processed or until the timeout is reached.
         Args:

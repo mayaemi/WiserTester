@@ -8,7 +8,7 @@ import socketio
 import httpx
 import logging
 import argparse
-from deepdiff import DeepDiff
+from deepdiff import DeepDiff, Delta
 
 # Constants and configurations
 LOGIN_URL = "/login"
@@ -80,7 +80,7 @@ class Compare:
                 output_folder_path = os.path.join(self.outputs_path, output_folder)
                 LOGGER.info(f"Comparing results for {output_folder}")
                 self.compare_folder_outputs(output_folder_path, expectation_folder_path)
-        return self.report_paths
+        return self.generate_summary_report()
 
     def compare_folder_outputs(self, output_folder_path, expectation_folder_path):
         """ Compare outputs in a specific folder with their expected counterparts. """
@@ -120,12 +120,44 @@ class Compare:
             output_data = json.load(file).get('data')
         with open(expected_file_path, 'r') as file:
             expected_data = json.load(file).get('data')
-        report['request_id'] = output_data.get('requestId')
-        report['output_file'] = output_file_path
-        report['expected_output_file'] = expected_file_path
-        report['diff'] = DeepDiff(output_data, expected_data, ignore_order=True).to_json()
-        self.report_paths.append(self.save_comparison_report(report, report_path, input_file_name))
-        LOGGER.info(f"Comparison report generated for {input_file_name}")
+        if not output_data.get('requestId') is None:
+            report['request_id'] = output_data.get('requestId')
+        diff = DeepDiff(output_data, expected_data, ignore_order=True, report_repetition=True, exclude_paths=["root['requestId']"])
+        delta = Delta(diff, bidirectional=True)
+        flat_dicts = delta.to_flat_dicts()
+        if diff or len(diff) != 0:
+            report['output_file'] = output_file_path
+            report['expected_output_file'] = expected_file_path
+            report['diff'] = flat_dicts
+            self.report_paths.append(self.save_comparison_report(report, report_path, input_file_name))
+            LOGGER.info(f"Comparison report generated for {input_file_name}")
+        else:
+            LOGGER.info(f"No difference in output for {input_file_name}")
+
+    def generate_summary_report(self):
+        """ Generate a summary report of all comparisons. """
+        summary = {
+            'total_comparisons': len(self.report_paths),
+            'differences': []
+        }
+
+        for report_path in self.report_paths:
+            with open(report_path, 'r') as file:
+                report_data = json.load(file)
+                if 'diff' in report_data:
+                    summary['differences'].append({
+                        'request_id': report_data.get('request_id', 'N/A'),
+                        'output_file': report_data['output_file'],
+                        'expected_output_file': report_data['expected_output_file'],
+                        'diff': report_data['diff']
+                    })
+
+        summary_report_path = os.path.join(self.reports_path, 'comparison_summary.json')
+        with open(summary_report_path, 'w') as file:
+            json.dump(summary, file, indent=2)
+
+        LOGGER.info(f"Summary report generated at {summary_report_path}")
+        return summary_report_path
 
 
 class WiserTester:
@@ -312,20 +344,16 @@ class WiserTester:
         path = os.path.join(self.outputs_path, input_folder)
         self.logger.warning(f"Late report received for ID {report_id} which should be in {inp_dir}")
         await self.save_output({"data": data, "id": report_id}, path)
-
-    async def log_skipped_report(self, request_id):
-        input_file_name = self.request_to_input_map.get(request_id, "unknown")
-        self.logger.error(f"Skipped report for request ID {request_id}, input file: {input_file_name} due to timeout")
+        self.pending_requests.discard(report_id)
 
     async def handle_response(self, request_id):
         try:
             await asyncio.wait_for(self.report_event.wait(), timeout=self.request_timeout)
             self.logger.info(f"Report processed for request ID {request_id}")
-        except asyncio.TimeoutError:
-            self.logger.error(f"Timeout occurred for request ID {request_id}")
-            await self.log_skipped_report(request_id)
-        finally:
             self.pending_requests.discard(request_id)
+        except asyncio.TimeoutError:
+            input_file_name = self.request_to_input_map.get(request_id, "unknown")
+            self.logger.warning(f"Timeout occurred for request ID {request_id}, input file: {input_file_name}")
 
     async def test_input(self, inp_dir):
         """
@@ -346,14 +374,35 @@ class WiserTester:
                 if file_path.endswith(".json"):
                     await self.process_file(file_path)
             self.logger.info(f'all requests completed for {inp_dir}')
-            await self.wait_for_all_reports()
         except Exception as e:
             self.logger.error(f"An error occurred during testing {inp_dir}: {e}")
 
-    async def wait_for_all_reports(self):
+    async def wait_for_all_reports(self, timeout=120):  # Default timeout of 2 minutes
+        """
+        Waits for all reports to be processed or until the timeout is reached.
+        Args:
+            timeout (int): The maximum time to wait for all reports, in seconds.
+        """
+        start_time = asyncio.get_event_loop().time()
         while self.pending_requests:
-            await asyncio.sleep(1)  # Sleep briefly to avoid busy waiting
-        self.logger.info("All reports processed or skipped for the current input folder.")
+            try:
+                # Wait for any report to be processed or timeout
+                await asyncio.wait_for(self.report_event.wait(),
+                                       timeout=timeout - (asyncio.get_event_loop().time() - start_time))
+                # Reset the event for the next iteration
+                self.report_event.clear()
+            except asyncio.TimeoutError:
+                self.logger.warning(
+                    f"Timeout reached while waiting for reports. Pending requests: {self.pending_requests}")
+                break  # Exit the loop if timeout is reached
+            else:
+                # Optionally, log the remaining pending requests
+                self.logger.info(f'Remaining pending requests: {self.pending_requests}')
+
+        if not self.pending_requests:
+            self.logger.info("All reports processed successfully.")
+        else:
+            self.logger.info(f"Exiting wait due to timeout, missing reports: {self.pending_requests}.")
 
     async def test_all(self):
         """ Tests all inputs in the input directory. """
@@ -362,6 +411,7 @@ class WiserTester:
             rec_dir = os.path.join(self.input_path, rec)
             await self.test_input(rec_dir)
             await asyncio.sleep(1)
+        await self.wait_for_all_reports()
         await self.close()
 
     async def test_specific(self, inputs_list):
@@ -375,6 +425,7 @@ class WiserTester:
             rec_dir = os.path.join(self.input_path, rec)
             await self.test_input(rec_dir)
             await asyncio.sleep(1)
+        await self.wait_for_all_reports()
         await self.close()
 
     async def start_test(self, specific_inputs=None):

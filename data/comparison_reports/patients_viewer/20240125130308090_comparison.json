@@ -1,6 +1,0 @@
-{
-  "request_id": "d98bb5f2-3827-409c-9407-01fbe795a81c",
-  "output_file": "data/outputs\\patients_viewer\\20240125130308090.json",
-  "expected_output_file": "data/expectations\\patients_viewer\\20240125130308090.json",
-  "diff": "{\"dictionary_item_added\": [\"root['dbDir']\"], \"values_changed\": {\"root['requestId']\": {\"new_value\": \"ef469879-1504-46e1-8d65-cfff73d90157\", \"old_value\": \"d98bb5f2-3827-409c-9407-01fbe795a81c\"}}}"
-}

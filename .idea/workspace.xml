@@ -4,30 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="comparison logic changes + new wait for pending requests logic + new exe">
+    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="something is wrong with last report">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WiserTester2901241500.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112438567.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501263.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501491.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501572.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501599.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501627.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501658.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501687.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501716.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501773.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501842.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501876.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501903.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501931.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501960.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112501992.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112502073.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112502101.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112502131.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112502161.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/expectations/cohort_builder/20240125112502190.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/wiser_tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/wiser_tester.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -185,7 +163,7 @@
       <option name="presentableId" value="Default" />
       <updated>1705932051929</updated>
       <workItem from="1705932052953" duration="62139000" />
-      <workItem from="1706614346564" duration="15537000" />
+      <workItem from="1706614346564" duration="20082000" />
     </task>
     <task id="LOCAL-00001" summary="created new exe">
       <created>1705932305667</created>
@@ -355,7 +333,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706621136664</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="something is wrong with last report">
+      <created>1706630482492</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1706630482492</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -406,7 +391,8 @@
     <MESSAGE value="minor changes + new exe" />
     <MESSAGE value="report logic changes + new exe" />
     <MESSAGE value="comparison logic changes + new wait for pending requests logic + new exe" />
-    <option name="LAST_COMMIT_MESSAGE" value="comparison logic changes + new wait for pending requests logic + new exe" />
+    <MESSAGE value="something is wrong with last report" />
+    <option name="LAST_COMMIT_MESSAGE" value="something is wrong with last report" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/WiserTester$helpers.coverage" NAME="helpers Coverage Results" MODIFIED="1706618735318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

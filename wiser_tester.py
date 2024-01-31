@@ -206,27 +206,11 @@ class WiserTester:
 
         @self.socket.event
         async def report_ready(data):
-            await self.request_mapping_event.wait()  # Wait for the mapping event
-            self.request_mapping_event.clear()  # Clear the event for the next report
+            """ Event handler for when a report is ready. """
+            await self.request_mapping_event.wait()
+            self.request_mapping_event.clear()
 
-            report_id = data.get('id')
-            if report_id and report_id in self.request_to_input_map:
-                input_dir = self.request_to_input_dir_map.get(report_id)
-                report_data = json.loads(data.get('data'))
-
-                if input_dir == self.current_input_dir:
-                    # Normal handling of the report
-                    self.logger.info(f"Report received for ID {report_id}")
-                    await self.save_output({"data": report_data, "id": report_id}, self.current_output_dir)
-                else:
-                    # Late report handling
-                    await self.handle_late_report(report_id, report_data)
-            else:
-                self.logger.error(f"Report ID {report_id} not found in request mapping")
-            # Set the event to signal that the report has been processed
-            # Remove the report ID from pending requests
-            if report_id in self.pending_requests:
-                self.pending_requests.remove(report_id)
+            await self.process_report(data)
             self.report_event.set()
 
         @self.socket.event
@@ -258,8 +242,6 @@ class WiserTester:
     async def save_output(self, output_data, output_dir):
         """
         Saves the test output to a JSON file, naming it with the request ID and a timestamp.
-        Args:
-            output_data (dict): The data to be saved as the test output.
         Returns:
             str: The path to the saved output file.
         """
@@ -273,6 +255,24 @@ class WiserTester:
             return output_path
         except Exception as e:
             self.logger.error(f"Failed to save output for request ID {output_data['id']}: {e}")
+
+    async def close(self):
+        """ Closes the WebSocket connection if it is open. """
+        # Close the WebSocket connection if it is open
+        if self.socket:
+            await self.socket.disconnect()
+
+        # Close the HTTP client
+        if self.http_client:
+            await self.http_client.aclose()
+            self.logger.info("HTTP client closed.")
+
+    async def process_file(self, file_path):
+        self.logger.info(f'sending request for file: {file_path}')
+        request_id, _ = await self.send_request_get_response(file_path)
+        if request_id:
+            self.pending_requests.add(request_id)
+            await self.wait_for_report(request_id)
 
     def prepare_request_data(self, json_request_path):
         with open(json_request_path, "r") as file:
@@ -339,12 +339,32 @@ class WiserTester:
             self.logger.error(f"Request failed: {e}")
             return None, None
 
-    async def process_file(self, file_path):
-        self.logger.info(f'sending request for file: {file_path}')
-        request_id, _ = await self.send_request_get_response(file_path)
-        if request_id:
-            self.pending_requests.add(request_id)
-            await self.handle_response(request_id)
+    async def process_report(self, data):
+        """ Process incoming reports, either in order or handling late reports. """
+        report_id = data.get('id')
+        if not report_id:
+            self.logger.error("Report ID missing in data")
+            return
+
+        report_data = json.loads(data.get('data'))
+        self.logger.info(f"Report received for ID {report_id}")
+
+        if report_id in self.pending_requests:
+            self.pending_requests.remove(report_id)
+
+        if report_id in self.request_to_input_map:
+            await self.handle_report(report_id, report_data)
+        else:
+            self.logger.error(f"Report ID {report_id} not found in request mapping")
+
+    async def handle_report(self, report_id, report_data):
+        """ Handle normal and late reports based on their ID. """
+        input_dir = self.request_to_input_dir_map.get(report_id)
+
+        if input_dir == self.current_input_dir:
+            await self.save_output({"data": report_data, "id": report_id}, self.current_output_dir)
+        else:
+            await self.handle_late_report(report_id, report_data)
 
     async def handle_late_report(self, report_id, data):
         inp_dir = self.request_to_input_dir_map.get(report_id)
@@ -353,10 +373,9 @@ class WiserTester:
         self.logger.warning(f"Late report received for ID {report_id} which should be in {inp_dir}")
         await self.save_output({"data": data, "id": report_id}, path)
 
-    async def handle_response(self, request_id):
+    async def wait_for_report(self, request_id):
         try:
             await asyncio.wait_for(self.report_event.wait(), timeout=self.request_timeout)
-            self.logger.info(f"Report processed for request ID {request_id}")
         except asyncio.TimeoutError:
             input_file_name = self.request_to_input_map.get(request_id, "unknown")
             self.logger.warning(f"Timeout occurred for request ID {request_id}, input file: {input_file_name}")
@@ -451,17 +470,6 @@ class WiserTester:
         else:
             await self.test_all()
         await self.socket.wait()
-
-    async def close(self):
-        """ Closes the WebSocket connection if it is open. """
-        # Close the WebSocket connection if it is open
-        if self.socket:
-            await self.socket.disconnect()
-
-        # Close the HTTP client
-        if self.http_client:
-            await self.http_client.aclose()
-            self.logger.info("HTTP client closed.")
 
 
 def parse_args():

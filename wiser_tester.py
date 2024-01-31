@@ -164,38 +164,67 @@ class Compare:
 class WiserTester:
     """ A class to handle automated testing using HTTP requests and SocketIO. """
 
+    # Initialization and setup methods
+
     def __init__(self, input_path, outputs_path, username, password, host, origin, request_timeout):
         """
         Initializes the WiserTester instance.
         Args:
-            input_path: Path to the directory containing inputs for tests.
-            outputs_path: Path to the directory to save test outputs.
+            input_path (str): Path to the directory containing inputs for tests.
+            outputs_path (str): Path to the directory to save test outputs.
+            username (str): Username for login.
+            password (str): Password for login.
+            host (str): Host address of the server.
+            origin (str): Origin for the HTTP requests.
+            request_timeout (int): Timeout for waiting on reports.
         """
         self.logger = LOGGER
         # self.socket = socketio.AsyncClient(logger=True, engineio_logger=True)
         self.socket = socketio.AsyncClient()
+        self.http_client = httpx.AsyncClient()
         self.username = username
         self.password = password
         self.host = host
         self.server_path = f"http://{host}/"
         self.origin = origin
-        self.client_lock = asyncio.Lock()
-        self.s_id = None
+        self.request_timeout = request_timeout  # seconds
         self.input_path = input_path
         self.outputs_path = outputs_path
-        self.current_input_dir = None
-        self.current_output_dir = None
-        self.request_id_lock = asyncio.Lock()  # Lock for synchronizing request ID mapping
+        self.s_id = None
+        self.current_input_dir, self.current_output_dir = None, None
         self.cookies = None
         self.request_to_input_map = {}  # dictionary to map request IDs to input file names
         self.request_to_input_dir_map = {}  # Map request IDs to input directories
         self.request_mapping_event = asyncio.Event()
         self.report_event = asyncio.Event()
-        self.http_client = httpx.AsyncClient()
-        self.request_timeout = request_timeout  # seconds
+        self.request_id_lock = asyncio.Lock()  # Lock for synchronizing request ID mapping
+        self.client_lock = asyncio.Lock()
         self.pending_requests = set()
 
-        # Event handlers
+        # Define event handlers for the socket events
+        self._define_event_handlers()
+
+    async def start_test(self, specific_inputs=None):
+        """
+            Starts the testing process. Tests either all inputs or a specific list of inputs.
+            Args:
+                specific_inputs (list, optional): A list of specific inputs to be tested. If None, all inputs will be tested.
+        """
+        # Perform login and store cookies
+        _, self.cookies = await login(self.username, self.password, self.server_path)
+        self.logger.info(f'Logged in and obtained cookies {self.cookies}')
+
+        await self.connect_to_server()
+
+        if specific_inputs:
+            await self.test_specific(specific_inputs)
+        else:
+            await self.test_all()
+        await self.socket.wait()
+
+    def _define_event_handlers(self):
+        """ Define event handlers for socket events. """
+
         @self.socket.event
         async def connect():
             self.logger.info("Socket connected")
@@ -206,20 +235,11 @@ class WiserTester:
 
         @self.socket.event
         async def report_ready(data):
-            """ Event handler for when a report is ready. """
-            await self.request_mapping_event.wait()
-            self.request_mapping_event.clear()
-
-            await self.process_report(data)
-            self.report_event.set()
+            await self._handle_report_ready(data)
 
         @self.socket.event
         async def error(data):
-            error_msg = data.get('error')
-            report_id = data.get('id')
-            if report_id:
-                async with self.client_lock:
-                    self.logger.error(f"Error for ID {report_id}: {error_msg}")
+            await self._handle_error(data)
 
     async def connect_to_server(self):
         """Establishes connection to the server."""
@@ -231,48 +251,21 @@ class WiserTester:
             self.logger.error(f"Socket connection failed: {e}")
             raise e
 
-    async def make_output_dir(self):
-        input_folder = os.path.basename(self.current_input_dir)
-        path = os.path.join(self.outputs_path, input_folder)
-        if not os.path.isdir(path):
-            os.mkdir(path)
-            LOGGER.info(f'created dir {path}')
-        return path
+    async def _handle_report_ready(self, data):
+        """ Handle incoming report readiness. """
+        await self.request_mapping_event.wait()
+        self.request_mapping_event.clear()
+        await self.process_report(data)
 
-    async def save_output(self, output_data, output_dir):
-        """
-        Saves the test output to a JSON file, naming it with the request ID and a timestamp.
-        Returns:
-            str: The path to the saved output file.
-        """
-        try:
-            input_file_name = self.request_to_input_map.get(output_data['id'], "unknown")
-            file_name = f"{input_file_name}.json"
-            output_path = os.path.join(output_dir, file_name)
-            with open(output_path, "w") as file:
-                json.dump(output_data, file, indent=2)
-            self.logger.info(f'saved report {output_path}')
-            return output_path
-        except Exception as e:
-            self.logger.error(f"Failed to save output for request ID {output_data['id']}: {e}")
+    async def _handle_error(self, data):
+        """ Handle errors reported by the server. """
+        error_msg = data.get('error')
+        report_id = data.get('id')
+        if report_id:
+            async with self.client_lock:
+                self.logger.error(f"Error for ID {report_id}: {error_msg}")
 
-    async def close(self):
-        """ Closes the WebSocket connection if it is open. """
-        # Close the WebSocket connection if it is open
-        if self.socket:
-            await self.socket.disconnect()
-
-        # Close the HTTP client
-        if self.http_client:
-            await self.http_client.aclose()
-            self.logger.info("HTTP client closed.")
-
-    async def process_file(self, file_path):
-        self.logger.info(f'sending request for file: {file_path}')
-        request_id, _ = await self.send_request_get_response(file_path)
-        if request_id:
-            self.pending_requests.add(request_id)
-            await self.wait_for_report(request_id)
+    # Request handling methods
 
     def prepare_request_data(self, json_request_path):
         with open(json_request_path, "r") as file:
@@ -339,6 +332,8 @@ class WiserTester:
             self.logger.error(f"Request failed: {e}")
             return None, None
 
+    # Report handling methods
+
     async def process_report(self, data):
         """ Process incoming reports, either in order or handling late reports. """
         report_id = data.get('id')
@@ -353,18 +348,16 @@ class WiserTester:
             self.pending_requests.remove(report_id)
 
         if report_id in self.request_to_input_map:
-            await self.handle_report(report_id, report_data)
+            input_dir = self.request_to_input_dir_map.get(report_id)
+
+            if input_dir == self.current_input_dir:
+                await self.save_output({"data": report_data, "id": report_id}, self.current_output_dir)
+                self.report_event.set()
+
+            else:
+                await self.handle_late_report(report_id, report_data)
         else:
             self.logger.error(f"Report ID {report_id} not found in request mapping")
-
-    async def handle_report(self, report_id, report_data):
-        """ Handle normal and late reports based on their ID. """
-        input_dir = self.request_to_input_dir_map.get(report_id)
-
-        if input_dir == self.current_input_dir:
-            await self.save_output({"data": report_data, "id": report_id}, self.current_output_dir)
-        else:
-            await self.handle_late_report(report_id, report_data)
 
     async def handle_late_report(self, report_id, data):
         inp_dir = self.request_to_input_dir_map.get(report_id)
@@ -380,54 +373,23 @@ class WiserTester:
             input_file_name = self.request_to_input_map.get(request_id, "unknown")
             self.logger.warning(f"Timeout occurred for request ID {request_id}, input file: {input_file_name}")
 
-    async def test_input(self, inp_dir):
-        """
-        Tests an input directory.
-        Args:
-            inp_dir (str): The directory containing an input to be tested.
-        """
-        try:
-            self.logger.info(f'testing {inp_dir}')
-            self.current_input_dir = inp_dir
-            self.current_output_dir = await self.make_output_dir()
-            self.logger.info(f'made directory {self.current_output_dir}')
-            lst = os.listdir(inp_dir)
-            lst.sort()
-            self.logger.info(lst)
-            for filename in lst:
-                file_path = os.path.join(inp_dir, filename)
-                if file_path.endswith(".json"):
-                    await self.process_file(file_path)
-            self.logger.info(f'all requests completed for {inp_dir}')
-        except Exception as e:
-            self.logger.error(f"An error occurred during testing {inp_dir}: {e}")
-
     async def wait_for_all_reports(self, timeout=120):
         """
         Waits for all reports to be processed or until the timeout is reached.
         Args:
             timeout (int): The maximum time to wait for all reports, in seconds.
         """
-        start_time = asyncio.get_event_loop().time()
-        while self.pending_requests:
-            try:
-                # Wait for any report to be processed or timeout
-                await asyncio.wait_for(self.report_event.wait(),
-                                       timeout=timeout - (asyncio.get_event_loop().time() - start_time))
-                # Reset the event for the next iteration
-                self.report_event.clear()
-            except asyncio.TimeoutError:
-                self.logger.warning(
-                    f"Timeout reached while waiting for reports. Pending requests: {self.pending_requests}")
-                break  # Exit the loop if timeout is reached
+        try:
+            if self.pending_requests:
+                self.logger.info("Waiting for all reports to be completed...")
+                await asyncio.wait([self.wait_for_report(request_id) for request_id in self.pending_requests])
+                self.logger.info("All reports have been completed.")
             else:
-                # Optionally, log the remaining pending requests
-                self.logger.info(f'Remaining pending requests: {self.pending_requests}')
+                self.logger.info("No pending reports to wait for.")
+        except Exception as e:
+            self.logger.error(f"An error occurred while waiting for reports: {e}")
 
-        if not self.pending_requests:
-            self.logger.info("All reports processed successfully.")
-        else:
-            self.logger.info(f"Exiting wait due to timeout, missing reports: {self.pending_requests}.")
+    # Testing methods
 
     async def test_all(self):
         """ Tests all inputs in the input directory. """
@@ -453,23 +415,73 @@ class WiserTester:
         await self.wait_for_all_reports()
         await self.close()
 
-    async def start_test(self, specific_inputs=None):
+    async def test_input(self, inp_dir):
         """
-            Starts the testing process. Tests either all inputs or a specific list of inputs.
-            Args:
-                specific_inputs (list, optional): A list of specific inputs to be tested. If None, all inputs will be tested.
+        Tests an input directory.
+        Args:
+            inp_dir (str): The directory containing an input to be tested.
         """
-        # Perform login and store cookies
-        _, self.cookies = await login(self.username, self.password, self.server_path)
-        self.logger.info(f'Logged in and obtained cookies {self.cookies}')
+        try:
+            self.logger.info(f'testing {inp_dir}')
+            self.current_input_dir = inp_dir
+            self.current_output_dir = await self.make_output_dir()
+            self.logger.info(f'made directory {self.current_output_dir}')
+            lst = os.listdir(inp_dir)
+            lst.sort()
+            self.logger.info(lst)
+            for filename in lst:
+                file_path = os.path.join(inp_dir, filename)
+                if file_path.endswith(".json"):
+                    await self.process_file(file_path)
+            self.logger.info(f'all requests completed for {inp_dir}')
+        except Exception as e:
+            self.logger.error(f"An error occurred during testing {inp_dir}: {e}")
 
-        await self.connect_to_server()
+    async def process_file(self, file_path):
+        self.logger.info(f'sending request for file: {file_path}')
+        request_id, _ = await self.send_request_get_response(file_path)
+        if request_id:
+            self.pending_requests.add(request_id)
+            await self.wait_for_report(request_id)
 
-        if specific_inputs:
-            await self.test_specific(specific_inputs)
-        else:
-            await self.test_all()
-        await self.socket.wait()
+    # Utilities
+    async def make_output_dir(self):
+        input_folder = os.path.basename(self.current_input_dir)
+        path = os.path.join(self.outputs_path, input_folder)
+        if not os.path.isdir(path):
+            os.mkdir(path)
+            LOGGER.info(f'created dir {path}')
+        return path
+
+    async def save_output(self, output_data, output_dir):
+        """
+        Saves the test output to a JSON file, naming it with the request ID and a timestamp.
+        Returns:
+            str: The path to the saved output file.
+        """
+        try:
+            input_file_name = self.request_to_input_map.get(output_data['id'], "unknown")
+            file_name = f"{input_file_name}.json"
+            output_path = os.path.join(output_dir, file_name)
+            with open(output_path, "w") as file:
+                json.dump(output_data, file, indent=2)
+            self.logger.info(f'saved report {output_path}')
+            return output_path
+        except Exception as e:
+            self.logger.error(f"Failed to save output for request ID {output_data['id']}: {e}")
+
+    # Cleanup methods
+
+    async def close(self):
+        """ Closes the WebSocket connection if it is open. """
+        # Close the WebSocket connection if it is open
+        if self.socket:
+            await self.socket.disconnect()
+
+        # Close the HTTP client
+        if self.http_client:
+            await self.http_client.aclose()
+            self.logger.info("HTTP client closed.")
 
 
 def parse_args():

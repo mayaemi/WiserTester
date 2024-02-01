@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="fixed last report issue + minor logic changes + new exe">
+    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="added comparison error handling + new exe">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiser_tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/wiser_tester.py" afterDir="false" />
     </list>
@@ -163,7 +163,7 @@
       <option name="presentableId" value="Default" />
       <updated>1705932051929</updated>
       <workItem from="1705932052953" duration="62139000" />
-      <workItem from="1706614346564" duration="36472000" />
+      <workItem from="1706614346564" duration="40569000" />
     </task>
     <task id="LOCAL-00001" summary="created new exe">
       <created>1705932305667</created>
@@ -354,7 +354,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706715320548</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="added comparison error handling + new exe">
+      <created>1706790685169</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1706790685169</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -408,10 +415,11 @@
     <MESSAGE value="something is wrong with last report" />
     <MESSAGE value="minor changes in report handling, something is still wrong with last report" />
     <MESSAGE value="fixed last report issue + minor logic changes + new exe" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed last report issue + minor logic changes + new exe" />
+    <MESSAGE value="added comparison error handling + new exe" />
+    <option name="LAST_COMMIT_MESSAGE" value="added comparison error handling + new exe" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/WiserTester$helpers.coverage" NAME="helpers Coverage Results" MODIFIED="1706787291831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/WiserTester$helpers.coverage" NAME="helpers Coverage Results" MODIFIED="1706798111027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/WiserTester$input_from_har.coverage" NAME="input_from_har Coverage Results" MODIFIED="1706188505894" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/WiserTester$wiser_tester.coverage" NAME="wiser_tester Coverage Results" MODIFIED="1706021516443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>

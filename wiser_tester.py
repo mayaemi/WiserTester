@@ -10,36 +10,66 @@ import logging
 import argparse
 from deepdiff import DeepDiff, Delta
 
-# Constants and configurations
-LOGIN_URL = "/login"
-LOGIN_JSON_HEADERS = {"Accept": "application/json", "Content-Type": "application/json"}
-LOG_FORMAT = '%(asctime)s | %(levelname)s | %(message)s'
-
-# logger setup
-LOGGER = logging.getLogger(__name__)
-LOGGER.setLevel(logging.INFO)
-formatter = logging.Formatter(LOG_FORMAT)
-stdout_handler = logging.StreamHandler(sys.stdout)
-stdout_handler.setLevel(logging.INFO)
-stdout_handler.setFormatter(formatter)
-file_handler = logging.FileHandler('testlog.log')
-file_handler.setLevel(logging.DEBUG)
-file_handler.setFormatter(formatter)
-LOGGER.addHandler(file_handler)
-LOGGER.addHandler(stdout_handler)
+# Configuration and Constants
+CONFIG = {
+    "LOGIN_URL": "/login",
+    "LOGIN_JSON_HEADERS": {"Accept": "application/json", "Content-Type": "application/json"},
+    "LOG_FORMAT": '%(asctime)s | %(levelname)s | %(message)s',
+    "LOG_FILE": 'testlog.log'
+}
 
 
-# Login related functions
+# Setup logging
+def setup_logging():
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
+
+    formatter = logging.Formatter(CONFIG["LOG_FORMAT"])
+    stdout_handler = logging.StreamHandler(sys.stdout)
+    stdout_handler.setLevel(logging.INFO)
+    stdout_handler.setFormatter(formatter)
+
+    file_handler = logging.FileHandler(CONFIG["LOG_FILE"])
+    file_handler.setLevel(logging.DEBUG)
+    file_handler.setFormatter(formatter)
+
+    logger.addHandler(file_handler)
+    logger.addHandler(stdout_handler)
+    return logger
+
+
+LOGGER = setup_logging()
+
+
+# Utility Functions
+def load_json_file(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            return json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        LOGGER.error(f"Error loading JSON file {file_path}: {e}")
+        return
+
+
+def save_json_file(data, file_path):
+    try:
+        with open(file_path, "w") as file:
+            json.dump(data, file, indent=2)
+    except Exception as e:
+        LOGGER.error(f"Failed to save JSON file {file_path}: {e}")
+
+
+# Authentication
 async def login(username, password, server_path):
     """
     Logs into the application using provided credentials.
     Returns: HTTPX response object and cookies after successful login.
     """
-    url = f"{server_path}{LOGIN_URL}"
+    url = f"{server_path}{CONFIG['LOGIN_URL']}"
     data = {"username": username, "password": password}
     try:
-        with httpx.Client() as client:
-            response = client.post(url, json=data, headers=LOGIN_JSON_HEADERS)
+        async with httpx.AsyncClient() as client:
+            response = await client.post(url, json=data, headers=CONFIG["LOGIN_JSON_HEADERS"])
             response.raise_for_status()
             return response, response.cookies
     except Exception as e:
@@ -117,27 +147,14 @@ class Compare:
         """save comparison report to a json file."""
         file_name = f"{input_file_name}_comparison.json"
         output_path = os.path.join(path, file_name)
-        try:
-            with open(output_path, "w") as file:
-                json.dump(report_json, file, indent=2)
-            return output_path
-        except Exception as e:
-            LOGGER.error(f"Failed to save comparison report: {e}")
+        save_json_file(report_json, output_path)
+        return output_path
 
     def compare_and_save_report(self, input_file_name, output_file_path, expected_file_path, report_path):
         """ Compare an output file with its expected counterpart and save the report. """
-        report = {}
         try:
-            with open(output_file_path, 'r') as file:
-                output_data = json.load(file).get('data')
-            with open(expected_file_path, 'r') as file:
-                expected_data = json.load(file).get('data')
-        except FileNotFoundError as e:
-            LOGGER.error(f"File not found: {e}")
-            return
-        except json.JSONDecodeError as e:
-            LOGGER.error(f"Error decoding JSON from file: {e}")
-            return
+            output_data = load_json_file(output_file_path).get('data')
+            expected_data = load_json_file(expected_file_path).get('data')
         except Exception as e:
             LOGGER.exception(f"Unexpected error reading files: {e}")
             return
@@ -167,21 +184,14 @@ class Compare:
         }
 
         for report_path in self.report_paths:
-            try:
-                with open(report_path, 'r') as file:
-                    report_data = json.load(file)
-                    if 'diff' in report_data:
-                        summary['differences'].append({
-                            'request_id': report_data.get('request_id', 'N/A'),
-                            'output_file': report_data['output_file'],
-                            'expected_output_file': report_data['expected_output_file'],
-                            'diff': report_data['diff']
-                        })
-            except FileNotFoundError as e:
-                LOGGER.error(f"Summary report file not found: {e}")
-            except json.JSONDecodeError as e:
-                LOGGER.error(f"Error decoding JSON from summary report file: {e}")
-
+            report_data = load_json_file(report_path)
+            if 'diff' in report_data:
+                summary['differences'].append({
+                    'request_id': report_data.get('request_id', 'N/A'),
+                    'output_file': report_data['output_file'],
+                    'expected_output_file': report_data['expected_output_file'],
+                    'diff': report_data['diff']
+                })
         summary_report_path = os.path.join(self.reports_path, 'comparison_summary.json')
         try:
             with open(summary_report_path, 'w') as file:
@@ -193,7 +203,6 @@ class Compare:
 
 
 class WiserTester:
-    """ A class to handle automated testing using HTTP requests and SocketIO. """
 
     # Initialization and setup methods
 
@@ -210,7 +219,6 @@ class WiserTester:
             request_timeout (int): Timeout for waiting on reports.
         """
         self.logger = LOGGER
-        # self.socket = socketio.AsyncClient(logger=True, engineio_logger=True)
         self.socket = socketio.AsyncClient()
         self.http_client = httpx.AsyncClient()
         self.username = username
@@ -494,8 +502,7 @@ class WiserTester:
             input_file_name = self.request_to_input_map.get(output_data['id'], "unknown")
             file_name = f"{input_file_name}.json"
             output_path = os.path.join(output_dir, file_name)
-            with open(output_path, "w") as file:
-                json.dump(output_data, file, indent=2)
+            save_json_file(output_data, output_path)
             self.logger.info(f'saved report {output_path}')
             return output_path
         except Exception as e:

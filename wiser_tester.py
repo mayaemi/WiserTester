@@ -74,66 +74,90 @@ class Compare:
     def compare_outputs_with_expectations(self):
         """ Compare the output files with expected outputs stored in a specified directory. """
         LOGGER.info(f"Comparing outputs to expectations")
-        for output_folder in os.listdir(self.outputs_path):
-            expectation_folder_path = os.path.join(self.expectations_path, output_folder)
-            if os.path.isdir(expectation_folder_path):
-                output_folder_path = os.path.join(self.outputs_path, output_folder)
-                LOGGER.info(f"Comparing results for {output_folder}")
-                self.compare_folder_outputs(output_folder_path, expectation_folder_path)
+        try:
+            for output_folder in os.listdir(self.outputs_path):
+                expectation_folder_path = os.path.join(self.expectations_path, output_folder)
+                if os.path.isdir(expectation_folder_path):
+                    output_folder_path = os.path.join(self.outputs_path, output_folder)
+                    LOGGER.info(f"Comparing results for {output_folder}")
+                    self.compare_folder_outputs(output_folder_path, expectation_folder_path)
+        except FileNotFoundError as e:
+            LOGGER.error(f"Directory not found: {e}")
+        except PermissionError as e:
+            LOGGER.error(f"Permission denied: {e}")
         return self.generate_summary_report()
 
     def compare_folder_outputs(self, output_folder_path, expectation_folder_path):
         """ Compare outputs in a specific folder with their expected counterparts. """
         LOGGER.info(f"Comparing results for {os.path.basename(output_folder_path)}")
+        try:
+            # Iterate through output files in the folder
+            for output_file in os.listdir(output_folder_path):
+                input_file_name, _ = os.path.splitext(output_file)
+                expected_file_name = f"{input_file_name}.json"
+                expected_file_path = os.path.join(expectation_folder_path, expected_file_name)
+                output_file_path = os.path.join(output_folder_path, output_file)
+                new_report_path = os.path.join(self.reports_path, os.path.basename(output_folder_path))
 
-        # Iterate through output files in the folder
-        for output_file in os.listdir(output_folder_path):
-            input_file_name, _ = os.path.splitext(output_file)
-            expected_file_name = f"{input_file_name}.json"
-            expected_file_path = os.path.join(expectation_folder_path, expected_file_name)
-            output_file_path = os.path.join(output_folder_path, output_file)
-            new_report_path = os.path.join(self.reports_path, os.path.basename(output_folder_path))
+                if not os.path.isdir(new_report_path):
+                    os.mkdir(new_report_path)
+                    LOGGER.info(f'Created directory {new_report_path}')
 
-            if not os.path.isdir(new_report_path):
-                os.mkdir(new_report_path)
-                LOGGER.info(f'Created directory {new_report_path}')
-
-            # Compare the output file with the expected file
-            if os.path.exists(expected_file_path):
-                self.compare_and_save_report(input_file_name, output_file_path, expected_file_path, new_report_path)
-            else:
-                LOGGER.warning(f"No expectation file found for {input_file_name}")
+                # Compare the output file with the expected file
+                if os.path.exists(expected_file_path):
+                    self.compare_and_save_report(input_file_name, output_file_path, expected_file_path, new_report_path)
+                else:
+                    LOGGER.warning(f"No expectation file found for {input_file_name}")
+        except FileNotFoundError as e:
+            LOGGER.error(f"Directory not found: {e}")
+        except PermissionError as e:
+            LOGGER.error(f"Permission denied: {e}")
 
     def save_comparison_report(self, report_json, path, input_file_name):
         """save comparison report to a json file."""
         file_name = f"{input_file_name}_comparison.json"
         output_path = os.path.join(path, file_name)
-        report_path = output_path
-        with open(output_path, "w") as file:
-            json.dump(report_json, file, indent=2)
-        return report_path
+        try:
+            with open(output_path, "w") as file:
+                json.dump(report_json, file, indent=2)
+            return output_path
+        except Exception as e:
+            LOGGER.error(f"Failed to save comparison report: {e}")
 
     def compare_and_save_report(self, input_file_name, output_file_path, expected_file_path, report_path):
         """ Compare an output file with its expected counterpart and save the report. """
         report = {}
-        with open(output_file_path, 'r') as file:
-            output_data = json.load(file).get('data')
-        with open(expected_file_path, 'r') as file:
-            expected_data = json.load(file).get('data')
-        if not output_data.get('requestId') is None:
-            report['request_id'] = output_data.get('requestId')
-        diff = DeepDiff(output_data, expected_data, ignore_order=True, report_repetition=True,
-                        exclude_paths=["root['requestId']"])
-        delta = Delta(diff, bidirectional=True)
-        flat_dicts = delta.to_flat_dicts()
-        if diff or len(diff) != 0:
-            report['output_file'] = output_file_path
-            report['expected_output_file'] = expected_file_path
-            report['diff'] = flat_dicts
-            self.report_paths.append(self.save_comparison_report(report, report_path, input_file_name))
-            LOGGER.info(f"Comparison report generated for {input_file_name}")
-        else:
-            LOGGER.info(f"No difference in output for {input_file_name}")
+        try:
+            with open(output_file_path, 'r') as file:
+                output_data = json.load(file).get('data')
+            with open(expected_file_path, 'r') as file:
+                expected_data = json.load(file).get('data')
+        except FileNotFoundError as e:
+            LOGGER.error(f"File not found: {e}")
+            return
+        except json.JSONDecodeError as e:
+            LOGGER.error(f"Error decoding JSON from file: {e}")
+            return
+        except Exception as e:
+            LOGGER.exception(f"Unexpected error reading files: {e}")
+            return
+
+        if output_data and expected_data:  # Ensure data was successfully loaded
+            report = {}
+            if 'requestId' in output_data:
+                report['request_id'] = output_data.get('requestId')
+            diff = DeepDiff(output_data, expected_data, ignore_order=True, report_repetition=True,
+                            exclude_paths=["root['requestId']"])
+            if diff or len(diff) != 0:
+                delta = Delta(diff, bidirectional=True)
+                flat_dicts = delta.to_flat_dicts()
+                report['output_file'] = output_file_path
+                report['expected_output_file'] = expected_file_path
+                report['diff'] = flat_dicts
+                self.report_paths.append(self.save_comparison_report(report, report_path, input_file_name))
+                LOGGER.info(f"Comparison report generated for {input_file_name}")
+            else:
+                LOGGER.info(f"No difference in output for {input_file_name}")
 
     def generate_summary_report(self):
         """ Generate a summary report of all comparisons. """
@@ -143,21 +167,28 @@ class Compare:
         }
 
         for report_path in self.report_paths:
-            with open(report_path, 'r') as file:
-                report_data = json.load(file)
-                if 'diff' in report_data:
-                    summary['differences'].append({
-                        'request_id': report_data.get('request_id', 'N/A'),
-                        'output_file': report_data['output_file'],
-                        'expected_output_file': report_data['expected_output_file'],
-                        'diff': report_data['diff']
-                    })
+            try:
+                with open(report_path, 'r') as file:
+                    report_data = json.load(file)
+                    if 'diff' in report_data:
+                        summary['differences'].append({
+                            'request_id': report_data.get('request_id', 'N/A'),
+                            'output_file': report_data['output_file'],
+                            'expected_output_file': report_data['expected_output_file'],
+                            'diff': report_data['diff']
+                        })
+            except FileNotFoundError as e:
+                LOGGER.error(f"Summary report file not found: {e}")
+            except json.JSONDecodeError as e:
+                LOGGER.error(f"Error decoding JSON from summary report file: {e}")
 
         summary_report_path = os.path.join(self.reports_path, 'comparison_summary.json')
-        with open(summary_report_path, 'w') as file:
-            json.dump(summary, file, indent=2)
-
-        LOGGER.info(f"Summary report generated at {summary_report_path}")
+        try:
+            with open(summary_report_path, 'w') as file:
+                json.dump(summary, file, indent=2)
+            LOGGER.info(f"Summary report generated at {summary_report_path}")
+        except Exception as e:
+            LOGGER.error(f"Failed to generate summary report: {e}")
         return summary_report_path
 
 

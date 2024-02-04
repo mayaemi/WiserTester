@@ -6,7 +6,31 @@
   <component name="ChangeListManager">
     <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="minor changes&#10;todo: implement reusable components">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WiserTester0102241425.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WiserTester0102241800.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112438567.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501263.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501491.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501572.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501599.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501627.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501658.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501687.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501716.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501773.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501842.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501876.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501903.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501931.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501960.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501992.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112502073.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112502101.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112502131.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112502161.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112502190.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input_from_har.py" beforeDir="false" afterPath="$PROJECT_DIR$/input_from_har.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiser_tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/wiser_tester.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,20 +77,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/mayah/PycharmProjects/WiserTester",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "run.code.analysis.last.selected.profile": "aDefault",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/mayah/PycharmProjects/WiserTester&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mayah\PycharmProjects\WiserTester" />
@@ -80,7 +104,7 @@
       <recent name="C:\Users\mayah\PycharmProjects\WiserTester\data\expectations\rec1" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.helpers">
+  <component name="RunManager" selected="Python.input_from_har">
     <configuration name="helpers" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="WiserTester" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -149,8 +173,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.helpers" />
         <item itemvalue="Python.input_from_har" />
+        <item itemvalue="Python.helpers" />
         <item itemvalue="Python.wiser_tester" />
       </list>
     </recent_temporary>
@@ -165,6 +189,7 @@
       <updated>1705932051929</updated>
       <workItem from="1705932052953" duration="62139000" />
       <workItem from="1706614346564" duration="45060000" />
+      <workItem from="1707045630040" duration="8859000" />
     </task>
     <task id="LOCAL-00001" summary="created new exe">
       <created>1705932305667</created>
@@ -427,8 +452,8 @@
     <option name="LAST_COMMIT_MESSAGE" value="minor changes&#10;todo: implement reusable components" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/WiserTester$helpers.coverage" NAME="helpers Coverage Results" MODIFIED="1706798111027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/WiserTester$input_from_har.coverage" NAME="input_from_har Coverage Results" MODIFIED="1706188505894" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/WiserTester$helpers.coverage" NAME="helpers Coverage Results" MODIFIED="1707048683924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/WiserTester$input_from_har.coverage" NAME="input_from_har Coverage Results" MODIFIED="1707055672420" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/WiserTester$wiser_tester.coverage" NAME="wiser_tester Coverage Results" MODIFIED="1706021516443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

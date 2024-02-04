@@ -23,7 +23,7 @@ LOGGER.addHandler(file_handler)
 LOGGER.addHandler(stdout_handler)
 
 INPUTS_DIR = 'data/inputs'
-HAR_PATH = 'har_files/tracks_builder.har'
+HAR_PATH = 'har_files/cohort_builder_cardio.har'
 INITIAL_REQUESTS_PATH = 'har_files/initial_requests.har'
 PAGE_TITLE = 'http://localhost:5050/'
 FILE_NAME_FORMAT = '%Y%m%d%H%M%S%f'

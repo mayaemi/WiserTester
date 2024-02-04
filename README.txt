@@ -11,6 +11,7 @@ Using python
                        [--mode {all,specific}] [--specific_list LIST_OF_INPUTS (example1,example2,...)] [--input INPUT]
                        [--output OUTPUT] [--expected_output EXPECTED_OUTPUT]
                        [--compare {yes,no}] [--comparison_reports COMPARISON_REPORTS]
+                       [--comparison_ignore LIST_OF_PATHS (path1,path2,..)][--request_timeout REQUEST_TIMEOUT]
 
 
 Using the Standalone Executable:
@@ -22,6 +23,7 @@ Using the Standalone Executable:
                        [--mode {all,specific}] [--specific_list LIST_OF_INPUTS (example1,example2,...)] [--input INPUT]
                        [--output OUTPUT] [--expected_output EXPECTED_OUTPUT]
                        [--compare {yes,no}] [--comparison_reports COMPARISON_REPORTS]
+                       [--comparison_ignore LIST_OF_PATHS (path1,path2,..)][--request_timeout REQUEST_TIMEOUT]
 
 Using the buildNewExe script
        .\buildNewExe.bat

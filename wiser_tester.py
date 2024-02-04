@@ -118,11 +118,12 @@ def handle_cookies(response_cookies):
 
 
 class Compare:
-    def __init__(self, outputs_path, expectations_path, reports_path):
+    def __init__(self, outputs_path, expectations_path, reports_path, ignore_paths=None):
         self.outputs_path = outputs_path
         self.expectations_path = expectations_path
         self.reports_path = reports_path
         self.report_paths = []
+        self.ignore_paths = ignore_paths if ignore_paths is not None else []
 
     @handle_exceptions("Comparison error", False)
     def compare_outputs_with_expectations(self):
@@ -168,13 +169,14 @@ class Compare:
             if 'requestId' in output_data:
                 report['request_id'] = output_data.get('requestId')
             diff = DeepDiff(output_data, expected_data, ignore_order=True, report_repetition=True,
-                            exclude_paths=["root['requestId']"])
+                            exclude_paths=self.ignore_paths)
             if diff or len(diff) != 0:
                 delta = Delta(diff, bidirectional=True)
                 flat_dicts = delta.to_flat_dicts()
                 report['output_file'] = output_file_path
                 report['expected_output_file'] = expected_file_path
                 report['diff'] = flat_dicts
+                report['pretty'] = diff.pretty()
                 file_name = f"{input_file_name}_comparison.json"
                 output_path = os.path.join(report_path, file_name)
                 save_json_file(report, output_path)
@@ -518,6 +520,8 @@ def parse_args():
                         help="Compare to previous outputs: 'yes' or 'no'")
     parser.add_argument("--comparison_reports", type=str, default='data/comparison_reports',
                         help="path to comparison reports")
+    parser.add_argument("--comparison_ignore", type=str, default="root['requestId']",
+                        help="paths to ignore in comparison reports")
     parser.add_argument("--request_timeout", type=int, default=60, help="request timeout in seconds")
 
     return parser.parse_args()
@@ -533,7 +537,7 @@ async def main():
     await tester.start_test(args.specific_list.split(',') if args.mode == 'specific' else None)
     if args.compare == 'yes':
         LOGGER.info('Comparing outputs')
-        comparison = Compare(args.output, args.expected_output, args.comparison_reports)
+        comparison = Compare(args.output, args.expected_output, args.comparison_reports, args.comparison_ignore.split(','))
         report_paths = comparison.compare_outputs_with_expectations()
         LOGGER.info(f'Comparison reports: {report_paths}')
 

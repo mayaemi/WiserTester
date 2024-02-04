@@ -4,34 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="minor changes&#10;todo: implement reusable components">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WiserTester0102241800.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112438567.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501263.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501491.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501572.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501599.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501627.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501658.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501687.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501716.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501773.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501842.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501876.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501903.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501931.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501960.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112501992.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112502073.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112502101.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112502131.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112502161.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/inputs/cohort_builder/20240125112502190.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
+    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="added paths to ignore option in comparison reports + new cohort definition + new exe">
       <change beforePath="$PROJECT_DIR$/input_from_har.py" beforeDir="false" afterPath="$PROJECT_DIR$/input_from_har.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiser_tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/wiser_tester.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +163,7 @@
       <updated>1705932051929</updated>
       <workItem from="1705932052953" duration="62139000" />
       <workItem from="1706614346564" duration="45060000" />
-      <workItem from="1707045630040" duration="8859000" />
+      <workItem from="1707045630040" duration="9805000" />
     </task>
     <task id="LOCAL-00001" summary="created new exe">
       <created>1705932305667</created>
@@ -394,7 +368,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706798533034</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="added paths to ignore option in comparison reports + new cohort definition + new exe">
+      <created>1707061406939</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1707061406939</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -424,7 +405,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="new exe &amp; batch file" />
     <MESSAGE value="added comparison report" />
     <MESSAGE value="new exe with comparison report" />
     <MESSAGE value="minor changes" />
@@ -449,11 +429,12 @@
     <MESSAGE value="fixed last report issue + minor logic changes + new exe" />
     <MESSAGE value="added comparison error handling + new exe" />
     <MESSAGE value="minor changes&#10;todo: implement reusable components" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor changes&#10;todo: implement reusable components" />
+    <MESSAGE value="added paths to ignore option in comparison reports + new cohort definition + new exe" />
+    <option name="LAST_COMMIT_MESSAGE" value="added paths to ignore option in comparison reports + new cohort definition + new exe" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/WiserTester$helpers.coverage" NAME="helpers Coverage Results" MODIFIED="1707048683924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/WiserTester$input_from_har.coverage" NAME="input_from_har Coverage Results" MODIFIED="1707055672420" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/WiserTester$input_from_har.coverage" NAME="input_from_har Coverage Results" MODIFIED="1707062264127" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/WiserTester$wiser_tester.coverage" NAME="wiser_tester Coverage Results" MODIFIED="1706021516443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

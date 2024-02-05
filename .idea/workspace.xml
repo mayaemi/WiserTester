@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="added regex paths to ignore config file, default ignores requestId and figure filename + new exe zip including config file">
-      <change beforePath="$PROJECT_DIR$/WiserTester0402241740.zip" beforeDir="false" afterPath="$PROJECT_DIR$/WiserTester0502241630.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +163,7 @@
       <updated>1705932051929</updated>
       <workItem from="1705932052953" duration="62139000" />
       <workItem from="1706614346564" duration="45060000" />
-      <workItem from="1707045630040" duration="24095000" />
+      <workItem from="1707045630040" duration="24741000" />
     </task>
     <task id="LOCAL-00001" summary="created new exe">
       <created>1705932305667</created>
@@ -389,7 +389,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707143543538</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="added regex paths to ignore config file, default ignores requestId and figure filename + new exe zip including config file">
+      <created>1707143685032</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1707143685032</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

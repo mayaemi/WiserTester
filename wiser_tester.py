@@ -311,7 +311,7 @@ class WiserTester:
 
     @handle_exceptions("Socket connection failed.", True)
     async def connect_to_server(self):
-        """Establishes connection to the server."""
+        """ Establishes connection to the server. """
         await self.socket.connect(self.server_path)
         self.s_id = self.socket.get_sid()
         LOGGER.info(f'sid: {self.s_id}')
@@ -319,6 +319,7 @@ class WiserTester:
     # Request handling methods
 
     def prepare_request_data(self, json_request_path):
+        """ prepares the requests data, returns json request and headers. """
         json_request = load_json_file(json_request_path)
         cookies_str, access_token_cookie_value, csrf_access_token_value = handle_cookies(self.cookies)
         req_headers = {
@@ -345,6 +346,7 @@ class WiserTester:
         return json_request, req_headers
 
     async def send_request(self, json_request, headers, json_request_path):
+        """ sends request using http post, returns request_id, response object. """
         response = await self.http_client.post(f'{self.server_path}report', json=json_request, headers=headers)
         response.raise_for_status()
         response_json = response.json()

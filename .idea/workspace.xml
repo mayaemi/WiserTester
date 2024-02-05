@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="added paths to ignore option in comparison reports + new cohort definition + new exe">
-      <change beforePath="$PROJECT_DIR$/input_from_har.py" beforeDir="false" afterPath="$PROJECT_DIR$/input_from_har.py" afterDir="false" />
+    <list default="true" id="536df627-13a9-4011-995c-3707e8cf7c39" name="Changes" comment="added paths to ignore option in comparison reports + new cohort definitions (more complex) + new exe">
+      <change afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RunWiserTester.bat" beforeDir="false" afterPath="$PROJECT_DIR$/RunWiserTester.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiser_tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/wiser_tester.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +167,7 @@
       <updated>1705932051929</updated>
       <workItem from="1705932052953" duration="62139000" />
       <workItem from="1706614346564" duration="45060000" />
-      <workItem from="1707045630040" duration="9805000" />
+      <workItem from="1707045630040" duration="23782000" />
     </task>
     <task id="LOCAL-00001" summary="created new exe">
       <created>1705932305667</created>
@@ -375,7 +379,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707061406939</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="added paths to ignore option in comparison reports + new cohort definitions (more complex) + new exe">
+      <created>1707062542619</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1707062542619</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,7 +416,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added comparison report" />
     <MESSAGE value="new exe with comparison report" />
     <MESSAGE value="minor changes" />
     <MESSAGE value="minor comparison changes -&gt; new exe" />
@@ -430,7 +440,8 @@
     <MESSAGE value="added comparison error handling + new exe" />
     <MESSAGE value="minor changes&#10;todo: implement reusable components" />
     <MESSAGE value="added paths to ignore option in comparison reports + new cohort definition + new exe" />
-    <option name="LAST_COMMIT_MESSAGE" value="added paths to ignore option in comparison reports + new cohort definition + new exe" />
+    <MESSAGE value="added paths to ignore option in comparison reports + new cohort definitions (more complex) + new exe" />
+    <option name="LAST_COMMIT_MESSAGE" value="added paths to ignore option in comparison reports + new cohort definitions (more complex) + new exe" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/WiserTester$helpers.coverage" NAME="helpers Coverage Results" MODIFIED="1707048683924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

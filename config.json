@@ -1,0 +1,6 @@
+{
+  "ignore_paths": [
+    "root\\['requestId']",
+    "root\\['figures'\\]\\['\\[\\d+,\\d+\\)'\\]"
+  ]
+}

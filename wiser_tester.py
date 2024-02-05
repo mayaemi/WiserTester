@@ -1,6 +1,7 @@
 import asyncio
 import json
 import os
+import re
 import sys
 from functools import wraps
 from pathlib import Path
@@ -18,6 +19,28 @@ CONFIG = {
     "LOG_FORMAT": '%(asctime)s | %(levelname)s | %(message)s',
     "LOG_FILE": 'testlog.log'
 }
+
+
+# Setup logging
+def setup_logging():
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
+
+    formatter = logging.Formatter(CONFIG["LOG_FORMAT"])
+    stdout_handler = logging.StreamHandler(sys.stdout)
+    stdout_handler.setLevel(logging.INFO)
+    stdout_handler.setFormatter(formatter)
+
+    file_handler = logging.FileHandler(CONFIG["LOG_FILE"])
+    file_handler.setLevel(logging.DEBUG)
+    file_handler.setFormatter(formatter)
+
+    logger.addHandler(file_handler)
+    logger.addHandler(stdout_handler)
+    return logger
+
+
+LOGGER = setup_logging()
 
 
 # Error Handling Decorator
@@ -49,26 +72,10 @@ def handle_exceptions(log_message, should_raise=True):
     return decorator
 
 
-# Setup logging
-def setup_logging():
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
-
-    formatter = logging.Formatter(CONFIG["LOG_FORMAT"])
-    stdout_handler = logging.StreamHandler(sys.stdout)
-    stdout_handler.setLevel(logging.INFO)
-    stdout_handler.setFormatter(formatter)
-
-    file_handler = logging.FileHandler(CONFIG["LOG_FILE"])
-    file_handler.setLevel(logging.DEBUG)
-    file_handler.setFormatter(formatter)
-
-    logger.addHandler(file_handler)
-    logger.addHandler(stdout_handler)
-    return logger
-
-
-LOGGER = setup_logging()
+@handle_exceptions("Couldn't load config", False)
+def load_config(config_path):
+    with open(config_path, 'r') as config_file:
+        return json.load(config_file)
 
 
 # Utility Functions
@@ -124,6 +131,7 @@ class Compare:
         self.reports_path = reports_path
         self.report_paths = []
         self.ignore_paths = ignore_paths if ignore_paths is not None else []
+        LOGGER.info(f"Excluding paths: {self.ignore_paths}")
 
     @handle_exceptions("Comparison error", False)
     def compare_outputs_with_expectations(self):
@@ -168,8 +176,12 @@ class Compare:
             report = {}
             if 'requestId' in output_data:
                 report['request_id'] = output_data.get('requestId')
+            exclude_regex = []
+            for path in self.ignore_paths:
+                exclude_path = re.compile(path)
+                exclude_regex.append(exclude_path)
             diff = DeepDiff(output_data, expected_data, ignore_order=True, report_repetition=True,
-                            exclude_paths=self.ignore_paths)
+                            exclude_regex_paths=exclude_regex)
             if diff or len(diff) != 0:
                 delta = Delta(diff, bidirectional=True)
                 flat_dicts = delta.to_flat_dicts()
@@ -183,7 +195,7 @@ class Compare:
                 self.report_paths.append(output_path)
                 LOGGER.info(f"Comparison report generated for {input_file_name}")
             else:
-                LOGGER.info(f"No difference in output for {input_file_name}")
+                LOGGER.info(f"No difference found in output for {input_file_name}")
 
     @handle_exceptions("Failed to generate summary report", False)
     def generate_summary_report(self):
@@ -510,6 +522,8 @@ def parse_args():
     parser.add_argument("--origin", type=str, required=True, help="origin  (ex. http://localhost:5050")
     parser.add_argument("--username", type=str, required=True, help="Username for login")
     parser.add_argument("--password", type=str, required=True, help="Password for login")
+    parser.add_argument("--config", type=str, required=True, help="Path to the configuration file")
+
     parser.add_argument("--mode", type=str, choices=['all', 'specific'], default='all',
                         help="Testing mode: 'all' or 'specific'")
     parser.add_argument("--specific_list", type=str, help="specific list of input directories")
@@ -520,8 +534,6 @@ def parse_args():
                         help="Compare to previous outputs: 'yes' or 'no'")
     parser.add_argument("--comparison_reports", type=str, default='data/comparison_reports',
                         help="path to comparison reports")
-    parser.add_argument("--comparison_ignore", type=str, default="root['requestId']",
-                        help="paths to ignore in comparison reports")
     parser.add_argument("--request_timeout", type=int, default=60, help="request timeout in seconds")
 
     return parser.parse_args()
@@ -531,13 +543,16 @@ def parse_args():
 async def main():
     args = parse_args()
 
+    # Load the configuration file
+    config = load_config(args.config)
+    LOGGER.info('loaded config file ')
     tester = WiserTester(args.input, args.output, args.username, args.password, args.host, args.origin,
                          args.request_timeout)
 
     await tester.start_test(args.specific_list.split(',') if args.mode == 'specific' else None)
     if args.compare == 'yes':
         LOGGER.info('Comparing outputs')
-        comparison = Compare(args.output, args.expected_output, args.comparison_reports, args.comparison_ignore.split(','))
+        comparison = Compare(args.output, args.expected_output, args.comparison_reports, config['ignore_paths'])
         report_paths = comparison.compare_outputs_with_expectations()
         LOGGER.info(f'Comparison reports: {report_paths}')
 

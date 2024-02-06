@@ -5,7 +5,6 @@ import re
 import sys
 from functools import wraps
 from pathlib import Path
-
 import socketio
 import httpx
 import logging
@@ -27,16 +26,13 @@ def setup_logging():
     logger.setLevel(logging.INFO)
 
     formatter = logging.Formatter(CONFIG["LOG_FORMAT"])
-    stdout_handler = logging.StreamHandler(sys.stdout)
-    stdout_handler.setLevel(logging.INFO)
-    stdout_handler.setFormatter(formatter)
 
-    file_handler = logging.FileHandler(CONFIG["LOG_FILE"])
-    file_handler.setLevel(logging.DEBUG)
-    file_handler.setFormatter(formatter)
+    handlers = [logging.StreamHandler(sys.stdout), logging.FileHandler(CONFIG["LOG_FILE"])]
+    for handler in handlers:
+        handler.setLevel(logging.DEBUG)
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
 
-    logger.addHandler(file_handler)
-    logger.addHandler(stdout_handler)
     return logger
 
 
@@ -72,28 +68,18 @@ def handle_exceptions(log_message, should_raise=True):
     return decorator
 
 
-@handle_exceptions("Couldn't load config", False)
-def load_config(config_path):
-    with open(config_path, 'r') as config_file:
-        return json.load(config_file)
-
-
 # Utility Functions
+@handle_exceptions("Error loading/saving JSON file")
 def load_json_file(file_path):
-    try:
-        with open(file_path, 'r') as file:
-            return json.load(file)
-    except (FileNotFoundError, json.JSONDecodeError) as e:
-        LOGGER.error(f"Error loading JSON file {file_path}: {e}")
-        return
+    with open(file_path, 'r') as file:
+        return json.load(file)
 
 
+@handle_exceptions("Failed to save JSON file")
 def save_json_file(data, file_path):
-    try:
-        with open(file_path, "w") as file:
-            json.dump(data, file, indent=2)
-    except Exception as e:
-        LOGGER.error(f"Failed to save JSON file {file_path}: {e}")
+    with open(file_path, "w") as file:
+        json.dump(data, file, indent=2)
+        return True
 
 
 # Authentication
@@ -173,22 +159,19 @@ class Compare:
         expected_data = load_json_file(expected_file_path).get('data')
 
         if output_data and expected_data:  # Ensure data was successfully loaded
-            report = {}
-            if 'requestId' in output_data:
-                report['request_id'] = output_data.get('requestId')
-            exclude_regex = []
-            for path in self.ignore_paths:
-                exclude_path = re.compile(path)
-                exclude_regex.append(exclude_path)
+            report = {
+                'request_id': output_data.get('requestId', 'N/A'),
+                'output_file': output_file_path,
+                'expected_output_file': expected_file_path
+            }
+            exclude_regex = [re.compile(path) for path in self.ignore_paths]
+
             diff = DeepDiff(output_data, expected_data, ignore_order=True, report_repetition=True,
-                            exclude_regex_paths=exclude_regex)
-            if diff or len(diff) != 0:
+                            exclude_regex_paths=exclude_regex, cutoff_intersection_for_pairs=1, get_deep_distance=True)
+            if diff:
                 delta = Delta(diff, bidirectional=True)
                 flat_dicts = delta.to_flat_dicts()
-                report['output_file'] = output_file_path
-                report['expected_output_file'] = expected_file_path
                 report['diff'] = flat_dicts
-                report['pretty'] = diff.pretty()
                 file_name = f"{input_file_name}_comparison.json"
                 output_path = os.path.join(report_path, file_name)
                 save_json_file(report, output_path)
@@ -222,9 +205,7 @@ class Compare:
 
 class WiserTester:
 
-    # Initialization and setup methods
-
-    def __init__(self, input_path, outputs_path, username, password, host, origin, request_timeout):
+    def __init__(self, input_path, outputs_path, username, password, host, origin, request_timeout, config):
         """
         Initializes the WiserTester instance.
         Args:
@@ -244,11 +225,11 @@ class WiserTester:
         self.server_path = f"http://{host}/"
         self.origin = origin
         self.request_timeout = request_timeout  # seconds
+        self.config = config
         self.input_path = input_path
         self.outputs_path = outputs_path
-        self.s_id = None
+        self.s_id, self.cookies = None, None
         self.current_input_dir, self.current_output_dir = None, None
-        self.cookies = None
         self.request_to_input_map = {}  # dictionary to map request IDs to input file names
         self.request_to_input_dir_map = {}  # Map request IDs to input directories
         self.request_mapping_event = asyncio.Event()
@@ -322,27 +303,14 @@ class WiserTester:
         """ prepares the requests data, returns json request and headers. """
         json_request = load_json_file(json_request_path)
         cookies_str, access_token_cookie_value, csrf_access_token_value = handle_cookies(self.cookies)
-        req_headers = {
-            'Accept': 'application/json',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'en-US,en;q=0.9',
-            'Connection': 'keep-alive',
-            'Content-Type': 'application/json',
-            'Cookie': f'{cookies_str}',
-            'Host': f'{self.host}',
-            'Origin': f"{self.origin}",
-            'Referer': f'{self.origin}/',
-            'S_ID': f'{self.s_id}',
-            'Sec-Fetch-Dest': 'empty',
-            'Sec-Fetch-Mode': 'cors',
-            'Sec-Fetch-Site': 'same-site',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
-                          'Chrome/120.0.0.0 Safari/537.36',
-            'X-CSRF-TOKEN': csrf_access_token_value,
-            'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"'
-        }
+        req_headers = self.config["request_headers"]
+        req_headers['Cookie'] = f'{cookies_str}'
+        req_headers['Host'] = f'{self.host}'
+        req_headers['Origin'] = f'{self.origin}'
+        req_headers['Referer'] = f'{self.origin}/'
+        req_headers['S_ID'] = f'{self.s_id}'
+        req_headers['X-CSRF-TOKEN'] = f'{csrf_access_token_value}'
+        req_headers['Cookie'] = f'{cookies_str}'
         return json_request, req_headers
 
     async def send_request(self, json_request, headers, json_request_path):
@@ -500,8 +468,9 @@ class WiserTester:
             input_file_name = self.request_to_input_map.get(output_data['id'], "unknown")
             file_name = f"{input_file_name}.json"
             output_path = os.path.join(output_dir, file_name)
-            save_json_file(output_data, output_path)
-            LOGGER.info(f'saved report {output_path}')
+            saved = save_json_file(output_data, output_path)
+            if saved:
+                LOGGER.info(f'saved report {output_path}')
             return output_path
         except Exception as e:
             LOGGER.error(f"Failed to save output for request ID {output_data['id']}: {e}")
@@ -546,10 +515,10 @@ async def main():
     args = parse_args()
 
     # Load the configuration file
-    config = load_config(args.config)
+    config = load_json_file(args.config)
     LOGGER.info('loaded config file ')
     tester = WiserTester(args.input, args.output, args.username, args.password, args.host, args.origin,
-                         args.request_timeout)
+                         args.request_timeout, config)
 
     await tester.start_test(args.specific_list.split(',') if args.mode == 'specific' else None)
     if args.compare == 'yes':

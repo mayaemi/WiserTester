@@ -1,0 +1,125 @@
+{
+  "messageType": "chronicDiseaseCohorts.buildCohort",
+  "cohortId": "c_edbee38d9f7f9c93ea8c706c6304b4e7",
+  "cohort": {
+    "name": "kidney_disease",
+    "id": "c_edbee38d9f7f9c93ea8c706c6304b4e7",
+    "inclusionCriteria": [
+      {
+        "enabled": true,
+        "type": "icd9",
+        "track": "icd9_585.4",
+        "label": "585.4* CHRONIC KIDNEY DISEASE, STAGE IV (SEVERE)"
+      },
+      {
+        "enabled": true,
+        "type": "icd9",
+        "track": "icd9_585.3",
+        "label": "585.3* CHRONIC KIDNEY DISEASE, STAGE III (MODERATE)"
+      }
+    ],
+    "requiredFilter": [
+      [
+        {
+          "enabled": true,
+          "type": "icd9",
+          "track": "icd9_401",
+          "label": "401* ESSENTIAL HYPERTENSION",
+          "stime": -1825,
+          "etime": 0
+        },
+        {
+          "enabled": true,
+          "type": "icd9",
+          "track": "icd9_250",
+          "label": "250* DIABETES MELLITUS",
+          "stime": -1825,
+          "etime": 0
+        }
+      ],
+      [
+        [
+          {
+            "enabled": true,
+            "type": "med",
+            "track": "WZMN.med.RAMIPRIL",
+            "label": "RAMIPRIL",
+            "stime": -1825,
+            "etime": 0
+          },
+          {
+            "enabled": true,
+            "type": "med",
+            "track": "WZMN.med.FOSINOPRIL_.2D_HYDROCHLOROTHIAZIDE_CD",
+            "label": "FOSINOPRIL - HYDROCHLOROTHIAZIDE CD",
+            "stime": -1825,
+            "etime": 0
+          }
+        ],
+        {
+          "enabled": true,
+          "type": "med",
+          "track": "WZMN.med.CAPTOPRIL",
+          "label": "CAPTOPRIL",
+          "stime": -1825,
+          "etime": 0
+        },
+        {
+          "enabled": true,
+          "type": "med",
+          "track": "WZMN.med.BENAZEPRIL",
+          "label": "BENAZEPRIL",
+          "stime": -1825,
+          "etime": 0
+        },
+        {
+          "enabled": true,
+          "type": "med",
+          "track": "WZMN.med.ENALAPRIL",
+          "label": "ENALAPRIL",
+          "stime": -1825,
+          "etime": 0
+        }
+      ]
+    ],
+    "excludeFilter": [
+      [
+        [
+          {
+            "enabled": true,
+            "type": "icd9",
+            "track": "icd9_584",
+            "label": "584* ACUTE RENAL FAILURE",
+            "stime": -365,
+            "etime": 0
+          },
+          {
+            "enabled": true,
+            "type": "computedtrack",
+            "track": "lab.scores.GFR_MDRD",
+            "label": "GFR MDRD",
+            "stime": -90,
+            "etime": 0,
+            "operator": ">",
+            "value": 60
+          }
+        ],
+        {
+          "enabled": true,
+          "type": "survival",
+          "time": 1825
+        }
+      ],
+      {
+        "enabled": true,
+        "type": "track",
+        "track": "WZMN.med.ATORVASTATIN",
+        "label": "WZMN.med.ATORVASTATIN",
+        "stime": -365,
+        "etime": 0
+      }
+    ],
+    "adjustOnsetTime": [],
+    "isChronic": true
+  }
+}

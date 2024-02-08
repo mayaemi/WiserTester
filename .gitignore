@@ -1,5 +1,10 @@
 data/comparison_reports/*
+!data/comparison_reports/.gitkeep 
+
 data/expectations/*
-data/inputs/*
+!data/expectations/.gitkeep 
+
 data/outputs/*
+!data/outputs/.gitkeep 
+
 env

@@ -62,11 +62,11 @@ for entry in entries:
     req_txt = entry.request.text
     json_req = json.loads(req_txt)
     if REMOVE_INITIAL_DATA:
-        if json_req.get("messageType") != "getData" and json_req.get("messageType") != "userCohortCatalog":
-            name = entry.startTime.strftime(FILE_NAME_FORMAT)[:-3] + '.json'
+        if json_req.get("messageType") not in ["getData", "userCohortCatalog"]:
+            name = f'{entry.startTime.strftime(FILE_NAME_FORMAT)[:-3]}.json'
             saved = save_request_file(new_rec_dir, json_req, name)
             LOGGER.info(saved)
     else:
-        name = entry.startTime.strftime(FILE_NAME_FORMAT)[:-3] + '.json'
+        name = f'{entry.startTime.strftime(FILE_NAME_FORMAT)[:-3]}.json'
         saved = save_request_file(new_rec_dir, json_req, name)
         LOGGER.info(saved)

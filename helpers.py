@@ -12,8 +12,7 @@ class dircmp(filecmp.dircmp):
         Find out differences between common files.
         Ensure we are using content comparison with shallow=False.
         """
-        fcomp = filecmp.cmpfiles(self.left, self.right, self.common_files,
-                                 shallow=True)
+        fcomp = filecmp.cmpfiles(self.left, self.right, self.common_files, shallow=True)
         self.same_files, self.diff_files, self.funny_files = fcomp
 
 
@@ -25,8 +24,11 @@ def dir_is_same(dir1, dir2):
     Compare two directory trees content.
     Return False if they differ, True is they are the same.
     """
-    compared = dircmp(dir1, dir2, )
-    if (compared.left_only or compared.right_only):
+    compared = dircmp(
+        dir1,
+        dir2,
+    )
+    if compared.left_only or compared.right_only:
         print(compared.right_only)
         print(compared.left_only)
         return False
@@ -41,8 +43,11 @@ def file_is_same(dir1, dir2):
     Compare two directory trees content.
     Return False if they differ, True is they are the same.
     """
-    compared = dircmp(dir1, dir2, )
-    if (compared.left_only or compared.right_only):
+    compared = dircmp(
+        dir1,
+        dir2,
+    )
+    if compared.left_only or compared.right_only:
         print(compared.right_only)
         print(compared.left_only)
         return False
@@ -52,4 +57,4 @@ def file_is_same(dir1, dir2):
     return True
 
 
-print(dir_is_same('data/inputs', 'data/outputs'))
+print(dir_is_same("data/inputs", "data/outputs"))

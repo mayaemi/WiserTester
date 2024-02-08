@@ -1,4 +1,5 @@
 import asyncio
+from datetime import datetime
 import json
 import os
 import re
@@ -15,8 +16,8 @@ from deepdiff import DeepDiff, Delta
 CONFIG = {
     "LOGIN_URL": "/login",
     "LOGIN_JSON_HEADERS": {"Accept": "application/json", "Content-Type": "application/json"},
-    "LOG_FORMAT": '%(asctime)s | %(levelname)s | %(message)s',
-    "LOG_FILE": 'testlog.log'
+    "LOG_FORMAT": "%(asctime)s | %(levelname)s | %(message)s",
+    "LOG_FILE": "testlog.log",
 }
 
 
@@ -43,6 +44,7 @@ LOGGER = setup_logging()
 def handle_exceptions(log_message, should_raise=True):
     def decorator(func):
         if asyncio.iscoroutinefunction(func):
+
             @wraps(func)
             async def async_wrapper(*args, **kwargs):
                 try:
@@ -54,6 +56,7 @@ def handle_exceptions(log_message, should_raise=True):
 
             return async_wrapper
         else:
+
             @wraps(func)
             def sync_wrapper(*args, **kwargs):
                 try:
@@ -71,7 +74,7 @@ def handle_exceptions(log_message, should_raise=True):
 # Utility Functions
 @handle_exceptions("Error loading/saving JSON file")
 def load_json_file(file_path):
-    with open(file_path, 'r') as file:
+    with open(file_path, "r") as file:
         return json.load(file)
 
 
@@ -98,12 +101,12 @@ async def login(username, password, server_path):
 
 
 def handle_cookies(response_cookies):
-    """ Extracts and formats required cookies from the HTTPX response. """
-    access_token_cookie = response_cookies.get('access_token_cookie')
-    csrf_token = response_cookies.get('csrf_access_token')
+    """Extracts and formats required cookies from the HTTPX response."""
+    access_token_cookie = response_cookies.get("access_token_cookie")
+    csrf_token = response_cookies.get("csrf_access_token")
 
     if not all([access_token_cookie, csrf_token]):
-        LOGGER.error('Error: Missing required cookies')
+        LOGGER.error("Error: Missing required cookies")
         raise ValueError("Missing required cookies")
 
     cookies_str = f"access_token_cookie={access_token_cookie}; csrf_access_token={csrf_token}"
@@ -117,12 +120,13 @@ class Compare:
         self.reports_path = reports_path
         self.report_paths = []
         self.ignore_paths = ignore_paths if ignore_paths is not None else []
+
         LOGGER.info(f"Excluding paths: {self.ignore_paths}")
 
     @handle_exceptions("Comparison error", False)
     def compare_outputs_with_expectations(self):
-        """ Compare the output files with expected outputs stored in a specified directory. """
-        LOGGER.info(f"Comparing outputs to expectations")
+        """Compare the output files with expected outputs stored in a specified directory."""
+        LOGGER.info("Comparing outputs to expectations")
         for output_folder in os.listdir(self.outputs_path):
             expectation_folder_path = os.path.join(self.expectations_path, output_folder)
             if os.path.isdir(expectation_folder_path):
@@ -132,7 +136,7 @@ class Compare:
 
     @handle_exceptions("Directory comparison error", False)
     def compare_folder_outputs(self, output_folder_path, expectation_folder_path):
-        """ Compare outputs in a specific folder with their expected counterparts. """
+        """Compare outputs in a specific folder with their expected counterparts."""
         LOGGER.info(f"Comparing results for {os.path.basename(output_folder_path)}")
         # Iterate through output files in the folder
         for output_file in os.listdir(output_folder_path):
@@ -144,7 +148,7 @@ class Compare:
 
             if not os.path.isdir(new_report_path):
                 os.mkdir(new_report_path)
-                LOGGER.info(f'Created directory {new_report_path}')
+                LOGGER.info(f"Created directory {new_report_path}")
 
             # Compare the output file with the expected file
             if os.path.exists(expected_file_path):
@@ -154,24 +158,32 @@ class Compare:
 
     @handle_exceptions("Unexpected error reading files", False)
     def compare_and_save_report(self, input_file_name, output_file_path, expected_file_path, report_path):
-        """ Compare an output file with its expected counterpart and save the report. """
-        output_data = load_json_file(output_file_path).get('data')
-        expected_data = load_json_file(expected_file_path).get('data')
+        """Compare an output file with its expected counterpart and save the report."""
+        output_data = load_json_file(output_file_path).get("data")
+        expected_data = load_json_file(expected_file_path).get("data")
 
         if output_data and expected_data:  # Ensure data was successfully loaded
             report = {
-                'request_id': output_data.get('requestId', 'N/A'),
-                'output_file': output_file_path,
-                'expected_output_file': expected_file_path
+                "timestamp": datetime.now().strftime("%Y%m%d%H%M%S%f"),
+                "request_id": output_data.get("requestId", "N/A"),
+                "output_file": output_file_path,
+                "expected_output_file": expected_file_path,
             }
             exclude_regex = [re.compile(path) for path in self.ignore_paths]
 
-            diff = DeepDiff(output_data, expected_data, ignore_order=True, report_repetition=True,
-                            exclude_regex_paths=exclude_regex, cutoff_intersection_for_pairs=1, get_deep_distance=True)
+            diff = DeepDiff(
+                output_data,
+                expected_data,
+                ignore_order=True,
+                report_repetition=True,
+                exclude_regex_paths=exclude_regex,
+                cutoff_intersection_for_pairs=1,
+                get_deep_distance=True,
+            )
             if diff:
                 delta = Delta(diff, bidirectional=True)
                 flat_dicts = delta.to_flat_dicts()
-                report['diff'] = flat_dicts
+                report["diff"] = flat_dicts
                 file_name = f"{input_file_name}_comparison.json"
                 output_path = os.path.join(report_path, file_name)
                 save_json_file(report, output_path)
@@ -182,22 +194,21 @@ class Compare:
 
     @handle_exceptions("Failed to generate summary report", False)
     def generate_summary_report(self):
-        """ Generate a summary report of all comparisons. """
-        summary = {
-            'total_comparisons': len(self.report_paths),
-            'differences': []
-        }
+        """Generate a summary report of all comparisons."""
+        summary = {"total_comparisons": len(self.report_paths), "differences": []}
 
         for report_path in self.report_paths:
             report_data = load_json_file(report_path)
-            if 'diff' in report_data:
-                summary['differences'].append({
-                    'request_id': report_data.get('request_id', 'N/A'),
-                    'output_file': report_data['output_file'],
-                    'expected_output_file': report_data['expected_output_file'],
-                    'diff': report_data['diff']
-                })
-        summary_report_path = os.path.join(self.reports_path, 'comparison_summary.json')
+            if "diff" in report_data:
+                summary["differences"].append(
+                    {
+                        "request_id": report_data.get("request_id", "N/A"),
+                        "output_file": report_data["output_file"],
+                        "expected_output_file": report_data["expected_output_file"],
+                        "diff": report_data["diff"],
+                    }
+                )
+        summary_report_path = os.path.join(self.reports_path, "comparison_summary.json")
         save_json_file(summary, summary_report_path)
         LOGGER.info(f"Summary report generated at {summary_report_path}")
         return summary_report_path
@@ -243,13 +254,13 @@ class WiserTester:
 
     async def start_test(self, specific_inputs=None):
         """
-            Starts the testing process. Tests either all inputs or a specific list of inputs.
-            Args:
-                specific_inputs (list, optional): A list of specific inputs to be tested. If None, all inputs will be tested.
+        Starts the testing process. Tests either all inputs or a specific list of inputs.
+        Args:
+            specific_inputs (list, optional): A list of specific inputs to be tested. If None, all inputs will be tested.
         """
         # Perform login and store cookies
         _, self.cookies = await login(self.username, self.password, self.server_path)
-        LOGGER.info(f'Logged in and obtained cookies {self.cookies}')
+        LOGGER.info(f"Logged in and obtained cookies {self.cookies}")
 
         await self.connect_to_server()
 
@@ -258,7 +269,7 @@ class WiserTester:
         await self.socket.wait()
 
     def _define_event_handlers(self):
-        """ Define event handlers for socket events. """
+        """Define event handlers for socket events."""
 
         @self.socket.event
         async def connect():
@@ -277,48 +288,48 @@ class WiserTester:
             await self._handle_error(data)
 
     async def _handle_report_ready(self, data):
-        """ Handle incoming report readiness. """
+        """Handle incoming report readiness."""
         await self.request_mapping_event.wait()
         self.request_mapping_event.clear()
         await self.process_report(data)
 
     async def _handle_error(self, data):
-        """ Handle errors reported by the server. """
-        error_msg = data.get('error')
-        report_id = data.get('id')
+        """Handle errors reported by the server."""
+        error_msg = data.get("error")
+        report_id = data.get("id")
         if report_id:
             async with self.client_lock:
                 LOGGER.error(f"Error for ID {report_id}: {error_msg}")
 
     @handle_exceptions("Socket connection failed.", True)
     async def connect_to_server(self):
-        """ Establishes connection to the server. """
+        """Establishes connection to the server."""
         await self.socket.connect(self.server_path)
         self.s_id = self.socket.get_sid()
-        LOGGER.info(f'sid: {self.s_id}')
+        LOGGER.info(f"sid: {self.s_id}")
 
     # Request handling methods
 
     def prepare_request_data(self, json_request_path):
-        """ prepares the requests data, returns json request and headers. """
+        """prepares the requests data, returns json request and headers."""
         json_request = load_json_file(json_request_path)
         cookies_str, access_token_cookie_value, csrf_access_token_value = handle_cookies(self.cookies)
         req_headers = self.config["request_headers"]
-        req_headers['Cookie'] = f'{cookies_str}'
-        req_headers['Host'] = f'{self.host}'
-        req_headers['Origin'] = f'{self.origin}'
-        req_headers['Referer'] = f'{self.origin}/'
-        req_headers['S_ID'] = f'{self.s_id}'
-        req_headers['X-CSRF-TOKEN'] = f'{csrf_access_token_value}'
-        req_headers['Cookie'] = f'{cookies_str}'
+        req_headers["Cookie"] = f"{cookies_str}"
+        req_headers["Host"] = f"{self.host}"
+        req_headers["Origin"] = f"{self.origin}"
+        req_headers["Referer"] = f"{self.origin}/"
+        req_headers["S_ID"] = f"{self.s_id}"
+        req_headers["X-CSRF-TOKEN"] = f"{csrf_access_token_value}"
+        req_headers["Cookie"] = f"{cookies_str}"
         return json_request, req_headers
 
     async def send_request(self, json_request, headers, json_request_path):
-        """ sends request using http post, returns request_id, response object. """
-        response = await self.http_client.post(f'{self.server_path}report', json=json_request, headers=headers)
+        """sends request using http post, returns request_id, response object."""
+        response = await self.http_client.post(f"{self.server_path}report", json=json_request, headers=headers)
         response.raise_for_status()
         response_json = response.json()
-        request_id = response_json.get('id')  # Assuming the response contains the request ID
+        request_id = response_json.get("id")  # Assuming the response contains the request ID
         if request_id:
             input_file_name = Path(json_request_path).stem
             async with self.request_id_lock:
@@ -347,13 +358,13 @@ class WiserTester:
     # Report handling methods
 
     async def process_report(self, data):
-        """ Process incoming reports, either in order or handling late reports. """
-        report_id = data.get('id')
+        """Process incoming reports, either in order or handling late reports."""
+        report_id = data.get("id")
         if not report_id:
             LOGGER.error("Report ID missing in data")
             return
 
-        report_data = json.loads(data.get('data'))
+        report_data = json.loads(data.get("data"))
         LOGGER.info(f"Report received for ID {report_id}")
 
         if report_id in self.pending_requests:
@@ -394,8 +405,7 @@ class WiserTester:
         """
         if self.pending_requests:
             LOGGER.info("Waiting for all reports to be completed...")
-            await asyncio.wait([self.wait_for_report(request_id) for request_id in self.pending_requests],
-                               timeout=timeout)
+            await asyncio.wait([self.wait_for_report(request_id) for request_id in self.pending_requests], timeout=timeout)
             LOGGER.info("All reports have been completed.")
         else:
             LOGGER.info("No pending reports to wait for.")
@@ -422,17 +432,17 @@ class WiserTester:
         await self.wait_for_all_reports()
         await self.close()
 
-    @handle_exceptions(f"An error occurred during testing of specific input", False)
+    @handle_exceptions("An error occurred during testing of specific input", False)
     async def test_input(self, inp_dir):
         """
         Tests an input directory.
         Args:
             inp_dir (str): The directory containing an input to be tested.
         """
-        LOGGER.info(f'testing {inp_dir}')
+        LOGGER.info(f"testing {inp_dir}")
         self.current_input_dir = inp_dir
         self.current_output_dir = await self.make_output_dir()
-        LOGGER.info(f'made directory {self.current_output_dir}')
+        LOGGER.info(f"made directory {self.current_output_dir}")
         lst = os.listdir(inp_dir)
         lst.sort()
         LOGGER.info(lst)
@@ -440,10 +450,10 @@ class WiserTester:
             file_path = os.path.join(inp_dir, filename)
             if file_path.endswith(".json"):
                 await self.process_request_file(file_path)
-        LOGGER.info(f'all requests completed for {inp_dir}')
+        LOGGER.info(f"all requests completed for {inp_dir}")
 
     async def process_request_file(self, file_path):
-        LOGGER.info(f'sending request for file: {file_path}')
+        LOGGER.info(f"sending request for file: {file_path}")
         request_id, _ = await self.send_request_get_response(file_path)
         if request_id:
             self.pending_requests.add(request_id)
@@ -455,7 +465,7 @@ class WiserTester:
         path = os.path.join(self.outputs_path, input_folder)
         if not os.path.isdir(path):
             os.mkdir(path)
-            LOGGER.info(f'created dir {path}')
+            LOGGER.info(f"created dir {path}")
         return path
 
     async def save_output(self, output_data, output_dir):
@@ -465,12 +475,12 @@ class WiserTester:
             str: The path to the saved output file.
         """
         try:
-            input_file_name = self.request_to_input_map.get(output_data['id'], "unknown")
+            input_file_name = self.request_to_input_map.get(output_data["id"], "unknown")
             file_name = f"{input_file_name}.json"
             output_path = os.path.join(output_dir, file_name)
             saved = save_json_file(output_data, output_path)
             if saved:
-                LOGGER.info(f'saved report {output_path}')
+                LOGGER.info(f"saved report {output_path}")
             return output_path
         except Exception as e:
             LOGGER.error(f"Failed to save output for request ID {output_data['id']}: {e}")
@@ -478,7 +488,7 @@ class WiserTester:
     # Cleanup methods
 
     async def close(self):
-        """ Closes the WebSocket connection and HTTP client they are open. """
+        """Closes the WebSocket connection and HTTP client they are open."""
         if self.socket:
             await self.socket.disconnect()
 
@@ -495,16 +505,15 @@ def parse_args():
     parser.add_argument("--password", type=str, required=True, help="Password for login")
     parser.add_argument("--config", type=str, required=True, help="Path to the configuration file")
 
-    parser.add_argument("--mode", type=str, choices=['all', 'specific'], default='all',
-                        help="Testing mode: 'all' or 'specific'")
+    parser.add_argument("--mode", type=str, choices=["all", "specific"], default="all", help="Testing mode: 'all' or 'specific'")
     parser.add_argument("--specific_list", type=str, help="specific list of input directories")
     parser.add_argument("--input", type=str, default="data/inputs", help="Path to the inputs directory")
     parser.add_argument("--output", type=str, default="data/outputs", help="Path to save outputs")
-    parser.add_argument("--expected_output", type=str, default='data/expectations', help="path to expectations")
-    parser.add_argument("--compare", type=str, choices=['yes', 'no'], default='yes',
-                        help="Compare to previous outputs: 'yes' or 'no'")
-    parser.add_argument("--comparison_reports", type=str, default='data/comparison_reports',
-                        help="path to comparison reports")
+    parser.add_argument("--expected_output", type=str, default="data/expectations", help="path to expectations")
+    parser.add_argument(
+        "--compare", type=str, choices=["yes", "no"], default="yes", help="Compare to previous outputs: 'yes' or 'no'"
+    )
+    parser.add_argument("--comparison_reports", type=str, default="data/comparison_reports", help="path to comparison reports")
     parser.add_argument("--request_timeout", type=int, default=60, help="request timeout in seconds")
 
     return parser.parse_args()
@@ -516,16 +525,17 @@ async def main():
 
     # Load the configuration file
     config = load_json_file(args.config)
-    LOGGER.info('loaded config file ')
-    tester = WiserTester(args.input, args.output, args.username, args.password, args.host, args.origin,
-                         args.request_timeout, config)
+    LOGGER.info("loaded config file ")
+    tester = WiserTester(
+        args.input, args.output, args.username, args.password, args.host, args.origin, args.request_timeout, config
+    )
 
-    await tester.start_test(args.specific_list.split(',') if args.mode == 'specific' else None)
-    if args.compare == 'yes':
-        LOGGER.info('Comparing outputs')
-        comparison = Compare(args.output, args.expected_output, args.comparison_reports, config['ignore_paths'])
+    await tester.start_test(args.specific_list.split(",") if args.mode == "specific" else None)
+    if args.compare == "yes":
+        LOGGER.info("Comparing outputs")
+        comparison = Compare(args.output, args.expected_output, args.comparison_reports, config["ignore_paths"])
         report_paths = comparison.compare_outputs_with_expectations()
-        LOGGER.info(f'Comparison reports: {report_paths}')
+        LOGGER.info(f"Comparison reports: {report_paths}")
 
     await tester.close()
 
@@ -534,4 +544,4 @@ if __name__ == "__main__":
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
-        print(f"interrupted")
+        print("interrupted")

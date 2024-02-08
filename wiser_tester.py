@@ -304,7 +304,7 @@ class WiserTester:
     @handle_exceptions("Socket connection failed.", True)
     async def connect_to_server(self):
         """Establishes connection to the server."""
-        await self.socket.connect(self.server_path)
+        await self.socket.connect(self.server_path, wait_timeout = 10)
         self.s_id = self.socket.get_sid()
         LOGGER.info(f"sid: {self.s_id}")
 

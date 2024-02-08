@@ -1225,3 +1225,342 @@
 2024-02-07 17:52:23,590 | INFO | Summary report generated at data/comparison_reports\comparison_summary.json
 2024-02-07 17:52:23,590 | INFO | Comparison reports: data/comparison_reports\comparison_summary.json
 2024-02-07 17:52:23,590 | INFO | HTTP client closed.
+2024-02-08 14:20:51,620 | INFO | loaded config file 
+2024-02-08 14:20:51,739 | INFO | Logged in and obtained cookies <Cookies[<Cookie access_token_cookie=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcwNzM5NDg1MSwianRpIjoiMDE1NWJkOTktZDNmOS00NTVlLTkzNjItYTQ4MWQ1ZGI4ODQ2IiwibmJmIjoxNzA3Mzk0ODUxLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoie1xuICAgIFwidXNlcm5hbWVcIjogXCJtYXlhXCIsXG4gICAgXCJwYXNzd29yZFwiOiBcInBia2RmMjpzaGEyNTY6MTUwMDAwJFZXRm9uTlQ3JDA2YTc1NThmM2ZiZGM0ODBmYTJkYjM0MWM5YTdhMjEwOGYyZjNiOWY0MWMxZjk1OTJiYzJkZTUzYzAwZTliYjlcIixcbiAgICBcImlkXCI6IFwiZjI0ZDEzMjAtYWVhMS00Yzk2LWFlOWUtMzQ3YmNjMzdhYjcwXCJcbn0iLCJjc3JmIjoiYTk3MTljYTMtMzkyMC00Mzg5LTkyNjEtMzdjOTJmMmMxZmNkIiwiZXhwIjoxNzA5MjA5MjUxfQ.dNxo39KplFfTMNcxOmpYGv42XLmYMmxWGjTdRUBfeQk for localhost.local />, <Cookie csrf_access_token=a9719ca3-3920-4389-9261-37c92f2c1fcd for localhost.local />]>
+2024-02-08 14:20:51,797 | INFO | Socket connected
+2024-02-08 14:20:51,797 | INFO | sid: sSshvu1CvWiv4__RAAFZ
+2024-02-08 14:20:51,798 | INFO | Started testing all inputs
+2024-02-08 14:20:51,798 | INFO | testing data/inputs\cohort_builder_cardio
+2024-02-08 14:20:51,799 | INFO | created dir data/outputs\cohort_builder_cardio
+2024-02-08 14:20:51,799 | INFO | made directory data/outputs\cohort_builder_cardio
+2024-02-08 14:20:51,800 | INFO | ['20240204140731723.json', '20240204140731867.json', '20240204140732858.json', '20240204140732987.json', '20240204140733202.json', '20240204140733418.json', '20240204140733560.json', '20240204140733614.json', '20240204140733666.json', '20240204140733747.json', '20240204140733845.json', '20240204140733927.json', '20240204140733958.json', '20240204140734027.json', '20240204140734166.json', '20240204140734212.json', '20240204140734286.json', '20240204140734321.json', '20240204140734365.json', '20240204140734443.json', '20240204140734471.json']
+2024-02-08 14:20:51,800 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140731723.json
+2024-02-08 14:20:51,815 | INFO | request: aa5f587c-bfd4-4aed-ad5d-e0095c20260e, input file name 20240204140731723
+2024-02-08 14:20:51,864 | INFO | Report received for ID aa5f587c-bfd4-4aed-ad5d-e0095c20260e
+2024-02-08 14:20:51,867 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140731723.json
+2024-02-08 14:20:51,867 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140731867.json
+2024-02-08 14:20:51,882 | INFO | request: 868b1b60-6d46-40bc-897b-00b384e1369c, input file name 20240204140731867
+2024-02-08 14:20:51,934 | INFO | Report received for ID 868b1b60-6d46-40bc-897b-00b384e1369c
+2024-02-08 14:20:51,936 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140731867.json
+2024-02-08 14:20:51,936 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140732858.json
+2024-02-08 14:20:51,956 | INFO | request: cf9804eb-2b82-453d-bc48-34f84932aa9f, input file name 20240204140732858
+2024-02-08 14:20:52,039 | INFO | Report received for ID cf9804eb-2b82-453d-bc48-34f84932aa9f
+2024-02-08 14:20:52,122 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140732858.json
+2024-02-08 14:20:52,123 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140732987.json
+2024-02-08 14:20:52,182 | INFO | request: 16a34861-2fdc-4525-96b0-b2671bad562c, input file name 20240204140732987
+2024-02-08 14:20:52,271 | INFO | Report received for ID 16a34861-2fdc-4525-96b0-b2671bad562c
+2024-02-08 14:20:52,424 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140732987.json
+2024-02-08 14:20:52,426 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140733202.json
+2024-02-08 14:20:52,483 | INFO | request: 63161187-eb19-4938-8a6f-e833cb7d1b4c, input file name 20240204140733202
+2024-02-08 14:20:52,484 | INFO | Report received for ID 63161187-eb19-4938-8a6f-e833cb7d1b4c
+2024-02-08 14:20:52,487 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140733202.json
+2024-02-08 14:20:52,487 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140733418.json
+2024-02-08 14:20:52,549 | INFO | request: 6f532e93-1bcb-43a7-a088-f32d57ca6b31, input file name 20240204140733418
+2024-02-08 14:20:52,550 | INFO | Report received for ID 6f532e93-1bcb-43a7-a088-f32d57ca6b31
+2024-02-08 14:20:52,553 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140733418.json
+2024-02-08 14:20:52,553 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140733560.json
+2024-02-08 14:20:52,601 | INFO | request: 9f52f3bb-3fa2-4218-a4e5-19164fb9e368, input file name 20240204140733560
+2024-02-08 14:20:52,601 | INFO | Report received for ID 9f52f3bb-3fa2-4218-a4e5-19164fb9e368
+2024-02-08 14:20:52,606 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140733560.json
+2024-02-08 14:20:52,607 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140733614.json
+2024-02-08 14:20:52,656 | INFO | request: 353eba69-21ec-4f09-a020-b36dfd5b1b23, input file name 20240204140733614
+2024-02-08 14:20:52,657 | INFO | Report received for ID 353eba69-21ec-4f09-a020-b36dfd5b1b23
+2024-02-08 14:20:52,661 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140733614.json
+2024-02-08 14:20:52,661 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140733666.json
+2024-02-08 14:20:52,716 | INFO | request: d7ada318-25db-4a87-a170-a0aac0467e08, input file name 20240204140733666
+2024-02-08 14:20:52,717 | INFO | Report received for ID d7ada318-25db-4a87-a170-a0aac0467e08
+2024-02-08 14:20:52,718 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140733666.json
+2024-02-08 14:20:52,719 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140733747.json
+2024-02-08 14:20:52,731 | INFO | request: 201a160f-5caf-4657-954e-a59414de1d68, input file name 20240204140733747
+2024-02-08 14:20:52,768 | INFO | Report received for ID 201a160f-5caf-4657-954e-a59414de1d68
+2024-02-08 14:20:52,770 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140733747.json
+2024-02-08 14:20:52,771 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140733845.json
+2024-02-08 14:20:52,783 | INFO | request: 97a8b972-14b7-4170-a862-7fdaa45c413d, input file name 20240204140733845
+2024-02-08 14:20:52,832 | INFO | Report received for ID 97a8b972-14b7-4170-a862-7fdaa45c413d
+2024-02-08 14:20:52,834 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140733845.json
+2024-02-08 14:20:52,835 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140733927.json
+2024-02-08 14:20:52,848 | INFO | request: e0465943-6a0b-4da3-9c1e-72870124452a, input file name 20240204140733927
+2024-02-08 14:20:52,900 | INFO | Report received for ID e0465943-6a0b-4da3-9c1e-72870124452a
+2024-02-08 14:20:52,902 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140733927.json
+2024-02-08 14:20:52,902 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140733958.json
+2024-02-08 14:20:52,966 | INFO | request: ab0848d3-826d-4d8b-bf4d-2b162c2f744b, input file name 20240204140733958
+2024-02-08 14:20:52,967 | INFO | Report received for ID ab0848d3-826d-4d8b-bf4d-2b162c2f744b
+2024-02-08 14:20:52,968 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140733958.json
+2024-02-08 14:20:52,969 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140734027.json
+2024-02-08 14:20:53,021 | INFO | request: a17e2302-19a0-42ed-89e3-4ec6a3cfae61, input file name 20240204140734027
+2024-02-08 14:20:53,021 | INFO | Report received for ID a17e2302-19a0-42ed-89e3-4ec6a3cfae61
+2024-02-08 14:20:53,024 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140734027.json
+2024-02-08 14:20:53,024 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140734166.json
+2024-02-08 14:20:53,083 | INFO | request: d43da553-4c5d-4f4a-a549-c4135477fea7, input file name 20240204140734166
+2024-02-08 14:20:53,084 | INFO | Report received for ID d43da553-4c5d-4f4a-a549-c4135477fea7
+2024-02-08 14:20:53,086 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140734166.json
+2024-02-08 14:20:53,086 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140734212.json
+2024-02-08 14:20:53,149 | INFO | request: b74a57dd-da1b-4cea-a89e-3d5a54c504dd, input file name 20240204140734212
+2024-02-08 14:20:53,150 | INFO | Report received for ID b74a57dd-da1b-4cea-a89e-3d5a54c504dd
+2024-02-08 14:20:53,152 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140734212.json
+2024-02-08 14:20:53,153 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140734286.json
+2024-02-08 14:20:53,202 | INFO | request: b1b3f35c-4545-41e7-9902-dc2cdb09756f, input file name 20240204140734286
+2024-02-08 14:20:53,202 | INFO | Report received for ID b1b3f35c-4545-41e7-9902-dc2cdb09756f
+2024-02-08 14:20:53,205 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140734286.json
+2024-02-08 14:20:53,205 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140734321.json
+2024-02-08 14:20:53,266 | INFO | request: 6ebda8da-9d1e-46dd-9516-7d7d5bc31a75, input file name 20240204140734321
+2024-02-08 14:20:53,385 | INFO | Report received for ID 6ebda8da-9d1e-46dd-9516-7d7d5bc31a75
+2024-02-08 14:20:53,571 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140734321.json
+2024-02-08 14:20:53,573 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140734365.json
+2024-02-08 14:20:53,631 | INFO | request: ad6c0fcc-5a2a-4a1c-928e-f492cccd4761, input file name 20240204140734365
+2024-02-08 14:20:53,661 | INFO | Report received for ID ad6c0fcc-5a2a-4a1c-928e-f492cccd4761
+2024-02-08 14:20:53,750 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140734365.json
+2024-02-08 14:20:53,751 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140734443.json
+2024-02-08 14:20:53,806 | INFO | request: 7a209aa5-6e1b-42f4-aff4-113acae2004d, input file name 20240204140734443
+2024-02-08 14:20:53,910 | INFO | Report received for ID 7a209aa5-6e1b-42f4-aff4-113acae2004d
+2024-02-08 14:20:54,110 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140734443.json
+2024-02-08 14:20:54,114 | INFO | sending request for file: data/inputs\cohort_builder_cardio\20240204140734471.json
+2024-02-08 14:20:54,170 | INFO | request: 5ac47b2c-483a-4cb4-8d8b-8bd2183dc3ba, input file name 20240204140734471
+2024-02-08 14:20:54,190 | INFO | Report received for ID 5ac47b2c-483a-4cb4-8d8b-8bd2183dc3ba
+2024-02-08 14:20:54,260 | INFO | saved report data/outputs\cohort_builder_cardio\20240204140734471.json
+2024-02-08 14:20:54,261 | INFO | all requests completed for data/inputs\cohort_builder_cardio
+2024-02-08 14:20:55,262 | INFO | testing data/inputs\cohort_builder_kidney
+2024-02-08 14:20:55,263 | INFO | created dir data/outputs\cohort_builder_kidney
+2024-02-08 14:20:55,263 | INFO | made directory data/outputs\cohort_builder_kidney
+2024-02-08 14:20:55,264 | INFO | ['20240204155653493.json', '20240204155653743.json', '20240204155654677.json', '20240204155654733.json', '20240204155654766.json', '20240204155654812.json', '20240204155654844.json', '20240204155654876.json', '20240204155654918.json', '20240204155654963.json', '20240204155655041.json', '20240204155655113.json', '20240204155655194.json', '20240204155655258.json', '20240204155655328.json', '20240204155655395.json', '20240204155655465.json', '20240204155655542.json', '20240204155655610.json', '20240204155655641.json', '20240204155655747.json']
+2024-02-08 14:20:55,264 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155653493.json
+2024-02-08 14:20:55,272 | INFO | request: ea2ec0ae-7016-4492-b11a-32c54fa1e6c8, input file name 20240204155653493
+2024-02-08 14:20:55,315 | INFO | Report received for ID ea2ec0ae-7016-4492-b11a-32c54fa1e6c8
+2024-02-08 14:20:55,317 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155653493.json
+2024-02-08 14:20:55,318 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155653743.json
+2024-02-08 14:20:55,331 | INFO | request: 3c3d16f8-54fa-4565-a699-b7aaac47cb36, input file name 20240204155653743
+2024-02-08 14:20:55,373 | INFO | Report received for ID 3c3d16f8-54fa-4565-a699-b7aaac47cb36
+2024-02-08 14:20:55,377 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155653743.json
+2024-02-08 14:20:55,377 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155654677.json
+2024-02-08 14:20:55,394 | INFO | request: aaa76917-af36-485d-bc47-093b039a5780, input file name 20240204155654677
+2024-02-08 14:20:55,445 | INFO | Report received for ID aaa76917-af36-485d-bc47-093b039a5780
+2024-02-08 14:20:55,522 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155654677.json
+2024-02-08 14:20:55,524 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155654733.json
+2024-02-08 14:20:55,556 | INFO | request: 0d199d71-4481-486e-b44d-ebd0707f4b01, input file name 20240204155654733
+2024-02-08 14:20:55,567 | INFO | Report received for ID 0d199d71-4481-486e-b44d-ebd0707f4b01
+2024-02-08 14:20:55,596 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155654733.json
+2024-02-08 14:20:55,597 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155654766.json
+2024-02-08 14:20:55,652 | INFO | request: 31e56762-b624-40d1-a076-af4c860875c7, input file name 20240204155654766
+2024-02-08 14:20:55,652 | INFO | Report received for ID 31e56762-b624-40d1-a076-af4c860875c7
+2024-02-08 14:20:55,656 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155654766.json
+2024-02-08 14:20:55,657 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155654812.json
+2024-02-08 14:20:55,721 | INFO | request: 519feaef-3228-4fef-a19b-25233063f795, input file name 20240204155654812
+2024-02-08 14:20:55,722 | INFO | Report received for ID 519feaef-3228-4fef-a19b-25233063f795
+2024-02-08 14:20:55,724 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155654812.json
+2024-02-08 14:20:55,725 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155654844.json
+2024-02-08 14:20:55,785 | INFO | request: c044a13c-b0c2-474e-9571-2e2cec742fc4, input file name 20240204155654844
+2024-02-08 14:20:55,785 | INFO | Report received for ID c044a13c-b0c2-474e-9571-2e2cec742fc4
+2024-02-08 14:20:55,788 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155654844.json
+2024-02-08 14:20:55,789 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155654876.json
+2024-02-08 14:20:55,851 | INFO | request: 32ccaddd-5aeb-4f5f-af99-54682ae22643, input file name 20240204155654876
+2024-02-08 14:20:55,852 | INFO | Report received for ID 32ccaddd-5aeb-4f5f-af99-54682ae22643
+2024-02-08 14:20:55,855 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155654876.json
+2024-02-08 14:20:55,856 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155654918.json
+2024-02-08 14:20:55,907 | INFO | request: e65dd4ba-01ec-4a9b-9d02-92c888ecac45, input file name 20240204155654918
+2024-02-08 14:20:55,907 | INFO | Report received for ID e65dd4ba-01ec-4a9b-9d02-92c888ecac45
+2024-02-08 14:20:55,911 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155654918.json
+2024-02-08 14:20:55,912 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155654963.json
+2024-02-08 14:20:55,966 | INFO | request: 140475e2-3574-4e4e-b6b1-91c313783074, input file name 20240204155654963
+2024-02-08 14:20:55,966 | INFO | Report received for ID 140475e2-3574-4e4e-b6b1-91c313783074
+2024-02-08 14:20:55,968 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155654963.json
+2024-02-08 14:20:55,969 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155655041.json
+2024-02-08 14:20:56,033 | INFO | request: 8a25aa43-8586-4d8c-b6bd-7079af70edbd, input file name 20240204155655041
+2024-02-08 14:20:56,033 | INFO | Report received for ID 8a25aa43-8586-4d8c-b6bd-7079af70edbd
+2024-02-08 14:20:56,034 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155655041.json
+2024-02-08 14:20:56,035 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155655113.json
+2024-02-08 14:20:56,090 | INFO | request: f80e2caa-e362-4589-850f-8b698adf38bf, input file name 20240204155655113
+2024-02-08 14:20:56,090 | INFO | Report received for ID f80e2caa-e362-4589-850f-8b698adf38bf
+2024-02-08 14:20:56,092 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155655113.json
+2024-02-08 14:20:56,092 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155655194.json
+2024-02-08 14:20:56,149 | INFO | request: 1e2d8b8b-5d99-4a68-84f9-76e26481dd2b, input file name 20240204155655194
+2024-02-08 14:20:56,149 | INFO | Report received for ID 1e2d8b8b-5d99-4a68-84f9-76e26481dd2b
+2024-02-08 14:20:56,151 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155655194.json
+2024-02-08 14:20:56,151 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155655258.json
+2024-02-08 14:20:56,200 | INFO | request: 144b04c2-8c47-472f-a0a5-42e467782dd7, input file name 20240204155655258
+2024-02-08 14:20:56,201 | INFO | Report received for ID 144b04c2-8c47-472f-a0a5-42e467782dd7
+2024-02-08 14:20:56,203 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155655258.json
+2024-02-08 14:20:56,203 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155655328.json
+2024-02-08 14:20:56,251 | INFO | request: f71d1283-8029-4958-8cce-43af11757823, input file name 20240204155655328
+2024-02-08 14:20:56,251 | INFO | Report received for ID f71d1283-8029-4958-8cce-43af11757823
+2024-02-08 14:20:56,254 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155655328.json
+2024-02-08 14:20:56,255 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155655395.json
+2024-02-08 14:20:56,267 | INFO | request: f9ddc411-6d9d-4208-a47f-822b3c040ac2, input file name 20240204155655395
+2024-02-08 14:20:56,315 | INFO | Report received for ID f9ddc411-6d9d-4208-a47f-822b3c040ac2
+2024-02-08 14:20:56,317 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155655395.json
+2024-02-08 14:20:56,317 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155655465.json
+2024-02-08 14:20:56,368 | INFO | request: 3526cec5-bc36-48b3-b5bd-c39bd3515641, input file name 20240204155655465
+2024-02-08 14:20:56,369 | INFO | Report received for ID 3526cec5-bc36-48b3-b5bd-c39bd3515641
+2024-02-08 14:20:56,374 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155655465.json
+2024-02-08 14:20:56,375 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155655542.json
+2024-02-08 14:20:56,421 | INFO | request: 17aaee96-b9c8-438b-90e2-69cdb28033b5, input file name 20240204155655542
+2024-02-08 14:20:56,429 | INFO | Report received for ID 17aaee96-b9c8-438b-90e2-69cdb28033b5
+2024-02-08 14:20:56,463 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155655542.json
+2024-02-08 14:20:56,465 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155655610.json
+2024-02-08 14:20:56,519 | INFO | request: 4e30cf59-bfd5-471f-bdd1-5833290be34d, input file name 20240204155655610
+2024-02-08 14:20:56,531 | INFO | Report received for ID 4e30cf59-bfd5-471f-bdd1-5833290be34d
+2024-02-08 14:20:56,583 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155655610.json
+2024-02-08 14:20:56,586 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155655641.json
+2024-02-08 14:20:56,618 | INFO | request: 852667ff-2b49-45e0-9d86-55e95b6fc2ec, input file name 20240204155655641
+2024-02-08 14:20:56,621 | INFO | Report received for ID 852667ff-2b49-45e0-9d86-55e95b6fc2ec
+2024-02-08 14:20:56,636 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155655641.json
+2024-02-08 14:20:56,637 | INFO | sending request for file: data/inputs\cohort_builder_kidney\20240204155655747.json
+2024-02-08 14:20:56,668 | INFO | request: 63d509b8-0192-4190-8937-09b5558c1679, input file name 20240204155655747
+2024-02-08 14:20:56,672 | INFO | Report received for ID 63d509b8-0192-4190-8937-09b5558c1679
+2024-02-08 14:20:56,690 | INFO | saved report data/outputs\cohort_builder_kidney\20240204155655747.json
+2024-02-08 14:20:56,690 | INFO | all requests completed for data/inputs\cohort_builder_kidney
+2024-02-08 14:20:57,694 | INFO | testing data/inputs\cohort_comparison
+2024-02-08 14:20:57,695 | INFO | created dir data/outputs\cohort_comparison
+2024-02-08 14:20:57,695 | INFO | made directory data/outputs\cohort_comparison
+2024-02-08 14:20:57,695 | INFO | ['20240124143150309.json', '20240124143151371.json', '20240124143151449.json', '20240124143152515.json', '20240124143152989.json', '20240124143153840.json', '20240124143154013.json', '20240124143154114.json', '20240124143154205.json', '20240124143154308.json']
+2024-02-08 14:20:57,695 | INFO | sending request for file: data/inputs\cohort_comparison\20240124143150309.json
+2024-02-08 14:20:57,754 | INFO | request: 02d1fd12-7343-40ba-9f20-ee2b9b540a0f, input file name 20240124143150309
+2024-02-08 14:20:57,755 | INFO | Report received for ID 02d1fd12-7343-40ba-9f20-ee2b9b540a0f
+2024-02-08 14:20:57,756 | INFO | saved report data/outputs\cohort_comparison\20240124143150309.json
+2024-02-08 14:20:57,756 | INFO | sending request for file: data/inputs\cohort_comparison\20240124143151371.json
+2024-02-08 14:20:57,810 | INFO | request: 300091fb-1e0b-4c80-bf71-210144bcf34d, input file name 20240124143151371
+2024-02-08 14:20:57,859 | INFO | Report received for ID 300091fb-1e0b-4c80-bf71-210144bcf34d
+2024-02-08 14:20:57,862 | INFO | saved report data/outputs\cohort_comparison\20240124143151371.json
+2024-02-08 14:20:57,862 | INFO | sending request for file: data/inputs\cohort_comparison\20240124143151449.json
+2024-02-08 14:20:57,926 | INFO | request: c051f9f2-06bc-4959-b6e3-008cc0a28526, input file name 20240124143151449
+2024-02-08 14:20:57,926 | INFO | Report received for ID c051f9f2-06bc-4959-b6e3-008cc0a28526
+2024-02-08 14:20:57,928 | INFO | saved report data/outputs\cohort_comparison\20240124143151449.json
+2024-02-08 14:20:57,928 | INFO | sending request for file: data/inputs\cohort_comparison\20240124143152515.json
+2024-02-08 14:20:57,994 | INFO | request: 4859b508-c002-407a-905e-4f741771ebec, input file name 20240124143152515
+2024-02-08 14:20:57,995 | INFO | Report received for ID 4859b508-c002-407a-905e-4f741771ebec
+2024-02-08 14:20:57,995 | INFO | saved report data/outputs\cohort_comparison\20240124143152515.json
+2024-02-08 14:20:57,995 | INFO | sending request for file: data/inputs\cohort_comparison\20240124143152989.json
+2024-02-08 14:20:58,062 | INFO | request: 86c7ef89-8f6b-4ea5-8ce4-34b082dc13af, input file name 20240124143152989
+2024-02-08 14:20:58,062 | INFO | Report received for ID 86c7ef89-8f6b-4ea5-8ce4-34b082dc13af
+2024-02-08 14:20:58,066 | INFO | saved report data/outputs\cohort_comparison\20240124143152989.json
+2024-02-08 14:20:58,067 | INFO | sending request for file: data/inputs\cohort_comparison\20240124143153840.json
+2024-02-08 14:20:58,092 | INFO | request: 226952ba-872c-4964-a932-6d993d360d2a, input file name 20240124143153840
+2024-02-08 14:20:58,093 | INFO | Report received for ID 226952ba-872c-4964-a932-6d993d360d2a
+2024-02-08 14:20:58,095 | INFO | saved report data/outputs\cohort_comparison\20240124143153840.json
+2024-02-08 14:20:58,095 | INFO | sending request for file: data/inputs\cohort_comparison\20240124143154013.json
+2024-02-08 14:20:58,161 | INFO | request: a86cfd09-c260-4849-8447-7ce6213dd26b, input file name 20240124143154013
+2024-02-08 14:20:58,164 | INFO | Report received for ID a86cfd09-c260-4849-8447-7ce6213dd26b
+2024-02-08 14:20:58,172 | INFO | saved report data/outputs\cohort_comparison\20240124143154013.json
+2024-02-08 14:20:58,172 | INFO | sending request for file: data/inputs\cohort_comparison\20240124143154114.json
+2024-02-08 14:20:58,195 | INFO | request: 007312a3-7de7-4101-b714-2db2571a73e5, input file name 20240124143154114
+2024-02-08 14:20:58,195 | INFO | Report received for ID 007312a3-7de7-4101-b714-2db2571a73e5
+2024-02-08 14:20:58,205 | INFO | saved report data/outputs\cohort_comparison\20240124143154114.json
+2024-02-08 14:20:58,206 | INFO | sending request for file: data/inputs\cohort_comparison\20240124143154205.json
+2024-02-08 14:20:58,228 | INFO | request: 936b59f1-fa7a-412f-84dd-bcbeee6df45b, input file name 20240124143154205
+2024-02-08 14:20:58,228 | INFO | Report received for ID 936b59f1-fa7a-412f-84dd-bcbeee6df45b
+2024-02-08 14:20:58,239 | INFO | saved report data/outputs\cohort_comparison\20240124143154205.json
+2024-02-08 14:20:58,240 | INFO | sending request for file: data/inputs\cohort_comparison\20240124143154308.json
+2024-02-08 14:20:58,294 | INFO | request: 8d1a6c2b-5752-4d06-9f31-65143e7d658f, input file name 20240124143154308
+2024-02-08 14:20:58,491 | INFO | Report received for ID 8d1a6c2b-5752-4d06-9f31-65143e7d658f
+2024-02-08 14:20:58,644 | INFO | saved report data/outputs\cohort_comparison\20240124143154308.json
+2024-02-08 14:20:58,647 | INFO | all requests completed for data/inputs\cohort_comparison
+2024-02-08 14:20:59,661 | INFO | testing data/inputs\patients_viewer
+2024-02-08 14:20:59,662 | INFO | created dir data/outputs\patients_viewer
+2024-02-08 14:20:59,662 | INFO | made directory data/outputs\patients_viewer
+2024-02-08 14:20:59,663 | INFO | ['20240125130222110.json', '20240125130222173.json', '20240125130308090.json']
+2024-02-08 14:20:59,663 | INFO | sending request for file: data/inputs\patients_viewer\20240125130222110.json
+2024-02-08 14:20:59,715 | INFO | request: fdcf0d24-530c-4c03-b1a7-ae29e09bfbc9, input file name 20240125130222110
+2024-02-08 14:20:59,716 | INFO | Report received for ID fdcf0d24-530c-4c03-b1a7-ae29e09bfbc9
+2024-02-08 14:20:59,718 | INFO | saved report data/outputs\patients_viewer\20240125130222110.json
+2024-02-08 14:20:59,718 | INFO | sending request for file: data/inputs\patients_viewer\20240125130222173.json
+2024-02-08 14:20:59,772 | INFO | request: c08ce027-a942-44d3-8992-1807114fa62f, input file name 20240125130222173
+2024-02-08 14:20:59,814 | INFO | Report received for ID c08ce027-a942-44d3-8992-1807114fa62f
+2024-02-08 14:20:59,815 | INFO | saved report data/outputs\patients_viewer\20240125130222173.json
+2024-02-08 14:20:59,816 | INFO | sending request for file: data/inputs\patients_viewer\20240125130308090.json
+2024-02-08 14:20:59,867 | INFO | request: 85f2e6f9-2159-4384-8efc-39cbfb2f338f, input file name 20240125130308090
+2024-02-08 14:20:59,875 | INFO | Report received for ID 85f2e6f9-2159-4384-8efc-39cbfb2f338f
+2024-02-08 14:20:59,938 | INFO | saved report data/outputs\patients_viewer\20240125130308090.json
+2024-02-08 14:20:59,940 | INFO | all requests completed for data/inputs\patients_viewer
+2024-02-08 14:21:00,946 | INFO | testing data/inputs\tracks_builder
+2024-02-08 14:21:00,947 | INFO | created dir data/outputs\tracks_builder
+2024-02-08 14:21:00,947 | INFO | made directory data/outputs\tracks_builder
+2024-02-08 14:21:00,948 | INFO | ['20240125130831227.json', '20240125130839722.json', '20240125131156443.json']
+2024-02-08 14:21:00,948 | INFO | sending request for file: data/inputs\tracks_builder\20240125130831227.json
+2024-02-08 14:21:00,999 | INFO | request: 578db8e9-dd89-4e6a-a9ef-9011f4bae03f, input file name 20240125130831227
+2024-02-08 14:21:00,999 | INFO | Report received for ID 578db8e9-dd89-4e6a-a9ef-9011f4bae03f
+2024-02-08 14:21:01,001 | INFO | saved report data/outputs\tracks_builder\20240125130831227.json
+2024-02-08 14:21:01,001 | INFO | sending request for file: data/inputs\tracks_builder\20240125130839722.json
+2024-02-08 14:21:01,066 | INFO | request: e644be19-7f38-4002-9e38-5b470c684a0f, input file name 20240125130839722
+2024-02-08 14:21:01,067 | INFO | Report received for ID e644be19-7f38-4002-9e38-5b470c684a0f
+2024-02-08 14:21:01,068 | INFO | saved report data/outputs\tracks_builder\20240125130839722.json
+2024-02-08 14:21:01,069 | INFO | sending request for file: data/inputs\tracks_builder\20240125131156443.json
+2024-02-08 14:21:01,132 | INFO | request: 715bd0a7-ba8c-4125-8d3b-630dbf3d1b4b, input file name 20240125131156443
+2024-02-08 14:21:03,835 | INFO | Report received for ID 715bd0a7-ba8c-4125-8d3b-630dbf3d1b4b
+2024-02-08 14:21:03,839 | INFO | saved report data/outputs\tracks_builder\20240125131156443.json
+2024-02-08 14:21:03,840 | INFO | all requests completed for data/inputs\tracks_builder
+2024-02-08 14:21:04,841 | INFO | No pending reports to wait for.
+2024-02-08 14:21:04,841 | INFO | Socket disconnected
+2024-02-08 14:21:04,843 | INFO | HTTP client closed.
+2024-02-08 14:21:05,852 | INFO | Comparing outputs
+2024-02-08 14:21:05,852 | INFO | Excluding paths: ["root\\['requestId']", "root\\['figures'\\]\\['\\[\\d+,\\d+\\)'\\]"]
+2024-02-08 14:21:05,852 | INFO | Comparing outputs to expectations
+2024-02-08 14:21:05,853 | INFO | Comparing results for cohort_builder_cardio
+2024-02-08 14:21:05,854 | INFO | Created directory data/comparison_reports\cohort_builder_cardio
+2024-02-08 14:21:05,864 | INFO | No difference found in output for 20240204140731723
+2024-02-08 14:21:05,871 | INFO | No difference found in output for 20240204140731867
+2024-02-08 14:21:06,554 | INFO | No difference found in output for 20240204140732858
+2024-02-08 14:21:07,720 | INFO | No difference found in output for 20240204140732987
+2024-02-08 14:21:07,754 | INFO | Comparison report generated for 20240204140733202
+2024-02-08 14:21:07,793 | INFO | Comparison report generated for 20240204140733418
+2024-02-08 14:21:07,880 | INFO | Comparison report generated for 20240204140733560
+2024-02-08 14:21:07,963 | INFO | Comparison report generated for 20240204140733614
+2024-02-08 14:21:07,974 | INFO | No difference found in output for 20240204140733666
+2024-02-08 14:21:07,986 | INFO | No difference found in output for 20240204140733747
+2024-02-08 14:21:07,998 | INFO | No difference found in output for 20240204140733845
+2024-02-08 14:21:08,013 | INFO | No difference found in output for 20240204140733927
+2024-02-08 14:21:08,028 | INFO | No difference found in output for 20240204140733958
+2024-02-08 14:21:08,039 | INFO | No difference found in output for 20240204140734027
+2024-02-08 14:21:08,047 | INFO | No difference found in output for 20240204140734166
+2024-02-08 14:21:08,059 | INFO | No difference found in output for 20240204140734212
+2024-02-08 14:21:08,071 | INFO | No difference found in output for 20240204140734286
+2024-02-08 14:21:09,346 | INFO | No difference found in output for 20240204140734321
+2024-02-08 14:21:09,954 | INFO | No difference found in output for 20240204140734365
+2024-02-08 14:21:11,153 | INFO | No difference found in output for 20240204140734443
+2024-02-08 14:21:11,587 | INFO | No difference found in output for 20240204140734471
+2024-02-08 14:21:11,587 | INFO | Comparing results for cohort_builder_kidney
+2024-02-08 14:21:11,588 | INFO | Created directory data/comparison_reports\cohort_builder_kidney
+2024-02-08 14:21:11,601 | INFO | No difference found in output for 20240204155653493
+2024-02-08 14:21:11,612 | INFO | No difference found in output for 20240204155653743
+2024-02-08 14:21:11,911 | INFO | No difference found in output for 20240204155654677
+2024-02-08 14:21:12,105 | INFO | No difference found in output for 20240204155654733
+2024-02-08 14:21:12,133 | INFO | No difference found in output for 20240204155654766
+2024-02-08 14:21:12,160 | INFO | No difference found in output for 20240204155654812
+2024-02-08 14:21:12,195 | INFO | No difference found in output for 20240204155654844
+2024-02-08 14:21:12,230 | INFO | No difference found in output for 20240204155654876
+2024-02-08 14:21:12,241 | INFO | No difference found in output for 20240204155654918
+2024-02-08 14:21:12,254 | INFO | No difference found in output for 20240204155654963
+2024-02-08 14:21:12,262 | INFO | No difference found in output for 20240204155655041
+2024-02-08 14:21:12,275 | INFO | No difference found in output for 20240204155655113
+2024-02-08 14:21:12,290 | INFO | No difference found in output for 20240204155655194
+2024-02-08 14:21:12,306 | INFO | No difference found in output for 20240204155655258
+2024-02-08 14:21:12,321 | INFO | No difference found in output for 20240204155655328
+2024-02-08 14:21:12,335 | INFO | No difference found in output for 20240204155655395
+2024-02-08 14:21:12,354 | INFO | No difference found in output for 20240204155655465
+2024-02-08 14:21:12,648 | INFO | No difference found in output for 20240204155655542
+2024-02-08 14:21:13,201 | INFO | No difference found in output for 20240204155655610
+2024-02-08 14:21:13,314 | INFO | No difference found in output for 20240204155655641
+2024-02-08 14:21:13,453 | INFO | No difference found in output for 20240204155655747
+2024-02-08 14:21:13,454 | INFO | Comparing results for cohort_comparison
+2024-02-08 14:21:13,457 | INFO | Created directory data/comparison_reports\cohort_comparison
+2024-02-08 14:21:13,469 | INFO | No difference found in output for 20240124143150309
+2024-02-08 14:21:13,480 | INFO | No difference found in output for 20240124143151371
+2024-02-08 14:21:13,491 | INFO | No difference found in output for 20240124143151449
+2024-02-08 14:21:13,505 | INFO | No difference found in output for 20240124143152515
+2024-02-08 14:21:13,521 | INFO | No difference found in output for 20240124143152989
+2024-02-08 14:21:13,581 | INFO | No difference found in output for 20240124143153840
+2024-02-08 14:21:13,632 | INFO | No difference found in output for 20240124143154013
+2024-02-08 14:21:13,690 | INFO | No difference found in output for 20240124143154114
+2024-02-08 14:21:13,742 | INFO | No difference found in output for 20240124143154205
+2024-02-08 14:21:15,129 | INFO | No difference found in output for 20240124143154308
+2024-02-08 14:21:15,130 | INFO | Comparing results for patients_viewer
+2024-02-08 14:21:15,131 | INFO | Created directory data/comparison_reports\patients_viewer
+2024-02-08 14:21:15,141 | INFO | No difference found in output for 20240125130222110
+2024-02-08 14:21:15,154 | INFO | No difference found in output for 20240125130222173
+2024-02-08 14:21:15,579 | INFO | No difference found in output for 20240125130308090
+2024-02-08 14:21:15,580 | INFO | Comparing results for tracks_builder
+2024-02-08 14:21:15,581 | INFO | Created directory data/comparison_reports\tracks_builder
+2024-02-08 14:21:15,591 | INFO | No difference found in output for 20240125130831227
+2024-02-08 14:21:15,605 | INFO | No difference found in output for 20240125130839722
+2024-02-08 14:21:15,612 | INFO | No difference found in output for 20240125131156443
+2024-02-08 14:21:15,645 | INFO | Summary report generated at data/comparison_reports\comparison_summary.json
+2024-02-08 14:21:15,645 | INFO | Comparison reports: data/comparison_reports\comparison_summary.json
+2024-02-08 14:21:15,645 | INFO | HTTP client closed.

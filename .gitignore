@@ -1,0 +1,5 @@
+data/comparison_reports/*
+data/expectations/*
+data/inputs/*
+data/outputs/*
+env

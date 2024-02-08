@@ -498,6 +498,12 @@ class WiserTester:
 
 
 def parse_args():
+    """
+    The function `parse_args()` is used to parse command line arguments for running the Wiser Tester
+    program.
+    :return: The function `parse_args()` returns the parsed command-line arguments as an
+    `argparse.Namespace` object.
+    """
     parser = argparse.ArgumentParser(description="Run Wiser Tester")
     parser.add_argument("--host", type=str, required=True, help="host name (ex. localhost:5000")
     parser.add_argument("--origin", type=str, required=True, help="origin  (ex. http://localhost:5050")

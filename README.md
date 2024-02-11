@@ -29,12 +29,10 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
 #### Running the Script
   Activation: If using a virtual environment, activate it before running the script.\
   Usage:
-  ```bash
-    wiser_tester.py --host HOST --origin ORIGIN --username USERNAME --password PASSWORD --config CONFIG_FILE_PATH [options]
-  ```
+  ``wiser_tester.py --host HOST --origin ORIGIN --username USERNAME --password PASSWORD --config CONFIG_FILE_PATH [options]``
   Example Command:
   ```bash
-    python wiser_tester.py --host 'localhost:5000' --origin 'http://localhost:5050' --username maya --password mayah --config config.json\
+    python wiser_tester.py --host 'localhost:5000' --origin 'http://localhost:5050' --username maya --password mayah --config config.json
   ```
 
 ### Creating New Executable
@@ -69,7 +67,7 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
 - **`--password`**: Password for login authentication. This argument is required.
 - **`--config`**: Path to the configuration file containing test settings. This argument is required.
 
-#### Optional Arguments
+### Optional Arguments
 
 - **`--mode`**: Determines the testing mode. Options are `all` or `specific`, with `all` being the default.
 - **`--specific_list`**: If `--mode` is `specific`, this specifies a comma-separated list of specific input directories to test.

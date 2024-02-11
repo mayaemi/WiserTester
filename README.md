@@ -5,17 +5,17 @@
 </div>
 
 <p align="center">
-  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
-  <a href="#checkered_flag-starting">Setup and Execution Instructions</a> &#xa0; | &#xa0;
+  <a>About</a> &#xa0; | &#xa0; 
+  <a>Setup and Execution Instructions</a> &#xa0;
 </p>
 
 <br>
 
-## :dart: About ##
+##  About ##
 
 Wiser Tester is a tool designed to automate the testing of wiser by simulating various inputs and comparing the actual outputs against expected ones. This document provides detailed instructions on how to set up and use Wiser Tester for building and running tests, building executables, and analyzing results.
 
-## :checkered_flag: Setup and Execution Instructions ##
+## Setup and Execution Instructions ##
 
 ### Running the Python Version at Weizmann 
 
@@ -40,9 +40,15 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
 ### Creating New Executable
   **Generate Standalone Executable** \
     - Set Up a Virtual Environment and Install the requirements.txt  (see above)\
-    - run command: pyinstaller --onefile wiser_tester.py\
-  **Building a New Executable using the batch script**\
-    .\buildNewExe.bat\
+    - run command:
+  ```bash
+      python pyinstaller --onefile wiser_tester.py
+  ```
+  **Building a New Executable using the batch script**
+  ```bash
+      .\buildNewExe.bat
+  ```
+
 
 ### Using the Standalone Executable
   Command Line Arguments: Similar to the Python version, with the .exe extension.\

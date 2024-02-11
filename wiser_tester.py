@@ -219,29 +219,27 @@ class Compare:
 
 class WiserTester:
 
-    def __init__(self, input_path, outputs_path, username, password, host, origin, request_timeout, config):
+    def __init__(self, username, password, request_timeout, config):
         """
         Initializes the WiserTester instance.
         Args:
-            input_path (str): Path to the directory containing inputs for tests.
-            outputs_path (str): Path to the directory to save test outputs.
             username (str): Username for login.
             password (str): Password for login.
-            host (str): Host address of the server.
-            origin (str): Origin for the HTTP requests.
             request_timeout (int): Timeout for waiting on reports.
+            config: Config file dictionary
         """
         self.socket = socketio.AsyncClient()
         self.http_client = httpx.AsyncClient()
         self.username = username
         self.password = password
-        self.host = host
-        self.server_path = f"http://{host}/"
-        self.origin = origin
+        self.host = config["host"]
+        self.origin = config["origin"]
+        self.inputs_dir = config["inputs_dir"]
+        self.outputs_dir = config["outputs_dir"]
+
+        self.server_path = f"http://{self.host}/"
         self.request_timeout = request_timeout  # seconds
         self.config = config
-        self.input_path = input_path
-        self.outputs_path = outputs_path
         self.s_id, self.cookies = None, None
         self.current_input_dir, self.current_output_dir = None, None
         self.request_to_input_map = {}  # dictionary to map request IDs to input file names
@@ -508,16 +506,12 @@ def parse_args():
     `argparse.Namespace` object.
     """
     parser = argparse.ArgumentParser(description="Run Wiser Tester")
-    parser.add_argument("--host", type=str, required=True, help="host name (ex. localhost:5000")
-    parser.add_argument("--origin", type=str, required=True, help="origin  (ex. http://localhost:5050")
     parser.add_argument("--username", type=str, required=True, help="Username for login")
     parser.add_argument("--password", type=str, required=True, help="Password for login")
     parser.add_argument("--config", type=str, required=True, help="Path to the configuration file")
 
     parser.add_argument("--mode", type=str, choices=["all", "specific"], default="all", help="Testing mode: 'all' or 'specific'")
     parser.add_argument("--specific_list", type=str, help="specific list of input directories")
-    parser.add_argument("--input", type=str, default="data/inputs", help="Path to the inputs directory")
-    parser.add_argument("--output", type=str, default="data/outputs", help="Path to save outputs")
     parser.add_argument("--expected_output", type=str, default="data/expectations", help="path to expectations")
     parser.add_argument(
         "--compare", type=str, choices=["yes", "no"], default="yes", help="Compare to previous outputs: 'yes' or 'no'"
@@ -535,9 +529,7 @@ async def main():
     # Load the configuration file
     config = load_json_file(args.config)
     LOGGER.info("loaded config file ")
-    tester = WiserTester(
-        args.input, args.output, args.username, args.password, args.host, args.origin, args.request_timeout, config
-    )
+    tester = WiserTester(args.username, args.password, args.request_timeout, config)
 
     await tester.start_test(args.specific_list.split(",") if args.mode == "specific" else None)
     if args.compare == "yes":

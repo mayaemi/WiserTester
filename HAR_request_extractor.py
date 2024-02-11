@@ -13,25 +13,16 @@ class HarFileProcessor:
 
     Attributes:
         har_path (str): The path to the HAR file to be processed.
-        inputs_dir (str): Directory where processed input files will be stored.
-        initial_requests_path (str, optional): Path for initial requests, not used in this version.
-        page_title (str): The title of the page to filter HAR entries by.
+        config_path (str): The path to the config file.
         remove_initial_data (bool): Flag to determine whether to remove initial data requests.
-        logger (logging.Logger): Logger object for logging messages.
     """
 
-    def __init__(
-        self,
-        har_path,
-        inputs_dir="data/inputs",
-        initial_requests_path=None,
-        page_title="http://localhost:5050/",
-        remove_initial_data=True,
-    ):
+    def __init__(self, har_path, config_path="config.json", remove_initial_data=True):
+        with open(config_path, "r") as config_file:
+            config = json.load(config_file)
         self.har_path = har_path
-        self.inputs_dir = inputs_dir
-        self.initial_requests_path = initial_requests_path
-        self.page_title = page_title
+        self.inputs_dir = config.get("inputs_dir")
+        self.page_title = f'{config.get("origin")}/'
         self.remove_initial_data = remove_initial_data
         self.logger = self.setup_logger()
 
@@ -47,7 +38,7 @@ class HarFileProcessor:
         stdout_handler.setLevel(logging.INFO)
         stdout_handler.setFormatter(formatter)
 
-        file_handler = logging.FileHandler("logs/inputBuilderlog.log")
+        file_handler = logging.FileHandler("logs/HAR_request_extractor_log.log")
         file_handler.setLevel(logging.DEBUG)
         file_handler.setFormatter(formatter)
 
@@ -98,20 +89,22 @@ class HarFileProcessor:
                 self.save_request_file(new_rec_dir, json_req, name)
 
 
+def find_har_files(dir):
+    return [os.path.join(dir, f) for f in os.listdir(dir) if f.endswith(".har")]
+
+
 def main():
     """Entry point of the script. Parses command-line arguments and processes the HAR file."""
     parser = argparse.ArgumentParser(description="Process HAR files and extract POST requests.")
     parser.add_argument("--har_path", help="Path to the HAR file")
-    parser.add_argument("--inputs_dir", default="data/inputs", help="Directory to store inputs")
-    parser.add_argument("--page_title", default="http://localhost:5050/", help="Title of the page to filter entries by")
+    parser.add_argument("--config", required=True, help="Path to the configuration file")
     parser.add_argument("--remove_initial_data", action="store_true", help="Remove initial data requests")
 
     args = parser.parse_args()
 
     processor = HarFileProcessor(
         har_path=args.har_path,
-        inputs_dir=args.inputs_dir,
-        page_title=args.page_title,
+        config_path=args.config,
         remove_initial_data=args.remove_initial_data,
     )
     processor.process_har_file()

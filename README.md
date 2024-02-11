@@ -29,10 +29,12 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
 #### Running the Script
   Activation: If using a virtual environment, activate it before running the script.\
   Usage:
-  ``wiser_tester.py --host HOST --origin ORIGIN --username USERNAME --password PASSWORD --config CONFIG_FILE_PATH [options]``
+  ```bash
+    wiser_tester.py --username USERNAME --password PASSWORD --config CONFIG_FILE_PATH [options]
+  ```
   Example Command:
   ```bash
-    python wiser_tester.py --host 'localhost:5000' --origin 'http://localhost:5050' --username maya --password mayah --config config.json
+    python wiser_tester.py --username maya --password mayah --config config.json
   ```
 
 ### Creating New Executable
@@ -57,27 +59,31 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
 
 
 ### CLI Options for wiser tester
-#### Required Arguments
+### Required Arguments
 
-- **`--host`**: Specifies the host name where the web application is running. This argument is required.
-  - Example: `--host localhost:5000`
-- **`--origin`**: Defines the origin URL to test against. This argument is required.
-  - Example: `--origin http://localhost:5050`
 - **`--username`**: Username for login authentication. This argument is required.
 - **`--password`**: Password for login authentication. This argument is required.
-- **`--config`**: Path to the configuration file containing test settings. This argument is required.
+- **`--config`**: Path to the configuration file containing test settings. This argument is required. 
 
 ### Optional Arguments
 
 - **`--mode`**: Determines the testing mode. Options are `all` or `specific`, with `all` being the default.
 - **`--specific_list`**: If `--mode` is `specific`, this specifies a comma-separated list of specific input directories to test.
-- **`--input`**: Path to the directory containing input files for testing. Defaults to `data/inputs`.
-- **`--output`**: Path where output files will be saved. Defaults to `data/outputs`.
 - **`--expected_output`**: Path to the directory containing expected output files for comparison. Defaults to `data/expectations`.
 - **`--compare`**: Enables or disables comparison to previous outputs. Options are `yes` or `no`, with `yes` being the default.
 - **`--comparison_reports`**: Path where comparison reports will be saved. Defaults to `data/comparison_reports`.
 - **`--request_timeout`**: Sets the request timeout in seconds. Defaults to 60 seconds.
 
+
+### config file
+- **`host`**: Specifies the host name where the web application is running.
+  - Example: `localhost:5000`
+- **`origin`**: Defines the origin URL to test against.
+  - Example: `http://localhost:5050`
+- **`inputs_dir`**: Path to the directory containing input files for testing. 
+  - Example: `data/inputs`
+- **`outputs_dir`**: Path to the directory containing output files for testing. 
+  - Example: `data/outputs`
 
 ### Generate recordings of Queries
 

@@ -5,8 +5,8 @@
 </div>
 
 <p align="center">
-  <a About> </a> &#xa0; | &#xa0; 
-  <a Setup and Execution Instructions> </a> &#xa0;
+  <a About> About </a> &#xa0; | &#xa0; 
+  <a Setup and Execution Instructions> Setup and Execution Instructions </a> &#xa0;
 </p>
 
 <br>

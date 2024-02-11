@@ -22,10 +22,12 @@ class DirUtilities:
         )
 
     @staticmethod
-    def clear_directories(directories):
+    def clear_directories(directories, keep_gitkeep=False):
         for directory in directories:
             for item in os.listdir(directory):
                 item_path = os.path.join(directory, item)
+                if keep_gitkeep and item == ".gitkeep":
+                    continue  # Skip deletion of .gitkeep files
                 if os.path.isfile(item_path):
                     os.remove(item_path)
                 elif os.path.isdir(item_path):
@@ -37,6 +39,8 @@ class DirUtilities:
         parser = argparse.ArgumentParser(description="Utilities for directory comparison and management.")
         parser.add_argument("--compare", nargs=2, help="Compare two directories.")
         parser.add_argument("--clear", nargs="+", help="Clear specified directories.")
+        parser.add_argument("--keep-gitkeep", action="store_true", help="Keep .gitkeep files when clearing directories.")
+
         args = parser.parse_args()
 
         if args.compare:
@@ -45,7 +49,7 @@ class DirUtilities:
             print(f"Directories are {'the same' if is_same else 'different'}.")
 
         if args.clear:
-            cls.clear_directories(args.clear)
+            cls.clear_directories(args.clear, keep_gitkeep=args.keep_gitkeep)
 
 
 if __name__ == "__main__":
@@ -55,5 +59,5 @@ if __name__ == "__main__":
 """
 example usage commands
 python utilities.py --compare "data/expectations" "data/outputs" 
-python utilities.py --clear "data/comparison_reports" "data/outputs" 
+python utilities.py --clear "data/comparison_reports" "data/outputs --keep-gitkeep" 
 """

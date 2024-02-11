@@ -54,7 +54,6 @@ if __name__ == "__main__":
 
 """
 example usage commands
-python utilities.py --compare "C:\path\to\directory1" "C:\path\to\directory2"
-python utilities.py --clear "C:\path\to\output1" "C:\path\to\output2"
-
+python utilities.py --compare "data/expectations" "data/outputs" 
+python utilities.py --clear "data/comparison_reports" "data/outputs" 
 """

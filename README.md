@@ -5,13 +5,13 @@
 </div>
 
 <p align="center">
-  <a>About</a> &#xa0; | &#xa0; 
-  <a>Setup and Execution Instructions</a> &#xa0;
+  <a About> </a> &#xa0; | &#xa0; 
+  <a Setup and Execution Instructions> </a> &#xa0;
 </p>
 
 <br>
 
-##  About ##
+## About ##
 
 Wiser Tester is a tool designed to automate the testing of wiser by simulating various inputs and comparing the actual outputs against expected ones. This document provides detailed instructions on how to set up and use Wiser Tester for building and running tests, building executables, and analyzing results.
 

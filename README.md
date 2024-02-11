@@ -1,10 +1,7 @@
 <div align="center" id="top"> 
   <h1 align="center">WiserTester</h1>
   &#xa0;
-
 </div>
-
-<br>
 
 ## About ##
 

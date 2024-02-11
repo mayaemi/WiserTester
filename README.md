@@ -52,9 +52,33 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
 
 ### Using the Standalone Executable
   Command Line Arguments: Similar to the Python version, with the .exe extension.\
+
   **Run the exe at Weizmann**\
 
   **Run the exe at Clalit**\
+
+
+### CLI Options for wiser tester
+#### Required Arguments
+
+- **`--host`**: Specifies the host name where the web application is running. This argument is required.
+  - Example: `--host localhost:5000`
+- **`--origin`**: Defines the origin URL to test against. This argument is required.
+  - Example: `--origin http://localhost:5050`
+- **`--username`**: Username for login authentication. This argument is required.
+- **`--password`**: Password for login authentication. This argument is required.
+- **`--config`**: Path to the configuration file containing test settings. This argument is required.
+
+#### Optional Arguments
+
+- **`--mode`**: Determines the testing mode. Options are `all` or `specific`, with `all` being the default.
+- **`--specific_list`**: If `--mode` is `specific`, this specifies a comma-separated list of specific input directories to test.
+- **`--input`**: Path to the directory containing input files for testing. Defaults to `data/inputs`.
+- **`--output`**: Path where output files will be saved. Defaults to `data/outputs`.
+- **`--expected_output`**: Path to the directory containing expected output files for comparison. Defaults to `data/expectations`.
+- **`--compare`**: Enables or disables comparison to previous outputs. Options are `yes` or `no`, with `yes` being the default.
+- **`--comparison_reports`**: Path where comparison reports will be saved. Defaults to `data/comparison_reports`.
+- **`--request_timeout`**: Sets the request timeout in seconds. Defaults to 60 seconds.
 
 
 ### Generate recordings of Queries

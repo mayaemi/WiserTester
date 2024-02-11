@@ -10,3 +10,4 @@ data/outputs/*
 env
 build
 dist
+*.log

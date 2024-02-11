@@ -3,3 +3,4 @@ aiohttp==3.9.1
 python-socketio==5.11.0
 httpx==0.26.0
 deepdiff==6.7.1
+haralyzer==2.4.0

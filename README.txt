@@ -3,7 +3,7 @@ Using python
     creating environment
         python -m venv env
         env\Scripts\activate
-        pip install -r allrequirements.txt
+        pip install -r requirements.txt
     creating new exe
         pyinstaller --onefile wiser_tester.py
     running script
@@ -13,7 +13,7 @@ Using python
                        [--output OUTPUT] [--expected_output EXPECTED_OUTPUT]
                        [--compare {yes,no}] [--comparison_reports COMPARISON_REPORTS]
                        [--comparison_ignore LIST_OF_PATHS (path1,path2,..)][--request_timeout REQUEST_TIMEOUT]
-        example:
+        example command:
         python wiser_tester.py --host 'localhost:5000' --origin 'http://localhost:5050' --username maya --password mayah --config config.json
 
 Using the Standalone Executable:

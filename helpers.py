@@ -32,10 +32,10 @@ def dir_is_same(dir1, dir2):
         print(compared.right_only)
         print(compared.left_only)
         return False
-    for subdir in compared.common_dirs:
-        if not dir_is_same(os.path.join(dir1, subdir), os.path.join(dir2, subdir)):
-            return False
-    return True
+    return all(
+        dir_is_same(os.path.join(dir1, subdir), os.path.join(dir2, subdir))
+        for subdir in compared.common_dirs
+    )
 
 
 def file_is_same(dir1, dir2):
@@ -51,10 +51,10 @@ def file_is_same(dir1, dir2):
         print(compared.right_only)
         print(compared.left_only)
         return False
-    for subdir in compared.common_dirs:
-        if not dir_is_same(os.path.join(dir1, subdir), os.path.join(dir2, subdir)):
-            return False
-    return True
+    return all(
+        dir_is_same(os.path.join(dir1, subdir), os.path.join(dir2, subdir))
+        for subdir in compared.common_dirs
+    )
 
 
 print(dir_is_same("data/inputs", "data/outputs"))

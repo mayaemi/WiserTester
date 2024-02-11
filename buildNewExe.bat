@@ -2,7 +2,7 @@
 SETLOCAL
 
 REM Define directories
-SET "PROJECT_DIR=C:\Users\mayah\Documents\WiserTester"
+SET "PROJECT_DIR=%CD%"
 SET "VENV_DIR=%PROJECT_DIR%\cleanVenv"
 SET "DIST_DIR=%PROJECT_DIR%\dist"
 SET "BUILD_DIR=%PROJECT_DIR%\build"

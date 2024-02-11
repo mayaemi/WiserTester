@@ -1,8 +1,15 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+import os
+
+# Get the current working directory
+current_directory = os.getcwd()
+
+# Assuming 'wiser_tester.py' is in the current directory
+script_path = os.path.join(current_directory, 'wiser_tester.py')
 
 a = Analysis(
-    ['C:\\Users\\mayah\\Documents\\WiserTester\\wiser_tester.py'],
+    [script_path],
     pathex=[],
     binaries=[],
     datas=[],

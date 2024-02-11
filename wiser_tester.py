@@ -17,12 +17,15 @@ CONFIG = {
     "LOGIN_URL": "/login",
     "LOGIN_JSON_HEADERS": {"Accept": "application/json", "Content-Type": "application/json"},
     "LOG_FORMAT": "%(asctime)s | %(levelname)s | %(message)s",
-    "LOG_FILE": "testlog.log",
+    "LOG_FILE": "logs/testlog.log",
 }
 
 
 # Setup logging
 def setup_logging():
+    if not os.path.isdir("logs"):
+        os.mkdir("logs")
+
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO)
 
@@ -304,7 +307,7 @@ class WiserTester:
     @handle_exceptions("Socket connection failed.", True)
     async def connect_to_server(self):
         """Establishes connection to the server."""
-        await self.socket.connect(self.server_path, wait_timeout = 10)
+        await self.socket.connect(self.server_path, wait_timeout=10)
         self.s_id = self.socket.get_sid()
         LOGGER.info(f"sid: {self.s_id}")
 

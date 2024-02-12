@@ -82,6 +82,26 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
   - Example: `data/outputs`
 
 ### Generate recordings of Queries
-**usage** ```python HAR_request_extractor.py --har_path "data\har_files\cohort_builder_example.har" --config config.json --exclude_request_types getData userCohortCatalog```
+
+The `HAR_request_extractor.py` script is designed to process HAR files, extracting POST request data and saving it as JSON files. This can be useful for analyzing and replaying wiser interactions.
+
+### Usage
+#### Single HAR File
+
+**To process specific HAR files:**
+```bash
+python HAR_request_extractor.py --har_paths "path/to/your_file1.har" "path/to/your_file2.har" --config path/to/config.json --exclude_request_types type1 type2
+```
+  - Example: `python HAR_request_extractor.py --har_path "data\har_files\cohort_builder_example.har" --config config.json --exclude_request_types getData userCohortCatalog`
+
+#### To process directory of HAR Files
+**To process all HAR files within a directory:**
+```bash 
+python HAR_request_extractor.py --har_dir "path/to/directory" --config path/to/config.json --exclude_request_types type1 type2
+```
+  - Example: `python HAR_request_extractor.py --har_dir "data/har_files" --config config.json --exclude_request_types getData userCohortCatalog`
+
+**Output**
+Processed files will be saved in the directory specified in the config.json file under inputs_dir, organized by the stem name of each HAR file processed.
 
 <a href="#top">Back to top</a>

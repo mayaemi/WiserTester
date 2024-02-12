@@ -82,6 +82,6 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
   - Example: `data/outputs`
 
 ### Generate recordings of Queries
-
+**usage** ```python HAR_request_extractor.py --har_path "data\har_files\cohort_builder_example.har" --config config.json --exclude_request_types getData userCohortCatalog```
 
 <a href="#top">Back to top</a>

@@ -17,13 +17,13 @@ class HarFileProcessor:
         remove_initial_data (bool): Flag to determine whether to remove initial data requests.
     """
 
-    def __init__(self, har_path, config_path="config.json", remove_initial_data=True):
+    def __init__(self, har_path, config_path="config.json", excluded_request_types=None):
         with open(config_path, "r") as config_file:
             config = json.load(config_file)
         self.har_path = har_path
         self.inputs_dir = config.get("inputs_dir")
         self.page_title = f'{config.get("origin")}/'
-        self.remove_initial_data = remove_initial_data
+        self.excluded_request_types = excluded_request_types or []
         self.logger = self.setup_logger()
 
     def setup_logger(self):
@@ -67,7 +67,6 @@ class HarFileProcessor:
         har_parser = HarParser.from_file(self.har_path)
 
         self.logger.info(har_parser.hostname)
-
         new_rec_dir = self.make_dir()
         pages = {}
         for page in har_parser.pages:
@@ -80,12 +79,9 @@ class HarFileProcessor:
         for entry in entries:
             req_txt = entry.request.text
             json_req = json.loads(req_txt)
-            if self.remove_initial_data:
-                if json_req.get("messageType") not in ["getData", "userCohortCatalog"]:
-                    name = f'{entry.startTime.strftime("%Y%m%d%H%M%S%f")[:-3]}.json'
-                    self.save_request_file(new_rec_dir, json_req, name)
-            else:
-                name = f'{entry.startTime.strftime("%Y%m%d%H%M%S%f")[:-3]}.json'
+            msg_type = json_req.get("messageType")
+            name = f'{entry.startTime.strftime("%m%d%H%M%S%f")[:-3]}_{msg_type}.json'
+            if msg_type not in self.excluded_request_types:
                 self.save_request_file(new_rec_dir, json_req, name)
 
 
@@ -98,14 +94,14 @@ def main():
     parser = argparse.ArgumentParser(description="Process HAR files and extract POST requests.")
     parser.add_argument("--har_path", help="Path to the HAR file")
     parser.add_argument("--config", required=True, help="Path to the configuration file")
-    parser.add_argument("--remove_initial_data", action="store_true", help="Remove initial data requests")
+    parser.add_argument("--exclude_request_types", nargs="*", help="List of request types to exclude from saving", default=[])
 
     args = parser.parse_args()
 
     processor = HarFileProcessor(
         har_path=args.har_path,
         config_path=args.config,
-        remove_initial_data=args.remove_initial_data,
+        excluded_request_types=args.exclude_request_types,
     )
     processor.process_har_file()
 

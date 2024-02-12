@@ -445,7 +445,7 @@ class WiserTester:
         self.current_output_dir = await self.make_output_dir()
         LOGGER.info(f"made directory {self.current_output_dir}")
         lst = os.listdir(inp_dir)
-        lst.sort()
+        files_sorted = sorted(files, key=lambda x: self.extract_timestamp_from_filename(x.name))
         LOGGER.info(lst)
         for filename in lst:
             file_path = os.path.join(inp_dir, filename)
@@ -461,6 +461,12 @@ class WiserTester:
             await self.wait_for_report(request_id)
 
     # Utilities
+    def extract_timestamp_from_filename(self, filename):
+        """Extracts the timestamp from the filename."""
+        # Assuming filename format is "%m%d%H%M%S%f_messageType.json"
+        timestamp_str, _ = filename.split("_", 1)
+        return int(timestamp_str)  # Convert to integer for sorting
+
     async def make_output_dir(self):
         input_folder = os.path.basename(self.current_input_dir)
         path = os.path.join(self.outputs_path, input_folder)

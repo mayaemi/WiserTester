@@ -386,7 +386,7 @@ class WiserTester:
     async def handle_late_report(self, report_id, data):
         inp_dir = self.request_to_input_dir_map.get(report_id)
         input_folder = os.path.basename(inp_dir)
-        path = os.path.join(self.outputs_path, input_folder)
+        path = os.path.join(self.outputs_dir, input_folder)
         LOGGER.warning(f"Late report received for ID {report_id} which should be in {inp_dir}")
         await self.save_output({"data": data, "id": report_id}, path)
 
@@ -421,10 +421,10 @@ class WiserTester:
         """
         if inputs_list is None:  # If inputs_list is not provided, test all inputs
             LOGGER.info("Started testing all inputs")
-            directories = [os.path.join(self.input_path, rec) for rec in os.listdir(self.input_path)]
+            directories = [os.path.join(self.inputs_dir, rec) for rec in os.listdir(self.inputs_dir)]
         else:  # If inputs_list is provided, test only those inputs
             LOGGER.info(f"Started testing inputs {inputs_list}")
-            directories = [os.path.join(self.input_path, rec) for rec in inputs_list]
+            directories = [os.path.join(self.inputs_dir, rec) for rec in inputs_list]
 
         for rec_dir in directories:
             await self.test_input(rec_dir)
@@ -445,9 +445,9 @@ class WiserTester:
         self.current_output_dir = await self.make_output_dir()
         LOGGER.info(f"made directory {self.current_output_dir}")
         lst = os.listdir(inp_dir)
-        files_sorted = sorted(files, key=lambda x: self.extract_timestamp_from_filename(x.name))
-        LOGGER.info(lst)
-        for filename in lst:
+        files_sorted = sorted(lst, key=lambda x: self.extract_timestamp_from_filename(x))
+        LOGGER.info(files_sorted)
+        for filename in files_sorted:
             file_path = os.path.join(inp_dir, filename)
             if file_path.endswith(".json"):
                 await self.process_request_file(file_path)
@@ -469,7 +469,7 @@ class WiserTester:
 
     async def make_output_dir(self):
         input_folder = os.path.basename(self.current_input_dir)
-        path = os.path.join(self.outputs_path, input_folder)
+        path = os.path.join(self.outputs_dir, input_folder)
         if not os.path.isdir(path):
             os.mkdir(path)
             LOGGER.info(f"created dir {path}")
@@ -540,7 +540,7 @@ async def main():
     await tester.start_test(args.specific_list.split(",") if args.mode == "specific" else None)
     if args.compare == "yes":
         LOGGER.info("Comparing outputs")
-        comparison = Compare(args.output, args.expected_output, args.comparison_reports, config["ignore_paths"])
+        comparison = Compare(config["outputs_dir"], args.expected_output, args.comparison_reports, config["ignore_paths"])
         report_paths = comparison.compare_outputs_with_expectations()
         LOGGER.info(f"Comparison reports: {report_paths}")
 

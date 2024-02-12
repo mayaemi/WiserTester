@@ -15,6 +15,7 @@
 Wiser Tester is a tool designed to automate the testing of wiser by simulating various inputs and comparing the actual outputs against expected ones. This document provides detailed instructions on how to set up and use Wiser Tester for building and running tests, building executables, and analyzing results.
 
 <h2 id="prerequisites">Prerequisites</h2>
+
 * Python 3.8 - check with ```python3 --version```
 
 

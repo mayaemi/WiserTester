@@ -59,5 +59,5 @@ if __name__ == "__main__":
 """
 example usage commands
 python utilities.py --compare "data/expectations" "data/outputs" 
-python utilities.py --clear "data/comparison_reports" "data/outputs --keep-gitkeep" 
+python utilities.py --clear "data/comparison_reports" "data/outputs" --keep-gitkeep 
 """

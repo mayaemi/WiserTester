@@ -1,17 +1,24 @@
 <div align="center" id="top"> 
   <h1 align="center">WiserTester</h1>
   &#xa0;
+  <a href="#about">About</a> •
+  <a href="#prerequisites">Prerequisites</a> •
+  <a href="#setup-and-execution-instructions">Setup</a> •
+  <a href="#cli-options">CLI Options</a> •
+  <a href="#config-file">Config File</a> •
+  <a href="#generate-recordings">Generate Recordings</a> •
+  <a href="#post-run-analysis">Analysis</a>
 </div>
 
-## About ##
+<h2 id="about">About</h2>
 
 Wiser Tester is a tool designed to automate the testing of wiser by simulating various inputs and comparing the actual outputs against expected ones. This document provides detailed instructions on how to set up and use Wiser Tester for building and running tests, building executables, and analyzing results.
 
-## Prerequisites
+<h2 id="prerequisites">Prerequisites</h2>
 * Python 3.8 - check with ```python3 --version```
 
 
-## Setup and Execution Instructions ##
+<h2 id="setup-and-execution-instructions">Setup and Execution Instructions</h2>
 
 ### Running the Python Version at Weizmann 
 
@@ -54,7 +61,8 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
   **Run the exe at Clalit**\
 
 
-### CLI Options for wiser tester
+<h2 id="cli-options">CLI Options for wiser tester</h2>
+
 ### Required Arguments
 
 - **`--username`**: Username for login authentication. This argument is required.
@@ -71,7 +79,8 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
 - **`--request_timeout`**: Sets the request timeout in seconds. Defaults to 60 seconds.
 
 
-### config file
+<h2 id="config-file">Config File</h2>
+
 - **`host`**: Specifies the host name where the web application is running.
   - Example: `localhost:5000`
 - **`origin`**: Defines the origin URL to test against.
@@ -81,7 +90,7 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
 - **`outputs_dir`**: Path to the directory containing output files for testing. 
   - Example: `data/outputs`
 
-### Generate recordings of Queries
+<h2 id="generate-recordings">Generate Recordings of Queries</h2>
 
 The `HAR_request_extractor.py` script is designed to process HAR files, extracting POST request data and saving it as JSON files. This can be useful for analyzing and replaying wiser interactions.
 
@@ -104,7 +113,7 @@ python HAR_request_extractor.py --har_dir "path/to/directory" --config path/to/c
 Processed files will be saved in the directory specified in the config.json file under inputs_dir, organized by the stem name of each HAR file processed.
 
 
-## Post-Run Analysis and Error Handling
+<h2 id="post-run-analysis">Post-Run Analysis and Error Handling</h2>
 This section will guide you on investigating comparisons, understanding how errors are handled, and interpreting the log files after running the WiserTester script.
 
 ### Investigating Comparisons

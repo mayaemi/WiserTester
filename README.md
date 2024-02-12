@@ -58,8 +58,24 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
   Command Line Arguments: Similar to the Python version, with the .exe extension.\
 
   **Run the exe at Weizmann**\
+  - **`using only the exe`**
+    ```bash
+        wiser_tester.exe --username USERNAME --password PASSWORD --config config_weizmann.json
+    ```
+  - **`using the batch file`**
+    ```bash
+        .\RunWiserTesterInWeizmann.bat
+    ```
 
   **Run the exe at Clalit**\
+  - **`using only the exe`**
+    ```bash
+        wiser_tester.exe --username USERNAME --password PASSWORD --config config_clalit.json
+    ```
+  - **`using the batch file`**
+    ```bash
+        .\RunWiserTesterInClalit.bat
+    ```
 
 
 <h2 id="cli-options">CLI Options for wiser tester</h2>

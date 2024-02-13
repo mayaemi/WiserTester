@@ -127,6 +127,29 @@ python HAR_request_extractor.py --har_dir "path/to/directory" --config path/to/c
 ```
   - Example: `python HAR_request_extractor.py --har_dir "data/har_files" --config config.json --exclude_request_types getData userCohortCatalog`
 
+### Using the Standalone Executable
+  Command Line Arguments: Similar to the Python version, with the .exe extension.\
+  Make sure config file is set correctly for the environment
+
+  **Run the exe at Weizmann**
+  - ***using only the exe***
+    ```bash
+        HAR_request_extractor.exe --config config_weizmann.json --har_dir "data/har_files"
+    ```
+  - ***using the batch file***
+    ```bash
+        .\RunRequestExtractorWeizmann.bat
+    ```
+
+  **Run the exe at Clalit**
+  - ***using only the exe***
+    ```bash
+        HAR_request_extractor.exe --config config_clalit.json --har_dir "data/har_files"
+    ```
+  - ***using the batch file***
+    ```bash
+        .\RunRequestExtractorClalit.bat
+    ```
 **Output**
 Processed files will be saved in the directory specified in the config.json file under inputs_dir, organized by the stem name of each HAR file processed.
 

@@ -1,0 +1,339 @@
+{
+  "messageType": "chronicDiseaseCohorts.buildCohort",
+  "cohortId": "c_852224647576d5dc7caf30a2f44deb20",
+  "cohort": {
+    "name": "full_cohort",
+    "id": "c_852224647576d5dc7caf30a2f44deb20",
+    "inclusionCriteria": [
+      {
+        "enabled": true,
+        "type": "Cohort",
+        "label": "disease.OBESITY",
+        "track": "disease.OBESITY"
+      },
+      {
+        "enabled": true,
+        "type": "ICD9",
+        "label": "401* ESSENTIAL HYPERTENSION",
+        "track": "icd9_401"
+      },
+      {
+        "enabled": true,
+        "type": "Lab",
+        "label": "101 WBC",
+        "track": "lab.101",
+        "operator": "<",
+        "value": 4500
+      },
+      {
+        "enabled": true,
+        "type": "Med",
+        "label": "HTN BETA BLOCKERS",
+        "track": "WZMN.med.HTN.BETA_BLOCKERS"
+      },
+      {
+        "enabled": true,
+        "type": "Med",
+        "label": "CHAMOMILE",
+        "track": "WZMN.med.CHAMOMILE"
+      },
+      {
+        "enabled": true,
+        "type": "Lab Quantiles",
+        "label": "104 HCT normalized",
+        "track": "lab.104.norm",
+        "operator": ">",
+        "value": 50
+      },
+      {
+        "enabled": true,
+        "type": "ComputedTrack",
+        "label": "GFR MDRD",
+        "track": "lab.scores.GFR_MDRD",
+        "operator": "<",
+        "value": 60
+      },
+      {
+        "enabled": true,
+        "type": "Marker",
+        "label": "bp.high",
+        "track": "marker.bp.high"
+      }
+    ],
+    "requiredFilter": [
+      [
+        {
+          "enabled": true,
+          "type": "ICD9",
+          "label": "250 DIABETES MELLITUS",
+          "stime": -1825,
+          "etime": 1825,
+          "track": "icd9_250_"
+        },
+        [
+          {
+            "enabled": true,
+            "type": "Cohort",
+            "label": "disease.HEART_FAILURE",
+            "stime": -1825,
+            "etime": 365,
+            "track": "disease.HEART_FAILURE"
+          },
+          [
+            {
+              "enabled": true,
+              "type": "Lab Quantiles",
+              "label": "BMI normalized",
+              "stime": -1825,
+              "etime": 365,
+              "track": "marker.BMI.norm"
+            },
+            {
+              "enabled": true,
+              "type": "Marker",
+              "label": "BMI",
+              "stime": -1825,
+              "etime": 365,
+              "track": "marker.BMI",
+              "operator": ">",
+              "value": 20
+            }
+          ]
+        ]
+      ],
+      [
+        {
+          "enabled": true,
+          "type": "Lab",
+          "label": "21500 CHOLESTEROL- LDL",
+          "stime": -1825,
+          "etime": 1825,
+          "track": "lab.21500",
+          "operator": ">",
+          "value": 160
+        },
+        {
+          "enabled": true,
+          "type": "Lab",
+          "label": "21400 CHOLESTEROL- HDL",
+          "stime": -1825,
+          "etime": 1825,
+          "track": "lab.21400",
+          "operator": "<",
+          "value": 40
+        },
+        {
+          "enabled": true,
+          "type": "Med",
+          "label": "BLOOD PRESSURE MONITOR",
+          "stime": -1825,
+          "etime": 0,
+          "track": "WZMN.med.BLOOD_PRESSURE_MONITOR"
+        }
+      ],
+      [
+        {
+          "enabled": true,
+          "type": "Med",
+          "label": "ENALAPRIL",
+          "stime": -1825,
+          "etime": 0,
+          "track": "WZMN.med.ENALAPRIL"
+        },
+        {
+          "enabled": true,
+          "type": "Med",
+          "label": "CAPTOPRIL",
+          "stime": -1825,
+          "etime": 0,
+          "track": "WZMN.med.CAPTOPRIL"
+        },
+        {
+          "enabled": true,
+          "type": "Med",
+          "label": "BENAZEPRIL",
+          "stime": -1825,
+          "etime": 0,
+          "track": "WZMN.med.BENAZEPRIL"
+        }
+      ],
+      {
+        "enabled": true,
+        "type": "age",
+        "minAge": 40,
+        "maxAge": 90
+      },
+      {
+        "enabled": true,
+        "type": "onset",
+        "minTime": {
+          "year": 2002,
+          "month": 1,
+          "day": 1,
+          "hour": 0
+        },
+        "maxTime": {
+          "year": 2017,
+          "month": 1,
+          "day": 1,
+          "hour": 0
+        }
+      },
+      [
+        {
+          "enabled": true,
+          "type": "survival",
+          "time": 365
+        },
+        {
+          "enabled": true,
+          "type": "death",
+          "stime": 365,
+          "etime": 3650
+        },
+        {
+          "enabled": true,
+          "type": "hospitalization",
+          "stime": 0,
+          "etime": 180
+        }
+      ],
+      {
+        "enabled": true,
+        "type": "ComputedTrack",
+        "label": "CHADSVASC score (3-month time resolution)",
+        "stime": -1825,
+        "etime": 1825,
+        "track": "lab.scores.CHADSVASC_3m",
+        "operator": ">",
+        "value": 3
+      }
+    ],
+    "excludeFilter": [
+      {
+        "enabled": true,
+        "type": "Cohort",
+        "label": "disease.DIABETES_WITH_KETOACIDOSIS",
+        "stime": -1825,
+        "etime": 0,
+        "track": "disease.DIABETES_WITH_KETOACIDOSIS"
+      },
+      {
+        "enabled": true,
+        "type": "ICD9",
+        "label": "250.2* DIABETES WITH HYPEROSMOLAR COMA",
+        "stime": -1825,
+        "etime": 0,
+        "track": "icd9_250.2"
+      },
+      {
+        "enabled": true,
+        "type": "Lab",
+        "label": "21200 CHOLESTEROL",
+        "stime": -1825,
+        "etime": 0,
+        "track": "lab.21200",
+        "operator": "<",
+        "value": 150
+      },
+      {
+        "enabled": true,
+        "type": "age",
+        "minAge": 80,
+        "maxAge": 90
+      },
+      {
+        "enabled": true,
+        "type": "Med",
+        "label": "BABY PASTE CD",
+        "stime": -1825,
+        "etime": 0,
+        "track": "WZMN.med.BABY_PASTE_CD"
+      },
+      {
+        "enabled": true,
+        "type": "Med",
+        "label": "MIZOLASTINE",
+        "stime": -1825,
+        "etime": 0,
+        "track": "WZMN.med.MIZOLASTINE"
+      },
+      {
+        "enabled": true,
+        "type": "onset",
+        "minTime": {
+          "year": 2002,
+          "month": 1,
+          "day": 1,
+          "hour": 0
+        },
+        "maxTime": {
+          "year": 2003,
+          "month": 1,
+          "day": 1,
+          "hour": 0
+        }
+      },
+      [
+        [
+          {
+            "enabled": true,
+            "type": "death",
+            "stime": 0,
+            "etime": 400
+          },
+          {
+            "enabled": true,
+            "type": "survival",
+            "time": 10950
+          }
+        ],
+        {
+          "enabled": true,
+          "type": "hospitalization",
+          "stime": 0,
+          "etime": 7
+        }
+      ],
+      {
+        "enabled": true,
+        "type": "Lab Quantiles",
+        "label": "9904 SPECIFIC GRAVITY normalized",
+        "stime": -1825,
+        "etime": 0,
+        "track": "lab.9904.norm"
+      },
+      {
+        "enabled": true,
+        "type": "Marker",
+        "label": "BMI",
+        "stime": -1825,
+        "etime": 0,
+        "track": "marker.BMI",
+        "operator": "=",
+        "value": 15
+      },
+      {
+        "enabled": true,
+        "type": "ComputedTrack",
+        "label": "Corrected Calcium",
+        "stime": -1825,
+        "etime": 1825,
+        "track": "lab.scores.corrected_ca",
+        "operator": "<",
+        "value": 8
+      }
+    ],
+    "adjustOnsetTime": [
+      {
+        "enabled": true,
+        "type": "marker",
+        "track": "marker.bp.high",
+        "label": "bp.high",
+        "stime": 0,
+        "etime": 365
+      }
+    ],
+    "isChronic": true
+  }
+}

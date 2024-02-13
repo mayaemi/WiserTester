@@ -1,0 +1,34 @@
+{
+  "messageType": "chronicDiseaseCohorts.genReport",
+  "cohortId": "c_852224647576d5dc7caf30a2f44deb20",
+  "report": {
+    "type": "age_gender",
+    "timeScope": [
+      {
+        "day": 1,
+        "month": 1,
+        "year": 2004
+      },
+      {
+        "day": 1,
+        "month": 1,
+        "year": 2018
+      }
+    ],
+    "ageBreaks": [
+      0,
+      20,
+      30,
+      40,
+      50,
+      60,
+      70,
+      80,
+      120
+    ],
+    "colors": {
+      "male": "#3366cc",
+      "female": "#dc3912"
+    }
+  }
+}

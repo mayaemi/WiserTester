@@ -80,7 +80,11 @@ class HarFileProcessor:
             req_txt = entry.request.text
             json_req = json.loads(req_txt)
             msg_type = json_req.get("messageType")
-            name = f'{entry.startTime.strftime("%m%d%H%M%S%f")[:-3]}_{msg_type}.json'
+            if "genReport" in msg_type:
+                report_type = json_req.get("report").get("type")
+                name = f'{entry.startTime.strftime("%m%d%H%M%S%f")[:-3]}_{msg_type}_{report_type}.json'
+            else:
+                name = f'{entry.startTime.strftime("%m%d%H%M%S%f")[:-3]}_{msg_type}.json'
             if msg_type not in self.excluded_request_types:
                 self.save_request_file(new_rec_dir, json_req, name)
 

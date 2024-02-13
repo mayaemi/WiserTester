@@ -1,0 +1,729 @@
+{
+  "cohort": {
+    "inclusionCriteria": [
+      {
+        "enabled": true,
+        "type": "cohort",
+        "track": "disease.OBESITY",
+        "label": "OBESITY"
+      },
+      {
+        "enabled": true,
+        "type": "icd9",
+        "track": "icd9_401",
+        "label": "401* ESSENTIAL HYPERTENSION"
+      },
+      {
+        "enabled": true,
+        "type": "lab",
+        "track": "lab.101",
+        "label": "101 WBC",
+        "operator": "<",
+        "value": 4500
+      },
+      {
+        "enabled": true,
+        "type": "med",
+        "track": "WZMN.med.HTN.BETA_BLOCKERS",
+        "label": "HTN BETA BLOCKERS"
+      },
+      {
+        "enabled": true,
+        "type": "track",
+        "track": "WZMN.med.CHAMOMILE",
+        "label": "WZMN.med.CHAMOMILE"
+      },
+      {
+        "enabled": true,
+        "type": "lab quantiles",
+        "track": "lab.104.norm",
+        "label": "104 HCT normalized",
+        "operator": ">",
+        "value": 50
+      },
+      {
+        "enabled": true,
+        "type": "computedtrack",
+        "track": "lab.scores.GFR_MDRD",
+        "label": "GFR MDRD",
+        "operator": "<",
+        "value": 60
+      },
+      {
+        "enabled": true,
+        "type": "marker",
+        "track": "marker.bp.high",
+        "label": "bp.high"
+      }
+    ],
+    "requiredFilter": [
+      [
+        {
+          "enabled": true,
+          "type": "icd9",
+          "track": "icd9_250_",
+          "label": "250 DIABETES MELLITUS",
+          "stime": -1825,
+          "etime": 1825
+        },
+        [
+          {
+            "enabled": true,
+            "type": "cohort",
+            "track": "disease.HEART_FAILURE",
+            "label": "HEART_FAILURE",
+            "stime": -1825,
+            "etime": 365
+          },
+          [
+            {
+              "enabled": true,
+              "type": "lab quantiles",
+              "track": "marker.BMI.norm",
+              "label": "BMI normalized",
+              "stime": -1825,
+              "etime": 365
+            },
+            {
+              "enabled": true,
+              "type": "marker",
+              "track": "marker.BMI",
+              "label": "BMI",
+              "stime": -1825,
+              "etime": 365,
+              "operator": ">",
+              "value": 20
+            }
+          ]
+        ]
+      ],
+      [
+        {
+          "enabled": true,
+          "type": "lab",
+          "track": "lab.21500",
+          "label": "21500 CHOLESTEROL- LDL",
+          "stime": -1825,
+          "etime": 1825,
+          "operator": ">",
+          "value": 160
+        },
+        {
+          "enabled": true,
+          "type": "lab",
+          "track": "lab.21400",
+          "label": "21400 CHOLESTEROL- HDL",
+          "stime": -1825,
+          "etime": 1825,
+          "operator": "<",
+          "value": 40
+        },
+        {
+          "enabled": true,
+          "type": "track",
+          "track": "WZMN.med.BLOOD_PRESSURE_MONITOR",
+          "label": "WZMN.med.BLOOD_PRESSURE_MONITOR",
+          "stime": -1825,
+          "etime": 0
+        }
+      ],
+      [
+        {
+          "enabled": true,
+          "type": "med",
+          "track": "WZMN.med.ENALAPRIL",
+          "label": "ENALAPRIL",
+          "stime": -1825,
+          "etime": 0
+        },
+        {
+          "enabled": true,
+          "type": "med",
+          "track": "WZMN.med.CAPTOPRIL",
+          "label": "CAPTOPRIL",
+          "stime": -1825,
+          "etime": 0
+        },
+        {
+          "enabled": true,
+          "type": "med",
+          "track": "WZMN.med.BENAZEPRIL",
+          "label": "BENAZEPRIL",
+          "stime": -1825,
+          "etime": 0
+        }
+      ],
+      {
+        "enabled": true,
+        "type": "age",
+        "minAge": 40,
+        "maxAge": 90,
+        "binSize": null
+      },
+      {
+        "enabled": true,
+        "type": "onset",
+        "minTime": {
+          "day": 1,
+          "month": 1,
+          "year": 2002
+        },
+        "maxTime": {
+          "day": 1,
+          "month": 1,
+          "year": 2017
+        },
+        "binSize": null
+      },
+      [
+        {
+          "enabled": true,
+          "type": "survival",
+          "time": 365
+        },
+        {
+          "enabled": true,
+          "type": "death",
+          "stime": 365,
+          "etime": 3650
+        },
+        {
+          "enabled": true,
+          "type": "hospitalization",
+          "stime": 0,
+          "etime": 180
+        }
+      ],
+      {
+        "enabled": true,
+        "type": "computedtrack",
+        "track": "lab.scores.CHADSVASC_3m",
+        "label": "CHADSVASC score (3-month time resolution)",
+        "stime": -1825,
+        "etime": 1825,
+        "operator": ">",
+        "value": 3
+      }
+    ],
+    "excludeFilter": [
+      {
+        "enabled": true,
+        "type": "cohort",
+        "track": "disease.DIABETES_WITH_KETOACIDOSIS",
+        "label": "DIABETES_WITH_KETOACIDOSIS",
+        "stime": -1825,
+        "etime": 0
+      },
+      {
+        "enabled": true,
+        "type": "icd9",
+        "track": "icd9_250.2",
+        "label": "250.2* DIABETES WITH HYPEROSMOLAR COMA",
+        "stime": -1825,
+        "etime": 0
+      },
+      {
+        "enabled": true,
+        "type": "lab",
+        "track": "lab.21200",
+        "label": "21200 CHOLESTEROL",
+        "stime": -1825,
+        "etime": 0,
+        "operator": "<",
+        "value": 150
+      },
+      {
+        "enabled": true,
+        "type": "age",
+        "minAge": 80,
+        "maxAge": 90,
+        "binSize": null
+      },
+      {
+        "enabled": true,
+        "type": "track",
+        "track": "WZMN.med.BABY_PASTE_CD",
+        "label": "WZMN.med.BABY_PASTE_CD",
+        "stime": -1825,
+        "etime": 0
+      },
+      {
+        "enabled": true,
+        "type": "med",
+        "track": "WZMN.med.MIZOLASTINE",
+        "label": "MIZOLASTINE",
+        "stime": -1825,
+        "etime": 0
+      },
+      {
+        "enabled": true,
+        "type": "onset",
+        "minTime": {
+          "day": 1,
+          "month": 1,
+          "year": 2002
+        },
+        "maxTime": {
+          "day": 1,
+          "month": 1,
+          "year": 2003
+        },
+        "binSize": null
+      },
+      [
+        [
+          {
+            "enabled": true,
+            "type": "death",
+            "stime": 0,
+            "etime": 400
+          },
+          {
+            "enabled": true,
+            "type": "survival",
+            "time": 10950
+          }
+        ],
+        {
+          "enabled": true,
+          "type": "hospitalization",
+          "stime": 0,
+          "etime": 7
+        }
+      ],
+      {
+        "enabled": true,
+        "type": "lab quantiles",
+        "track": "lab.9904.norm",
+        "label": "9904 SPECIFIC GRAVITY normalized",
+        "stime": -1825,
+        "etime": 0
+      },
+      {
+        "enabled": true,
+        "type": "marker",
+        "track": "marker.BMI",
+        "label": "BMI",
+        "stime": -1825,
+        "etime": 0,
+        "operator": "=",
+        "value": 15
+      },
+      {
+        "enabled": true,
+        "type": "computedtrack",
+        "track": "lab.scores.corrected_ca",
+        "label": "Corrected Calcium",
+        "stime": -1825,
+        "etime": 1825,
+        "operator": "<",
+        "value": 8
+      }
+    ],
+    "adjustOnsetTime": [
+      {
+        "enabled": true,
+        "type": "marker",
+        "track": "marker.bp.high",
+        "label": "bp.high",
+        "stime": 0,
+        "etime": 365
+      }
+    ],
+    "isChronic": true,
+    "name": "full_cohort",
+    "id": "c_b8ca568afada13ec801e73a26d99f99c",
+    "edited": false,
+    "version": 3,
+    "ageGender": {
+      "specs": {
+        "timeScope": [
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2003
+          },
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2018
+          }
+        ],
+        "ageBreaks": [
+          0,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          120
+        ],
+        "colors": {
+          "male": "#3366cc",
+          "female": "#dc3912"
+        }
+      }
+    },
+    "yearGender": {
+      "specs": {
+        "timeScope": [
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2003
+          },
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2018
+          }
+        ],
+        "colors": {
+          "male": "#3366cc",
+          "female": "#dc3912"
+        }
+      }
+    },
+    "incidenceRate": {
+      "specs": {
+        "timeScope": [
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2003
+          },
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2018
+          }
+        ],
+        "ageBreaks": [
+          0,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          120
+        ],
+        "colors": {
+          "male": "#3366cc",
+          "female": "#dc3912"
+        },
+        "background": "c_7d76ae34df881364c7fd689b00949958"
+      }
+    },
+    "prevalence": {
+      "specs": {
+        "timeScope": [
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2003
+          },
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2018
+          }
+        ],
+        "ageBreaks": [
+          0,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          120
+        ],
+        "colors": {
+          "male": "#3366cc",
+          "female": "#dc3912"
+        },
+        "background": "c_7d76ae34df881364c7fd689b00949958"
+      }
+    },
+    "survivalGeneral": {
+      "specs": {
+        "timeRange": [
+          0,
+          5
+        ],
+        "timeScope": [
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2003
+          },
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2018
+          }
+        ],
+        "ageBreaks": [
+          60,
+          70
+        ],
+        "bgN": 10000,
+        "colors": {
+          "case.male": "#3366cc",
+          "case.female": "#dc3912",
+          "control.male": "#6c7381",
+          "control.female": "#595656"
+        },
+        "background": "c_7d76ae34df881364c7fd689b00949958"
+      }
+    },
+    "survival": {
+      "specs": {
+        "timeRange": [
+          0,
+          5
+        ],
+        "timeScope": [
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2004
+          },
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2018
+          }
+        ],
+        "ageBreaks": [
+          0,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          120
+        ],
+        "bgN": 10000,
+        "colors": {
+          "case.male": "#3366cc",
+          "case.female": "#dc3912",
+          "control.male": "#6c7381",
+          "control.female": "#595656"
+        },
+        "background": "c_7d76ae34df881364c7fd689b00949958"
+      }
+    },
+    "relativeRisk": {
+      "specs": {
+        "timeScope": [
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2004
+          },
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2018
+          }
+        ],
+        "ageBreaks": [
+          60,
+          70
+        ],
+        "timeWindow": [
+          -1825,
+          -1
+        ],
+        "minRiskCount": 10,
+        "minPredCount": 10,
+        "background": "c_7d76ae34df881364c7fd689b00949958"
+      }
+    },
+    "predispositionRisk": {
+      "specs": {
+        "timeScope": [
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2004
+          },
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2018
+          }
+        ],
+        "ageBreaks": [
+          60,
+          70
+        ],
+        "timeWindow": [
+          -1095,
+          -1
+        ],
+        "minRiskCount": 10,
+        "minPredCount": 10,
+        "background": "c_7d76ae34df881364c7fd689b00949958"
+      }
+    },
+    "lab": {
+      "specs": {
+        "timeScope": [
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2004
+          },
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2018
+          }
+        ],
+        "timeBreaks": [
+          -1825,
+          -1460,
+          -1095,
+          -730,
+          -365,
+          0,
+          365,
+          730,
+          1095,
+          1460,
+          1825
+        ],
+        "ageBreaks": [
+          60,
+          70
+        ],
+        "colors": {
+          "case.male": "#3366cc",
+          "case.female": "#dc3912",
+          "control.male": "#6c7381",
+          "control.female": "#595656"
+        },
+        "labs": [],
+        "background": "c_7d76ae34df881364c7fd689b00949958"
+      }
+    },
+    "tracks": {
+      "specs": {
+        "timeScope": [
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2004
+          },
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2018
+          }
+        ],
+        "timeBreaks": [
+          -1825,
+          -1460,
+          -1095,
+          -730,
+          -365,
+          0,
+          365,
+          730,
+          1095,
+          1460,
+          1825
+        ],
+        "ageBreaks": [
+          60,
+          70
+        ],
+        "colors": {
+          "case.male": "#3366cc",
+          "case.female": "#dc3912",
+          "control.male": "#6c7381",
+          "control.female": "#595656"
+        },
+        "tracks": [],
+        "background": "c_7d76ae34df881364c7fd689b00949958"
+      }
+    },
+    "medication": {
+      "specs": {
+        "type": "medication",
+        "timeScope": [
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2004
+          },
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2018
+          }
+        ],
+        "minAge": 60,
+        "maxAge": 70,
+        "timeWindow": [
+          0,
+          1825
+        ],
+        "meds": []
+      }
+    },
+    "labClusters": {
+      "specs": {
+        "timeScope": [
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2004
+          },
+          {
+            "day": 1,
+            "month": 1,
+            "year": 2018
+          }
+        ],
+        "minAge": 60,
+        "maxAge": 70,
+        "timeBreaks": [
+          -1460,
+          -1095,
+          -730,
+          -365,
+          0,
+          365
+        ],
+        "colors": {
+          "low": "#3366cc",
+          "high": "#dc3912"
+        },
+        "k": 7,
+        "labs": [],
+        "trend": [
+          null,
+          null
+        ],
+        "survivalTimeRange": [
+          0,
+          5
+        ],
+        "survivalAgeBreaks": [
+          60,
+          70
+        ]
+      }
+    }
+  }
+}

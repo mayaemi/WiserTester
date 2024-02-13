@@ -127,7 +127,7 @@ python HAR_request_extractor.py --har_dir "path/to/directory" --config path/to/c
 ```
   - Example: `python HAR_request_extractor.py --har_dir "data/har_files" --config config.json --exclude_request_types getData userCohortCatalog`
 
-### Using the Standalone Executable
+#### Using the Standalone Executable
   Command Line Arguments: Similar to the Python version, with the .exe extension.\
   Make sure config file is set correctly for the environment
 

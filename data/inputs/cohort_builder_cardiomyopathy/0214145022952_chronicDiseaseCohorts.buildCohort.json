@@ -1,0 +1,337 @@
+{
+  "messageType": "chronicDiseaseCohorts.buildCohort",
+  "cohortId": "c_2d5754f87a87eb09246c40da9261fd8e",
+  "cohort": {
+    "name": "cardiomyopathy_cohort",
+    "id": "c_2d5754f87a87eb09246c40da9261fd8e",
+    "inclusionCriteria": [
+      {
+        "enabled": true,
+        "type": "Cohort",
+        "label": "disease.CARDIOMYOPATHY",
+        "track": "disease.CARDIOMYOPATHY"
+      },
+      {
+        "enabled": true,
+        "type": "ICD9",
+        "label": "428.0* CONGESTIVE HEART FAILURE",
+        "track": "icd9_428.0"
+      },
+      {
+        "enabled": true,
+        "type": "Lab",
+        "label": "21500 CHOLESTEROL- LDL",
+        "track": "lab.21500",
+        "operator": ">",
+        "value": 130
+      },
+      {
+        "enabled": true,
+        "type": "Med",
+        "label": "HTN ACEI",
+        "track": "WZMN.med.HTN.ACEI"
+      },
+      {
+        "enabled": true,
+        "type": "Med",
+        "label": "PRAVASTATIN",
+        "track": "WZMN.med.PRAVASTATIN"
+      },
+      {
+        "enabled": true,
+        "type": "Med",
+        "label": "ROSUVASTATIN",
+        "track": "WZMN.med.ROSUVASTATIN"
+      },
+      {
+        "enabled": true,
+        "type": "Med",
+        "label": "ATORVASTATIN",
+        "track": "WZMN.med.ATORVASTATIN"
+      },
+      {
+        "enabled": true,
+        "type": "Lab Quantiles",
+        "label": "105 PLT normalized",
+        "track": "lab.105.norm",
+        "operator": "<",
+        "value": 40
+      },
+      {
+        "enabled": true,
+        "type": "Marker",
+        "label": "BMI",
+        "track": "marker.BMI"
+      },
+      {
+        "enabled": true,
+        "type": "Marker",
+        "label": "bp.high",
+        "track": "marker.bp.high"
+      }
+    ],
+    "requiredFilter": [
+      [
+        [
+          [
+            {
+              "enabled": true,
+              "type": "Lab",
+              "label": "20100 GLUCOSE- BLOOD",
+              "stime": -1825,
+              "etime": 365,
+              "track": "lab.20100",
+              "operator": ">",
+              "value": 100
+            },
+            {
+              "enabled": true,
+              "type": "Lab Quantiles",
+              "label": "20100 GLUCOSE- BLOOD normalized",
+              "stime": -1825,
+              "etime": 365,
+              "track": "lab.20100.norm"
+            }
+          ],
+          {
+            "enabled": true,
+            "type": "ICD9",
+            "label": "414.2* CHRONIC TOTAL OCCLUSION OF CORONARY ARTERY",
+            "stime": -1825,
+            "etime": 1825,
+            "track": "icd9_414.2"
+          }
+        ],
+        {
+          "enabled": true,
+          "type": "Cohort",
+          "label": "disease.ATRIAL_FIBRILLATION_AND_FLUTTER",
+          "stime": -1825,
+          "etime": 1825,
+          "track": "disease.ATRIAL_FIBRILLATION_AND_FLUTTER"
+        }
+      ],
+      [
+        {
+          "enabled": true,
+          "type": "Lab",
+          "label": "21300 TRIGLYCERIDES",
+          "stime": -1825,
+          "etime": 1825,
+          "track": "lab.21300",
+          "operator": ">",
+          "value": 150
+        },
+        {
+          "enabled": true,
+          "type": "Lab",
+          "label": "21400 CHOLESTEROL- HDL",
+          "stime": -1825,
+          "etime": 1825,
+          "track": "lab.21400",
+          "operator": ">",
+          "value": 60
+        },
+        {
+          "enabled": true,
+          "type": "Med",
+          "label": "FLECAINIDE",
+          "stime": -1825,
+          "etime": 0,
+          "track": "WZMN.med.FLECAINIDE"
+        }
+      ],
+      [
+        {
+          "enabled": true,
+          "type": "Med",
+          "label": "DIGOXIN",
+          "stime": -1825,
+          "etime": 0,
+          "track": "WZMN.med.DIGOXIN"
+        },
+        {
+          "enabled": true,
+          "type": "Med",
+          "label": "HTN DIURETICS",
+          "stime": -1825,
+          "etime": 0,
+          "track": "WZMN.med.HTN.DIURETICS"
+        },
+        {
+          "enabled": true,
+          "type": "Med",
+          "label": "HTN BETA BLOCKERS",
+          "stime": -1825,
+          "etime": 0,
+          "track": "WZMN.med.HTN.BETA_BLOCKERS"
+        }
+      ],
+      {
+        "enabled": true,
+        "type": "age",
+        "minAge": 40,
+        "maxAge": 90
+      },
+      {
+        "enabled": true,
+        "type": "onset",
+        "minTime": {
+          "year": 2002,
+          "month": 1,
+          "day": 1,
+          "hour": 0
+        },
+        "maxTime": {
+          "year": 2018,
+          "month": 1,
+          "day": 1,
+          "hour": 0
+        }
+      },
+      [
+        {
+          "enabled": true,
+          "type": "survival",
+          "time": 365
+        },
+        {
+          "enabled": true,
+          "type": "death",
+          "stime": 365,
+          "etime": 3650
+        },
+        {
+          "enabled": true,
+          "type": "hospitalization",
+          "stime": 0,
+          "etime": 180
+        }
+      ],
+      {
+        "enabled": true,
+        "type": "ComputedTrack",
+        "label": "CHADSVASC score (3-month time resolution)",
+        "stime": -1825,
+        "etime": 1825,
+        "track": "lab.scores.CHADSVASC_3m",
+        "operator": ">",
+        "value": 2
+      }
+    ],
+    "excludeFilter": [
+      {
+        "enabled": true,
+        "type": "Cohort",
+        "label": "disease.PERIPHERAL_VASCULAR_DISEASE_UNSPECIFIED",
+        "stime": -1825,
+        "etime": 0,
+        "track": "disease.PERIPHERAL_VASCULAR_DISEASE_UNSPECIFIED"
+      },
+      {
+        "enabled": true,
+        "type": "ICD9",
+        "label": "440.2* ATHEROSCLEROSIS OF ARTERIES OF THE EXTREMITIES",
+        "stime": -1825,
+        "etime": 0,
+        "track": "icd9_440.2"
+      },
+      {
+        "enabled": true,
+        "type": "Lab",
+        "label": "21200 CHOLESTEROL",
+        "stime": -1825,
+        "etime": 0,
+        "track": "lab.21200",
+        "operator": ">",
+        "value": 240
+      },
+      {
+        "enabled": true,
+        "type": "Med",
+        "label": "DABIGATRAN ETEXILATE",
+        "stime": -1825,
+        "etime": 0,
+        "track": "WZMN.med.DABIGATRAN_ETEXILATE"
+      },
+      {
+        "enabled": true,
+        "type": "onset",
+        "minTime": {
+          "year": 2016,
+          "month": 1,
+          "day": 1,
+          "hour": 0
+        },
+        "maxTime": {
+          "year": 2018,
+          "month": 3,
+          "day": 12,
+          "hour": 0
+        }
+      },
+      [
+        [
+          {
+            "enabled": true,
+            "type": "survival",
+            "time": 10950
+          },
+          {
+            "enabled": true,
+            "type": "death",
+            "stime": 0,
+            "etime": 400
+          }
+        ],
+        {
+          "enabled": true,
+          "type": "hospitalization",
+          "stime": 0,
+          "etime": 7
+        },
+        {
+          "enabled": true,
+          "type": "Marker",
+          "label": "BMI",
+          "stime": -1825,
+          "etime": 0,
+          "track": "marker.BMI",
+          "operator": "=",
+          "value": 18
+        }
+      ],
+      {
+        "enabled": true,
+        "type": "Lab Quantiles",
+        "label": "520706 NON-HDL_CHOLESTEROL normalized",
+        "stime": -1825,
+        "etime": 0,
+        "track": "lab.520706.norm"
+      },
+      {
+        "enabled": true,
+        "type": "ComputedTrack",
+        "label": "GFR MDRD",
+        "stime": -1825,
+        "etime": 1825,
+        "track": "lab.scores.GFR_MDRD",
+        "operator": "<",
+        "value": 60
+      }
+    ],
+    "adjustOnsetTime": [
+      {
+        "enabled": true,
+        "type": "computedtrack",
+        "track": "lab.scores.CHADSVASC_3m",
+        "label": "CHADSVASC score (3-month time resolution)",
+        "stime": 0,
+        "etime": 365,
+        "operator": ">",
+        "value": 2
+      }
+    ],
+    "isChronic": true
+  }
+}

@@ -9,8 +9,11 @@ from pathlib import Path
 import socketio
 import httpx
 import logging
+from logging.handlers import RotatingFileHandler
 import argparse
 from deepdiff import DeepDiff, Delta
+from enum import Enum, auto
+import signal
 
 # Configuration and Constants
 CONFIG = {
@@ -22,12 +25,12 @@ CONFIG = {
 
 
 # Setup logging
-def setup_logging():
+def setup_logging(level=logging.INFO):
     if not os.path.isdir("logs"):
         os.mkdir("logs")
 
     logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
+    logger.setLevel(level)
 
     formatter = logging.Formatter(CONFIG["LOG_FORMAT"])
 
@@ -97,7 +100,7 @@ async def login(username, password, server_path):
     """
     url = f"{server_path}{CONFIG['LOGIN_URL']}"
     data = {"username": username, "password": password}
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=httpx.Timeout(10, read=60)) as client:
         response = await client.post(url, json=data, headers=CONFIG["LOGIN_JSON_HEADERS"])
         response.raise_for_status()
         return response, response.cookies
@@ -219,7 +222,7 @@ class Compare:
 
 class WiserTester:
 
-    def __init__(self, username, password, request_timeout, config):
+    def __init__(self, username, password, request_timeout, config, exclude_inputs):
         """
         Initializes the WiserTester instance.
         Args:
@@ -236,7 +239,7 @@ class WiserTester:
         self.origin = config["origin"]
         self.inputs_dir = config["inputs_dir"]
         self.outputs_dir = config["outputs_dir"]
-
+        self.exclude_inputs = exclude_inputs
         self.server_path = f"http://{self.host}/"
         self.request_timeout = request_timeout  # seconds
         self.config = config
@@ -435,6 +438,7 @@ class WiserTester:
 
     @handle_exceptions("An error occurred during testing of specific input", False)
     async def test_input(self, inp_dir):
+        # sourcery skip: merge-else-if-into-elif, swap-if-else-branches
         """
         Tests an input directory.
         Args:
@@ -448,9 +452,12 @@ class WiserTester:
         files_sorted = sorted(lst, key=lambda x: self.extract_timestamp_from_filename(x))
         LOGGER.info(files_sorted)
         for filename in files_sorted:
-            file_path = os.path.join(inp_dir, filename)
-            if file_path.endswith(".json"):
-                await self.process_request_file(file_path)
+            if filename not in self.exclude_inputs:
+                file_path = os.path.join(inp_dir, filename)
+                if file_path.endswith(".json"):
+                    await self.process_request_file(file_path)
+            else:
+                LOGGER.info(f"ignoring {filename}")
         LOGGER.info(f"all requests completed for {inp_dir}")
 
     async def process_request_file(self, file_path):
@@ -504,6 +511,11 @@ class WiserTester:
             LOGGER.info("HTTP client closed.")
 
 
+class TestMode(Enum):
+    ALL = auto()
+    SPECIFIC = auto()
+
+
 def parse_args():
     """
     The function `parse_args()` is used to parse command line arguments for running the Wiser Tester
@@ -516,29 +528,21 @@ def parse_args():
     parser.add_argument("--password", type=str, required=True, help="Password for login")
     parser.add_argument("--config", type=str, required=True, help="Path to the configuration file")
 
-    parser.add_argument("--mode", type=str, choices=["all", "specific"], default="all", help="Testing mode: 'all' or 'specific'")
+    parser.add_argument("--mode", type=TestMode, choices=list(TestMode), help="Testing mode")
     parser.add_argument("--specific_list", type=str, help="specific list of input directories")
     parser.add_argument("--expected_output", type=str, default="data/expectations", help="path to expectations")
-    parser.add_argument(
-        "--compare", type=str, choices=["yes", "no"], default="yes", help="Compare to previous outputs: 'yes' or 'no'"
-    )
+    parser.add_argument("--no_comparison", action="store_true", help="Don't Compare to previous outputs")
     parser.add_argument("--comparison_reports", type=str, default="data/comparison_reports", help="path to comparison reports")
     parser.add_argument("--request_timeout", type=int, default=60, help="request timeout in seconds")
+    parser.add_argument("--exclude_inputs", nargs="+", default=[], help="List of input files to exclude from sending")
 
     return parser.parse_args()
 
 
-@handle_exceptions("An unexpected error occurred", False)
-async def main():
-    args = parse_args()
-
-    # Load the configuration file
-    config = load_json_file(args.config)
-    LOGGER.info("loaded config file ")
-    tester = WiserTester(args.username, args.password, args.request_timeout, config)
-
-    await tester.start_test(args.specific_list.split(",") if args.mode == "specific" else None)
-    if args.compare == "yes":
+@handle_exceptions("An unexpected error occurred", True)
+async def main(config, args, tester):
+    await tester.start_test(args.specific_list.split(",") if args.mode == TestMode.SPECIFIC else None)
+    if not args.no_comparison:
         LOGGER.info("Comparing outputs")
         comparison = Compare(config["outputs_dir"], args.expected_output, args.comparison_reports, config["ignore_paths"])
         report_paths = comparison.compare_outputs_with_expectations()
@@ -547,8 +551,31 @@ async def main():
     await tester.close()
 
 
+async def shutdown(loop, tester):
+    """Graceful shutdown."""
+    LOGGER.info("Closing client sessions...")
+    await tester.close()
+
+    LOGGER.info("Cancelling outstanding tasks...")
+    tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
+    [task.cancel() for task in tasks]
+
+    await asyncio.gather(*tasks, return_exceptions=True)
+    loop.stop()
+    LOGGER.info("Shutdown complete.")
+
+
 if __name__ == "__main__":
+    args = parse_args()
+    # Load the configuration file
+    config = load_json_file(args.config)
+    LOGGER.info("loaded config file ")
+    tester = WiserTester(args.username, args.password, args.request_timeout, config, args.exclude_inputs)
+    loop = asyncio.get_event_loop()
     try:
-        asyncio.run(main())
+        loop.run_until_complete(main(config, args, tester))
     except KeyboardInterrupt:
-        print("interrupted")
+        LOGGER.error("KeyboardInterrupt")
+        loop.run_until_complete(shutdown(loop, tester))
+    finally:
+        loop.close()

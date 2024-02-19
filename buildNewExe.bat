@@ -6,7 +6,7 @@ SET "PROJECT_DIR=%CD%"
 SET "VENV_DIR=%PROJECT_DIR%\cleanVenv"
 SET "DIST_DIR=%PROJECT_DIR%\dist"
 SET "BUILD_DIR=%PROJECT_DIR%\build"
-SET "ENTRY_SCRIPT=HAR_request_extractor.py"
+SET "ENTRY_SCRIPT=wiser_tester.py"
 SET "PYTHON_EXE=python" 
 REM Specify the full path if python is not in PATH, e.g., SET "PYTHON_EXE=C:\Path\To\Python\python.exe"
 

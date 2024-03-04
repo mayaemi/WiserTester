@@ -1,0 +1,390 @@
+{
+  "messageType": "chronicDiseaseCohorts.buildCohort",
+  "cohortId": "c_56bef3eb6a1907d71a3fee360940931b",
+  "cohort": {
+    "name": "DIABETES_WITH_OTHER_SPECIFIED_MANIFESTATIONS",
+    "id": "c_56bef3eb6a1907d71a3fee360940931b",
+    "inclusionCriteria": [
+      {
+        "enabled": true,
+        "type": "ICD9",
+        "label": "250.8* DIABETES WITH OTHER SPECIFIED MANIFESTATIONS",
+        "track": "icd9_250.8"
+      }
+    ],
+    "requiredFilter": [],
+    "excludeFilter": [
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "276.2* ACIDOSIS",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_276.2"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "518.4* ACUTE EDEMA OF LUNG, UNSPECIFIED",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_518.4"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "410.4* ACUTE MYOCARDIAL INFARCTION OF OTHER INFERIOR WALL",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_410.4"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "730.0* ACUTE OSTEOMYELITIS",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_730.0"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "584.9* ACUTE RENAL FAILURE, UNSPECIFIED",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_584.9"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "V56.0* AFTERCARE INVOLVING EXTRACORPOREAL DIALYSIS",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_V56.0"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "713.5* ARTHROPATHY ASSOCIATED WITH NEUROLOGICAL DISORDERS",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_713.5"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "440.2* ATHEROSCLEROSIS OF ARTERIES OF THE EXTREMITIES",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_440.2"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "585.3* CHRONIC KIDNEY DISEASE, STAGE III (MODERATE)",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_585.3"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "585.9* CHRONIC KIDNEY DISEASE, UNSPECIFIED",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_585.9"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "730.1* CHRONIC OSTEOMYELITIS",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_730.1"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "707.9* CHRONIC ULCER OF UNSPECIFIED SITE",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_707.9"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "428.4* COMBINED SYSTOLIC AND DIASTOLIC HEART FAILURE",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_428.4"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "707.0* DECUBITUS ULCER",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_707.0"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "Z14.2* DESTRUCTION OF LESION OF RETINA AND CHOROID",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_Z14.2"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "428.3* DIASTOLIC HEART FAILURE",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_428.3"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "585.6* END STAGE RENAL DISEASE",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_585.6"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "V56.1* FITTING/ADJUST. OF DIALYSIS CATHETER (EXTRACORPOREAL,PERITONEAL)",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_V56.1"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "276.6* FLUID OVERLOAD DISORDER",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_276.6"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "572.2* HEPATIC COMA",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_572.2"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "428.1* LEFT HEART FAILURE",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_428.1"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "583.8* NEPHRITIS AC.OR CHR.WITH OTHER SPEC.LESIONS IN KIDNEY",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_583.8"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "581.8* NEPHROTIC SYN.WITH OTHER SPEC.PATHOLOGICAL LESION IN KIDNEY",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_581.8"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "581 NEPHROTIC SYNDROME",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_581_"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "581.9* NEPHROTIC SYNDROME WITH UNSP.PATHOLOGICAL LESION IN KIDNEY",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_581.9"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "892.1* OPEN WOUND OF FOOT EXCEPT TOE(S) ALONE, COMPLICATED",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_892.1"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "730 OSTEOMYELITIS, PERIOSTITIS, AND OTHER INFECTIONS INVOLVING BONE",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_730_"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "443 OTHER PERIPHERAL VASCULAR DISEASE",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_443_"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "Z39.5* OTHER REPAIR OF VESSELS",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_Z39.5"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "Z39.2* OTHER SHUNT OR VASCULAR BYPASS",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_Z39.2"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "414.8* OTHER SPECIFIED FORMS OF CHRONIC ISCHEMIC HEART DISEASE",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_414.8"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "443.8* OTHER SPECIFIED PERIPHERAL VASCULAR DISEASES",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_443.8"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "251.3* POSTSURGICAL HYPOINSULINEMIA",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_251.3"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "514* PULMONARY CONGESTION AND HYPOSTASIS",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_514"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "Z38.9* PUNCTURE OF VESSEL",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_Z38.9"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "Z39.4* REVISION OF VASCULAR PROCEDURE",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_Z39.4"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "707.1* ULCER OF LOWER LIMBS, EXCEPT DECUBITUS ULCER",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_707.1"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "404.9* UNSPECIFIED HYPERTENSIVE HEART AND RENAL DISEASE",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_404.9"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "403.9* UNSPECIFIED HYPERTENSIVE RENAL DISEASE",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_403.9"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "730.2* UNSPECIFIED OSTEOMYELITIS",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_730.2"
+      },
+      {
+        "enabled": true,
+        "negate": false,
+        "type": "ICD9",
+        "label": "362.9* UNSPECIFIED RETINAL DISORDER",
+        "stime": -3650,
+        "etime": 0,
+        "track": "icd9_362.9"
+      }
+    ],
+    "adjustOnsetTime": [],
+    "isChronic": true
+  }
+}

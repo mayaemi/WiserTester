@@ -41,7 +41,7 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
     python wiser_tester.py --username maya --password mayah --config config.json
   ```
 
-### Creating New Executable
+### Creating A New Executable
   **Generate Standalone Executable** \
     - Set Up a Virtual Environment and Install the requirements.txt  (see above)\
     - run command:

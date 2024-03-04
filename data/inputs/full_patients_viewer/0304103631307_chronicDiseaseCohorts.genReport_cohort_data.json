@@ -1,0 +1,47 @@
+{
+  "messageType": "chronicDiseaseCohorts.genReport",
+  "cohortId": "c_debb178a1c4955f95e8f9db21dbcc765",
+  "report": {
+    "type": "cohort_data",
+    "selectedTracks": [
+      {
+        "behavior": "Both",
+        "label": "All Inclusion Tracks",
+        "color": 0,
+        "comparison": "Any",
+        "compareValue": 0,
+        "timeRange": [
+          -20,
+          20
+        ],
+        "track": "icd9_429|icd9_425|icd9_306.2~429* ILL-DEFINED DESCRIPTIONS AND COMPLICATIONS OF HEART DISEASE|425* CARDIOMYOPATHY|306.2* CARDIOVASCULAR MALFUNCTION ARISING FROM MENTAL FACTORS"
+      },
+      {
+        "behavior": "Both",
+        "label": "All Required Tracks",
+        "color": 1,
+        "comparison": "Any",
+        "compareValue": 0,
+        "timeRange": [
+          -20,
+          20
+        ],
+        "track": "lab.25203|WZMN.med.ATORVASTATIN|WZMN.med.ROSUVASTATIN|WZMN.med.PRAVASTATIN|WZMN.med.ATORVASTATIN_AND_EZETIMIBE|WZMN.med.FLUVASTATIN~25203 HEMOGLOBIN A1C CALCULATED|ATORVASTATIN|ROSUVASTATIN|PRAVASTATIN|ATORVASTATIN AND EZETIMIBE|FLUVASTATIN"
+      },
+      {
+        "behavior": "Both",
+        "label": "All Excluded Tracks",
+        "color": 2,
+        "comparison": "Any",
+        "compareValue": 0,
+        "timeRange": [
+          -20,
+          20
+        ],
+        "track": "disease.CANCER~disease.CANCER"
+      }
+    ],
+    "maxPatientCount": 50,
+    "align": "Yes"
+  }
+}

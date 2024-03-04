@@ -6,14 +6,13 @@ import re
 import sys
 from functools import wraps
 from pathlib import Path
+import time
 import socketio
 import httpx
 import logging
-from logging.handlers import RotatingFileHandler
 import argparse
 from deepdiff import DeepDiff, Delta
 from enum import Enum, auto
-import signal
 
 # Configuration and Constants
 CONFIG = {
@@ -162,8 +161,8 @@ class Compare:
             else:
                 LOGGER.warning(f"No expectation file found for {input_file_name}")
 
-    @handle_exceptions("Unexpected error reading files", False)
-    def compare_and_save_report(self, input_file_name, output_file_path, expected_file_path, report_path):
+    @handle_exceptions("Unexpected error reading files", True)
+    def compare_and_save_report(self, input_file_name, output_file_path, expected_file_path, report_path, timeout=60):
         """Compare an output file with its expected counterpart and save the report."""
         output_data = load_json_file(output_file_path).get("data")
         expected_data = load_json_file(expected_file_path).get("data")
@@ -185,6 +184,9 @@ class Compare:
                 exclude_regex_paths=exclude_regex,
                 cutoff_intersection_for_pairs=1,
                 get_deep_distance=True,
+                cache_size=5000,
+                log_frequency_in_sec=10,
+                progress_logger=LOGGER.warning,
             )
             if diff:
                 delta = Delta(diff, bidirectional=True)
@@ -438,7 +440,6 @@ class WiserTester:
 
     @handle_exceptions("An error occurred during testing of specific input", False)
     async def test_input(self, inp_dir):
-        # sourcery skip: merge-else-if-into-elif, swap-if-else-branches
         """
         Tests an input directory.
         Args:
@@ -514,6 +515,14 @@ class WiserTester:
 class TestMode(Enum):
     ALL = auto()
     SPECIFIC = auto()
+    COMPARE_ONLY = auto()
+
+
+def test_mode_type(value):
+    try:
+        return TestMode[value]
+    except KeyError as e:
+        raise argparse.ArgumentTypeError(f"{value} is not a valid TestMode") from e
 
 
 def parse_args():
@@ -528,7 +537,7 @@ def parse_args():
     parser.add_argument("--password", type=str, required=True, help="Password for login")
     parser.add_argument("--config", type=str, required=True, help="Path to the configuration file")
 
-    parser.add_argument("--mode", type=TestMode, choices=list(TestMode), help="Testing mode")
+    parser.add_argument("--mode", type=test_mode_type, choices=list(TestMode), help="Testing mode")
     parser.add_argument("--specific_list", type=str, help="specific list of input directories")
     parser.add_argument("--expected_output", type=str, default="data/expectations", help="path to expectations")
     parser.add_argument("--no_comparison", action="store_true", help="Don't Compare to previous outputs")
@@ -541,14 +550,13 @@ def parse_args():
 
 @handle_exceptions("An unexpected error occurred", True)
 async def main(config, args, tester):
-    await tester.start_test(args.specific_list.split(",") if args.mode == TestMode.SPECIFIC else None)
+    if args.mode != TestMode.COMPARE_ONLY:
+        await tester.start_test(args.specific_list.split(",") if args.mode == TestMode.SPECIFIC else None)
     if not args.no_comparison:
         LOGGER.info("Comparing outputs")
         comparison = Compare(config["outputs_dir"], args.expected_output, args.comparison_reports, config["ignore_paths"])
         report_paths = comparison.compare_outputs_with_expectations()
         LOGGER.info(f"Comparison reports: {report_paths}")
-
-    await tester.close()
 
 
 async def shutdown(loop, tester):
@@ -560,7 +568,7 @@ async def shutdown(loop, tester):
     tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
     [task.cancel() for task in tasks]
 
-    await asyncio.gather(*tasks, return_exceptions=True)
+    await asyncio.gather(*tasks, return_exceptions=False)
     loop.stop()
     LOGGER.info("Shutdown complete.")
 

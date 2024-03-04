@@ -1,0 +1,39 @@
+{
+  "messageType": "chronicDiseaseCohorts.genReport",
+  "cohortId": "c_f74b9c92bc0517005234279f26646e4a",
+  "report": {
+    "type": "lab_clusters_heatmap",
+    "timeScope": [
+      {
+        "day": 1,
+        "month": 1,
+        "year": 2004
+      },
+      {
+        "day": 1,
+        "month": 1,
+        "year": 2018
+      }
+    ],
+    "minAge": 60,
+    "maxAge": 70,
+    "timeBreaks": [
+      -1460,
+      -1095,
+      -730,
+      -365,
+      0,
+      365
+    ],
+    "k": 7,
+    "labs": [
+      "lab.102.norm",
+      "lab.101.norm"
+    ],
+    "colors": {
+      "low": "#3366cc",
+      "high": "#dc3912"
+    },
+    "cohortsId": "a_1aa56f46972b8d2be4d3139124607e99e8c7c351"
+  }
+}

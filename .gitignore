@@ -9,6 +9,7 @@ data/outputs/*
 
 env
 build
+.vscode
 dist
 *.log
 *.spec

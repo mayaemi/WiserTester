@@ -1,0 +1,28 @@
+{
+  "messageType": "chronicDiseaseCohorts.genReport",
+  "cohortId": "c_f74b9c92bc0517005234279f26646e4a",
+  "report": {
+    "type": "medication",
+    "timeScope": [
+      {
+        "day": 1,
+        "month": 1,
+        "year": 2004
+      },
+      {
+        "day": 1,
+        "month": 1,
+        "year": 2018
+      }
+    ],
+    "minAge": 60,
+    "maxAge": 70,
+    "timeWindow": [
+      0,
+      1825
+    ],
+    "meds": [
+      "WZMN.med.HTN.BETA_BLOCKERS"
+    ]
+  }
+}

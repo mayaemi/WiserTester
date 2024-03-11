@@ -1,0 +1,39 @@
+{
+  "messageType": "analysisDocument.genReport",
+  "cohortIds": [
+    "c_b0475e53c4b385489d065b1eba846603",
+    "c_99e70e1c5f1b94ad5527b29e70d7125f",
+    "c_56bef3eb6a1907d71a3fee360940931b"
+  ],
+  "report": {
+    "type": "comparison",
+    "timeScope": [
+      {
+        "day": 1,
+        "month": 1,
+        "year": 2004
+      },
+      {
+        "day": 1,
+        "month": 1,
+        "year": 2018
+      }
+    ],
+    "matching": {
+      "enabled": true,
+      "type": "med",
+      "track": "WZMN.med.HTN.BETA_BLOCKERS",
+      "label": "HTN BETA BLOCKERS",
+      "stime": -365,
+      "etime": 365,
+      "negate": false,
+      "binSize": "0,5,10,15,20,25,30,35,40,45,50",
+      "function": "exists"
+    },
+    "cohortColors": [
+      "#ff0000",
+      "#ff0000",
+      "#ff0000"
+    ]
+  }
+}

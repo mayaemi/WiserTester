@@ -79,7 +79,7 @@ class HarFileProcessor:
         for entry in entries:
             req_txt = entry.request.text
             json_req = json.loads(req_txt)
-            msg_type = json_req.get("messageType")
+            msg_type = json_req.get("messageType").replace("chronicDiseaseCohorts.", "")
             if "genReport" in msg_type:
                 report_type = json_req.get("report").get("type")
                 name = f'{entry.startTime.strftime("%m%d%H%M%S%f")[:-3]}_{msg_type}_{report_type}.json'

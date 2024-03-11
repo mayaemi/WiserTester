@@ -1,0 +1,23 @@
+{
+  "messageType": "chronicDiseaseCohorts.genReport",
+  "cohortId": "c_f74b9c92bc0517005234279f26646e4a",
+  "report": {
+    "type": "year_gender",
+    "timeScope": [
+      {
+        "day": 1,
+        "month": 1,
+        "year": 2004
+      },
+      {
+        "day": 1,
+        "month": 1,
+        "year": 2018
+      }
+    ],
+    "colors": {
+      "male": "#3366cc",
+      "female": "#dc3912"
+    }
+  }
+}

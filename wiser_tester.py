@@ -550,13 +550,16 @@ def parse_args():
 
 @handle_exceptions("An unexpected error occurred", True)
 async def main(config, args, tester):
-    if args.mode != TestMode.COMPARE_ONLY:
-        await tester.start_test(args.specific_list.split(",") if args.mode == TestMode.SPECIFIC else None)
-    if not args.no_comparison:
-        LOGGER.info("Comparing outputs")
-        comparison = Compare(config["outputs_dir"], args.expected_output, args.comparison_reports, config["ignore_paths"])
-        report_paths = comparison.compare_outputs_with_expectations()
-        LOGGER.info(f"Comparison reports: {report_paths}")
+    try:
+        if args.mode != TestMode.COMPARE_ONLY:
+            await tester.start_test(args.specific_list.split(",") if args.mode == TestMode.SPECIFIC else None)
+        if not args.no_comparison:
+            LOGGER.info("Comparing outputs")
+            comparison = Compare(config["outputs_dir"], args.expected_output, args.comparison_reports, config["ignore_paths"])
+            report_paths = comparison.compare_outputs_with_expectations()
+            LOGGER.info(f"Comparison reports: {report_paths}")
+    except KeyboardInterrupt:
+        LOGGER.warning("Interrupted during main execution.")
 
 
 async def shutdown(loop, tester):
@@ -566,24 +569,28 @@ async def shutdown(loop, tester):
 
     LOGGER.info("Cancelling outstanding tasks...")
     tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
-    [task.cancel() for task in tasks]
 
-    await asyncio.gather(*tasks, return_exceptions=False)
+    for task in tasks:
+        task.cancel()
+        try:
+            await task
+        except asyncio.CancelledError:
+            # Ignore CancelledError as it's a normal part of the shutdown process
+            pass
+
     loop.stop()
     LOGGER.info("Shutdown complete.")
 
 
 if __name__ == "__main__":
     args = parse_args()
-    # Load the configuration file
     config = load_json_file(args.config)
-    LOGGER.info("loaded config file ")
     tester = WiserTester(args.username, args.password, args.request_timeout, config, args.exclude_inputs)
     loop = asyncio.get_event_loop()
     try:
         loop.run_until_complete(main(config, args, tester))
     except KeyboardInterrupt:
-        LOGGER.error("KeyboardInterrupt")
-        loop.run_until_complete(shutdown(loop, tester))
+        LOGGER.info("KeyboardInterrupt caught in main")
     finally:
+        loop.run_until_complete(shutdown(loop, tester))
         loop.close()

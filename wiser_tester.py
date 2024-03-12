@@ -233,7 +233,7 @@ class WiserTester:
             request_timeout (int): Timeout for waiting on reports.
             config: Config file dictionary
         """
-        self.socket = socketio.AsyncClient()
+        self.socket = socketio.AsyncClient(logger=True)
         self.http_client = httpx.AsyncClient()
         self.username = username
         self.password = password

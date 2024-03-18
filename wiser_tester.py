@@ -223,7 +223,6 @@ class Compare:
 
 
 class WiserTester:
-
     def __init__(self, username, password, request_timeout, config, exclude_inputs):
         """
         Initializes the WiserTester instance.
@@ -233,7 +232,10 @@ class WiserTester:
             request_timeout (int): Timeout for waiting on reports.
             config: Config file dictionary
         """
-        self.socket = socketio.AsyncClient(logger=True)
+        self.socket = socketio.AsyncClient(
+            logger=True,
+            engineio_logger=True,
+        )
         self.http_client = httpx.AsyncClient()
         self.username = username
         self.password = password
@@ -300,12 +302,14 @@ class WiserTester:
         await self.process_report(data)
 
     async def _handle_error(self, data):
-        """Handle errors reported by the server."""
+        """Handle errors reported by the server or connection issues."""
         error_msg = data.get("error")
         report_id = data.get("id")
         if report_id:
             async with self.client_lock:
                 LOGGER.error(f"Error for ID {report_id}: {error_msg}")
+        else:
+            LOGGER.error(f"General socket error: {error_msg}")
 
     @handle_exceptions("Socket connection failed.", True)
     async def connect_to_server(self):
@@ -426,7 +430,7 @@ class WiserTester:
         """
         if inputs_list is None:  # If inputs_list is not provided, test all inputs
             LOGGER.info("Started testing all inputs")
-            directories = [os.path.join(self.inputs_dir, rec) for rec in os.listdir(self.inputs_dir)]
+            directories = [os.path.join(self.inputs_dir, f) for f in os.listdir(self.inputs_dir) if f != ".gitkeep"]
         else:  # If inputs_list is provided, test only those inputs
             LOGGER.info(f"Started testing inputs {inputs_list}")
             directories = [os.path.join(self.inputs_dir, rec) for rec in inputs_list]

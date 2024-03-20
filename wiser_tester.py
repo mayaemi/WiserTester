@@ -6,7 +6,6 @@ import re
 import sys
 from functools import wraps
 from pathlib import Path
-import time
 import socketio
 import httpx
 import logging
@@ -19,7 +18,7 @@ CONFIG = {
     "LOGIN_URL": "/login",
     "LOGIN_JSON_HEADERS": {"Accept": "application/json", "Content-Type": "application/json"},
     "LOG_FORMAT": "%(asctime)s | %(levelname)s | %(message)s",
-    "LOG_FILE": "logs/testlog.log",
+    "LOG_FILE": f"logs/testlog_{datetime.now().strftime('%Y%m%d')}.log",
 }
 
 
@@ -184,6 +183,7 @@ class Compare:
                 exclude_regex_paths=exclude_regex,
                 cutoff_intersection_for_pairs=1,
                 get_deep_distance=True,
+                max_passes=3,
                 cache_size=5000,
                 log_frequency_in_sec=10,
                 progress_logger=LOGGER.warning,
@@ -232,10 +232,7 @@ class WiserTester:
             request_timeout (int): Timeout for waiting on reports.
             config: Config file dictionary
         """
-        self.socket = socketio.AsyncClient(
-            logger=True,
-            engineio_logger=True,
-        )
+        self.socket = socketio.AsyncClient(reconnection_attempts=10)
         self.http_client = httpx.AsyncClient()
         self.username = username
         self.password = password
@@ -249,6 +246,7 @@ class WiserTester:
         self.config = config
         self.s_id, self.cookies = None, None
         self.current_input_dir, self.current_output_dir = None, None
+        self.is_connected = False
         self.request_to_input_map = {}  # dictionary to map request IDs to input file names
         self.request_to_input_dir_map = {}  # Map request IDs to input directories
         self.request_mapping_event = asyncio.Event()
@@ -274,7 +272,7 @@ class WiserTester:
 
         await self.test_inputs(specific_inputs)
 
-        await self.socket.wait()
+        # await self.socket.wait()
 
     def _define_event_handlers(self):
         """Define event handlers for socket events."""
@@ -282,10 +280,14 @@ class WiserTester:
         @self.socket.event
         async def connect():
             LOGGER.info("Socket connected")
+            self.s_id = self.socket.get_sid()
+            LOGGER.info(f"sid: {self.s_id}")
+            self.is_connected = True
 
         @self.socket.event
         async def disconnect():
             LOGGER.info("Socket disconnected")
+            self.is_connected = False
 
         @self.socket.event
         async def report_ready(data):
@@ -299,24 +301,21 @@ class WiserTester:
         """Handle incoming report readiness."""
         await self.request_mapping_event.wait()
         self.request_mapping_event.clear()
+        await asyncio.sleep(0.3)
         await self.process_report(data)
 
     async def _handle_error(self, data):
-        """Handle errors reported by the server or connection issues."""
+        """Handle errors reported by the server."""
         error_msg = data.get("error")
         report_id = data.get("id")
         if report_id:
             async with self.client_lock:
                 LOGGER.error(f"Error for ID {report_id}: {error_msg}")
-        else:
-            LOGGER.error(f"General socket error: {error_msg}")
 
     @handle_exceptions("Socket connection failed.", True)
     async def connect_to_server(self):
         """Establishes connection to the server."""
-        await self.socket.connect(self.server_path, wait_timeout=10)
-        self.s_id = self.socket.get_sid()
-        LOGGER.info(f"sid: {self.s_id}")
+        await self.socket.connect(self.server_path, wait_timeout=10, transports=["websocket", "polling"])
 
     # Request handling methods
 
@@ -345,7 +344,7 @@ class WiserTester:
             async with self.request_id_lock:
                 self.request_to_input_map[request_id] = input_file_name
                 self.request_to_input_dir_map[request_id] = self.current_input_dir
-                self.request_mapping_event.set()  # Signal that mapping is complete
+            self.request_mapping_event.set()  # Signal that mapping is complete
             LOGGER.info(f"request: {request_id}, input file name {input_file_name}")
             return request_id, response
         else:
@@ -360,6 +359,12 @@ class WiserTester:
             tuple: A tuple containing the request ID and the server's response object.
         """
         self.report_event.clear()  # Reset the event for the next report
+
+        # Wait for the socket to be connected before proceeding
+        while not self.is_connected:
+            LOGGER.info("Waiting for socket to reconnect...")
+            await asyncio.sleep(1)  # Check connection status every second
+
         json_request, headers = self.prepare_request_data(json_request_path)
 
         request_id, response = await self.send_request(json_request, headers, json_request_path)

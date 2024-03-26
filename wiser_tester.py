@@ -12,6 +12,7 @@ import logging
 import argparse
 from deepdiff import DeepDiff, Delta
 from enum import Enum, auto
+import pandas as pd
 
 # Configuration and Constants
 CONFIG = {
@@ -76,16 +77,26 @@ def handle_exceptions(log_message, should_raise=True):
 
 
 # Utility Functions
+def custom_serializer(obj):
+    """
+    Attempts to JSON-serialize objects of known non-serializable types.
+    """
+    if isinstance(obj, pd.DataFrame):
+        return obj.to_dict(orient="records")
+    else:
+        return str(obj)
+
+
 @handle_exceptions("Error loading/saving JSON file")
 def load_json_file(file_path):
     with open(file_path, "r") as file:
         return json.load(file)
 
 
-@handle_exceptions("Failed to save JSON file")
+@handle_exceptions("Failed to save JSON file", True)
 def save_json_file(data, file_path):
     with open(file_path, "w") as file:
-        json.dump(data, file, indent=2)
+        json.dump(data, file, indent=2, default=custom_serializer)
         return True
 
 
@@ -142,7 +153,6 @@ class Compare:
     def compare_folder_outputs(self, output_folder_path, expectation_folder_path):
         """Compare outputs in a specific folder with their expected counterparts."""
         LOGGER.info(f"Comparing results for {os.path.basename(output_folder_path)}")
-        # Iterate through output files in the folder
         for output_file in os.listdir(output_folder_path):
             input_file_name, _ = os.path.splitext(output_file)
             expected_file_name = f"{input_file_name}.json"
@@ -154,7 +164,6 @@ class Compare:
                 os.mkdir(new_report_path)
                 LOGGER.info(f"Created directory {new_report_path}")
 
-            # Compare the output file with the expected file
             if os.path.exists(expected_file_path):
                 self.compare_and_save_report(input_file_name, output_file_path, expected_file_path, new_report_path)
             else:
@@ -166,7 +175,7 @@ class Compare:
         output_data = load_json_file(output_file_path).get("data")
         expected_data = load_json_file(expected_file_path).get("data")
 
-        if output_data and expected_data:  # Ensure data was successfully loaded
+        if output_data and expected_data:
             report = {
                 "timestamp": datetime.now().strftime("%Y%m%d%H%M%S%f"),
                 "request_id": output_data.get("requestId", "N/A"),
@@ -338,7 +347,7 @@ class WiserTester:
         response = await self.http_client.post(f"{self.server_path}report", json=json_request, headers=headers)
         response.raise_for_status()
         response_json = response.json()
-        request_id = response_json.get("id")  # Assuming the response contains the request ID
+        request_id = response_json.get("id")
         if request_id:
             input_file_name = Path(json_request_path).stem
             async with self.request_id_lock:
@@ -442,7 +451,7 @@ class WiserTester:
 
         for rec_dir in directories:
             await self.test_input(rec_dir)
-            await asyncio.sleep(1)  # pause between processing
+            await asyncio.sleep(1)  # pause between inputs
 
         await self.wait_for_all_reports()
         await self.close()
@@ -571,7 +580,7 @@ async def main(config, args, tester):
         LOGGER.warning("Interrupted during main execution.")
 
 
-async def shutdown(loop, tester):
+async def shutdown(loop, tester):  # sourcery skip: use-contextlib-suppress
     """Graceful shutdown."""
     LOGGER.info("Closing client sessions...")
     await tester.close()

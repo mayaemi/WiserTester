@@ -263,7 +263,7 @@ class WiserTester:
         self.request_id_lock = asyncio.Lock()  # Lock for synchronizing request ID mapping
         self.client_lock = asyncio.Lock()
         self.pending_requests = set()
-
+        self.version_info = None
         # Define event handlers for the socket events
         self._define_event_handlers()
 
@@ -278,6 +278,8 @@ class WiserTester:
         LOGGER.info(f"Logged in and obtained cookies {self.cookies}")
 
         await self.connect_to_server()
+
+        await self.log_version()
 
         await self.test_inputs(specific_inputs)
 
@@ -326,11 +328,23 @@ class WiserTester:
         """Establishes connection to the server."""
         await self.socket.connect(self.server_path, wait_timeout=10, transports=["websocket", "polling"])
 
+    async def get_version_info(self):
+        request_id, _ = await self.send_request_get_response("get_version")
+        if request_id:
+            self.pending_requests.add(request_id)
+            await self.wait_for_report(request_id)
+        LOGGER.info(f"send version info {request_id}")
+        return request_id
+
+    async def log_version(self):
+        version_info = await self.get_version_info()
+        if version_info:
+            self.version_info = version_info
+
     # Request handling methods
 
-    def prepare_request_data(self, json_request_path):
+    def prepare_request_data(self, json_request):
         """prepares the requests data, returns json request and headers."""
-        json_request = load_json_file(json_request_path)
         cookies_str, access_token_cookie_value, csrf_access_token_value = handle_cookies(self.cookies)
         req_headers = self.config["request_headers"]
         req_headers["Cookie"] = f"{cookies_str}"
@@ -342,14 +356,13 @@ class WiserTester:
         req_headers["Cookie"] = f"{cookies_str}"
         return json_request, req_headers
 
-    async def send_request(self, json_request, headers, json_request_path):
+    async def send_request(self, json_request, headers, input_file_name):
         """sends request using http post, returns request_id, response object."""
         response = await self.http_client.post(f"{self.server_path}report", json=json_request, headers=headers)
         response.raise_for_status()
         response_json = response.json()
         request_id = response_json.get("id")
         if request_id:
-            input_file_name = Path(json_request_path).stem
             async with self.request_id_lock:
                 self.request_to_input_map[request_id] = input_file_name
                 self.request_to_input_dir_map[request_id] = self.current_input_dir
@@ -374,9 +387,16 @@ class WiserTester:
             LOGGER.info("Waiting for socket to reconnect...")
             await asyncio.sleep(1)  # Check connection status every second
 
-        json_request, headers = self.prepare_request_data(json_request_path)
+        if json_request_path == "get_version":
+            json_request = self.config["version_request"]
+            input_file_name = json_request_path
+        else:
+            json_request = load_json_file(json_request_path)
+            input_file_name = Path(json_request_path).stem
 
-        request_id, response = await self.send_request(json_request, headers, json_request_path)
+        json_request, headers = self.prepare_request_data(json_request)
+
+        request_id, response = await self.send_request(json_request, headers, input_file_name)
         return request_id, response
 
     # Report handling methods
@@ -387,12 +407,18 @@ class WiserTester:
         if not report_id:
             LOGGER.error("Report ID missing in data")
             return
-
         report_data = json.loads(data.get("data"))
         LOGGER.info(f"Report received for ID {report_id}")
 
         if report_id in self.pending_requests:
             self.pending_requests.remove(report_id)
+
+        if report_data.get("messageType") == "retData":
+            if report_data.get("dataType") == "appVersion":
+                self.version_info = report_data.get("data")
+                LOGGER.info(f"got version info {self.version_info}")
+                self.report_event.set()
+                return
 
         if report_id in self.request_to_input_map:
             input_dir = self.request_to_input_dir_map.get(report_id)
@@ -580,7 +606,7 @@ async def main(config, args, tester):
         LOGGER.warning("Interrupted during main execution.")
 
 
-async def shutdown(loop, tester):  # sourcery skip: use-contextlib-suppress
+async def shutdown(loop, tester):
     """Graceful shutdown."""
     LOGGER.info("Closing client sessions...")
     await tester.close()
@@ -593,8 +619,7 @@ async def shutdown(loop, tester):  # sourcery skip: use-contextlib-suppress
         try:
             await task
         except asyncio.CancelledError:
-            # Ignore CancelledError as it's a normal part of the shutdown process
-            pass
+            pass  # Ignore CancelledError as it's a normal part of the shutdown process
 
     loop.stop()
     LOGGER.info("Shutdown complete.")

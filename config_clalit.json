@@ -21,5 +21,6 @@
   "ignore_paths": [
     "root\\['requestId']",
     "root\\['figures'\\]\\['\\[\\d+,\\d+\\)'\\]"
-  ]
+  ],
+  "version_request": {"messageType": "getData", "dataType": "appVersion", "recreate": true}
 }

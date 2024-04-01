@@ -3,6 +3,7 @@ from datetime import datetime
 import json
 import os
 import re
+import shutil
 import sys
 from functools import wraps
 from pathlib import Path
@@ -170,11 +171,17 @@ class Compare:
                 LOGGER.warning(f"No expectation file found for {input_file_name}")
 
     @handle_exceptions("Unexpected error reading files", True)
-    def compare_and_save_report(self, input_file_name, output_file_path, expected_file_path, report_path, timeout=60):
+    def compare_and_save_report(
+        self, input_file_name, output_file_path, expected_file_path, report_path, preprocess=True, timeout=60
+    ):
         """Compare an output file with its expected counterpart and save the report."""
+
         output_data = load_json_file(output_file_path).get("data")
         expected_data = load_json_file(expected_file_path).get("data")
-
+        if preprocess:
+            # Preprocess the data to normalize dynamic file names
+            output_data = self.preprocess_data(output_data)
+            expected_data = self.preprocess_data(expected_data)
         if output_data and expected_data:
             report = {
                 "timestamp": datetime.now().strftime("%Y%m%d%H%M%S%f"),
@@ -185,8 +192,8 @@ class Compare:
             exclude_regex = [re.compile(path) for path in self.ignore_paths]
 
             diff = DeepDiff(
-                output_data,
                 expected_data,
+                output_data,
                 ignore_order=True,
                 report_repetition=True,
                 exclude_regex_paths=exclude_regex,
@@ -209,10 +216,29 @@ class Compare:
             else:
                 LOGGER.info(f"No difference found in output for {input_file_name}")
 
+    def preprocess_data(self, data):
+        """Preprocess data to normalize dynamic content like file names within the `figures` section."""
+        if "figures" in data:
+            data["figures"] = self.traverse_and_normalize_figures(data["figures"])
+        return data
+
+    def traverse_and_normalize_figures(self, figures):
+        """Recursively traverse and normalize file names within the figures structure."""
+        if isinstance(figures, dict):
+            return {k: self.traverse_and_normalize_figures(v) for k, v in figures.items()}
+        elif isinstance(figures, list):
+            return [self.traverse_and_normalize_figures(elem) for elem in figures]
+        elif isinstance(figures, str):
+            # Replace UUIDs within file names with 'PLACEHOLDER'
+            return re.sub(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}", "PLACEHOLDER", figures)
+        else:
+            return figures
+
     @handle_exceptions("Failed to generate summary report", False)
     def generate_summary_report(self):
         """Generate a summary report of all comparisons."""
-        summary = {"total_comparisons": len(self.report_paths), "differences": []}
+        version_info = load_json_file(os.path.join(self.outputs_path, "version_info.json"))
+        summary = {"output_version_info": version_info, "total_comparisons": len(self.report_paths), "differences": []}
 
         for report_path in self.report_paths:
             report_data = load_json_file(report_path)
@@ -279,7 +305,8 @@ class WiserTester:
 
         await self.connect_to_server()
 
-        await self.log_version()
+        await self.get_version_info()
+        await self.save_version_info()
 
         await self.test_inputs(specific_inputs)
 
@@ -333,13 +360,7 @@ class WiserTester:
         if request_id:
             self.pending_requests.add(request_id)
             await self.wait_for_report(request_id)
-        LOGGER.info(f"send version info {request_id}")
         return request_id
-
-    async def log_version(self):
-        version_info = await self.get_version_info()
-        if version_info:
-            self.version_info = version_info
 
     # Request handling methods
 
@@ -525,6 +546,10 @@ class WiserTester:
         if not os.path.isdir(path):
             os.mkdir(path)
             LOGGER.info(f"created dir {path}")
+            version_info_src = os.path.join(self.outputs_dir, "version_info.json")
+            version_info_dest = os.path.join(path, "version_info.json")
+            shutil.copy(version_info_src, version_info_dest)
+            LOGGER.info(f"Copied version info to {path}")
         return path
 
     async def save_output(self, output_data, output_dir):
@@ -543,6 +568,18 @@ class WiserTester:
             return output_path
         except Exception as e:
             LOGGER.error(f"Failed to save output for request ID {output_data['id']}: {e}")
+
+    async def save_version_info(self):
+        """
+        Saves the version information to a JSON file in a designated location.
+        """
+        if self.version_info:
+            version_info_path = os.path.join(self.outputs_dir, "version_info.json")
+            with open(version_info_path, "w") as file:
+                json.dump(self.version_info, file)
+            LOGGER.info("Version information saved.")
+        else:
+            LOGGER.error("Version information is not available to save.")
 
     # Cleanup methods
 

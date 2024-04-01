@@ -1,0 +1,63 @@
+{
+  "messageType": "analysisDocument.genReport",
+  "cohortIds": [
+    "c_b0475e53c4b385489d065b1eba846603",
+    "c_99e70e1c5f1b94ad5527b29e70d7125f",
+    "c_56bef3eb6a1907d71a3fee360940931b"
+  ],
+  "report": {
+    "type": "outcome",
+    "timeScope": [
+      {
+        "day": 1,
+        "month": 1,
+        "year": 2004
+      },
+      {
+        "day": 1,
+        "month": 1,
+        "year": 2018
+      }
+    ],
+    "ageBreaks": [
+      60,
+      70
+    ],
+    "timeRange": [
+      0,
+      5
+    ],
+    "considerDeath": "Competing",
+    "outcomeType": "Cohort",
+    "outcomeTracks": [],
+    "cohort": {
+      "status": "built",
+      "inclusionCriteria": [
+        {
+          "enabled": true,
+          "type": "ICD9",
+          "label": "429.9* HEART DISEASE, UNSPECIFIED",
+          "track": "icd9_429.9"
+        }
+      ],
+      "requiredFilter": [],
+      "excludeFilter": [
+        {
+          "enabled": true,
+          "negate": false,
+          "type": "ICD9",
+          "label": "V15.1* PERSONAL HISTORY OF SURGERY TO HEART AND GREAT VESSELS,",
+          "stime": -3650,
+          "etime": 0,
+          "track": "icd9_V15.1"
+        }
+      ],
+      "adjustOnsetTime": [],
+      "isChronic": true,
+      "id": "c_3333f6aa50ece644aad4de19c1afe534",
+      "name": "HEART_DISEASE_UNSPECIFIED",
+      "size": 37716
+    },
+    "forExport": true
+  }
+}

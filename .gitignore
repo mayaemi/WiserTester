@@ -1,3 +1,11 @@
+data/comparison_reports/*
+!data/comparison_reports/.gitkeep 
+
+data/expectations/*
+!data/expectations/.gitkeep 
+
+data/outputs/*
+!data/outputs/.gitkeep 
 env
 build
 .vscode

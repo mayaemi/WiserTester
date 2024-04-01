@@ -7,6 +7,7 @@ data/expectations/*
 data/outputs/*
 !data/outputs/.gitkeep 
 
+comp-diff/
 env
 build
 .vscode

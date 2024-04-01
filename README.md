@@ -7,6 +7,7 @@
   <a href="#cli-options">CLI Options</a> •
   <a href="#config-file">Config File</a> •
   <a href="#generate-recordings">Generate Recordings</a> •
+  <a href="#versioning-and-comparisons">Versioning and Comparisons</a> •
   <a href="#post-run-analysis">Analysis</a>
 </div>
 
@@ -153,6 +154,14 @@ python HAR_request_extractor.py --har_dir "path/to/directory" --config path/to/c
 **Output**
 Processed files will be saved in the directory specified in the config.json file under inputs_dir, organized by the stem name of each HAR file processed.
 
+<h2 id="versioning-and-comparisons">Versioning and Comparisons</h2>
+
+### Versioning
+Upon each test run, the WiserTester fetches and saves the version info of the application being tested. This information is stored within each output directory, allowing for version tracking alongside test results.
+
+### Dynamic Comparisons
+The Compare class has been enhanced to preprocess output and expected data, normalizing dynamic content such as file names within the figures section. This ensures that comparisons focus on meaningful data changes, disregarding variations in identifiers or timestamps. 
+this option can be disabled using --
 
 <h2 id="post-run-analysis">Post-Run Analysis and Error Handling</h2>
 This section will guide you on investigating comparisons, understanding how errors are handled, and interpreting the log files after running the WiserTester script.

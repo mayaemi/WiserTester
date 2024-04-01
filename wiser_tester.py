@@ -136,13 +136,15 @@ class Compare:
         self.reports_path = reports_path
         self.report_paths = []
         self.ignore_paths = ignore_paths if ignore_paths is not None else []
+        self.no_preprocessing = False
 
         LOGGER.info(f"Excluding paths: {self.ignore_paths}")
 
     @handle_exceptions("Comparison error", False)
-    def compare_outputs_with_expectations(self):
+    def compare_outputs_with_expectations(self, no_preprocessing):
         """Compare the output files with expected outputs stored in a specified directory."""
         LOGGER.info("Comparing outputs to expectations")
+        self.no_preprocessing = no_preprocessing
         for output_folder in os.listdir(self.outputs_path):
             expectation_folder_path = os.path.join(self.expectations_path, output_folder)
             if os.path.isdir(expectation_folder_path):
@@ -171,14 +173,12 @@ class Compare:
                 LOGGER.warning(f"No expectation file found for {input_file_name}")
 
     @handle_exceptions("Unexpected error reading files", True)
-    def compare_and_save_report(
-        self, input_file_name, output_file_path, expected_file_path, report_path, preprocess=True, timeout=60
-    ):
+    def compare_and_save_report(self, input_file_name, output_file_path, expected_file_path, report_path, timeout=60):
         """Compare an output file with its expected counterpart and save the report."""
 
         output_data = load_json_file(output_file_path).get("data")
         expected_data = load_json_file(expected_file_path).get("data")
-        if preprocess:
+        if not self.no_preprocessing:
             # Preprocess the data to normalize dynamic file names
             output_data = self.preprocess_data(output_data)
             expected_data = self.preprocess_data(expected_data)
@@ -625,6 +625,7 @@ def parse_args():
     parser.add_argument("--comparison_reports", type=str, default="data/comparison_reports", help="path to comparison reports")
     parser.add_argument("--request_timeout", type=int, default=60, help="request timeout in seconds")
     parser.add_argument("--exclude_inputs", nargs="+", default=[], help="List of input files to exclude from sending")
+    parser.add_argument("--no_preprocessing", action="store_true", help="Don't preprocess outputs")
 
     return parser.parse_args()
 
@@ -637,7 +638,7 @@ async def main(config, args, tester):
         if not args.no_comparison:
             LOGGER.info("Comparing outputs")
             comparison = Compare(config["outputs_dir"], args.expected_output, args.comparison_reports, config["ignore_paths"])
-            report_paths = comparison.compare_outputs_with_expectations()
+            report_paths = comparison.compare_outputs_with_expectations(args.no_preprocessing)
             LOGGER.info(f"Comparison reports: {report_paths}")
     except KeyboardInterrupt:
         LOGGER.warning("Interrupted during main execution.")

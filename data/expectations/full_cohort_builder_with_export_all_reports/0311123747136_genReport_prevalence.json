@@ -1,0 +1,339 @@
+{
+  "data": {
+    "type": "prevalence",
+    "data": null,
+    "figures": {
+      "data": [
+        {
+          "x": [
+            10,
+            25,
+            35,
+            45,
+            55,
+            65,
+            75,
+            100
+          ],
+          "y": [
+            0,
+            0,
+            0,
+            0.000364931158998985,
+            0.00277995549913848,
+            0.005807252210654,
+            0.0066454527959334,
+            0.00224011433839797
+          ],
+          "text": [
+            "age_mid:  10<br />est: 0.0000000000<br />lwr.ci: 0.0000000000<br />upr.ci: 0.0000000000<br />sex: male",
+            "age_mid:  25<br />est: 0.0000000000<br />lwr.ci: 0.0000000000<br />upr.ci: 0.0000000000<br />sex: male",
+            "age_mid:  35<br />est: 0.0000000000<br />lwr.ci: 0.0000000000<br />upr.ci: 0.0000000000<br />sex: male",
+            "age_mid:  45<br />est: 0.0003649312<br />lwr.ci: 0.0003589955<br />upr.ci: 0.0003708668<br />sex: male",
+            "age_mid:  55<br />est: 0.0027799555<br />lwr.ci: 0.0027619923<br />upr.ci: 0.0027979187<br />sex: male",
+            "age_mid:  65<br />est: 0.0058072522<br />lwr.ci: 0.0057765519<br />upr.ci: 0.0058379525<br />sex: male",
+            "age_mid:  75<br />est: 0.0066454528<br />lwr.ci: 0.0065958317<br />upr.ci: 0.0066950739<br />sex: male",
+            "age_mid: 100<br />est: 0.0022401143<br />lwr.ci: 0.0021770754<br />upr.ci: 0.0023031532<br />sex: male"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "opacity": 1,
+          "line": {
+            "color": "rgba(51,102,204,1)",
+            "width": 3.77952755905512,
+            "dash": "solid"
+          },
+          "error_y": {
+            "array": [
+              0,
+              0,
+              0,
+              5.93569065446086e-06,
+              1.79631762730727e-05,
+              3.07003198503353e-05,
+              4.9621128548452e-05,
+              6.30388984697245e-05
+            ],
+            "arrayminus": [
+              0,
+              0,
+              0,
+              5.93569065446086e-06,
+              1.79631762730727e-05,
+              3.07003198503353e-05,
+              4.9621128548452e-05,
+              6.30388984697245e-05
+            ],
+            "type": "data",
+            "width": 1.92019201920192,
+            "symmetric": false,
+            "color": "rgba(51,102,204,1)"
+          },
+          "name": "male",
+          "legendgroup": "male",
+          "showlegend": true,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "hoveron": "points",
+          "frame": null
+        },
+        {
+          "x": [
+            10,
+            25,
+            35,
+            45,
+            55,
+            65,
+            75,
+            100
+          ],
+          "y": [
+            0,
+            0,
+            0,
+            0.000229583560785424,
+            0.00186399660387471,
+            0.00386883637691876,
+            0.00367715289556231,
+            0.00113800088544935
+          ],
+          "text": [
+            "age_mid:  10<br />est: 0.0000000000<br />lwr.ci: 0.0000000000<br />upr.ci: 0.0000000000<br />sex: female",
+            "age_mid:  25<br />est: 0.0000000000<br />lwr.ci: 0.0000000000<br />upr.ci: 0.0000000000<br />sex: female",
+            "age_mid:  35<br />est: 0.0000000000<br />lwr.ci: 0.0000000000<br />upr.ci: 0.0000000000<br />sex: female",
+            "age_mid:  45<br />est: 0.0002295836<br />lwr.ci: 0.0002250160<br />upr.ci: 0.0002341511<br />sex: female",
+            "age_mid:  55<br />est: 0.0018639966<br />lwr.ci: 0.0018504494<br />upr.ci: 0.0018775438<br />sex: female",
+            "age_mid:  65<br />est: 0.0038688364<br />lwr.ci: 0.0038462797<br />upr.ci: 0.0038913931<br />sex: female",
+            "age_mid:  75<br />est: 0.0036771529<br />lwr.ci: 0.0036475326<br />upr.ci: 0.0037067732<br />sex: female",
+            "age_mid: 100<br />est: 0.0011380009<br />lwr.ci: 0.0011082627<br />upr.ci: 0.0011677390<br />sex: female"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "opacity": 1,
+          "line": {
+            "color": "rgba(220,57,18,1)",
+            "width": 3.77952755905512,
+            "dash": "solid"
+          },
+          "error_y": {
+            "array": [
+              0,
+              0,
+              0,
+              4.5675783269575e-06,
+              1.35472039839363e-05,
+              2.25566906840989e-05,
+              2.96202712991899e-05,
+              2.97381481348246e-05
+            ],
+            "arrayminus": [
+              0,
+              0,
+              0,
+              4.5675783269575e-06,
+              1.35472039839363e-05,
+              2.25566906840989e-05,
+              2.96202712991899e-05,
+              2.97381481348246e-05
+            ],
+            "type": "data",
+            "width": 1.92019201920192,
+            "symmetric": false,
+            "color": "rgba(220,57,18,1)"
+          },
+          "name": "female",
+          "legendgroup": "female",
+          "showlegend": true,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "hoveron": "points",
+          "frame": null
+        }
+      ],
+      "layout": {
+        "margin": {
+          "t": 25.7412480974125,
+          "r": 7.30593607305936,
+          "b": 39.6955859969559,
+          "l": 54.7945205479452
+        },
+        "plot_bgcolor": "rgba(255,255,255,1)",
+        "paper_bgcolor": "rgba(255,255,255,1)",
+        "font": {
+          "color": "rgba(0,0,0,1)",
+          "family": "",
+          "size": 14.6118721461187
+        },
+        "xaxis": {
+          "domain": [
+            0,
+            1
+          ],
+          "automargin": true,
+          "type": "linear",
+          "autorange": false,
+          "range": [
+            5.005,
+            104.995
+          ],
+          "tickmode": "array",
+          "ticktext": [
+            "25",
+            "50",
+            "75",
+            "100"
+          ],
+          "tickvals": [
+            25,
+            50,
+            75,
+            100
+          ],
+          "categoryorder": "array",
+          "categoryarray": [
+            "25",
+            "50",
+            "75",
+            "100"
+          ],
+          "nticks": null,
+          "ticks": "outside",
+          "tickcolor": "rgba(51,51,51,1)",
+          "ticklen": 3.65296803652968,
+          "tickwidth": 0.66417600664176,
+          "showticklabels": true,
+          "tickfont": {
+            "color": "rgba(77,77,77,1)",
+            "family": "",
+            "size": 11.689497716895
+          },
+          "tickangle": 0,
+          "showline": false,
+          "linecolor": null,
+          "linewidth": 0,
+          "showgrid": true,
+          "gridcolor": "rgba(235,235,235,1)",
+          "gridwidth": 0.66417600664176,
+          "zeroline": false,
+          "anchor": "y",
+          "title": {
+            "text": "Age",
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 14.6118721461187
+            }
+          },
+          "hoverformat": ".2f"
+        },
+        "yaxis": {
+          "domain": [
+            0,
+            1
+          ],
+          "automargin": true,
+          "type": "linear",
+          "autorange": false,
+          "range": [
+            -0.000334753696224093,
+            0.00702982762070594
+          ],
+          "tickmode": "array",
+          "ticktext": [
+            "0.000",
+            "0.002",
+            "0.004",
+            "0.006"
+          ],
+          "tickvals": [
+            0,
+            0.002,
+            0.004,
+            0.006
+          ],
+          "categoryorder": "array",
+          "categoryarray": [
+            "0.000",
+            "0.002",
+            "0.004",
+            "0.006"
+          ],
+          "nticks": null,
+          "ticks": "outside",
+          "tickcolor": "rgba(51,51,51,1)",
+          "ticklen": 3.65296803652968,
+          "tickwidth": 0.66417600664176,
+          "showticklabels": true,
+          "tickfont": {
+            "color": "rgba(77,77,77,1)",
+            "family": "",
+            "size": 11.689497716895
+          },
+          "tickangle": 0,
+          "showline": false,
+          "linecolor": null,
+          "linewidth": 0,
+          "showgrid": true,
+          "gridcolor": "rgba(235,235,235,1)",
+          "gridwidth": 0.66417600664176,
+          "zeroline": false,
+          "anchor": "x",
+          "title": {
+            "text": "Prevalence",
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 14.6118721461187
+            }
+          },
+          "hoverformat": ".2f"
+        },
+        "shapes": [
+          {
+            "type": "rect",
+            "fillcolor": "transparent",
+            "line": {
+              "color": "rgba(51,51,51,1)",
+              "width": 0.66417600664176,
+              "linetype": "solid"
+            },
+            "yref": "paper",
+            "xref": "paper",
+            "x0": 0,
+            "x1": 1,
+            "y0": 0,
+            "y1": 1
+          }
+        ],
+        "showlegend": true,
+        "legend": {
+          "bgcolor": "rgba(255,255,255,1)",
+          "bordercolor": "transparent",
+          "borderwidth": 1.88976377952756,
+          "font": {
+            "color": "rgba(0,0,0,1)",
+            "family": "",
+            "size": 11.689497716895
+          },
+          "title": {
+            "text": "",
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 14.6118721461187
+            }
+          }
+        },
+        "hovermode": "closest",
+        "barmode": "relative"
+      }
+    },
+    "messageType": "chronicDiseaseCohorts.report",
+    "requestId": "8293d4cd-c5b4-41c4-8f46-38490c9efcba",
+    "cohortId": "c_f74b9c92bc0517005234279f26646e4a"
+  },
+  "id": "7a3e6367-d7e1-4a72-a91f-32cc48e65a17"
+}

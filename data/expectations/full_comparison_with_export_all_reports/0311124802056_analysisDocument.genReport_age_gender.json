@@ -1,0 +1,352 @@
+{
+  "data": {
+    "messageType": "analysisDocument.report",
+    "requestId": "60d02d25-aa3a-4b14-99ce-b58f3578e202",
+    "cohortIds": [
+      "c_b0475e53c4b385489d065b1eba846603",
+      "c_99e70e1c5f1b94ad5527b29e70d7125f",
+      "c_56bef3eb6a1907d71a3fee360940931b"
+    ],
+    "type": "age_gender",
+    "data": [
+      {
+        "age": "[0,20)",
+        "sex": "male",
+        "n": 0,
+        "age_mid": 10,
+        "cohort": "c_b0475e53c4b385489d065b1eba846603"
+      },
+      {
+        "age": "[20,30)",
+        "sex": "male",
+        "n": 28,
+        "age_mid": 25,
+        "cohort": "c_b0475e53c4b385489d065b1eba846603"
+      },
+      {
+        "age": "[30,40)",
+        "sex": "male",
+        "n": 128,
+        "age_mid": 35,
+        "cohort": "c_b0475e53c4b385489d065b1eba846603"
+      },
+      {
+        "age": "[40,50)",
+        "sex": "male",
+        "n": 387,
+        "age_mid": 45,
+        "cohort": "c_b0475e53c4b385489d065b1eba846603"
+      },
+      {
+        "age": "[50,60)",
+        "sex": "male",
+        "n": 1065,
+        "age_mid": 55,
+        "cohort": "c_b0475e53c4b385489d065b1eba846603"
+      },
+      {
+        "age": "[60,70)",
+        "sex": "male",
+        "n": 1150,
+        "age_mid": 65,
+        "cohort": "c_b0475e53c4b385489d065b1eba846603"
+      },
+      {
+        "age": "[70,80)",
+        "sex": "male",
+        "n": 774,
+        "age_mid": 75,
+        "cohort": "c_b0475e53c4b385489d065b1eba846603"
+      },
+      {
+        "age": "[80,120)",
+        "sex": "male",
+        "n": 181,
+        "age_mid": 100,
+        "cohort": "c_b0475e53c4b385489d065b1eba846603"
+      },
+      {
+        "age": "[0,20)",
+        "sex": "female",
+        "n": 0,
+        "age_mid": 10,
+        "cohort": "c_b0475e53c4b385489d065b1eba846603"
+      },
+      {
+        "age": "[20,30)",
+        "sex": "female",
+        "n": 34,
+        "age_mid": 25,
+        "cohort": "c_b0475e53c4b385489d065b1eba846603"
+      },
+      {
+        "age": "[30,40)",
+        "sex": "female",
+        "n": 112,
+        "age_mid": 35,
+        "cohort": "c_b0475e53c4b385489d065b1eba846603"
+      },
+      {
+        "age": "[40,50)",
+        "sex": "female",
+        "n": 306,
+        "age_mid": 45,
+        "cohort": "c_b0475e53c4b385489d065b1eba846603"
+      },
+      {
+        "age": "[50,60)",
+        "sex": "female",
+        "n": 1087,
+        "age_mid": 55,
+        "cohort": "c_b0475e53c4b385489d065b1eba846603"
+      },
+      {
+        "age": "[60,70)",
+        "sex": "female",
+        "n": 1216,
+        "age_mid": 65,
+        "cohort": "c_b0475e53c4b385489d065b1eba846603"
+      },
+      {
+        "age": "[70,80)",
+        "sex": "female",
+        "n": 1351,
+        "age_mid": 75,
+        "cohort": "c_b0475e53c4b385489d065b1eba846603"
+      },
+      {
+        "age": "[80,120)",
+        "sex": "female",
+        "n": 465,
+        "age_mid": 100,
+        "cohort": "c_b0475e53c4b385489d065b1eba846603"
+      },
+      {
+        "age": "[0,20)",
+        "sex": "male",
+        "n": 0,
+        "age_mid": 10,
+        "cohort": "c_99e70e1c5f1b94ad5527b29e70d7125f"
+      },
+      {
+        "age": "[20,30)",
+        "sex": "male",
+        "n": 14,
+        "age_mid": 25,
+        "cohort": "c_99e70e1c5f1b94ad5527b29e70d7125f"
+      },
+      {
+        "age": "[30,40)",
+        "sex": "male",
+        "n": 140,
+        "age_mid": 35,
+        "cohort": "c_99e70e1c5f1b94ad5527b29e70d7125f"
+      },
+      {
+        "age": "[40,50)",
+        "sex": "male",
+        "n": 465,
+        "age_mid": 45,
+        "cohort": "c_99e70e1c5f1b94ad5527b29e70d7125f"
+      },
+      {
+        "age": "[50,60)",
+        "sex": "male",
+        "n": 1466,
+        "age_mid": 55,
+        "cohort": "c_99e70e1c5f1b94ad5527b29e70d7125f"
+      },
+      {
+        "age": "[60,70)",
+        "sex": "male",
+        "n": 1962,
+        "age_mid": 65,
+        "cohort": "c_99e70e1c5f1b94ad5527b29e70d7125f"
+      },
+      {
+        "age": "[70,80)",
+        "sex": "male",
+        "n": 1183,
+        "age_mid": 75,
+        "cohort": "c_99e70e1c5f1b94ad5527b29e70d7125f"
+      },
+      {
+        "age": "[80,120)",
+        "sex": "male",
+        "n": 219,
+        "age_mid": 100,
+        "cohort": "c_99e70e1c5f1b94ad5527b29e70d7125f"
+      },
+      {
+        "age": "[0,20)",
+        "sex": "female",
+        "n": 0,
+        "age_mid": 10,
+        "cohort": "c_99e70e1c5f1b94ad5527b29e70d7125f"
+      },
+      {
+        "age": "[20,30)",
+        "sex": "female",
+        "n": 37,
+        "age_mid": 25,
+        "cohort": "c_99e70e1c5f1b94ad5527b29e70d7125f"
+      },
+      {
+        "age": "[30,40)",
+        "sex": "female",
+        "n": 104,
+        "age_mid": 35,
+        "cohort": "c_99e70e1c5f1b94ad5527b29e70d7125f"
+      },
+      {
+        "age": "[40,50)",
+        "sex": "female",
+        "n": 423,
+        "age_mid": 45,
+        "cohort": "c_99e70e1c5f1b94ad5527b29e70d7125f"
+      },
+      {
+        "age": "[50,60)",
+        "sex": "female",
+        "n": 1220,
+        "age_mid": 55,
+        "cohort": "c_99e70e1c5f1b94ad5527b29e70d7125f"
+      },
+      {
+        "age": "[60,70)",
+        "sex": "female",
+        "n": 1908,
+        "age_mid": 65,
+        "cohort": "c_99e70e1c5f1b94ad5527b29e70d7125f"
+      },
+      {
+        "age": "[70,80)",
+        "sex": "female",
+        "n": 1898,
+        "age_mid": 75,
+        "cohort": "c_99e70e1c5f1b94ad5527b29e70d7125f"
+      },
+      {
+        "age": "[80,120)",
+        "sex": "female",
+        "n": 483,
+        "age_mid": 100,
+        "cohort": "c_99e70e1c5f1b94ad5527b29e70d7125f"
+      },
+      {
+        "age": "[0,20)",
+        "sex": "male",
+        "n": 0,
+        "age_mid": 10,
+        "cohort": "c_56bef3eb6a1907d71a3fee360940931b"
+      },
+      {
+        "age": "[20,30)",
+        "sex": "male",
+        "n": 61,
+        "age_mid": 25,
+        "cohort": "c_56bef3eb6a1907d71a3fee360940931b"
+      },
+      {
+        "age": "[30,40)",
+        "sex": "male",
+        "n": 248,
+        "age_mid": 35,
+        "cohort": "c_56bef3eb6a1907d71a3fee360940931b"
+      },
+      {
+        "age": "[40,50)",
+        "sex": "male",
+        "n": 561,
+        "age_mid": 45,
+        "cohort": "c_56bef3eb6a1907d71a3fee360940931b"
+      },
+      {
+        "age": "[50,60)",
+        "sex": "male",
+        "n": 875,
+        "age_mid": 55,
+        "cohort": "c_56bef3eb6a1907d71a3fee360940931b"
+      },
+      {
+        "age": "[60,70)",
+        "sex": "male",
+        "n": 485,
+        "age_mid": 65,
+        "cohort": "c_56bef3eb6a1907d71a3fee360940931b"
+      },
+      {
+        "age": "[70,80)",
+        "sex": "male",
+        "n": 204,
+        "age_mid": 75,
+        "cohort": "c_56bef3eb6a1907d71a3fee360940931b"
+      },
+      {
+        "age": "[80,120)",
+        "sex": "male",
+        "n": 42,
+        "age_mid": 100,
+        "cohort": "c_56bef3eb6a1907d71a3fee360940931b"
+      },
+      {
+        "age": "[0,20)",
+        "sex": "female",
+        "n": 0,
+        "age_mid": 10,
+        "cohort": "c_56bef3eb6a1907d71a3fee360940931b"
+      },
+      {
+        "age": "[20,30)",
+        "sex": "female",
+        "n": 64,
+        "age_mid": 25,
+        "cohort": "c_56bef3eb6a1907d71a3fee360940931b"
+      },
+      {
+        "age": "[30,40)",
+        "sex": "female",
+        "n": 155,
+        "age_mid": 35,
+        "cohort": "c_56bef3eb6a1907d71a3fee360940931b"
+      },
+      {
+        "age": "[40,50)",
+        "sex": "female",
+        "n": 433,
+        "age_mid": 45,
+        "cohort": "c_56bef3eb6a1907d71a3fee360940931b"
+      },
+      {
+        "age": "[50,60)",
+        "sex": "female",
+        "n": 892,
+        "age_mid": 55,
+        "cohort": "c_56bef3eb6a1907d71a3fee360940931b"
+      },
+      {
+        "age": "[60,70)",
+        "sex": "female",
+        "n": 700,
+        "age_mid": 65,
+        "cohort": "c_56bef3eb6a1907d71a3fee360940931b"
+      },
+      {
+        "age": "[70,80)",
+        "sex": "female",
+        "n": 460,
+        "age_mid": 75,
+        "cohort": "c_56bef3eb6a1907d71a3fee360940931b"
+      },
+      {
+        "age": "[80,120)",
+        "sex": "female",
+        "n": 103,
+        "age_mid": 100,
+        "cohort": "c_56bef3eb6a1907d71a3fee360940931b"
+      }
+    ],
+    "figures": null
+  },
+  "id": "60d02d25-aa3a-4b14-99ce-b58f3578e202"
+}

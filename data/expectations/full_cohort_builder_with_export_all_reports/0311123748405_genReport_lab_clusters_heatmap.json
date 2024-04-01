@@ -1,0 +1,11 @@
+{
+  "data": {
+    "type": "lab_clusters_heatmap",
+    "data": null,
+    "figures": "00cef59b-4421-47c3-a6f5-8444b60078ee.c_c_f74b9c92bc0517005234279f26646e4a.cluster_heatmap_.png",
+    "messageType": "chronicDiseaseCohorts.report",
+    "requestId": "00cef59b-4421-47c3-a6f5-8444b60078ee",
+    "cohortId": "c_f74b9c92bc0517005234279f26646e4a"
+  },
+  "id": "b3428c3d-3ce6-4ba8-8ccc-a2333b9f1bb6"
+}

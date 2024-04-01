@@ -1,0 +1,674 @@
+{
+  "data": {
+    "type": "lab_clusters_survival",
+    "data": null,
+    "figures": {
+      "data": [
+        {
+          "x": [
+            0,
+            39966,
+            43800
+          ],
+          "y": [
+            1,
+            0.970588235294118,
+            0.970588235294118
+          ],
+          "text": [
+            "time:     0<br />estimate: 1.0000000<br />",
+            "time: 39966<br />estimate: 0.9705882<br />",
+            "time: 43800<br />estimate: 0.9705882<br />"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "line": {
+            "width": 1.88976377952756,
+            "color": "rgba(51,102,204,1)",
+            "dash": "solid",
+            "shape": "hv"
+          },
+          "hoveron": "points",
+          "name": "(cluster=1,1)",
+          "legendgroup": "(cluster=1,1)",
+          "showlegend": true,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null
+        },
+        {
+          "x": [
+            0,
+            32240,
+            43800
+          ],
+          "y": [
+            1,
+            0.971428571428571,
+            0.971428571428571
+          ],
+          "text": [
+            "time:     0<br />estimate: 1.0000000<br />",
+            "time: 32240<br />estimate: 0.9714286<br />",
+            "time: 43800<br />estimate: 0.9714286<br />"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "line": {
+            "width": 1.88976377952756,
+            "color": "rgba(220,57,18,1)",
+            "dash": "solid",
+            "shape": "hv"
+          },
+          "hoveron": "points",
+          "name": "(cluster=2,1)",
+          "legendgroup": "(cluster=2,1)",
+          "showlegend": true,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null
+        },
+        {
+          "x": [
+            0,
+            37810,
+            40263,
+            43800
+          ],
+          "y": [
+            1,
+            0.976744186046512,
+            0.953488372093023,
+            0.953488372093023
+          ],
+          "text": [
+            "time:     0<br />estimate: 1.0000000<br />",
+            "time: 37810<br />estimate: 0.9767442<br />",
+            "time: 40263<br />estimate: 0.9534884<br />",
+            "time: 43800<br />estimate: 0.9534884<br />"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "line": {
+            "width": 1.88976377952756,
+            "color": "rgba(255,153,0,1)",
+            "dash": "solid",
+            "shape": "hv"
+          },
+          "hoveron": "points",
+          "name": "(cluster=3,1)",
+          "legendgroup": "(cluster=3,1)",
+          "showlegend": true,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null
+        },
+        {
+          "x": [
+            0,
+            24282,
+            29078,
+            43800
+          ],
+          "y": [
+            1,
+            0.961538461538462,
+            0.923076923076923,
+            0.923076923076923
+          ],
+          "text": [
+            "time:     0<br />estimate: 1.0000000<br />",
+            "time: 24282<br />estimate: 0.9615385<br />",
+            "time: 29078<br />estimate: 0.9230769<br />",
+            "time: 43800<br />estimate: 0.9230769<br />"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "line": {
+            "width": 1.88976377952756,
+            "color": "rgba(16,150,24,1)",
+            "dash": "solid",
+            "shape": "hv"
+          },
+          "hoveron": "points",
+          "name": "(cluster=4,1)",
+          "legendgroup": "(cluster=4,1)",
+          "showlegend": true,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null
+        },
+        {
+          "x": [
+            0,
+            15331,
+            43800
+          ],
+          "y": [
+            1,
+            0.958333333333333,
+            0.958333333333333
+          ],
+          "text": [
+            "time:     0<br />estimate: 1.0000000<br />",
+            "time: 15331<br />estimate: 0.9583333<br />",
+            "time: 43800<br />estimate: 0.9583333<br />"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "line": {
+            "width": 1.88976377952756,
+            "color": "rgba(153,0,153,1)",
+            "dash": "solid",
+            "shape": "hv"
+          },
+          "hoveron": "points",
+          "name": "(cluster=5,1)",
+          "legendgroup": "(cluster=5,1)",
+          "showlegend": true,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null
+        },
+        {
+          "x": [
+            0,
+            39966,
+            39966,
+            43800,
+            43800,
+            43800,
+            43800,
+            39966,
+            39966,
+            0,
+            0
+          ],
+          "y": [
+            1,
+            1,
+            0.915425889971117,
+            0.915425889971117,
+            0.915425889971117,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "text": [
+            "time:     0<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time: 39966<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time: 39966<br /><br />conf.low: 0.9154259<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.9154259<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.9154259<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.9154259<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.9154259<br />conf.high: 1",
+            "time: 39966<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time: 39966<br /><br />conf.low: 0.9154259<br />conf.high: 1",
+            "time:     0<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time:     0<br /><br />conf.low: 1.0000000<br />conf.high: 1"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "line": {
+            "width": 1.88976377952756,
+            "color": "transparent",
+            "dash": "solid"
+          },
+          "fill": "toself",
+          "fillcolor": "rgba(51,102,204,0.2)",
+          "hoveron": "points",
+          "name": "(cluster=1,1)",
+          "legendgroup": "(cluster=1,1)",
+          "showlegend": false,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null
+        },
+        {
+          "x": [
+            0,
+            32240,
+            32240,
+            43800,
+            43800,
+            43800,
+            43800,
+            32240,
+            32240,
+            0,
+            0
+          ],
+          "y": [
+            1,
+            1,
+            0.917774047452036,
+            0.917774047452036,
+            0.917774047452036,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "text": [
+            "time:     0<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time: 32240<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time: 32240<br /><br />conf.low: 0.9177740<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.9177740<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.9177740<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.9177740<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.9177740<br />conf.high: 1",
+            "time: 32240<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time: 32240<br /><br />conf.low: 0.9177740<br />conf.high: 1",
+            "time:     0<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time:     0<br /><br />conf.low: 1.0000000<br />conf.high: 1"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "line": {
+            "width": 1.88976377952756,
+            "color": "transparent",
+            "dash": "solid"
+          },
+          "fill": "toself",
+          "fillcolor": "rgba(220,57,18,0.2)",
+          "hoveron": "points",
+          "name": "(cluster=2,1)",
+          "legendgroup": "(cluster=2,1)",
+          "showlegend": false,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null
+        },
+        {
+          "x": [
+            0,
+            37810,
+            37810,
+            40263,
+            40263,
+            43800,
+            43800,
+            43800,
+            43800,
+            40263,
+            40263,
+            37810,
+            37810,
+            0,
+            0
+          ],
+          "y": [
+            1,
+            1,
+            0.932719758896868,
+            0.932719758896868,
+            0.892577277771481,
+            0.892577277771481,
+            0.892577277771481,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "text": [
+            "time:     0<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time: 37810<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time: 37810<br /><br />conf.low: 0.9327198<br />conf.high: 1",
+            "time: 40263<br /><br />conf.low: 0.9327198<br />conf.high: 1",
+            "time: 40263<br /><br />conf.low: 0.8925773<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.8925773<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.8925773<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.8925773<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.8925773<br />conf.high: 1",
+            "time: 40263<br /><br />conf.low: 0.9327198<br />conf.high: 1",
+            "time: 40263<br /><br />conf.low: 0.8925773<br />conf.high: 1",
+            "time: 37810<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time: 37810<br /><br />conf.low: 0.9327198<br />conf.high: 1",
+            "time:     0<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time:     0<br /><br />conf.low: 1.0000000<br />conf.high: 1"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "line": {
+            "width": 1.88976377952756,
+            "color": "transparent",
+            "dash": "solid"
+          },
+          "fill": "toself",
+          "fillcolor": "rgba(255,153,0,0.2)",
+          "hoveron": "points",
+          "name": "(cluster=3,1)",
+          "legendgroup": "(cluster=3,1)",
+          "showlegend": false,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null
+        },
+        {
+          "x": [
+            0,
+            24282,
+            24282,
+            29078,
+            29078,
+            43800,
+            43800,
+            43800,
+            43800,
+            29078,
+            29078,
+            24282,
+            24282,
+            0,
+            0
+          ],
+          "y": [
+            1,
+            1,
+            0.890389006776242,
+            0.890389006776242,
+            0.826129433945158,
+            0.826129433945158,
+            0.826129433945158,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "text": [
+            "time:     0<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time: 24282<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time: 24282<br /><br />conf.low: 0.8903890<br />conf.high: 1",
+            "time: 29078<br /><br />conf.low: 0.8903890<br />conf.high: 1",
+            "time: 29078<br /><br />conf.low: 0.8261294<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.8261294<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.8261294<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.8261294<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.8261294<br />conf.high: 1",
+            "time: 29078<br /><br />conf.low: 0.8903890<br />conf.high: 1",
+            "time: 29078<br /><br />conf.low: 0.8261294<br />conf.high: 1",
+            "time: 24282<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time: 24282<br /><br />conf.low: 0.8903890<br />conf.high: 1",
+            "time:     0<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time:     0<br /><br />conf.low: 1.0000000<br />conf.high: 1"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "line": {
+            "width": 1.88976377952756,
+            "color": "transparent",
+            "dash": "solid"
+          },
+          "fill": "toself",
+          "fillcolor": "rgba(16,150,24,0.2)",
+          "hoveron": "points",
+          "name": "(cluster=4,1)",
+          "legendgroup": "(cluster=4,1)",
+          "showlegend": false,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null
+        },
+        {
+          "x": [
+            0,
+            15331,
+            15331,
+            43800,
+            43800,
+            43800,
+            43800,
+            43800,
+            15331,
+            15331,
+            0,
+            0
+          ],
+          "y": [
+            1,
+            1,
+            0.881631402331465,
+            0.881631402331465,
+            0.881631402331465,
+            0.881631402331465,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "text": [
+            "time:     0<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time: 15331<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time: 15331<br /><br />conf.low: 0.8816314<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.8816314<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.8816314<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.8816314<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.8816314<br />conf.high: 1",
+            "time: 43800<br /><br />conf.low: 0.8816314<br />conf.high: 1",
+            "time: 15331<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time: 15331<br /><br />conf.low: 0.8816314<br />conf.high: 1",
+            "time:     0<br /><br />conf.low: 1.0000000<br />conf.high: 1",
+            "time:     0<br /><br />conf.low: 1.0000000<br />conf.high: 1"
+          ],
+          "type": "scatter",
+          "mode": "lines",
+          "line": {
+            "width": 1.88976377952756,
+            "color": "transparent",
+            "dash": "solid"
+          },
+          "fill": "toself",
+          "fillcolor": "rgba(153,0,153,0.2)",
+          "hoveron": "points",
+          "name": "(cluster=5,1)",
+          "legendgroup": "(cluster=5,1)",
+          "showlegend": false,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null
+        }
+      ],
+      "layout": {
+        "margin": {
+          "t": 25.7412480974125,
+          "r": 7.30593607305936,
+          "b": 42.6179604261796,
+          "l": 53.4661685346617
+        },
+        "plot_bgcolor": "rgba(255,255,255,1)",
+        "paper_bgcolor": "rgba(255,255,255,1)",
+        "font": {
+          "color": "rgba(0,0,0,1)",
+          "family": "",
+          "size": 14.6118721461187
+        },
+        "xaxis": {
+          "domain": [
+            0,
+            1
+          ],
+          "automargin": true,
+          "type": "linear",
+          "autorange": false,
+          "range": [
+            -2190,
+            45990
+          ],
+          "tickmode": "array",
+          "ticktext": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "tickvals": [
+            8760,
+            17520,
+            26280,
+            35040,
+            43800
+          ],
+          "categoryorder": "array",
+          "categoryarray": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "nticks": null,
+          "ticks": "outside",
+          "tickcolor": "rgba(51,51,51,1)",
+          "ticklen": 3.65296803652968,
+          "tickwidth": 0.66417600664176,
+          "showticklabels": true,
+          "tickfont": {
+            "color": "rgba(77,77,77,1)",
+            "family": "",
+            "size": 13.2835201328352
+          },
+          "tickangle": 0,
+          "showline": false,
+          "linecolor": null,
+          "linewidth": 0,
+          "showgrid": true,
+          "gridcolor": "rgba(235,235,235,1)",
+          "gridwidth": 0.66417600664176,
+          "zeroline": false,
+          "anchor": "y",
+          "title": {
+            "text": "Time",
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 15.9402241594022
+            }
+          },
+          "hoverformat": ".2f"
+        },
+        "yaxis": {
+          "domain": [
+            0,
+            1
+          ],
+          "automargin": true,
+          "type": "linear",
+          "autorange": false,
+          "range": [
+            0.817435905642416,
+            1.00869352830274
+          ],
+          "tickmode": "array",
+          "ticktext": [
+            "0.85",
+            "0.90",
+            "0.95",
+            "1.00"
+          ],
+          "tickvals": [
+            0.85,
+            0.9,
+            0.95,
+            1
+          ],
+          "categoryorder": "array",
+          "categoryarray": [
+            "0.85",
+            "0.90",
+            "0.95",
+            "1.00"
+          ],
+          "nticks": null,
+          "ticks": "outside",
+          "tickcolor": "rgba(51,51,51,1)",
+          "ticklen": 3.65296803652968,
+          "tickwidth": 0.66417600664176,
+          "showticklabels": true,
+          "tickfont": {
+            "color": "rgba(77,77,77,1)",
+            "family": "",
+            "size": 13.2835201328352
+          },
+          "tickangle": 0,
+          "showline": false,
+          "linecolor": null,
+          "linewidth": 0,
+          "showgrid": true,
+          "gridcolor": "rgba(235,235,235,1)",
+          "gridwidth": 0.66417600664176,
+          "zeroline": false,
+          "anchor": "x",
+          "title": {
+            "text": "Survival Probability",
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 15.9402241594022
+            }
+          },
+          "hoverformat": ".2f"
+        },
+        "shapes": [
+          {
+            "type": "rect",
+            "fillcolor": "transparent",
+            "line": {
+              "color": "rgba(51,51,51,1)",
+              "width": 0.66417600664176,
+              "linetype": "solid"
+            },
+            "yref": "paper",
+            "xref": "paper",
+            "x0": 0,
+            "x1": 1,
+            "y0": 0,
+            "y1": 1
+          }
+        ],
+        "showlegend": false,
+        "legend": {
+          "bgcolor": "rgba(255,255,255,1)",
+          "bordercolor": "transparent",
+          "borderwidth": 1.88976377952756,
+          "font": {
+            "color": "rgba(0,0,0,1)",
+            "family": "",
+            "size": 13.2835201328352
+          }
+        },
+        "hovermode": "closest",
+        "barmode": "relative"
+      }
+    },
+    "messageType": "chronicDiseaseCohorts.report",
+    "requestId": "edbfe88b-d379-4c8a-8136-14e79223cf8d",
+    "cohortId": "c_f74b9c92bc0517005234279f26646e4a"
+  },
+  "id": "4e689700-16cc-4f87-bd08-03ae68e349ad"
+}

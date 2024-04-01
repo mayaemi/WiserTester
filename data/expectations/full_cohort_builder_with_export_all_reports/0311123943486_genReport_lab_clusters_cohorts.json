@@ -1,0 +1,96 @@
+{
+  "data": {
+    "type": "lab_clusters_cohorts",
+    "data": {
+      "cohorts": [
+        {
+          "cohortName": "Cluster 1 (c_f74b9c92bc0517005234279f26646e4a)",
+          "inclusionCriteria": [
+            {
+              "track": "c_f74b9c92bc0517005234279f26646e4a_5186c4626be3aef544b26fd875249f89_cluster_1",
+              "label": "Cluster 1 (c_f74b9c92bc0517005234279f26646e4a)",
+              "type": "track",
+              "enabled": true
+            }
+          ],
+          "requiredFilter": [],
+          "excludeFilter": [],
+          "adjustOnsetTime": [],
+          "isChronic": true
+        },
+        {
+          "cohortName": "Cluster 2 (c_f74b9c92bc0517005234279f26646e4a)",
+          "inclusionCriteria": [
+            {
+              "track": "c_f74b9c92bc0517005234279f26646e4a_5186c4626be3aef544b26fd875249f89_cluster_2",
+              "label": "Cluster 2 (c_f74b9c92bc0517005234279f26646e4a)",
+              "type": "track",
+              "enabled": true
+            }
+          ],
+          "requiredFilter": [],
+          "excludeFilter": [],
+          "adjustOnsetTime": [],
+          "isChronic": true
+        },
+        {
+          "cohortName": "Cluster 3 (c_f74b9c92bc0517005234279f26646e4a)",
+          "inclusionCriteria": [
+            {
+              "track": "c_f74b9c92bc0517005234279f26646e4a_5186c4626be3aef544b26fd875249f89_cluster_3",
+              "label": "Cluster 3 (c_f74b9c92bc0517005234279f26646e4a)",
+              "type": "track",
+              "enabled": true
+            }
+          ],
+          "requiredFilter": [],
+          "excludeFilter": [],
+          "adjustOnsetTime": [],
+          "isChronic": true
+        },
+        {
+          "cohortName": "Cluster 4 (c_f74b9c92bc0517005234279f26646e4a)",
+          "inclusionCriteria": [
+            {
+              "track": "c_f74b9c92bc0517005234279f26646e4a_5186c4626be3aef544b26fd875249f89_cluster_4",
+              "label": "Cluster 4 (c_f74b9c92bc0517005234279f26646e4a)",
+              "type": "track",
+              "enabled": true
+            }
+          ],
+          "requiredFilter": [],
+          "excludeFilter": [],
+          "adjustOnsetTime": [],
+          "isChronic": true
+        },
+        {
+          "cohortName": "Cluster 5 (c_f74b9c92bc0517005234279f26646e4a)",
+          "inclusionCriteria": [
+            {
+              "track": "c_f74b9c92bc0517005234279f26646e4a_5186c4626be3aef544b26fd875249f89_cluster_5",
+              "label": "Cluster 5 (c_f74b9c92bc0517005234279f26646e4a)",
+              "type": "track",
+              "enabled": true
+            }
+          ],
+          "requiredFilter": [],
+          "excludeFilter": [],
+          "adjustOnsetTime": [],
+          "isChronic": true
+        }
+      ],
+      "cohortColors": [
+        "#3366cc",
+        "#dc3912",
+        "#ff9900",
+        "#109618",
+        "#990099"
+      ]
+    },
+    "figures": null,
+    "messageType": "chronicDiseaseCohorts.report",
+    "requestId": "5009a996-bd29-42a7-be16-c6d7b4ab5e9a",
+    "cohortId": "c_f74b9c92bc0517005234279f26646e4a"
+  },
+  "id": "d52f82c9-e5c3-468f-9777-5be8646492e6"
+}

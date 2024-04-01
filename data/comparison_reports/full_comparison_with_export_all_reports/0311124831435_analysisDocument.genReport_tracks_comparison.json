@@ -1,0 +1,3800 @@
+{
+  "timestamp": "20240401161524639108",
+  "request_id": "63a2073d-dfd4-43e9-ad22-2bb6c839c38a",
+  "output_file": "data/outputs\\full_comparison_with_export_all_reports\\0311124831435_analysisDocument.genReport_tracks.json",
+  "expected_output_file": "data/expectations\\full_comparison_with_export_all_reports\\0311124831435_analysisDocument.genReport_tracks.json",
+  "diff": [
+    {
+      "path": [
+        "data",
+        40,
+        "q75"
+      ],
+      "action": "type_changes",
+      "value": 15,
+      "old_value": 14.8956382274628,
+      "type": "<class 'int'>",
+      "old_type": "<class 'float'>"
+    },
+    {
+      "path": [
+        "data",
+        0,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 14.4531219388232,
+      "old_value": 14.4161897156955
+    },
+    {
+      "path": [
+        "data",
+        0,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.07833487148452,
+      "old_value": 1.12588651737997
+    },
+    {
+      "path": [
+        "data",
+        0,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 13.1003463745117,
+      "old_value": 13.1049373626709
+    },
+    {
+      "path": [
+        "data",
+        0,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.7017955780029,
+      "old_value": 13.7018532752991
+    },
+    {
+      "path": [
+        "data",
+        0,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 14.5048065185547,
+      "old_value": 14.3982362747192
+    },
+    {
+      "path": [
+        "data",
+        0,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 15.300883769989,
+      "old_value": 15.1980094909668
+    },
+    {
+      "path": [
+        "data",
+        0,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.7797498703003,
+      "old_value": 15.6937957763672
+    },
+    {
+      "path": [
+        "data",
+        1,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.9769927874133,
+      "old_value": 12.9855048431093
+    },
+    {
+      "path": [
+        "data",
+        1,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.881281605519756,
+      "old_value": 0.889427744960598
+    },
+    {
+      "path": [
+        "data",
+        1,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 12.3936967849731,
+      "old_value": 12.3916947841644
+    },
+    {
+      "path": [
+        "data",
+        1,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.898832321167,
+      "old_value": 12.944456577301
+    },
+    {
+      "path": [
+        "data",
+        1,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.604542016983,
+      "old_value": 13.6046922206879
+    },
+    {
+      "path": [
+        "data",
+        1,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 14.0916453361511,
+      "old_value": 14.1186835289001
+    },
+    {
+      "path": [
+        "data",
+        2,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 14.3098008752727,
+      "old_value": 14.2582375231407
+    },
+    {
+      "path": [
+        "data",
+        2,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.02017472930592,
+      "old_value": 1.11739801828409
+    },
+    {
+      "path": [
+        "data",
+        2,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 13.0719692230225,
+      "old_value": 12.9919081687927
+    },
+    {
+      "path": [
+        "data",
+        2,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.5084483623505,
+      "old_value": 13.4259209632874
+    },
+    {
+      "path": [
+        "data",
+        2,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 14.2080278396606,
+      "old_value": 14.199511051178
+    },
+    {
+      "path": [
+        "data",
+        2,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.6000003814697,
+      "old_value": 15.6918917655945
+    },
+    {
+      "path": [
+        "data",
+        3,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.9015224186613,
+      "old_value": 12.8784043168921
+    },
+    {
+      "path": [
+        "data",
+        3,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.859159018884215,
+      "old_value": 0.878469566198213
+    },
+    {
+      "path": [
+        "data",
+        3,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.8029079437256,
+      "old_value": 12.8004016876221
+    },
+    {
+      "path": [
+        "data",
+        3,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.6014776229858,
+      "old_value": 13.6000204086304
+    },
+    {
+      "path": [
+        "data",
+        3,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.9932952880859,
+      "old_value": 14.0408395767212
+    },
+    {
+      "path": [
+        "data",
+        4,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 14.2064841117548,
+      "old_value": 14.199635092331
+    },
+    {
+      "path": [
+        "data",
+        4,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.21737370172953,
+      "old_value": 1.2040694185677
+    },
+    {
+      "path": [
+        "data",
+        4,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.804651260376,
+      "old_value": 12.8045903205872
+    },
+    {
+      "path": [
+        "data",
+        4,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 14.2018556594849,
+      "old_value": 14.3013572692871
+    },
+    {
+      "path": [
+        "data",
+        4,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 15.1000003814697,
+      "old_value": 15.0303952693939
+    },
+    {
+      "path": [
+        "data",
+        4,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.6949240684509,
+      "old_value": 15.6000003814697
+    },
+    {
+      "path": [
+        "data",
+        5,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.8185273835938,
+      "old_value": 12.8168620998467
+    },
+    {
+      "path": [
+        "data",
+        5,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.872905041356613,
+      "old_value": 0.842806774337394
+    },
+    {
+      "path": [
+        "data",
+        5,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.808749961853,
+      "old_value": 11.8748571395874
+    },
+    {
+      "path": [
+        "data",
+        5,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 12.1953840255737,
+      "old_value": 12.1999082565308
+    },
+    {
+      "path": [
+        "data",
+        5,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.699146270752,
+      "old_value": 12.6969871520996
+    },
+    {
+      "path": [
+        "data",
+        5,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.4997253417969,
+      "old_value": 13.4980087280273
+    },
+    {
+      "path": [
+        "data",
+        5,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.9957576751709,
+      "old_value": 13.9930278778076
+    },
+    {
+      "path": [
+        "data",
+        6,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 14.0351185564901,
+      "old_value": 14.0451919307896
+    },
+    {
+      "path": [
+        "data",
+        6,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.05301682743434,
+      "old_value": 1.08841381530392
+    },
+    {
+      "path": [
+        "data",
+        6,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.8979170799255,
+      "old_value": 12.8933320999146
+    },
+    {
+      "path": [
+        "data",
+        6,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.3995683193207,
+      "old_value": 13.3975174427032
+    },
+    {
+      "path": [
+        "data",
+        6,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.9903354644775,
+      "old_value": 13.904821395874
+    },
+    {
+      "path": [
+        "data",
+        6,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.8000001907349,
+      "old_value": 14.8950114250183
+    },
+    {
+      "path": [
+        "data",
+        6,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.3008881568909,
+      "old_value": 15.3965055465698
+    },
+    {
+      "path": [
+        "data",
+        7,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.7325113388038,
+      "old_value": 12.725279757851
+    },
+    {
+      "path": [
+        "data",
+        7,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.862148752512157,
+      "old_value": 0.833351746468587
+    },
+    {
+      "path": [
+        "data",
+        7,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.7046146392822,
+      "old_value": 11.8000817298889
+    },
+    {
+      "path": [
+        "data",
+        7,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 12.1008625030518,
+      "old_value": 12.1902587413788
+    },
+    {
+      "path": [
+        "data",
+        7,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.6000003814697,
+      "old_value": 12.600971698761
+    },
+    {
+      "path": [
+        "data",
+        7,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.3952314853668,
+      "old_value": 13.3000001907349
+    },
+    {
+      "path": [
+        "data",
+        7,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.8921589851379,
+      "old_value": 13.8000001907349
+    },
+    {
+      "path": [
+        "data",
+        8,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.9361336691338,
+      "old_value": 13.9437365626034
+    },
+    {
+      "path": [
+        "data",
+        8,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.01673318004703,
+      "old_value": 1.13812294277365
+    },
+    {
+      "path": [
+        "data",
+        8,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.8473958969116,
+      "old_value": 12.8014750480652
+    },
+    {
+      "path": [
+        "data",
+        8,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.8120760917664,
+      "old_value": 13.8950200080872
+    },
+    {
+      "path": [
+        "data",
+        8,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.6000003814697,
+      "old_value": 14.7027103900909
+    },
+    {
+      "path": [
+        "data",
+        8,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.3033747673035,
+      "old_value": 15.3975882530212
+    },
+    {
+      "path": [
+        "data",
+        9,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.6807817136938,
+      "old_value": 12.6652073211556
+    },
+    {
+      "path": [
+        "data",
+        9,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.906810732114683,
+      "old_value": 0.900286033236686
+    },
+    {
+      "path": [
+        "data",
+        9,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.695618057251,
+      "old_value": 11.6909362792969
+    },
+    {
+      "path": [
+        "data",
+        9,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 12.1000003814697,
+      "old_value": 12.1047677993774
+    },
+    {
+      "path": [
+        "data",
+        9,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.8985389709473,
+      "old_value": 13.8181663513184
+    },
+    {
+      "path": [
+        "data",
+        10,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.8890857777353,
+      "old_value": 13.8357461913157
+    },
+    {
+      "path": [
+        "data",
+        10,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.05620070696037,
+      "old_value": 1.19197125225078
+    },
+    {
+      "path": [
+        "data",
+        10,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.7128778457642,
+      "old_value": 12.6001436233521
+    },
+    {
+      "path": [
+        "data",
+        10,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.3000001907349,
+      "old_value": 13.2020871639252
+    },
+    {
+      "path": [
+        "data",
+        10,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.5110864639282,
+      "old_value": 14.6128787994385
+    },
+    {
+      "path": [
+        "data",
+        10,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.302024936676,
+      "old_value": 15.3029138565063
+    },
+    {
+      "path": [
+        "data",
+        11,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.6894863569894,
+      "old_value": 12.6987006786453
+    },
+    {
+      "path": [
+        "data",
+        11,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.894326666256084,
+      "old_value": 0.896676920369894
+    },
+    {
+      "path": [
+        "data",
+        11,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.7006450653076,
+      "old_value": 11.7027629852295
+    },
+    {
+      "path": [
+        "data",
+        11,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 12.1000003814697,
+      "old_value": 12.1005425453186
+    },
+    {
+      "path": [
+        "data",
+        11,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.8942956924438,
+      "old_value": 13.8937570571899
+    },
+    {
+      "path": [
+        "data",
+        12,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.7454125060592,
+      "old_value": 13.8632128338481
+    },
+    {
+      "path": [
+        "data",
+        12,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.19366985617969,
+      "old_value": 1.08770853880633
+    },
+    {
+      "path": [
+        "data",
+        12,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.5907159805298,
+      "old_value": 12.800538444519
+    },
+    {
+      "path": [
+        "data",
+        12,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.1044921875,
+      "old_value": 13.2027013301849
+    },
+    {
+      "path": [
+        "data",
+        12,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.7009272575378,
+      "old_value": 13.8049216270447
+    },
+    {
+      "path": [
+        "data",
+        12,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.5025699138641,
+      "old_value": 14.6000003814697
+    },
+    {
+      "path": [
+        "data",
+        12,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.2024471282959,
+      "old_value": 15.2050681114197
+    },
+    {
+      "path": [
+        "data",
+        13,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.665380419517,
+      "old_value": 12.697720371947
+    },
+    {
+      "path": [
+        "data",
+        13,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.930343723540813,
+      "old_value": 0.907683458588066
+    },
+    {
+      "path": [
+        "data",
+        13,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.6000003814697,
+      "old_value": 11.6962335586548
+    },
+    {
+      "path": [
+        "data",
+        13,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 12.1000003814697,
+      "old_value": 12.1014747619629
+    },
+    {
+      "path": [
+        "data",
+        13,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.6000003814697,
+      "old_value": 12.5075941085815
+    },
+    {
+      "path": [
+        "data",
+        13,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.8961097717285,
+      "old_value": 13.8907890319824
+    },
+    {
+      "path": [
+        "data",
+        14,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.8241301750896,
+      "old_value": 13.7541811658879
+    },
+    {
+      "path": [
+        "data",
+        14,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.13259332391786,
+      "old_value": 1.18322398359149
+    },
+    {
+      "path": [
+        "data",
+        14,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.606912612915,
+      "old_value": 12.5368614196777
+    },
+    {
+      "path": [
+        "data",
+        14,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.201055765152,
+      "old_value": 13.1122617721558
+    },
+    {
+      "path": [
+        "data",
+        14,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.7040395736694,
+      "old_value": 13.697124004364
+    },
+    {
+      "path": [
+        "data",
+        14,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.6000003814697,
+      "old_value": 14.5106534957886
+    },
+    {
+      "path": [
+        "data",
+        14,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.3021469116211,
+      "old_value": 15.1980090141296
+    },
+    {
+      "path": [
+        "data",
+        15,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.5582059453853,
+      "old_value": 12.6140080727253
+    },
+    {
+      "path": [
+        "data",
+        15,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.89125113901928,
+      "old_value": 0.971166229324048
+    },
+    {
+      "path": [
+        "data",
+        15,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.6022887229919,
+      "old_value": 11.6000003814697
+    },
+    {
+      "path": [
+        "data",
+        15,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 11.9979214668274,
+      "old_value": 12.1000003814697
+    },
+    {
+      "path": [
+        "data",
+        15,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.4972767829895,
+      "old_value": 12.4974637031555
+    },
+    {
+      "path": [
+        "data",
+        15,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.1025531291962,
+      "old_value": 13.3000001907349
+    },
+    {
+      "path": [
+        "data",
+        15,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.8000001907349,
+      "old_value": 13.8974385261536
+    },
+    {
+      "path": [
+        "data",
+        16,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.8569680283972,
+      "old_value": 13.8068257132492
+    },
+    {
+      "path": [
+        "data",
+        16,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.02473003434721,
+      "old_value": 1.09491223131437
+    },
+    {
+      "path": [
+        "data",
+        16,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.7006262779236,
+      "old_value": 12.6016735076904
+    },
+    {
+      "path": [
+        "data",
+        16,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.1979773044586,
+      "old_value": 13.1093170642853
+    },
+    {
+      "path": [
+        "data",
+        16,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.7524352073669,
+      "old_value": 13.7022085189819
+    },
+    {
+      "path": [
+        "data",
+        16,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.5786073207855,
+      "old_value": 14.6000003814697
+    },
+    {
+      "path": [
+        "data",
+        16,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.2167874336243,
+      "old_value": 15.3007660865784
+    },
+    {
+      "path": [
+        "data",
+        17,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.6332777331912,
+      "old_value": 12.6709728296737
+    },
+    {
+      "path": [
+        "data",
+        17,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.939141723844024,
+      "old_value": 0.876083762004701
+    },
+    {
+      "path": [
+        "data",
+        17,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.5267040252686,
+      "old_value": 11.6000003814697
+    },
+    {
+      "path": [
+        "data",
+        17,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.8000001907349,
+      "old_value": 13.8920986175537
+    },
+    {
+      "path": [
+        "data",
+        18,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.7991235172406,
+      "old_value": 13.7430519250254
+    },
+    {
+      "path": [
+        "data",
+        18,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.11681632998243,
+      "old_value": 1.1873365686565
+    },
+    {
+      "path": [
+        "data",
+        18,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.5541286468506,
+      "old_value": 12.497444152832
+    },
+    {
+      "path": [
+        "data",
+        18,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.1039028167725,
+      "old_value": 13.1985807418823
+    },
+    {
+      "path": [
+        "data",
+        18,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.6962070465088,
+      "old_value": 13.6977872848511
+    },
+    {
+      "path": [
+        "data",
+        18,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.6000003814697,
+      "old_value": 14.5026206970215
+    },
+    {
+      "path": [
+        "data",
+        18,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.2826873779297,
+      "old_value": 15.2086111068726
+    },
+    {
+      "path": [
+        "data",
+        19,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.5906701299879,
+      "old_value": 12.571920882331
+    },
+    {
+      "path": [
+        "data",
+        19,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.959419097251583,
+      "old_value": 0.940993309577923
+    },
+    {
+      "path": [
+        "data",
+        19,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.6000003814697,
+      "old_value": 11.5011478424072
+    },
+    {
+      "path": [
+        "data",
+        19,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 11.9933249950409,
+      "old_value": 11.994077205658
+    },
+    {
+      "path": [
+        "data",
+        19,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.4970993995667,
+      "old_value": 12.4952607154846
+    },
+    {
+      "path": [
+        "data",
+        19,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.3000001907349,
+      "old_value": 13.2017662525177
+    },
+    {
+      "path": [
+        "data",
+        20,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 14.213767665222,
+      "old_value": 14.1764770952442
+    },
+    {
+      "path": [
+        "data",
+        20,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.05881326529478,
+      "old_value": 1.09178279983696
+    },
+    {
+      "path": [
+        "data",
+        20,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 13.0023427963257,
+      "old_value": 12.9947583198547
+    },
+    {
+      "path": [
+        "data",
+        20,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.4995534420013,
+      "old_value": 13.4997692108154
+    },
+    {
+      "path": [
+        "data",
+        20,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 14.1959404945374,
+      "old_value": 14.1025638580322
+    },
+    {
+      "path": [
+        "data",
+        21,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.8278464813652,
+      "old_value": 12.8180901228257
+    },
+    {
+      "path": [
+        "data",
+        21,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.868966957374365,
+      "old_value": 0.89941758826819
+    },
+    {
+      "path": [
+        "data",
+        21,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.8043511390686,
+      "old_value": 11.8044076919556
+    },
+    {
+      "path": [
+        "data",
+        21,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 12.1980772018433,
+      "old_value": 12.197466135025
+    },
+    {
+      "path": [
+        "data",
+        21,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.8001732826233,
+      "old_value": 12.703489780426
+    },
+    {
+      "path": [
+        "data",
+        21,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.4989743232727,
+      "old_value": 13.502406835556
+    },
+    {
+      "path": [
+        "data",
+        21,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.9928276062012,
+      "old_value": 13.9960670471191
+    },
+    {
+      "path": [
+        "data",
+        22,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 14.1062423389261,
+      "old_value": 14.1305505152565
+    },
+    {
+      "path": [
+        "data",
+        22,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.09817140502567,
+      "old_value": 1.10334987331983
+    },
+    {
+      "path": [
+        "data",
+        22,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.995177936554,
+      "old_value": 12.8999394416809
+    },
+    {
+      "path": [
+        "data",
+        22,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.4961924552917,
+      "old_value": 13.4079706668854
+    },
+    {
+      "path": [
+        "data",
+        22,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.9959411621094,
+      "old_value": 14.0029125213623
+    },
+    {
+      "path": [
+        "data",
+        22,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.8903574943542,
+      "old_value": 14.8939251899719
+    },
+    {
+      "path": [
+        "data",
+        22,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.5,
+      "old_value": 15.6000003814697
+    },
+    {
+      "path": [
+        "data",
+        23,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.7837395931658,
+      "old_value": 12.7966115973946
+    },
+    {
+      "path": [
+        "data",
+        23,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.924392960220461,
+      "old_value": 0.884107894484327
+    },
+    {
+      "path": [
+        "data",
+        23,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.8007308959961,
+      "old_value": 11.8019689559937
+    },
+    {
+      "path": [
+        "data",
+        23,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 12.1970052719116,
+      "old_value": 12.1968517303467
+    },
+    {
+      "path": [
+        "data",
+        23,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.7007122039795,
+      "old_value": 12.6980438232422
+    },
+    {
+      "path": [
+        "data",
+        23,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.3996834754944,
+      "old_value": 13.3979558944702
+    },
+    {
+      "path": [
+        "data",
+        23,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.9919637680054,
+      "old_value": 13.9909456253052
+    },
+    {
+      "path": [
+        "data",
+        24,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 14.1057381007746,
+      "old_value": 14.0857014743012
+    },
+    {
+      "path": [
+        "data",
+        24,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.05677908337898,
+      "old_value": 1.09447066523347
+    },
+    {
+      "path": [
+        "data",
+        24,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.8942132949829,
+      "old_value": 12.804280090332
+    },
+    {
+      "path": [
+        "data",
+        24,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.3975405693054,
+      "old_value": 13.4078488349915
+    },
+    {
+      "path": [
+        "data",
+        24,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.9953079223633,
+      "old_value": 13.9980754852295
+    },
+    {
+      "path": [
+        "data",
+        24,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.8923616409302,
+      "old_value": 14.8000001907349
+    },
+    {
+      "path": [
+        "data",
+        25,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.7770578024147,
+      "old_value": 12.8330428398636
+    },
+    {
+      "path": [
+        "data",
+        25,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.914078164300333,
+      "old_value": 0.895924983524134
+    },
+    {
+      "path": [
+        "data",
+        25,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.8006358146667,
+      "old_value": 11.8155579566956
+    },
+    {
+      "path": [
+        "data",
+        25,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 12.1941952705383,
+      "old_value": 12.1987986564636
+    },
+    {
+      "path": [
+        "data",
+        25,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.6935729980469,
+      "old_value": 12.7004914283752
+    },
+    {
+      "path": [
+        "data",
+        25,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.3978805541992,
+      "old_value": 13.4991788864136
+    },
+    {
+      "path": [
+        "data",
+        25,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.9928932189941,
+      "old_value": 13.9951887130737
+    },
+    {
+      "path": [
+        "data",
+        26,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 14.0040320879905,
+      "old_value": 14.0140750466947
+    },
+    {
+      "path": [
+        "data",
+        26,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.10174242692598,
+      "old_value": 1.07770542455207
+    },
+    {
+      "path": [
+        "data",
+        26,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.8031721115112,
+      "old_value": 12.8009877204895
+    },
+    {
+      "path": [
+        "data",
+        26,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.3917970657349,
+      "old_value": 13.3911716938019
+    },
+    {
+      "path": [
+        "data",
+        26,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.8996376991272,
+      "old_value": 13.8995699882507
+    },
+    {
+      "path": [
+        "data",
+        26,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.3977928161621,
+      "old_value": 15.3978824615479
+    },
+    {
+      "path": [
+        "data",
+        27,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.7034010922849,
+      "old_value": 12.7113021916968
+    },
+    {
+      "path": [
+        "data",
+        27,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.918783124852838,
+      "old_value": 0.910236186787622
+    },
+    {
+      "path": [
+        "data",
+        27,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.6953798294067,
+      "old_value": 11.701815032959
+    },
+    {
+      "path": [
+        "data",
+        27,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 12.1041474342346,
+      "old_value": 12.191339969635
+    },
+    {
+      "path": [
+        "data",
+        27,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.3065166473389,
+      "old_value": 13.3927307128906
+    },
+    {
+      "path": [
+        "data",
+        27,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.8965103149414,
+      "old_value": 13.8908048629761
+    },
+    {
+      "path": [
+        "data",
+        28,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.9114853349565,
+      "old_value": 13.9205905725446
+    },
+    {
+      "path": [
+        "data",
+        28,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.085408598928,
+      "old_value": 1.06042885063854
+    },
+    {
+      "path": [
+        "data",
+        28,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.7199984550476,
+      "old_value": 12.80120677948
+    },
+    {
+      "path": [
+        "data",
+        28,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.8149118423462,
+      "old_value": 13.8127751350403
+    },
+    {
+      "path": [
+        "data",
+        28,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.6901440620422,
+      "old_value": 14.6907470226288
+    },
+    {
+      "path": [
+        "data",
+        28,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.3036929130554,
+      "old_value": 15.3043533325195
+    },
+    {
+      "path": [
+        "data",
+        29,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.660195181667,
+      "old_value": 12.672087609926
+    },
+    {
+      "path": [
+        "data",
+        29,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.911618036805255,
+      "old_value": 0.905446530925728
+    },
+    {
+      "path": [
+        "data",
+        29,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.6940095901489,
+      "old_value": 11.6954235076904
+    },
+    {
+      "path": [
+        "data",
+        29,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.8541381835938,
+      "old_value": 13.8915714263916
+    },
+    {
+      "path": [
+        "data",
+        30,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.9005255292283,
+      "old_value": 13.9269173137851
+    },
+    {
+      "path": [
+        "data",
+        30,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.15088097284529,
+      "old_value": 1.13190854967268
+    },
+    {
+      "path": [
+        "data",
+        30,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.7008724212646,
+      "old_value": 12.8000148773193
+    },
+    {
+      "path": [
+        "data",
+        30,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.8022999763489,
+      "old_value": 13.8920907974243
+    },
+    {
+      "path": [
+        "data",
+        30,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.694495677948,
+      "old_value": 14.6155385971069
+    },
+    {
+      "path": [
+        "data",
+        30,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.3035437583923,
+      "old_value": 15.395183467865
+    },
+    {
+      "path": [
+        "data",
+        31,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.662685160222,
+      "old_value": 12.6545252277567
+    },
+    {
+      "path": [
+        "data",
+        31,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.870062446345066,
+      "old_value": 0.874725415937135
+    },
+    {
+      "path": [
+        "data",
+        31,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.6963217735291,
+      "old_value": 11.6915958404541
+    },
+    {
+      "path": [
+        "data",
+        31,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.2031280994415,
+      "old_value": 13.3000001907349
+    },
+    {
+      "path": [
+        "data",
+        31,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.8927307128906,
+      "old_value": 13.8911078453064
+    },
+    {
+      "path": [
+        "data",
+        32,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.8218013002295,
+      "old_value": 13.8801304493662
+    },
+    {
+      "path": [
+        "data",
+        32,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.19476572601702,
+      "old_value": 1.17160000623191
+    },
+    {
+      "path": [
+        "data",
+        32,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.6044738769531,
+      "old_value": 12.6941305160522
+    },
+    {
+      "path": [
+        "data",
+        32,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.1969900131226,
+      "old_value": 13.2025079727173
+    },
+    {
+      "path": [
+        "data",
+        32,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.8000001907349,
+      "old_value": 13.8082714080811
+    },
+    {
+      "path": [
+        "data",
+        32,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.691873550415,
+      "old_value": 14.695291519165
+    },
+    {
+      "path": [
+        "data",
+        32,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.3031908035278,
+      "old_value": 15.3027137756348
+    },
+    {
+      "path": [
+        "data",
+        33,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.6244971216766,
+      "old_value": 12.6365329459947
+    },
+    {
+      "path": [
+        "data",
+        33,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.910663177647158,
+      "old_value": 0.903297729473163
+    },
+    {
+      "path": [
+        "data",
+        33,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.6924514770508,
+      "old_value": 11.608980178833
+    },
+    {
+      "path": [
+        "data",
+        33,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 11.997350692749,
+      "old_value": 11.9994621276855
+    },
+    {
+      "path": [
+        "data",
+        33,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.4995346069336,
+      "old_value": 12.4988565444946
+    },
+    {
+      "path": [
+        "data",
+        33,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.890474319458,
+      "old_value": 13.89098072052
+    },
+    {
+      "path": [
+        "data",
+        34,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.8833693822662,
+      "old_value": 13.8676118863808
+    },
+    {
+      "path": [
+        "data",
+        34,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.14512975846557,
+      "old_value": 1.11874736093526
+    },
+    {
+      "path": [
+        "data",
+        34,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.6552562713623,
+      "old_value": 12.6058931350708
+    },
+    {
+      "path": [
+        "data",
+        34,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.2027680873871,
+      "old_value": 13.2005286216736
+    },
+    {
+      "path": [
+        "data",
+        34,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.8041958808899,
+      "old_value": 13.8000001907349
+    },
+    {
+      "path": [
+        "data",
+        34,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.6920809745789,
+      "old_value": 14.6062207221985
+    },
+    {
+      "path": [
+        "data",
+        34,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.3035702705383,
+      "old_value": 15.3046002388
+    },
+    {
+      "path": [
+        "data",
+        35,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.604840106353,
+      "old_value": 12.6364334040787
+    },
+    {
+      "path": [
+        "data",
+        35,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.894312467782438,
+      "old_value": 0.942419775382378
+    },
+    {
+      "path": [
+        "data",
+        35,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.6000003814697,
+      "old_value": 11.6083065032959
+    },
+    {
+      "path": [
+        "data",
+        35,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 11.9968633651733,
+      "old_value": 12.1000003814697
+    },
+    {
+      "path": [
+        "data",
+        35,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.4972257614136,
+      "old_value": 12.5558652877808
+    },
+    {
+      "path": [
+        "data",
+        35,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.8000001907349,
+      "old_value": 13.8924625396729
+    },
+    {
+      "path": [
+        "data",
+        36,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.8184779029864,
+      "old_value": 13.8552688430558
+    },
+    {
+      "path": [
+        "data",
+        36,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.13334883476885,
+      "old_value": 1.10595297671022
+    },
+    {
+      "path": [
+        "data",
+        36,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.5204381942749,
+      "old_value": 12.6976976394653
+    },
+    {
+      "path": [
+        "data",
+        36,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.1965165138245,
+      "old_value": 13.1996903419495
+    },
+    {
+      "path": [
+        "data",
+        36,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.7039833068848,
+      "old_value": 13.8000001907349
+    },
+    {
+      "path": [
+        "data",
+        36,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.6055812835693,
+      "old_value": 14.6025395393372
+    },
+    {
+      "path": [
+        "data",
+        36,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.3011522293091,
+      "old_value": 15.3035545349121
+    },
+    {
+      "path": [
+        "data",
+        37,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.5918119862944,
+      "old_value": 12.5890977328516
+    },
+    {
+      "path": [
+        "data",
+        37,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.94681626272389,
+      "old_value": 0.945998611819905
+    },
+    {
+      "path": [
+        "data",
+        37,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.5629936218262,
+      "old_value": 11.6000003814697
+    },
+    {
+      "path": [
+        "data",
+        37,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 12.1000003814697,
+      "old_value": 11.9983749389648
+    },
+    {
+      "path": [
+        "data",
+        37,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.4988126754761,
+      "old_value": 12.4989204406738
+    },
+    {
+      "path": [
+        "data",
+        37,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.2037496566772,
+      "old_value": 13.2035121917725
+    },
+    {
+      "path": [
+        "data",
+        37,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.8361169815064,
+      "old_value": 13.8000001907349
+    },
+    {
+      "path": [
+        "data",
+        38,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.734441668388,
+      "old_value": 13.7582092431743
+    },
+    {
+      "path": [
+        "data",
+        38,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.17393911335897,
+      "old_value": 1.18726578111239
+    },
+    {
+      "path": [
+        "data",
+        38,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.3946342468262,
+      "old_value": 12.4963974952698
+    },
+    {
+      "path": [
+        "data",
+        38,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.1071484088898,
+      "old_value": 13.1026332378387
+    },
+    {
+      "path": [
+        "data",
+        38,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.7017107009888,
+      "old_value": 13.7042565345764
+    },
+    {
+      "path": [
+        "data",
+        38,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.5045745372772,
+      "old_value": 14.6000003814697
+    },
+    {
+      "path": [
+        "data",
+        38,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.2038984298706,
+      "old_value": 15.2080159187317
+    },
+    {
+      "path": [
+        "data",
+        39,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.5965184433796,
+      "old_value": 12.5958925188664
+    },
+    {
+      "path": [
+        "data",
+        39,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.985355309203862,
+      "old_value": 0.998467346111761
+    },
+    {
+      "path": [
+        "data",
+        39,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.6000003814697,
+      "old_value": 11.4977758407593
+    },
+    {
+      "path": [
+        "data",
+        39,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 11.9942500591278,
+      "old_value": 11.9945368766785
+    },
+    {
+      "path": [
+        "data",
+        39,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.4988503456116,
+      "old_value": 12.4963111877441
+    },
+    {
+      "path": [
+        "data",
+        39,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.2043499946594,
+      "old_value": 13.3000001907349
+    },
+    {
+      "path": [
+        "data",
+        39,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.891154384613,
+      "old_value": 13.8991836547852
+    },
+    {
+      "path": [
+        "data",
+        40,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 14.2215529775761,
+      "old_value": 14.1644335528863
+    },
+    {
+      "path": [
+        "data",
+        40,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.05313037214166,
+      "old_value": 1.03985639621697
+    },
+    {
+      "path": [
+        "data",
+        40,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.9952615737915,
+      "old_value": 13.1007802963257
+    },
+    {
+      "path": [
+        "data",
+        40,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.503484249115,
+      "old_value": 13.5024836063385
+    },
+    {
+      "path": [
+        "data",
+        40,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 14.1033096313477,
+      "old_value": 14.1015295982361
+    },
+    {
+      "path": [
+        "data",
+        40,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.6000003814697,
+      "old_value": 15.4000622749329
+    },
+    {
+      "path": [
+        "data",
+        41,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.7833622556236,
+      "old_value": 12.8240671193779
+    },
+    {
+      "path": [
+        "data",
+        41,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.885553120099546,
+      "old_value": 0.87371420558887
+    },
+    {
+      "path": [
+        "data",
+        41,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.8004865646362,
+      "old_value": 11.8019213676453
+    },
+    {
+      "path": [
+        "data",
+        41,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 12.1962404251099,
+      "old_value": 12.2749860286713
+    },
+    {
+      "path": [
+        "data",
+        41,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.7001614570618,
+      "old_value": 12.703369140625
+    },
+    {
+      "path": [
+        "data",
+        41,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.3978199958801,
+      "old_value": 13.4966855049133
+    },
+    {
+      "path": [
+        "data",
+        41,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.9903330802917,
+      "old_value": 13.9949469566345
+    },
+    {
+      "path": [
+        "data",
+        42,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 14.1486146164169,
+      "old_value": 14.1409309933797
+    },
+    {
+      "path": [
+        "data",
+        42,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.10404678923251,
+      "old_value": 1.11330856658751
+    },
+    {
+      "path": [
+        "data",
+        42,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.9023603439331,
+      "old_value": 12.8927609443665
+    },
+    {
+      "path": [
+        "data",
+        42,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.3989515304565,
+      "old_value": 13.4951922893524
+    },
+    {
+      "path": [
+        "data",
+        42,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 14.1013264656067,
+      "old_value": 14.1013288497925
+    },
+    {
+      "path": [
+        "data",
+        42,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.5,
+      "old_value": 15.6000003814697
+    },
+    {
+      "path": [
+        "data",
+        43,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.7891356671823,
+      "old_value": 12.7757612903698
+    },
+    {
+      "path": [
+        "data",
+        43,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.991368782924422,
+      "old_value": 0.900395531969679
+    },
+    {
+      "path": [
+        "data",
+        43,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.8040193557739,
+      "old_value": 11.802557182312
+    },
+    {
+      "path": [
+        "data",
+        43,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 12.1948518753052,
+      "old_value": 12.1962108612061
+    },
+    {
+      "path": [
+        "data",
+        43,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.6980981826782,
+      "old_value": 12.6978597640991
+    },
+    {
+      "path": [
+        "data",
+        43,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.49622631073,
+      "old_value": 13.3989734649658
+    },
+    {
+      "path": [
+        "data",
+        43,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.9975484848022,
+      "old_value": 13.9926992416382
+    },
+    {
+      "path": [
+        "data",
+        44,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 14.0074017741717,
+      "old_value": 13.9896762203425
+    },
+    {
+      "path": [
+        "data",
+        44,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.12251327295383,
+      "old_value": 1.13900066985713
+    },
+    {
+      "path": [
+        "data",
+        44,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.8048236846924,
+      "old_value": 12.8003742218018
+    },
+    {
+      "path": [
+        "data",
+        44,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.3916432857513,
+      "old_value": 13.3749084472656
+    },
+    {
+      "path": [
+        "data",
+        44,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.9918026924133,
+      "old_value": 13.8992700576782
+    },
+    {
+      "path": [
+        "data",
+        44,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.7311425209045,
+      "old_value": 14.6971075534821
+    },
+    {
+      "path": [
+        "data",
+        44,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.3968383789062,
+      "old_value": 15.398183631897
+    },
+    {
+      "path": [
+        "data",
+        45,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.7906934141791,
+      "old_value": 12.7329812354048
+    },
+    {
+      "path": [
+        "data",
+        45,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.877716744456297,
+      "old_value": 0.861879977556272
+    },
+    {
+      "path": [
+        "data",
+        45,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.8012281417847,
+      "old_value": 11.8009059906006
+    },
+    {
+      "path": [
+        "data",
+        45,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 12.1950454711914,
+      "old_value": 12.1915521621704
+    },
+    {
+      "path": [
+        "data",
+        45,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.6968641281128,
+      "old_value": 12.6005887985229
+    },
+    {
+      "path": [
+        "data",
+        45,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.3983688354492,
+      "old_value": 13.3935508728027
+    },
+    {
+      "path": [
+        "data",
+        45,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.9951126098633,
+      "old_value": 13.8933980941772
+    },
+    {
+      "path": [
+        "data",
+        46,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.984157991629,
+      "old_value": 13.9936585430725
+    },
+    {
+      "path": [
+        "data",
+        46,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.11642933974695,
+      "old_value": 1.08645848470789
+    },
+    {
+      "path": [
+        "data",
+        46,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.8004360198975,
+      "old_value": 12.8009288787842
+    },
+    {
+      "path": [
+        "data",
+        46,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.390362739563,
+      "old_value": 13.3930368423462
+    },
+    {
+      "path": [
+        "data",
+        46,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.8981475830078,
+      "old_value": 13.8989973068237
+    },
+    {
+      "path": [
+        "data",
+        46,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.8000001907349,
+      "old_value": 14.6995706558228
+    },
+    {
+      "path": [
+        "data",
+        46,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.3624221801758,
+      "old_value": 15.3979904174805
+    },
+    {
+      "path": [
+        "data",
+        47,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.7159052474362,
+      "old_value": 12.7309366671625
+    },
+    {
+      "path": [
+        "data",
+        47,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.91100102047056,
+      "old_value": 0.932306116899093
+    },
+    {
+      "path": [
+        "data",
+        47,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.6970254898071,
+      "old_value": 11.6984479904175
+    },
+    {
+      "path": [
+        "data",
+        47,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.3048181533813,
+      "old_value": 13.393816947937
+    },
+    {
+      "path": [
+        "data",
+        47,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.8975093841553,
+      "old_value": 13.9914850234985
+    },
+    {
+      "path": [
+        "data",
+        48,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.9353615451322,
+      "old_value": 13.9474199314387
+    },
+    {
+      "path": [
+        "data",
+        48,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.08102417325253,
+      "old_value": 1.10559066663421
+    },
+    {
+      "path": [
+        "data",
+        48,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.8008031845093,
+      "old_value": 12.7300217628479
+    },
+    {
+      "path": [
+        "data",
+        48,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.8135261535645,
+      "old_value": 13.8168931007385
+    },
+    {
+      "path": [
+        "data",
+        48,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.6907596588135,
+      "old_value": 14.7057921886444
+    },
+    {
+      "path": [
+        "data",
+        48,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.3953112602234,
+      "old_value": 15.3984487533569
+    },
+    {
+      "path": [
+        "data",
+        49,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.6668962369578,
+      "old_value": 12.6828022269852
+    },
+    {
+      "path": [
+        "data",
+        49,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.910029783422299,
+      "old_value": 0.920021061178263
+    },
+    {
+      "path": [
+        "data",
+        49,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.6254927635193,
+      "old_value": 11.6976605415344
+    },
+    {
+      "path": [
+        "data",
+        49,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 12.104777097702,
+      "old_value": 12.1000003814697
+    },
+    {
+      "path": [
+        "data",
+        49,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.8273899078369,
+      "old_value": 13.8963404655457
+    },
+    {
+      "path": [
+        "data",
+        50,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.9108501673808,
+      "old_value": 13.8976445091717
+    },
+    {
+      "path": [
+        "data",
+        50,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.11109568670517,
+      "old_value": 1.10827241814765
+    },
+    {
+      "path": [
+        "data",
+        50,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.8000392913818,
+      "old_value": 12.6941986083984
+    },
+    {
+      "path": [
+        "data",
+        50,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.3000001907349,
+      "old_value": 13.2116851806641
+    },
+    {
+      "path": [
+        "data",
+        50,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.8044662475586,
+      "old_value": 13.8008031845093
+    },
+    {
+      "path": [
+        "data",
+        50,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.6949033737183,
+      "old_value": 14.6960144042969
+    },
+    {
+      "path": [
+        "data",
+        50,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.3959760665894,
+      "old_value": 15.3049201965332
+    },
+    {
+      "path": [
+        "data",
+        51,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.6230121258442,
+      "old_value": 12.6581309990541
+    },
+    {
+      "path": [
+        "data",
+        51,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.89214872445267,
+      "old_value": 0.884400839412584
+    },
+    {
+      "path": [
+        "data",
+        51,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.6191801071167,
+      "old_value": 11.6950107574463
+    },
+    {
+      "path": [
+        "data",
+        51,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.4981498718262,
+      "old_value": 12.5063819885254
+    },
+    {
+      "path": [
+        "data",
+        51,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.2025756835938,
+      "old_value": 13.3000001907349
+    },
+    {
+      "path": [
+        "data",
+        51,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.8000001907349,
+      "old_value": 13.8936679840088
+    },
+    {
+      "path": [
+        "data",
+        52,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.8567673826124,
+      "old_value": 13.8567124306568
+    },
+    {
+      "path": [
+        "data",
+        52,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.12677201355935,
+      "old_value": 1.12797200180515
+    },
+    {
+      "path": [
+        "data",
+        52,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.6087747573853,
+      "old_value": 12.6012022972107
+    },
+    {
+      "path": [
+        "data",
+        52,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.2061560153961,
+      "old_value": 13.1970443725586
+    },
+    {
+      "path": [
+        "data",
+        52,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.7044405937195,
+      "old_value": 13.8000001907349
+    },
+    {
+      "path": [
+        "data",
+        52,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.6915600299835,
+      "old_value": 14.6000003814697
+    },
+    {
+      "path": [
+        "data",
+        52,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.302704334259,
+      "old_value": 15.3044060707092
+    },
+    {
+      "path": [
+        "data",
+        53,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.7124775850298,
+      "old_value": 12.7118430084603
+    },
+    {
+      "path": [
+        "data",
+        53,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.914566113764899,
+      "old_value": 0.918571854261574
+    },
+    {
+      "path": [
+        "data",
+        53,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.6904867172241,
+      "old_value": 11.6978628158569
+    },
+    {
+      "path": [
+        "data",
+        53,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 12.1000003814697,
+      "old_value": 12.1052665710449
+    },
+    {
+      "path": [
+        "data",
+        53,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.3951716423035,
+      "old_value": 13.3933053016663
+    },
+    {
+      "path": [
+        "data",
+        53,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.9907876968384,
+      "old_value": 13.8975114822388
+    },
+    {
+      "path": [
+        "data",
+        54,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.8360786819458,
+      "old_value": 13.8594980515374
+    },
+    {
+      "path": [
+        "data",
+        54,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.15327173852217,
+      "old_value": 1.16075703421354
+    },
+    {
+      "path": [
+        "data",
+        54,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.6042521476746,
+      "old_value": 12.6218942642212
+    },
+    {
+      "path": [
+        "data",
+        54,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.2020087242126,
+      "old_value": 13.1386315822601
+    },
+    {
+      "path": [
+        "data",
+        54,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.8000001907349,
+      "old_value": 13.7013440132141
+    },
+    {
+      "path": [
+        "data",
+        54,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.6000003814697,
+      "old_value": 14.6944160461426
+    },
+    {
+      "path": [
+        "data",
+        54,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.3022055625916,
+      "old_value": 15.30404920578
+    },
+    {
+      "path": [
+        "data",
+        55,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.6199261136623,
+      "old_value": 12.6323811684248
+    },
+    {
+      "path": [
+        "data",
+        55,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.957082437734338,
+      "old_value": 0.937972556789871
+    },
+    {
+      "path": [
+        "data",
+        55,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.4994186401367,
+      "old_value": 11.6506128311157
+    },
+    {
+      "path": [
+        "data",
+        55,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 11.9988822937012,
+      "old_value": 12.1000003814697
+    },
+    {
+      "path": [
+        "data",
+        55,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.4962348937988,
+      "old_value": 12.4985084533691
+    },
+    {
+      "path": [
+        "data",
+        55,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.8989500045776,
+      "old_value": 13.8960088729858
+    },
+    {
+      "path": [
+        "data",
+        56,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.8173162058146,
+      "old_value": 13.8622868331996
+    },
+    {
+      "path": [
+        "data",
+        56,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.09517595309964,
+      "old_value": 1.14633271255919
+    },
+    {
+      "path": [
+        "data",
+        56,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.6937914848328,
+      "old_value": 12.6200148582459
+    },
+    {
+      "path": [
+        "data",
+        56,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.1996822357178,
+      "old_value": 13.1974675655365
+    },
+    {
+      "path": [
+        "data",
+        56,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.7021517753601,
+      "old_value": 13.8039946556091
+    },
+    {
+      "path": [
+        "data",
+        56,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 14.5184783935547,
+      "old_value": 14.6930298805237
+    },
+    {
+      "path": [
+        "data",
+        56,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.1916137695313,
+      "old_value": 15.3009523391724
+    },
+    {
+      "path": [
+        "data",
+        57,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.6570607762004,
+      "old_value": 12.6907693574595
+    },
+    {
+      "path": [
+        "data",
+        57,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.931072298551608,
+      "old_value": 0.981669568667159
+    },
+    {
+      "path": [
+        "data",
+        57,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.6154487609863,
+      "old_value": 11.692998790741
+    },
+    {
+      "path": [
+        "data",
+        57,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 11.9977519512177,
+      "old_value": 12.1000003814697
+    },
+    {
+      "path": [
+        "data",
+        57,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.3000001907349,
+      "old_value": 13.3976390361786
+    },
+    {
+      "path": [
+        "data",
+        57,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.8964542388916,
+      "old_value": 13.9904224395752
+    },
+    {
+      "path": [
+        "data",
+        58,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 13.7556764130654,
+      "old_value": 13.7845265668656
+    },
+    {
+      "path": [
+        "data",
+        58,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 1.17849270325281,
+      "old_value": 1.16471533199627
+    },
+    {
+      "path": [
+        "data",
+        58,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 12.4032564163208,
+      "old_value": 12.3962678909302
+    },
+    {
+      "path": [
+        "data",
+        58,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 13.1002473831177,
+      "old_value": 13.1008272171021
+    },
+    {
+      "path": [
+        "data",
+        58,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 13.7038822174072,
+      "old_value": 13.7008876800537
+    },
+    {
+      "path": [
+        "data",
+        58,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 15.3005313873291,
+      "old_value": 15.302544593811
+    },
+    {
+      "path": [
+        "data",
+        59,
+        "mean"
+      ],
+      "action": "values_changed",
+      "value": 12.6240603835959,
+      "old_value": 12.5567090963062
+    },
+    {
+      "path": [
+        "data",
+        59,
+        "sd"
+      ],
+      "action": "values_changed",
+      "value": 0.966835152904892,
+      "old_value": 0.946382521989219
+    },
+    {
+      "path": [
+        "data",
+        59,
+        "q10"
+      ],
+      "action": "values_changed",
+      "value": 11.4991863250732,
+      "old_value": 11.4960176467896
+    },
+    {
+      "path": [
+        "data",
+        59,
+        "q25"
+      ],
+      "action": "values_changed",
+      "value": 11.9944276809692,
+      "old_value": 11.993791103363
+    },
+    {
+      "path": [
+        "data",
+        59,
+        "q50"
+      ],
+      "action": "values_changed",
+      "value": 12.4970397949219,
+      "old_value": 12.4960322380066
+    },
+    {
+      "path": [
+        "data",
+        59,
+        "q75"
+      ],
+      "action": "values_changed",
+      "value": 13.3000001907349,
+      "old_value": 13.1986620426178
+    },
+    {
+      "path": [
+        "data",
+        59,
+        "q90"
+      ],
+      "action": "values_changed",
+      "value": 13.9943554878235,
+      "old_value": 13.8905528068542
+    }
+  ]
+}

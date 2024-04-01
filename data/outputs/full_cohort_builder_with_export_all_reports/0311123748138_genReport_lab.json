@@ -1,0 +1,13 @@
+{
+  "data": {
+    "type": "lab",
+    "data": null,
+    "figures": {
+      "lab.101": "dadf60ea-71fe-4d9d-b916-ba659785b24d.c_c_f74b9c92bc0517005234279f26646e4a.labs.lab.101.png"
+    },
+    "messageType": "chronicDiseaseCohorts.report",
+    "requestId": "dadf60ea-71fe-4d9d-b916-ba659785b24d",
+    "cohortId": "c_f74b9c92bc0517005234279f26646e4a"
+  },
+  "id": "0e15130d-c39d-4671-b33c-acc51adfe0bc"
+}

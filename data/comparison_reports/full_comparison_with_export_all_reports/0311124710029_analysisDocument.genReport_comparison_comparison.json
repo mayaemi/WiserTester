@@ -1,0 +1,56 @@
+{
+  "timestamp": "20240401161521219817",
+  "request_id": "738f90c2-b85e-411d-b9a8-6b0b0df6fc6e",
+  "output_file": "data/outputs\\full_comparison_with_export_all_reports\\0311124710029_analysisDocument.genReport_comparison.json",
+  "expected_output_file": "data/expectations\\full_comparison_with_export_all_reports\\0311124710029_analysisDocument.genReport_comparison.json",
+  "diff": [
+    {
+      "path": [
+        "figures",
+        "WZMN.med.HTN.BETA_BLOCKERS.male",
+        "layout",
+        "margin",
+        "t"
+      ],
+      "action": "values_changed",
+      "value": 25.7412480974125,
+      "old_value": 23.3059360730594
+    },
+    {
+      "path": [
+        "figures",
+        "WZMN.med.HTN.BETA_BLOCKERS.male",
+        "layout",
+        "margin",
+        "b"
+      ],
+      "action": "values_changed",
+      "value": 57.2298325722983,
+      "old_value": 54.7945205479452
+    },
+    {
+      "path": [
+        "figures",
+        "WZMN.med.HTN.BETA_BLOCKERS.female",
+        "layout",
+        "margin",
+        "t"
+      ],
+      "action": "values_changed",
+      "value": 25.7412480974125,
+      "old_value": 23.3059360730594
+    },
+    {
+      "path": [
+        "figures",
+        "WZMN.med.HTN.BETA_BLOCKERS.female",
+        "layout",
+        "margin",
+        "b"
+      ],
+      "action": "values_changed",
+      "value": 57.2298325722983,
+      "old_value": 54.7945205479452
+    }
+  ]
+}

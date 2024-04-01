@@ -1,0 +1,11 @@
+{
+  "data": {
+    "type": "relative_risk",
+    "data": [],
+    "figures": null,
+    "messageType": "chronicDiseaseCohorts.report",
+    "requestId": "6f91c7f3-be50-4a0a-b016-cae38f026a31",
+    "cohortId": "c_f74b9c92bc0517005234279f26646e4a"
+  },
+  "id": "fba324b7-0f0d-46ef-947b-eb4346600840"
+}

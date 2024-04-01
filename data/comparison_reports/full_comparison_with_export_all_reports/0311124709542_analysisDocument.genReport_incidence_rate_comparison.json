@@ -1,0 +1,454 @@
+{
+  "timestamp": "20240401161430967744",
+  "request_id": "642aa59a-5229-49ed-bc81-edf4848bb959",
+  "output_file": "data/outputs\\full_comparison_with_export_all_reports\\0311124709542_analysisDocument.genReport_incidence_rate.json",
+  "expected_output_file": "data/expectations\\full_comparison_with_export_all_reports\\0311124709542_analysisDocument.genReport_incidence_rate.json",
+  "diff": [
+    {
+      "path": [
+        "figures",
+        "data",
+        0,
+        "error_y",
+        "width"
+      ],
+      "action": "values_changed",
+      "value": 1.92019201920193,
+      "old_value": 1.51215121512152
+    },
+    {
+      "path": [
+        "figures",
+        "data",
+        1,
+        "error_y",
+        "width"
+      ],
+      "action": "values_changed",
+      "value": 1.92019201920192,
+      "old_value": 1.51215121512151
+    },
+    {
+      "path": [
+        "figures",
+        "data",
+        2,
+        "error_y",
+        "width"
+      ],
+      "action": "values_changed",
+      "value": 1.92019201920193,
+      "old_value": 1.51215121512152
+    },
+    {
+      "path": [
+        "figures",
+        "data",
+        3,
+        "error_y",
+        "width"
+      ],
+      "action": "values_changed",
+      "value": 1.92019201920193,
+      "old_value": 1.51215121512152
+    },
+    {
+      "path": [
+        "figures",
+        "data",
+        4,
+        "error_y",
+        "width"
+      ],
+      "action": "values_changed",
+      "value": 1.92019201920192,
+      "old_value": 1.51215121512151
+    },
+    {
+      "path": [
+        "figures",
+        "data",
+        5,
+        "error_y",
+        "width"
+      ],
+      "action": "values_changed",
+      "value": 1.92019201920193,
+      "old_value": 1.51215121512152
+    },
+    {
+      "path": [
+        "figures",
+        "layout",
+        "margin",
+        "t"
+      ],
+      "action": "values_changed",
+      "value": 37.4307458143075,
+      "old_value": 34.9954337899543
+    },
+    {
+      "path": [
+        "figures",
+        "layout",
+        "margin",
+        "b"
+      ],
+      "action": "values_changed",
+      "value": 39.6955859969559,
+      "old_value": 37.2602739726027
+    },
+    {
+      "path": [
+        "figures",
+        "layout",
+        "xaxis",
+        "domain",
+        1
+      ],
+      "value": 0.491438356164384,
+      "action": "unordered_iterable_item_added"
+    },
+    {
+      "path": [
+        "figures",
+        "layout",
+        "annotations",
+        2
+      ],
+      "value": {
+        "text": "male",
+        "x": 0.245719178082192,
+        "y": 1,
+        "showarrow": false,
+        "ax": 0,
+        "ay": 0,
+        "font": {
+          "color": "rgba(26,26,26,1)",
+          "family": "",
+          "size": 11.689497716895
+        },
+        "xref": "paper",
+        "yref": "paper",
+        "textangle": 0,
+        "xanchor": "center",
+        "yanchor": "bottom"
+      },
+      "action": "unordered_iterable_item_added"
+    },
+    {
+      "path": [
+        "figures",
+        "layout",
+        "annotations",
+        3
+      ],
+      "value": {
+        "text": "female",
+        "x": 0.754280821917808,
+        "y": 1,
+        "showarrow": false,
+        "ax": 0,
+        "ay": 0,
+        "font": {
+          "color": "rgba(26,26,26,1)",
+          "family": "",
+          "size": 11.689497716895
+        },
+        "xref": "paper",
+        "yref": "paper",
+        "textangle": 0,
+        "xanchor": "center",
+        "yanchor": "bottom"
+      },
+      "action": "unordered_iterable_item_added"
+    },
+    {
+      "path": [
+        "figures",
+        "layout",
+        "shapes",
+        0
+      ],
+      "value": {
+        "type": "rect",
+        "fillcolor": "transparent",
+        "line": {
+          "color": "rgba(51,51,51,1)",
+          "width": 0.66417600664176,
+          "linetype": "solid"
+        },
+        "yref": "paper",
+        "xref": "paper",
+        "x0": 0,
+        "x1": 0.491438356164384,
+        "y0": 0,
+        "y1": 1
+      },
+      "action": "unordered_iterable_item_added"
+    },
+    {
+      "path": [
+        "figures",
+        "layout",
+        "shapes",
+        1
+      ],
+      "value": {
+        "type": "rect",
+        "fillcolor": null,
+        "line": {
+          "color": null,
+          "width": 0,
+          "linetype": []
+        },
+        "yref": "paper",
+        "xref": "paper",
+        "x0": 0,
+        "x1": 0.491438356164384,
+        "y0": 0,
+        "y1": 23.37899543379,
+        "yanchor": 1,
+        "ysizemode": "pixel"
+      },
+      "action": "unordered_iterable_item_added"
+    },
+    {
+      "path": [
+        "figures",
+        "layout",
+        "shapes",
+        2
+      ],
+      "value": {
+        "type": "rect",
+        "fillcolor": "transparent",
+        "line": {
+          "color": "rgba(51,51,51,1)",
+          "width": 0.66417600664176,
+          "linetype": "solid"
+        },
+        "yref": "paper",
+        "xref": "paper",
+        "x0": 0.508561643835616,
+        "x1": 1,
+        "y0": 0,
+        "y1": 1
+      },
+      "action": "unordered_iterable_item_added"
+    },
+    {
+      "path": [
+        "figures",
+        "layout",
+        "shapes",
+        3
+      ],
+      "value": {
+        "type": "rect",
+        "fillcolor": null,
+        "line": {
+          "color": null,
+          "width": 0,
+          "linetype": []
+        },
+        "yref": "paper",
+        "xref": "paper",
+        "x0": 0.508561643835616,
+        "x1": 1,
+        "y0": 0,
+        "y1": 23.37899543379,
+        "yanchor": 1,
+        "ysizemode": "pixel"
+      },
+      "action": "unordered_iterable_item_added"
+    },
+    {
+      "path": [
+        "figures",
+        "layout",
+        "xaxis2",
+        "domain",
+        0
+      ],
+      "value": 0.508561643835616,
+      "action": "unordered_iterable_item_added"
+    },
+    {
+      "path": [
+        "figures",
+        "layout",
+        "xaxis",
+        "domain",
+        1
+      ],
+      "value": 0.489128071319852,
+      "action": "unordered_iterable_item_removed"
+    },
+    {
+      "path": [
+        "figures",
+        "layout",
+        "annotations",
+        2
+      ],
+      "value": {
+        "text": "male",
+        "x": 0.244564035659926,
+        "y": 1,
+        "showarrow": false,
+        "ax": 0,
+        "ay": 0,
+        "font": {
+          "color": "rgba(26,26,26,1)",
+          "family": "",
+          "size": 11.689497716895
+        },
+        "xref": "paper",
+        "yref": "paper",
+        "textangle": 0,
+        "xanchor": "center",
+        "yanchor": "bottom"
+      },
+      "action": "unordered_iterable_item_removed"
+    },
+    {
+      "path": [
+        "figures",
+        "layout",
+        "annotations",
+        3
+      ],
+      "value": {
+        "text": "female",
+        "x": 0.755435964340074,
+        "y": 1,
+        "showarrow": false,
+        "ax": 0,
+        "ay": 0,
+        "font": {
+          "color": "rgba(26,26,26,1)",
+          "family": "",
+          "size": 11.689497716895
+        },
+        "xref": "paper",
+        "yref": "paper",
+        "textangle": 0,
+        "xanchor": "center",
+        "yanchor": "bottom"
+      },
+      "action": "unordered_iterable_item_removed"
+    },
+    {
+      "path": [
+        "figures",
+        "layout",
+        "shapes",
+        0
+      ],
+      "value": {
+        "type": "rect",
+        "fillcolor": "transparent",
+        "line": {
+          "color": "rgba(51,51,51,1)",
+          "width": 0.66417600664176,
+          "linetype": "solid"
+        },
+        "yref": "paper",
+        "xref": "paper",
+        "x0": 0,
+        "x1": 0.489128071319852,
+        "y0": 0,
+        "y1": 1
+      },
+      "action": "unordered_iterable_item_removed"
+    },
+    {
+      "path": [
+        "figures",
+        "layout",
+        "shapes",
+        1
+      ],
+      "value": {
+        "type": "rect",
+        "fillcolor": null,
+        "line": {
+          "color": null,
+          "width": 0,
+          "linetype": []
+        },
+        "yref": "paper",
+        "xref": "paper",
+        "x0": 0,
+        "x1": 0.489128071319852,
+        "y0": 0,
+        "y1": 23.37899543379,
+        "yanchor": 1,
+        "ysizemode": "pixel"
+      },
+      "action": "unordered_iterable_item_removed"
+    },
+    {
+      "path": [
+        "figures",
+        "layout",
+        "shapes",
+        2
+      ],
+      "value": {
+        "type": "rect",
+        "fillcolor": "transparent",
+        "line": {
+          "color": "rgba(51,51,51,1)",
+          "width": 0.66417600664176,
+          "linetype": "solid"
+        },
+        "yref": "paper",
+        "xref": "paper",
+        "x0": 0.510871928680148,
+        "x1": 1,
+        "y0": 0,
+        "y1": 1
+      },
+      "action": "unordered_iterable_item_removed"
+    },
+    {
+      "path": [
+        "figures",
+        "layout",
+        "shapes",
+        3
+      ],
+      "value": {
+        "type": "rect",
+        "fillcolor": null,
+        "line": {
+          "color": null,
+          "width": 0,
+          "linetype": []
+        },
+        "yref": "paper",
+        "xref": "paper",
+        "x0": 0.510871928680148,
+        "x1": 1,
+        "y0": 0,
+        "y1": 23.37899543379,
+        "yanchor": 1,
+        "ysizemode": "pixel"
+      },
+      "action": "unordered_iterable_item_removed"
+    },
+    {
+      "path": [
+        "figures",
+        "layout",
+        "xaxis2",
+        "domain",
+        0
+      ],
+      "value": 0.510871928680148,
+      "action": "unordered_iterable_item_removed"
+    }
+  ]
+}

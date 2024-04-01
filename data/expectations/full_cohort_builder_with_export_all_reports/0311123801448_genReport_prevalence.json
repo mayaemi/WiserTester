@@ -1,0 +1,172 @@
+{
+  "data": {
+    "type": "prevalence",
+    "data": [
+      {
+        "age": "[0,20)",
+        "sex": "male",
+        "track_duration": 0,
+        "age_mid": 10,
+        "duration": 11230721,
+        "est": 0,
+        "lwr.ci": 0,
+        "upr.ci": 0
+      },
+      {
+        "age": "[20,30)",
+        "sex": "male",
+        "track_duration": 0,
+        "age_mid": 25,
+        "duration": 47983643,
+        "est": 0,
+        "lwr.ci": 0,
+        "upr.ci": 0
+      },
+      {
+        "age": "[30,40)",
+        "sex": "male",
+        "track_duration": 0,
+        "age_mid": 35,
+        "duration": 58130794,
+        "est": 0,
+        "lwr.ci": 0,
+        "upr.ci": 0
+      },
+      {
+        "age": "[40,50)",
+        "sex": "male",
+        "track_duration": 14515,
+        "age_mid": 45,
+        "duration": 39774625,
+        "est": 0.000364931158998985,
+        "lwr.ci": 0.000358995468344524,
+        "upr.ci": 0.000370866849653446
+      },
+      {
+        "age": "[50,60)",
+        "sex": "male",
+        "track_duration": 91748,
+        "age_mid": 55,
+        "duration": 33003406,
+        "est": 0.00277995549913848,
+        "lwr.ci": 0.00276199232286541,
+        "upr.ci": 0.00279791867541156
+      },
+      {
+        "age": "[60,70)",
+        "sex": "male",
+        "track_duration": 136654,
+        "age_mid": 65,
+        "duration": 23531611,
+        "est": 0.005807252210654,
+        "lwr.ci": 0.00577655189080367,
+        "upr.ci": 0.00583795253050434
+      },
+      {
+        "age": "[70,80)",
+        "sex": "male",
+        "track_duration": 68441,
+        "age_mid": 75,
+        "duration": 10298922,
+        "est": 0.0066454527959334,
+        "lwr.ci": 0.00659583166738495,
+        "upr.ci": 0.00669507392448185
+      },
+      {
+        "age": "[80,120)",
+        "sex": "male",
+        "track_duration": 4840,
+        "age_mid": 100,
+        "duration": 2160604,
+        "est": 0.00224011433839797,
+        "lwr.ci": 0.00217707543992824,
+        "upr.ci": 0.00230315323686769
+      },
+      {
+        "age": "[0,20)",
+        "sex": "female",
+        "track_duration": 0,
+        "age_mid": 10,
+        "duration": 10620157,
+        "est": 0,
+        "lwr.ci": 0,
+        "upr.ci": 0
+      },
+      {
+        "age": "[20,30)",
+        "sex": "female",
+        "track_duration": 0,
+        "age_mid": 25,
+        "duration": 43447530,
+        "est": 0,
+        "lwr.ci": 0,
+        "upr.ci": 0
+      },
+      {
+        "age": "[30,40)",
+        "sex": "female",
+        "track_duration": 0,
+        "age_mid": 35,
+        "duration": 54275841,
+        "est": 0,
+        "lwr.ci": 0,
+        "upr.ci": 0
+      },
+      {
+        "age": "[40,50)",
+        "sex": "female",
+        "track_duration": 9703,
+        "age_mid": 45,
+        "duration": 42263479,
+        "est": 0.000229583560785424,
+        "lwr.ci": 0.000225015982458467,
+        "upr.ci": 0.000234151139112382
+      },
+      {
+        "age": "[50,60)",
+        "sex": "female",
+        "track_duration": 72590,
+        "age_mid": 55,
+        "duration": 38943204,
+        "est": 0.00186399660387471,
+        "lwr.ci": 0.00185044939989077,
+        "upr.ci": 0.00187754380785865
+      },
+      {
+        "age": "[60,70)",
+        "sex": "female",
+        "track_duration": 112570,
+        "age_mid": 65,
+        "duration": 29096604,
+        "est": 0.00386883637691876,
+        "lwr.ci": 0.00384627968623466,
+        "upr.ci": 0.00389139306760286
+      },
+      {
+        "age": "[70,80)",
+        "sex": "female",
+        "track_duration": 58985,
+        "age_mid": 75,
+        "duration": 16040943,
+        "est": 0.00367715289556231,
+        "lwr.ci": 0.00364753262426312,
+        "upr.ci": 0.0037067731668615
+      },
+      {
+        "age": "[80,120)",
+        "sex": "female",
+        "track_duration": 5619,
+        "age_mid": 100,
+        "duration": 4937606,
+        "est": 0.00113800088544935,
+        "lwr.ci": 0.00110826273731452,
+        "upr.ci": 0.00116773903358417
+      }
+    ],
+    "figures": null,
+    "messageType": "chronicDiseaseCohorts.report",
+    "requestId": "8c8acf22-a3af-4343-adf9-0f9a444c1ffc",
+    "cohortId": "c_f74b9c92bc0517005234279f26646e4a"
+  },
+  "id": "d97cb4cc-70de-42a8-8e5e-d579ab75b041"
+}

@@ -1,0 +1,148 @@
+{
+  "timestamp": "20240401161429512362",
+  "request_id": "e6a6e5e1-02c6-4119-949c-291d7c37c1ce",
+  "output_file": "data/outputs\\full_cohort_builder_with_export_all_reports\\0311123943662_genReport_lab_clusters_boxplot.json",
+  "expected_output_file": "data/expectations\\full_cohort_builder_with_export_all_reports\\0311123943662_genReport_lab_clusters_boxplot.json",
+  "diff": [
+    {
+      "path": [
+        "figures",
+        "data",
+        0,
+        "marker",
+        "opacity"
+      ],
+      "action": "type_changes",
+      "value": 0,
+      "old_value": null,
+      "type": "<class 'int'>",
+      "old_type": "<class 'NoneType'>"
+    },
+    {
+      "path": [
+        "figures",
+        "data",
+        1,
+        "marker",
+        "opacity"
+      ],
+      "action": "type_changes",
+      "value": 0,
+      "old_value": null,
+      "type": "<class 'int'>",
+      "old_type": "<class 'NoneType'>"
+    },
+    {
+      "path": [
+        "figures",
+        "data",
+        2,
+        "marker",
+        "opacity"
+      ],
+      "action": "type_changes",
+      "value": 0,
+      "old_value": null,
+      "type": "<class 'int'>",
+      "old_type": "<class 'NoneType'>"
+    },
+    {
+      "path": [
+        "figures",
+        "data",
+        3,
+        "marker",
+        "opacity"
+      ],
+      "action": "type_changes",
+      "value": 0,
+      "old_value": null,
+      "type": "<class 'int'>",
+      "old_type": "<class 'NoneType'>"
+    },
+    {
+      "path": [
+        "figures",
+        "data",
+        4,
+        "marker",
+        "opacity"
+      ],
+      "action": "type_changes",
+      "value": 0,
+      "old_value": null,
+      "type": "<class 'int'>",
+      "old_type": "<class 'NoneType'>"
+    },
+    {
+      "path": [
+        "figures",
+        "data",
+        5,
+        "marker",
+        "opacity"
+      ],
+      "action": "type_changes",
+      "value": 0,
+      "old_value": null,
+      "type": "<class 'int'>",
+      "old_type": "<class 'NoneType'>"
+    },
+    {
+      "path": [
+        "figures",
+        "data",
+        6,
+        "marker",
+        "opacity"
+      ],
+      "action": "type_changes",
+      "value": 0,
+      "old_value": null,
+      "type": "<class 'int'>",
+      "old_type": "<class 'NoneType'>"
+    },
+    {
+      "path": [
+        "figures",
+        "data",
+        7,
+        "marker",
+        "opacity"
+      ],
+      "action": "type_changes",
+      "value": 0,
+      "old_value": null,
+      "type": "<class 'int'>",
+      "old_type": "<class 'NoneType'>"
+    },
+    {
+      "path": [
+        "figures",
+        "data",
+        8,
+        "marker",
+        "opacity"
+      ],
+      "action": "type_changes",
+      "value": 0,
+      "old_value": null,
+      "type": "<class 'int'>",
+      "old_type": "<class 'NoneType'>"
+    },
+    {
+      "path": [
+        "figures",
+        "data",
+        9,
+        "marker",
+        "opacity"
+      ],
+      "action": "type_changes",
+      "value": 0,
+      "old_value": null,
+      "type": "<class 'int'>",
+      "old_type": "<class 'NoneType'>"
+    }
+  ]
+}

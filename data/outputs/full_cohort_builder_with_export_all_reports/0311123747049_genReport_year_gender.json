@@ -1,0 +1,424 @@
+{
+  "data": {
+    "type": "year_gender",
+    "data": null,
+    "figures": {
+      "data": [
+        {
+          "orientation": "v",
+          "width": [
+            0.45,
+            0.45,
+            0.45,
+            0.45,
+            0.449999999999999,
+            0.449999999999999,
+            0.449999999999999,
+            0.449999999999999,
+            0.449999999999999,
+            0.449999999999999,
+            0.449999999999999,
+            0.449999999999999,
+            0.449999999999999,
+            0.449999999999999
+          ],
+          "base": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "x": [
+            0.775,
+            1.775,
+            2.775,
+            3.775,
+            4.775,
+            5.775,
+            6.775,
+            7.775,
+            8.775,
+            9.775,
+            10.775,
+            11.775,
+            12.775,
+            13.775
+          ],
+          "y": [
+            414,
+            147,
+            54,
+            21,
+            8,
+            7,
+            5,
+            0,
+            2,
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          "text": [
+            "year: [2004,2005)<br />n: 414<br />sex: male",
+            "year: [2005,2006)<br />n: 147<br />sex: male",
+            "year: [2006,2007)<br />n:  54<br />sex: male",
+            "year: [2007,2008)<br />n:  21<br />sex: male",
+            "year: [2008,2009)<br />n:   8<br />sex: male",
+            "year: [2009,2010)<br />n:   7<br />sex: male",
+            "year: [2010,2011)<br />n:   5<br />sex: male",
+            "year: [2011,2012)<br />n:   0<br />sex: male",
+            "year: [2012,2013)<br />n:   2<br />sex: male",
+            "year: [2013,2014)<br />n:   1<br />sex: male",
+            "year: [2014,2015)<br />n:   0<br />sex: male",
+            "year: [2015,2016)<br />n:   1<br />sex: male",
+            "year: [2016,2017)<br />n:   0<br />sex: male",
+            "year: [2017,2018)<br />n:   0<br />sex: male"
+          ],
+          "type": "bar",
+          "textposition": "none",
+          "marker": {
+            "autocolorscale": false,
+            "color": "rgba(51,102,204,1)",
+            "line": {
+              "width": 1.88976377952756,
+              "color": "transparent"
+            }
+          },
+          "name": "male",
+          "legendgroup": "male",
+          "showlegend": true,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null
+        },
+        {
+          "orientation": "v",
+          "width": [
+            0.45,
+            0.45,
+            0.45,
+            0.45,
+            0.449999999999999,
+            0.449999999999999,
+            0.449999999999999,
+            0.449999999999999,
+            0.449999999999999,
+            0.449999999999999,
+            0.449999999999999,
+            0.449999999999999,
+            0.449999999999999,
+            0.449999999999999
+          ],
+          "base": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "x": [
+            1.225,
+            2.225,
+            3.225,
+            4.225,
+            5.225,
+            6.225,
+            7.225,
+            8.225,
+            9.225,
+            10.225,
+            11.225,
+            12.225,
+            13.225,
+            14.225
+          ],
+          "y": [
+            263,
+            77,
+            24,
+            8,
+            1,
+            3,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "text": [
+            "year: [2004,2005)<br />n: 263<br />sex: female",
+            "year: [2005,2006)<br />n:  77<br />sex: female",
+            "year: [2006,2007)<br />n:  24<br />sex: female",
+            "year: [2007,2008)<br />n:   8<br />sex: female",
+            "year: [2008,2009)<br />n:   1<br />sex: female",
+            "year: [2009,2010)<br />n:   3<br />sex: female",
+            "year: [2010,2011)<br />n:   0<br />sex: female",
+            "year: [2011,2012)<br />n:   0<br />sex: female",
+            "year: [2012,2013)<br />n:   1<br />sex: female",
+            "year: [2013,2014)<br />n:   0<br />sex: female",
+            "year: [2014,2015)<br />n:   0<br />sex: female",
+            "year: [2015,2016)<br />n:   0<br />sex: female",
+            "year: [2016,2017)<br />n:   0<br />sex: female",
+            "year: [2017,2018)<br />n:   0<br />sex: female"
+          ],
+          "type": "bar",
+          "textposition": "none",
+          "marker": {
+            "autocolorscale": false,
+            "color": "rgba(220,57,18,1)",
+            "line": {
+              "width": 1.88976377952756,
+              "color": "transparent"
+            }
+          },
+          "name": "female",
+          "legendgroup": "female",
+          "showlegend": true,
+          "xaxis": "x",
+          "yaxis": "y",
+          "hoverinfo": "text",
+          "frame": null
+        }
+      ],
+      "layout": {
+        "margin": {
+          "t": 25.7412480974125,
+          "r": 7.30593607305936,
+          "b": 92.2983257229833,
+          "l": 43.1050228310502
+        },
+        "plot_bgcolor": "rgba(255,255,255,1)",
+        "paper_bgcolor": "rgba(255,255,255,1)",
+        "font": {
+          "color": "rgba(0,0,0,1)",
+          "family": "",
+          "size": 14.6118721461187
+        },
+        "xaxis": {
+          "domain": [
+            0,
+            1
+          ],
+          "automargin": true,
+          "type": "linear",
+          "autorange": false,
+          "range": [
+            0.4,
+            14.6
+          ],
+          "tickmode": "array",
+          "ticktext": [
+            "[2004,2005)",
+            "[2005,2006)",
+            "[2006,2007)",
+            "[2007,2008)",
+            "[2008,2009)",
+            "[2009,2010)",
+            "[2010,2011)",
+            "[2011,2012)",
+            "[2012,2013)",
+            "[2013,2014)",
+            "[2014,2015)",
+            "[2015,2016)",
+            "[2016,2017)",
+            "[2017,2018)"
+          ],
+          "tickvals": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "categoryorder": "array",
+          "categoryarray": [
+            "[2004,2005)",
+            "[2005,2006)",
+            "[2006,2007)",
+            "[2007,2008)",
+            "[2008,2009)",
+            "[2009,2010)",
+            "[2010,2011)",
+            "[2011,2012)",
+            "[2012,2013)",
+            "[2013,2014)",
+            "[2014,2015)",
+            "[2015,2016)",
+            "[2016,2017)",
+            "[2017,2018)"
+          ],
+          "nticks": null,
+          "ticks": "outside",
+          "tickcolor": "rgba(51,51,51,1)",
+          "ticklen": 3.65296803652968,
+          "tickwidth": 0.66417600664176,
+          "showticklabels": true,
+          "tickfont": {
+            "color": "rgba(77,77,77,1)",
+            "family": "",
+            "size": 11.689497716895
+          },
+          "tickangle": -90,
+          "showline": false,
+          "linecolor": null,
+          "linewidth": 0,
+          "showgrid": true,
+          "gridcolor": "rgba(235,235,235,1)",
+          "gridwidth": 0.66417600664176,
+          "zeroline": false,
+          "anchor": "y",
+          "title": {
+            "text": "Year",
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 14.6118721461187
+            }
+          },
+          "hoverformat": ".2f"
+        },
+        "yaxis": {
+          "domain": [
+            0,
+            1
+          ],
+          "automargin": true,
+          "type": "linear",
+          "autorange": false,
+          "range": [
+            -20.7,
+            434.7
+          ],
+          "tickmode": "array",
+          "ticktext": [
+            "0",
+            "100",
+            "200",
+            "300",
+            "400"
+          ],
+          "tickvals": [
+            0,
+            100,
+            200,
+            300,
+            400
+          ],
+          "categoryorder": "array",
+          "categoryarray": [
+            "0",
+            "100",
+            "200",
+            "300",
+            "400"
+          ],
+          "nticks": null,
+          "ticks": "outside",
+          "tickcolor": "rgba(51,51,51,1)",
+          "ticklen": 3.65296803652968,
+          "tickwidth": 0.66417600664176,
+          "showticklabels": true,
+          "tickfont": {
+            "color": "rgba(77,77,77,1)",
+            "family": "",
+            "size": 11.689497716895
+          },
+          "tickangle": 0,
+          "showline": false,
+          "linecolor": null,
+          "linewidth": 0,
+          "showgrid": true,
+          "gridcolor": "rgba(235,235,235,1)",
+          "gridwidth": 0.66417600664176,
+          "zeroline": false,
+          "anchor": "x",
+          "title": {
+            "text": "Number of patients",
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 14.6118721461187
+            }
+          },
+          "hoverformat": ".2f"
+        },
+        "shapes": [
+          {
+            "type": "rect",
+            "fillcolor": "transparent",
+            "line": {
+              "color": "rgba(51,51,51,1)",
+              "width": 0.66417600664176,
+              "linetype": "solid"
+            },
+            "yref": "paper",
+            "xref": "paper",
+            "x0": 0,
+            "x1": 1,
+            "y0": 0,
+            "y1": 1
+          }
+        ],
+        "showlegend": true,
+        "legend": {
+          "bgcolor": "rgba(255,255,255,1)",
+          "bordercolor": "transparent",
+          "borderwidth": 1.88976377952756,
+          "font": {
+            "color": "rgba(0,0,0,1)",
+            "family": "",
+            "size": 11.689497716895
+          },
+          "title": {
+            "text": "",
+            "font": {
+              "color": "rgba(0,0,0,1)",
+              "family": "",
+              "size": 14.6118721461187
+            }
+          }
+        },
+        "hovermode": "closest",
+        "barmode": "relative"
+      }
+    },
+    "messageType": "chronicDiseaseCohorts.report",
+    "requestId": "1a7e15f8-22d3-4816-9738-2d77244eb9ef",
+    "cohortId": "c_f74b9c92bc0517005234279f26646e4a"
+  },
+  "id": "36e76aaf-df94-42ea-bd9d-03ae90b4fb84"
+}

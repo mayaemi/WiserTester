@@ -1,0 +1,105 @@
+{
+  "data": {
+    "messageType": "retSaveUserTrack",
+    "requestId": "696d3db2-b351-4907-805f-ec17d83f1351",
+    "userName": "maya",
+    "name": "CLL",
+    "id": "c_f57842eeddb6e9427c555b503e412626",
+    "status": "success",
+    "size": 1469,
+    "tracks": [
+      {
+        "name": "CLL",
+        "label": "CLL",
+        "track": "CLL",
+        "inclusionCriteria": [
+          {
+            "enabled": true,
+            "type": "ICD9",
+            "label": "204.1* __CHRONIC__1992 ,LEUKEMIA LYMPHOID",
+            "track": "icd9_204.1"
+          }
+        ],
+        "adjustOnsetTime": [],
+        "requiredFilterAnd": [
+          {
+            "enabled": true,
+            "negate": false,
+            "type": "Lab",
+            "label": "101 WBC",
+            "stime": -365,
+            "etime": 365,
+            "track": "lab.101"
+          },
+          {
+            "enabled": true,
+            "negate": true,
+            "type": "Med",
+            "label": "HTN DIURETICS",
+            "stime": -365,
+            "etime": 365,
+            "track": "WZMN.med.HTN.DIURETICS"
+          }
+        ],
+        "excludeFilterAnd": [
+          {
+            "enabled": true,
+            "negate": false,
+            "type": "ICD9",
+            "label": "205.0* __ACUTE__1992 ,LEUKEMIA MYELOID",
+            "stime": -730,
+            "etime": 365,
+            "track": "icd9_205.0"
+          },
+          {
+            "enabled": true,
+            "negate": false,
+            "type": "ICD9",
+            "label": "205.1*  CHRONIC___1992 ,LEUKEMIA MYELOID",
+            "stime": -730,
+            "etime": 365,
+            "track": "icd9_205.1"
+          }
+        ],
+        "requiredFilterOr": [
+          {
+            "enabled": true,
+            "negate": false,
+            "type": "Med",
+            "label": "PREDNISONE",
+            "stime": 0,
+            "etime": 1825,
+            "track": "WZMN.med.PREDNISONE"
+          },
+          {
+            "enabled": true,
+            "negate": false,
+            "type": "Med",
+            "label": "DEXAMETHASONE",
+            "stime": 0,
+            "etime": 1825,
+            "track": "WZMN.med.DEXAMETHASONE"
+          }
+        ],
+        "excludeFilterOr": [
+          {
+            "enabled": true,
+            "negate": false,
+            "type": "death",
+            "stime": 0,
+            "etime": 365
+          },
+          {
+            "enabled": true,
+            "negate": false,
+            "type": "survival",
+            "time": 3650
+          }
+        ],
+        "is_chronic": false
+      }
+    ],
+    "sharedTracks": []
+  },
+  "id": "696d3db2-b351-4907-805f-ec17d83f1351"
+}

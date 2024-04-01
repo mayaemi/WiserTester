@@ -1,0 +1,20 @@
+{
+  "data": {
+    "type": "lab_clusters",
+    "data": null,
+    "figures": {
+      "trends": {
+        "20100 GLUCOSE- BLOOD normalized": {
+          "21200 CHOLESTEROL normalized": "487b6347-2483-41e6-aa4f-1774ebb0b778.c_c_f74b9c92bc0517005234279f26646e4a.cluster_trends_lab.20100.norm_lab.21200.norm.png"
+        },
+        "21200 CHOLESTEROL normalized": {
+          "20100 GLUCOSE- BLOOD normalized": "487b6347-2483-41e6-aa4f-1774ebb0b778.c_c_f74b9c92bc0517005234279f26646e4a.cluster_trends_lab.21200.norm_lab.20100.norm.png"
+        }
+      }
+    },
+    "messageType": "chronicDiseaseCohorts.report",
+    "requestId": "487b6347-2483-41e6-aa4f-1774ebb0b778",
+    "cohortId": "c_f74b9c92bc0517005234279f26646e4a"
+  },
+  "id": "b468d7b0-c135-49fa-a52f-709e770e19d3"
+}

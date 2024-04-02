@@ -1,10 +1,10 @@
 import argparse
 import asyncio
-from config import LOGGER, test_mode_type, TestMode
-from exceptions import handle_exceptions
-from compare import Compare
-from tester import WiserTester
-from utils import load_json_file
+from src.configure import LOGGER, test_mode_type, TestMode
+from src.exceptions import handle_exceptions
+from src.compare import Compare
+from src.tester import WiserTester
+from src.utils import load_json_file
 from argparse import ArgumentParser
 import contextlib
 

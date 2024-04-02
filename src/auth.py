@@ -1,7 +1,7 @@
 # Authentication
 import httpx
-from exceptions import handle_exceptions
-from config import LOG_CONFIG, LOGGER
+from src.exceptions import handle_exceptions
+from src.configure import LOG_CONFIG, LOGGER
 
 
 @handle_exceptions("Login failed", True)

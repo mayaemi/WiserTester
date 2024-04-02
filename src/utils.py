@@ -1,7 +1,7 @@
 # Utility Functions
 import json
 import pandas as pd
-from exceptions import handle_exceptions
+from src.exceptions import handle_exceptions
 
 
 def custom_serializer(obj):

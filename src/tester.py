@@ -6,10 +6,10 @@ import shutil
 from pathlib import Path
 import socketio
 import httpx
-from exceptions import handle_exceptions
-from config import LOGGER
-from auth import handle_cookies, login
-from src.utils import load_json_file, save_json_file
+from src.exceptions import handle_exceptions
+from src.configure import LOGGER
+from src.auth import handle_cookies, login
+from src.utils import load_json_file, save_json_file, extract_timestamp_from_filename
 
 
 class WiserTester:
@@ -270,7 +270,7 @@ class WiserTester:
         self.current_output_dir = await self.make_output_dir()
         LOGGER.info(f"made directory {self.current_output_dir}")
         lst = os.listdir(inp_dir)
-        files_sorted = sorted(lst, key=lambda x: self.extract_timestamp_from_filename(x))
+        files_sorted = sorted(lst, key=lambda x: extract_timestamp_from_filename(x))
         LOGGER.info(files_sorted)
         for filename in files_sorted:
             if filename not in self.exclude_inputs:

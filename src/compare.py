@@ -2,9 +2,9 @@ from datetime import datetime
 import os
 import re
 import shutil
-from config import LOGGER
-from exceptions import handle_exceptions
-from utils import load_json_file, save_json_file
+from src.configure import LOGGER
+from src.exceptions import handle_exceptions
+from src.utils import load_json_file, save_json_file
 from deepdiff import DeepDiff, Delta
 
 
@@ -90,14 +90,18 @@ class Compare:
 
                 # Save the comparison report in the dedicated folder
                 file_name = f"{input_file_name}_comparison.json"
-                output_path = os.path.join(dedicated_folder_path, file_name)
-                save_json_file(report, output_path)
+                report_path = os.path.join(dedicated_folder_path, file_name)
+                save_json_file(report, report_path)
 
                 # Copy the expected and output files to the dedicated folder
-                shutil.copy(expected_file_path, dedicated_folder_path)
-                shutil.copy(output_file_path, dedicated_folder_path)
+                expected_name = f"expected_{input_file_name}.json"
+                expected_path = os.path.join(dedicated_folder_path, expected_name)
+                shutil.copy(expected_file_path, expected_path)
+                output_name = f"output_{input_file_name}.json"
+                output_path = os.path.join(dedicated_folder_path, output_name)
+                shutil.copy(output_file_path, output_path)
 
-                self.report_paths.append(output_path)
+                self.report_paths.append(report_path)
                 LOGGER.info(f"Comparison report generated for {input_file_name}")
             else:
                 LOGGER.info(f"No difference found in output for {input_file_name}")

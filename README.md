@@ -35,11 +35,11 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
   Activation: If using a virtual environment, activate it before running the script.\
   Usage:
   ```bash
-    wiser_tester.py --username USERNAME --password PASSWORD --config CONFIG_FILE_PATH [options]
+      python main.py --username USERNAME --password PASSWORD --config CONFIG_FILE_PATH [options]
   ```
   Example Command:
   ```bash
-    python wiser_tester.py --username maya --password mayah --config config.json
+      python main.py --username maya --password mayah --config config/config_weizmann.json
   ```
 
 ### Creating A New Executable
@@ -47,7 +47,7 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
     - Set Up a Virtual Environment and Install the requirements.txt  (see above)\
     - run command:
   ```bash
-      python pyinstaller --onefile wiser_tester.py
+      python pyinstaller --onefile main.py
   ```
   **Building a New Executable using the batch script**
   ```bash

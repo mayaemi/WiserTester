@@ -1,7 +1,7 @@
 # Error Handling Decorator
 import asyncio
 from functools import wraps
-from config import LOGGER
+from src.configure import LOGGER
 
 
 def handle_exceptions(log_message, should_raise=True):

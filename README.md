@@ -35,11 +35,11 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
   Activation: If using a virtual environment, activate it before running the script.\
   Usage:
   ```bash
-      python main.py --username USERNAME --password PASSWORD --config CONFIG_FILE_PATH [options]
+    wiser_tester.py --username USERNAME --password PASSWORD --config CONFIG_FILE_PATH [options]
   ```
   Example Command:
   ```bash
-      python main.py --username maya --password mayah --config config/config_weizmann.json
+    python wiser_tester.py --username maya --password mayah --config config/config.json
   ```
 
 ### Creating A New Executable
@@ -47,7 +47,7 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
     - Set Up a Virtual Environment and Install the requirements.txt  (see above)\
     - run command:
   ```bash
-      python pyinstaller --onefile main.py
+      python pyinstaller --onefile wiser_tester.py
   ```
   **Building a New Executable using the batch script**
   ```bash
@@ -62,7 +62,7 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
   **Run the exe at Weizmann**
   - ***using only the exe***
     ```bash
-        wiser_tester.exe --username USERNAME --password PASSWORD --config config_weizmann.json
+        wiser_tester.exe --username USERNAME --password PASSWORD --config config/config_weizmann.json
     ```
   - ***using the batch file***
     ```bash
@@ -72,7 +72,7 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
   **Run the exe at Clalit**
   - ***using only the exe***
     ```bash
-        wiser_tester.exe --username USERNAME --password PASSWORD --config config_clalit.json
+        wiser_tester.exe --username USERNAME --password PASSWORD --config config/config_clalit.json
     ```
   - ***using the batch file***
     ```bash

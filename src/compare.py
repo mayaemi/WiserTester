@@ -4,7 +4,7 @@ import re
 import shutil
 from src.configure import LOGGER
 from src.exceptions import handle_exceptions
-from src.utils import load_json_file, save_json_file
+from src.utils import contains_csv_data, load_json_file, save_json_file
 from deepdiff import DeepDiff, Delta
 
 
@@ -54,57 +54,58 @@ class Compare:
     @handle_exceptions("Unexpected error reading files", True)
     def compare_and_save_report(self, input_file_name, output_file_path, expected_file_path, report_path, timeout=60):
         """Compare an output file with its expected counterpart and save the report."""
+        if output_file_path.endswith(".json"):
+            output_data = load_json_file(output_file_path).get("data")
+            expected_data = load_json_file(expected_file_path).get("data")
 
-        output_data = load_json_file(output_file_path).get("data")
-        expected_data = load_json_file(expected_file_path).get("data")
-        if not self.no_preprocessing:
-            # Preprocess the data to normalize dynamic file names
-            output_data = self.preprocess_data(output_data)
-            expected_data = self.preprocess_data(expected_data)
-        if output_data and expected_data:
-            report = {
-                "timestamp": datetime.now().strftime("%Y%m%d%H%M%S%f"),
-                "request_id": output_data.get("requestId", "N/A"),
-                "output_file": output_file_path,
-                "expected_output_file": expected_file_path,
-            }
-            exclude_regex = [re.compile(path) for path in self.ignore_paths]
+            if not self.no_preprocessing:
+                # Preprocess the data to normalize dynamic file names
+                output_data = self.preprocess_data(output_data)
+                expected_data = self.preprocess_data(expected_data)
+            if output_data and expected_data:
+                report = {
+                    "timestamp": datetime.now().strftime("%Y%m%d%H%M%S%f"),
+                    "request_id": output_data.get("requestId", "N/A"),
+                    "output_file": output_file_path,
+                    "expected_output_file": expected_file_path,
+                }
+                exclude_regex = [re.compile(path) for path in self.ignore_paths]
 
-            diff = DeepDiff(
-                expected_data,
-                output_data,
-                ignore_order=True,
-                report_repetition=True,
-                exclude_regex_paths=exclude_regex,
-                cutoff_intersection_for_pairs=1,
-                get_deep_distance=True,
-                max_passes=3,
-                cache_size=5000,
-                log_frequency_in_sec=10,
-                progress_logger=LOGGER.warning,
-            )
-            if diff:
-                # If differences are found, prepare a dedicated folder for this comparison
-                dedicated_folder_path = os.path.join(report_path, f"{input_file_name}_comparison")
-                os.makedirs(dedicated_folder_path, exist_ok=True)
+                diff = DeepDiff(
+                    expected_data,
+                    output_data,
+                    ignore_order=True,
+                    report_repetition=True,
+                    exclude_regex_paths=exclude_regex,
+                    cutoff_intersection_for_pairs=1,
+                    get_deep_distance=True,
+                    max_passes=3,
+                    cache_size=5000,
+                    log_frequency_in_sec=10,
+                    progress_logger=LOGGER.warning,
+                )
+                if diff:
+                    # If differences are found, prepare a dedicated folder for this comparison
+                    dedicated_folder_path = os.path.join(report_path, f"{input_file_name}_comparison")
+                    os.makedirs(dedicated_folder_path, exist_ok=True)
 
-                # Save the comparison report in the dedicated folder
-                file_name = f"{input_file_name}_comparison.json"
-                report_path = os.path.join(dedicated_folder_path, file_name)
-                save_json_file(report, report_path)
+                    # Save the comparison report in the dedicated folder
+                    file_name = f"{input_file_name}_comparison.json"
+                    report_path = os.path.join(dedicated_folder_path, file_name)
+                    save_json_file(report, report_path)
 
-                # Copy the expected and output files to the dedicated folder
-                expected_name = f"expected_{input_file_name}.json"
-                expected_path = os.path.join(dedicated_folder_path, expected_name)
-                shutil.copy(expected_file_path, expected_path)
-                output_name = f"output_{input_file_name}.json"
-                output_path = os.path.join(dedicated_folder_path, output_name)
-                shutil.copy(output_file_path, output_path)
+                    # Copy the expected and output files to the dedicated folder
+                    expected_name = f"expected_{input_file_name}.json"
+                    expected_path = os.path.join(dedicated_folder_path, expected_name)
+                    shutil.copy(expected_file_path, expected_path)
+                    output_name = f"output_{input_file_name}.json"
+                    output_path = os.path.join(dedicated_folder_path, output_name)
+                    shutil.copy(output_file_path, output_path)
 
-                self.report_paths.append(report_path)
-                LOGGER.info(f"Comparison report generated for {input_file_name}")
-            else:
-                LOGGER.info(f"No difference found in output for {input_file_name}")
+                    self.report_paths.append(report_path)
+                    LOGGER.info(f"Comparison report generated for {input_file_name}")
+                else:
+                    LOGGER.info(f"No difference found in output for {input_file_name}")
 
     def preprocess_data(self, data):
         """Preprocess data to normalize dynamic content like file names within the `figures` section."""

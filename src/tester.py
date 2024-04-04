@@ -9,7 +9,7 @@ import httpx
 from src.exceptions import handle_exceptions
 from src.configure import LOGGER
 from src.auth import handle_cookies, login
-from src.utils import load_json_file, save_json_file, extract_timestamp_from_filename
+from src.utils import contains_csv_data, json_to_csv, load_json_file, save_json_file, extract_timestamp_from_filename
 
 
 class WiserTester:
@@ -45,6 +45,7 @@ class WiserTester:
         self.client_lock = asyncio.Lock()
         self.pending_requests = set()
         self.version_info = None
+        self.is_csv = []
         # Define event handlers for the socket events
         self._define_event_handlers()
 
@@ -315,9 +316,17 @@ class WiserTester:
             saved = save_json_file(output_data, output_path)
             if saved:
                 LOGGER.info(f"saved report {output_path}")
+            self.handle_csv(output_data, output_dir, input_file_name)
             return output_path
         except Exception as e:
             LOGGER.error(f"Failed to save output for request ID {output_data['id']}: {e}")
+
+    @handle_exceptions("An error occurred during csv checks", False)
+    def handle_csv(self, output_data, output_dir, input_file_name):
+        if contains_csv_data(output_data):
+            csv_data = output_data.get("data", {}).get("data", None)
+            csv_path = os.path.join(output_dir, f"{input_file_name}.csv")
+            json_to_csv(csv_data, csv_path)
 
     async def save_version_info(self):
         """

@@ -41,7 +41,8 @@ async def main(config, args, tester):
             await tester.start_test(args.specific_list.split(",") if args.mode == TestMode.SPECIFIC else None)
         if not args.no_comparison:
             LOGGER.info("Comparing outputs")
-            comparison = Compare(config["outputs_dir"], args.expected_output, args.comparison_reports, config["ignore_paths"])
+            # comparison = Compare(config["outputs_dir"], args.expected_output, args.comparison_reports, config["ignore_paths"])
+            comparison = Compare(config, args.expected_output, args.comparison_reports)
             report_paths = comparison.compare_outputs_with_expectations(args.no_preprocessing)
             LOGGER.info(f"Comparison reports: {report_paths}")
     except KeyboardInterrupt:

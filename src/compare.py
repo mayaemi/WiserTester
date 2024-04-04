@@ -9,12 +9,13 @@ from deepdiff import DeepDiff, Delta
 
 
 class Compare:
-    def __init__(self, outputs_path, expectations_path, reports_path, ignore_paths=None):
-        self.outputs_path = outputs_path
+    def __init__(self, config, expectations_path, reports_path):
+        self.outputs_path = config["outputs_dir"]
+        self.inputs_path = config["inputs_dir"]
         self.expectations_path = expectations_path
         self.reports_path = reports_path
         self.report_paths = []
-        self.ignore_paths = ignore_paths if ignore_paths is not None else []
+        self.ignore_paths = config["ignore_paths"] if config["ignore_paths"] is not None else []
         self.no_preprocessing = False
 
         LOGGER.info(f"Excluding paths: {self.ignore_paths}")
@@ -47,14 +48,16 @@ class Compare:
                 LOGGER.info(f"Created directory {new_report_path}")
 
             if os.path.exists(expected_file_path):
-                self.compare_and_save_report(input_file_name, output_file_path, expected_file_path, new_report_path)
+                self.compare_and_save_report(
+                    input_file_name, output_file_path, expected_file_path, new_report_path, os.path.basename(output_folder_path)
+                )
             else:
                 LOGGER.warning(f"No expectation file found for {input_file_name}")
 
     @handle_exceptions("Unexpected error reading files", True)
-    def compare_and_save_report(self, input_file_name, output_file_path, expected_file_path, report_path, timeout=60):
+    def compare_and_save_report(self, input_file_name, output_file_path, expected_file_path, report_path, folder):
         """Compare an output file with its expected counterpart and save the report."""
-        if not output_file_path.endswith(".json"):
+        if not (output_file_path.endswith(".json") and expected_file_path.endswith(".json")):
             return
         output_data = load_json_file(output_file_path).get("data")
         expected_data = load_json_file(expected_file_path).get("data")
@@ -86,6 +89,10 @@ class Compare:
                 progress_logger=LOGGER.warning,
             )
             if diff:
+                delta = Delta(diff, bidirectional=True)
+                flat_dicts = delta.to_flat_dicts()
+                report["diff"] = flat_dicts
+
                 # If differences are found, prepare a dedicated folder for this comparison
                 dedicated_folder_path = os.path.join(report_path, f"{input_file_name}_comparison")
                 os.makedirs(dedicated_folder_path, exist_ok=True)
@@ -95,7 +102,10 @@ class Compare:
                 report_path = os.path.join(dedicated_folder_path, file_name)
                 save_json_file(report, report_path)
 
-                # Copy the expected and output files to the dedicated folder
+                # Copy the input, expected and output files to the dedicated folder
+                input_name = f"input_{input_file_name}.json"
+                input_path = os.path.join(dedicated_folder_path, input_name)
+                shutil.copy(os.path.join(self.inputs_path, folder, f"{input_file_name}.json"), input_path)
                 expected_name = f"expected_{input_file_name}.json"
                 expected_path = os.path.join(dedicated_folder_path, expected_name)
                 shutil.copy(expected_file_path, expected_path)

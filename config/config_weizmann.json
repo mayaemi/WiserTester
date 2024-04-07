@@ -20,7 +20,9 @@
   },
   "ignore_paths": [
     "root\\['requestId']",
-    "root\\['figures'\\]\\['\\[\\d+,\\d+\\)'\\]"
+    "root\\['figures'\\]\\['\\[\\d+,\\d+\\)'\\]",
+    "root\\['figures'\\]\\['layout'\\]\\['margin'\\].*",
+    "root\\['figures'\\]\\['data'\\]\\[\\d+\\]\\['error_y'\\]\\['width'\\]"
   ],
   "version_request": {"messageType": "getData", "dataType": "appVersion", "recreate": true}
 }

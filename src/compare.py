@@ -9,7 +9,7 @@ from deepdiff import DeepDiff, Delta
 
 
 class Compare:
-    def __init__(self, config, expectations_path, reports_path):
+    def __init__(self, config, expectations_path, reports_path, specific_list=None):
         self.outputs_path = config["outputs_dir"]
         self.inputs_path = config["inputs_dir"]
         self.expectations_path = expectations_path
@@ -17,7 +17,7 @@ class Compare:
         self.report_paths = []
         self.ignore_paths = config["ignore_paths"] if config["ignore_paths"] is not None else []
         self.no_preprocessing = False
-
+        self.specific_list = specific_list
         LOGGER.info(f"Excluding paths: {self.ignore_paths}")
 
     @handle_exceptions("Comparison error", False)
@@ -25,11 +25,18 @@ class Compare:
         """Compare the output files with expected outputs stored in a specified directory."""
         LOGGER.info("Comparing outputs to expectations")
         self.no_preprocessing = no_preprocessing
-        for output_folder in os.listdir(self.outputs_path):
-            expectation_folder_path = os.path.join(self.expectations_path, output_folder)
-            if os.path.isdir(expectation_folder_path):
-                output_folder_path = os.path.join(self.outputs_path, output_folder)
-                self.compare_folder_outputs(output_folder_path, expectation_folder_path)
+        if self.specific_list:
+            for output_folder in self.specific_list:
+                expectation_folder_path = os.path.join(self.expectations_path, output_folder)
+                if os.path.isdir(expectation_folder_path):
+                    output_folder_path = os.path.join(self.outputs_path, output_folder)
+                    self.compare_folder_outputs(output_folder_path, expectation_folder_path)
+        else:
+            for output_folder in os.listdir(self.outputs_path):
+                expectation_folder_path = os.path.join(self.expectations_path, output_folder)
+                if os.path.isdir(expectation_folder_path):
+                    output_folder_path = os.path.join(self.outputs_path, output_folder)
+                    self.compare_folder_outputs(output_folder_path, expectation_folder_path)
         return self.generate_summary_report()
 
     @handle_exceptions("Directory comparison error", False)

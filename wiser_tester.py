@@ -1,6 +1,7 @@
 # main file
 import argparse
 import asyncio
+import os
 from src.configure import LOGGER, test_mode_type, TestMode
 from src.exceptions import handle_exceptions
 from src.compare import Compare
@@ -24,9 +25,11 @@ def parse_args():
 
     parser.add_argument("--mode", type=test_mode_type, choices=list(TestMode), help="Testing mode")
     parser.add_argument("--specific_list", type=str, help="specific list of input directories")
-    parser.add_argument("--expected_output", type=str, default="data/expectations", help="path to expectations")
+    parser.add_argument("--expected_output", type=str, default=os.path.join("data", "expectations"), help="path to expectations")
     parser.add_argument("--no_comparison", action="store_true", help="Don't Compare to previous outputs")
-    parser.add_argument("--comparison_reports", type=str, default="data/comparison_reports", help="path to comparison reports")
+    parser.add_argument(
+        "--comparison_reports", type=str, default=os.path.join("data", "comparison_reports"), help="path to comparison reports"
+    )
     parser.add_argument("--request_timeout", type=int, default=60, help="request timeout in seconds")
     parser.add_argument("--exclude_inputs", nargs="+", default=[], help="List of input files to exclude from sending")
     parser.add_argument("--no_preprocessing", action="store_true", help="Don't preprocess outputs")
@@ -38,11 +41,16 @@ def parse_args():
 async def main(config, args, tester):
     try:
         if args.mode != TestMode.COMPARE_ONLY:
-            await tester.start_test(args.specific_list.split(",") if args.mode == TestMode.SPECIFIC else None)
+            await tester.start_test(args.specific_list.split(",") if args.specific_list else None)
         if not args.no_comparison:
             LOGGER.info("Comparing outputs")
             # comparison = Compare(config["outputs_dir"], args.expected_output, args.comparison_reports, config["ignore_paths"])
-            comparison = Compare(config, args.expected_output, args.comparison_reports)
+            comparison = Compare(
+                config,
+                args.expected_output,
+                args.comparison_reports,
+                args.specific_list.split(",") if args.specific_list else None,
+            )
             report_paths = comparison.compare_outputs_with_expectations(args.no_preprocessing)
             LOGGER.info(f"Comparison reports: {report_paths}")
     except KeyboardInterrupt:
@@ -67,6 +75,7 @@ async def shutdown(loop, tester):
 
 if __name__ == "__main__":
     args = parse_args()
+
     config = load_json_file(args.config)
     tester = WiserTester(args.username, args.password, args.request_timeout, config, args.exclude_inputs)
     loop = asyncio.get_event_loop()

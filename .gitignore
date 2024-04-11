@@ -7,7 +7,6 @@ data/expectations/*
 data/outputs/*
 !data/outputs/.gitkeep 
 
-comp-diff/
 src/__pycache__
 env
 build

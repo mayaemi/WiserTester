@@ -1,3 +1,4 @@
+import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
@@ -10,18 +11,25 @@ class Test:
         self.driver = None
         self.vars = {}
         self.cookies = ""
-        self.setup_method()
+
+        # definitions
+        self.inclusion = "cohortBuild_cohort_inclusionCriteria"
+        self.required = "cohortBuild_cohort_requiredFilter"
+        self.exclusion = "cohortBuild_cohort_excludeFilter"
+        self.onset = "cohortBuild_cohort_adjustOnsetTime"
         # Locators
-        NAVBAR_BRAND = (By.CSS_SELECTOR, "a.navbar-brand")
-        BUTTONS_DISABLED = (By.CSS_SELECTOR, "button.btn-secondary.disabled")
-        BUTTON_LOAD = (By.CSS_SELECTOR, "button.btn-secondary:not(.disabled)")
-        DROPDOWN_CONDITIONS = (By.CSS_SELECTOR, "div.dropdown---dropdown---1yvIZ")
-        CONDITIONS_OPTIONS = (By.CSS_SELECTOR, "div.dropdown---menu-item---1LjoL")
-        TIME_SCOPE_FROM_INPUT = (By.XPATH, "//input[@type='text'][contains(@class, 'react-datepicker__input-container')][1]")
-        TIME_SCOPE_TO_INPUT = (By.XPATH, "//input[@type='text'][contains(@class, 'react-datepicker__input-container')][2]")
-        DEMOGRAPHICS_AGE_SLIDER = (By.CSS_SELECTOR, "div.rc-slider")
-        COLOR_CASE_MALE = (By.XPATH, "//div[text()='case male:']/following-sibling::div")
-        COLOR_CASE_FEMALE = (By.XPATH, "//div[text()='case female:']/following-sibling::div")
+        self.NAVBAR_BRAND = (By.CSS_SELECTOR, "a.navbar-brand")
+        self.DROPDOWN_CRITERIA = (By.XPATH, ".//div[@role='menuitem']")
+        self.CONDITIONS_OPTIONS = (By.CSS_SELECTOR, "div.dropdown---menu-item---1LjoL")
+        self.TIME_SCOPE_FROM_INPUT = (By.XPATH, "//input[@type='text'][contains(@class, 'react-datepicker__input-container')][1]")
+        self.TIME_SCOPE_TO_INPUT = (By.XPATH, "//input[@type='text'][contains(@class, 'react-datepicker__input-container')][2]")
+        self.DEMOGRAPHICS_AGE_SLIDER = (By.CSS_SELECTOR, "div.rc-slider")
+        self.COLOR_CASE_MALE = (By.XPATH, "//div[text()='case male:']/following-sibling::div")
+        self.COLOR_CASE_FEMALE = (By.XPATH, "//div[text()='case female:']/following-sibling::div")
+        self.COHORT_EDITOR = (By.XPATH, "/html/body/div/div/div/main/div[2]/div/div/div/div[1]/div[1]/div[3]/div[2]/div[2]")
+        self.cohort_editor_elements = {}
+
+        self.setup_method()
 
     def setup_method(self, method=None):
         options = Options()
@@ -71,12 +79,20 @@ class Test:
         button = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(NAVBAR_BUTTON))
         button.click()
 
-    def select_criteria(self, condition, option_text):
-        self.driver.find_element(*self.DROPDOWN_CONDITIONS).click()
+    def identify_cohort_cards(self):
+        elements = self.driver.find_element(*self.COHORT_EDITOR)
+        for element in elements.find_elements(By.XPATH, ".//div[@class='card-body']"):
+            name = element.get_attribute("id")
+            drop_button = element.find_element(By.XPATH, "..").find_element(By.XPATH, ".//button[@type='button']")
+            self.cohort_editor_elements[name] = drop_button
+
+    def select_criteria(self, condition, criteria):
+        self.cohort_editor_elements[condition].click()
         option = WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located((By.XPATH, f"//div[@role='menuitem'][contains(text(), '{option_text}')]"))
+            EC.visibility_of_element_located((By.XPATH, f".//div[@role='menuitem'][contains(text(), '{criteria}')]"))
         )
         option.click()
+        self.driver.find_element(By.XPATH, "//*[@id='generic_trigger']/ul/li/input").click()
 
     def set_time_scope(self, from_date, to_date):
         from_input = self.driver.find_element(*self.TIME_SCOPE_FROM_INPUT)
@@ -86,13 +102,16 @@ class Test:
         to_input.clear()
         to_input.send_keys(to_date)
 
-    def test_login(self):
+    def start_with_login(self):
         self.login()
         print(self.driver.current_url)
         self.open_cohort_builder()
         print(self.driver.current_url)
-        self.click_navbar_button("Load")
+        self.identify_cohort_cards()
+        # self.click_navbar_button("Load")
 
 
 t = Test()
-t.test_login()
+t.start_with_login()
+t.select_criteria("cohortBuild_cohort_inclusionCriteria", "ICD9")
+time.sleep(5)

@@ -4,10 +4,11 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException, ElementClickInterceptedException
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -18,6 +19,18 @@ class TestCohortBuilder:
         self.driver = None
 
         # definitions
+
+        self.expected_elements = {
+            "General": ["svg"],
+            "Survival": ["img"],
+            "Relative Risk": ["table"],
+            "Cohort Predisposition": ["table"],
+            "Labs": ["img"],
+            "Trends": ["img"],
+            "Age Trends": ["img"],
+            "Medications": ["img"],
+            "Clustering": ["img", "svg"],
+        }
         self.conditions = {
             "inclusion": "cohortBuild_cohort_inclusionCriteria",
             "required": "cohortBuild_cohort_requiredFilter",
@@ -27,6 +40,9 @@ class TestCohortBuilder:
         # Locators
         self.COHORT_BUILDER_LINK = (By.XPATH, "//a[contains(text(),'Cohort Builder')]")
         self.NAVBAR_BRAND = (By.CSS_SELECTOR, "a.navbar-brand")
+        self.STATUS_BUBBLE = (By.CSS_SELECTOR, "div.status-bubble.mb-2.card")
+        self.GRAPH_ELEMENTS = (By.CSS_SELECTOR, "div.react-grid-item.cssTransforms")
+
         self.DROPDOWN_CRITERIA = (By.XPATH, ".//div[@role='menuitem']")
         self.DROPDOWN_LOCATOR = (By.XPATH, "//*[@id='generic_trigger']/ul/li/input")
         self.CONDITIONS_OPTIONS = (By.CSS_SELECTOR, "div.dropdown---menu-item---1LjoL")
@@ -41,14 +57,33 @@ class TestCohortBuilder:
 
         self.setup_method()
 
-    def setup_method(self, method=None):
+    @staticmethod
+    def get_chrome_options():
         options = Options()
-        # options.add_argument("--headless")
-        self.driver = webdriver.Chrome(options=options)
+        # options.headless = True  # Running in headless mode
+        options.add_argument("window-size=1200x600")  # Define window size to avoid element being off-screen
+
+        # Enable logging
+        caps = DesiredCapabilities.CHROME
+        caps["loggingPrefs"] = {"browser": "ALL"}  # Capture all browser logs including console outputs
+        options.add_argument("--enable-logging")
+        options.add_argument("--v=1")
+        return options
+
+    def setup_method(self, method=None):
+        self.driver = webdriver.Chrome(options=self.get_chrome_options())
         self.driver.implicitly_wait(10)
 
     def teardown_method(self, method=None):
         self.driver.quit()
+
+    def print_browser_logs(self, context=""):
+        # Retrieve browser logs
+        for entry in self.driver.get_log("browser"):
+            if entry["level"] == "ERROR":
+                logging.error(f"{context} - {entry['message']}")
+            else:
+                logging.debug(f"{context} - {entry['message']}")
 
     def login(self, username="maya", password="mayah"):
         try:
@@ -70,7 +105,104 @@ class TestCohortBuilder:
             logging.error("Cohort Builder link not clickable")
             self.driver.save_screenshot("cohort_builder_error.png")
 
+    def verify_cohort_creation(self):
+        # Verify the status bubble with 'n patients'
+        try:
+            status_bubble = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(self.STATUS_BUBBLE))
+            patient_count_text = status_bubble.text
+            if "patients" in patient_count_text:
+                logging.info(f"Cohort creation verified with text: {patient_count_text}")
+            else:
+                logging.warning(f"Status bubble text might not indicate success: {patient_count_text}")
+
+        except TimeoutException:
+            logging.error("Failed to verify cohort creation (status bubble or graphs missing).")
+            self.driver.save_screenshot("cohort_verification_error.png")
+
+    def verify_elements_on_tab(self, tab):
+        tab_name = tab.text.strip()
+        logging.info(f"Checking elements on tab: {tab_name}")
+
+        if tab_name not in self.expected_elements:
+            logging.warning(f"No expected elements defined for tab: {tab_name}")
+            return
+        # Wait for any general loading indicator to disappear
+        WebDriverWait(self.driver, 30).until_not(
+            EC.presence_of_element_located((By.XPATH, "//span[contains(text(), 'loading')]"))
+        )
+
+        element_type_status = {}
+
+        for element_type in self.expected_elements[tab_name]:
+            try:
+                elements = WebDriverWait(self.driver, 30).until(EC.presence_of_all_elements_located((By.TAG_NAME, element_type)))
+                if not elements:
+                    element_type_status[element_type] = False
+                    logging.error(f"No {element_type} elements found on {tab_name} despite being expected.")
+                else:
+                    element_type_status[element_type] = True
+                    for e in elements:
+                        try:
+                            card_header = e.find_element(
+                                By.XPATH,
+                                ".//ancestor::div[contains(@class, 'mb-0card')][.//div[@class='card-header']]//div[@class='card-header']",
+                            ).text
+                            logging.info(f"{element_type} {card_header} loaded")
+                        except Exception:
+                            pass
+
+                    logging.info(f"All elements successfully loaded on tab {tab.text.strip()}")
+            except TimeoutException:
+                element_type_status[element_type] = False
+                logging.error(f"Timeout waiting for {element_type} on tab {tab_name}")
+
+        self.log_unfinished_components(tab, element_type_status)
+
+    def verify_graphs_across_tabs(self, exclude=None):
+        if exclude is None:
+            exclude = ["Labs", "Trends", "Age Trends", "Medications", "Clustering"]
+        tabs = WebDriverWait(self.driver, 20).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".react-tabs__tab")))
+        for tab in tabs:
+            if tab.text.strip() not in exclude:
+                try:
+                    WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(tab)).click()
+                    self.verify_elements_on_tab(tab)
+
+                except ElementClickInterceptedException:
+                    logging.error(f"Couldn't click tab {tab.text.strip()} due to an overlay or positioning issue.")
+                except Exception as e:
+                    logging.error(f"An unexpected error occurred on tab {tab.text.strip()}: {str(e)}")
+
+    def log_unfinished_components(self, tab, elements_status):
+        # Log the header of the card that contains not fully loaded elements
+        for element, status in elements_status.items():
+            if not status:  # If any element type was not loaded completely
+                try:
+                    # Find the parent card of the unfinished element(s)
+                    loading_elements = self.driver.find_elements(By.XPATH, "//span[contains(text(), 'loading')]")
+                    for loading_element in loading_elements:
+                        card_header = loading_element.find_element(
+                            By.XPATH, "./ancestor::div[contains(@class, 'mb-0 card')]/div[@class='card-header']"
+                        )
+                        logging.error(
+                            f"Unfinished loading '{element}' in card titled '{card_header.text}' on tab '{tab.text.strip()}'."
+                        )
+                except NoSuchElementException:
+                    logging.error(
+                        f"Failed to find the card header for the unfinished {element} elements on tab '{tab.text.strip()}'."
+                    )
+
     # Methods for interaction
+    def scroll_into_view(self, element):
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+
+    def safe_click(self, element):
+        try:
+            self.scroll_into_view(element)
+            element.click()
+        except ElementClickInterceptedException:
+            self.driver.execute_script("arguments[0].click();", element)
+
     def click_reset(self):
         self.driver.find_element(By.CSS_SELECTOR, ".btn-danger").click()
 
@@ -100,19 +232,6 @@ class TestCohortBuilder:
         except TimeoutException:
             logging.error(f"Element {element_locator} not ready for interaction after {timeout} seconds.")
             self.driver.save_screenshot("element_not_interactive.png")
-
-    def wait_for_ajax(self, timeout=30):
-        """
-        Wait for all AJAX requests to complete.
-        """
-        try:
-            WebDriverWait(self.driver, timeout).until(
-                lambda driver: driver.execute_script("return (window.fetch && fetch.active === 0) || !window.fetch;")
-            )
-            logging.info("All AJAX calls completed.")
-        except TimeoutException:
-            logging.error("AJAX calls did not complete.")
-            self.driver.save_screenshot("ajax_error.png")
 
     def reacquire_element_after_action(self, locator):
         """
@@ -275,11 +394,14 @@ class TestCohortBuilder:
         self.identify_cohort_cards()
 
 
-t = TestCohortBuilder()
+t = TestCohortBuilder()  #
 t.initialize_cohort_builder()
 t.select_criteria("inclusion", "ICD9")
 t.select_from_multivalue_dropdown(["004* SHIGELLOSIS (5,164)"])
-
-t.select_criteria("required", "ICD9")
+time.sleep(2)
+t.verify_cohort_creation()
+t.verify_graphs_across_tabs()
+t.print_browser_logs()
+# t.select_criteria("required", "ICD9")
 # t.select_from_multivalue_dropdown(["101 WBC"], time_range=[-180, 180])
 t.teardown_method()

@@ -9,130 +9,147 @@ from deepdiff import DeepDiff, Delta
 
 
 class Compare:
+    """A class for comparing output files with expected files and generating reports."""
+
     def __init__(self, config, expectations_path, reports_path, specific_list=None):
         self.outputs_path = config["outputs_dir"]
         self.inputs_path = config["inputs_dir"]
         self.expectations_path = expectations_path
         self.reports_path = reports_path
         self.report_paths = []
-        self.ignore_paths = config["ignore_paths"] if config["ignore_paths"] is not None else []
+        self.ignore_paths = self.ignore_paths = config.get("ignore_paths", [])
         self.no_preprocessing = False
         self.specific_list = specific_list
         LOGGER.info(f"Excluding paths: {self.ignore_paths}")
 
     @handle_exceptions("Comparison error", False)
     def compare_outputs_with_expectations(self, no_preprocessing):
-        """Compare the output files with expected outputs stored in a specified directory."""
+        """
+        Compare output files with expected outputs and generate reports.
+        Args: no_preprocessing (bool): Whether to skip data preprocessing.
+        Returns: str: Path to the summary report generated.
+        """
         LOGGER.info("Comparing outputs to expectations")
         self.no_preprocessing = no_preprocessing
-        if self.specific_list:
-            for output_folder in self.specific_list:
-                expectation_folder_path = os.path.join(self.expectations_path, output_folder)
-                if os.path.isdir(expectation_folder_path):
-                    output_folder_path = os.path.join(self.outputs_path, output_folder)
-                    self.compare_folder_outputs(output_folder_path, expectation_folder_path)
-        else:
-            for output_folder in os.listdir(self.outputs_path):
-                expectation_folder_path = os.path.join(self.expectations_path, output_folder)
-                if os.path.isdir(expectation_folder_path):
-                    output_folder_path = os.path.join(self.outputs_path, output_folder)
-                    self.compare_folder_outputs(output_folder_path, expectation_folder_path)
+        target_folders = self.specific_list if self.specific_list is not None else os.listdir(self.outputs_path)
+        LOGGER.info(f"target folders: {target_folders}")
+        for folder in target_folders:
+            expectation_folder_path = os.path.join(self.expectations_path, folder)
+            if os.path.isdir(expectation_folder_path):
+                output_folder_path = os.path.join(self.outputs_path, folder)
+                self._compare_folder(folder, output_folder_path, expectation_folder_path)
         return self.generate_summary_report()
 
-    @handle_exceptions("Directory comparison error", False)
-    def compare_folder_outputs(self, output_folder_path, expectation_folder_path):
-        """Compare outputs in a specific folder with their expected counterparts."""
-        LOGGER.info(f"Comparing results for {os.path.basename(output_folder_path)}")
-        for output_file in os.listdir(output_folder_path):
-            input_file_name, _ = os.path.splitext(output_file)
-            expected_file_name = f"{input_file_name}.json"
-            expected_file_path = os.path.join(expectation_folder_path, expected_file_name)
-            output_file_path = os.path.join(output_folder_path, output_file)
-            new_report_path = os.path.join(self.reports_path, os.path.basename(output_folder_path))
+    @handle_exceptions("Failed to compare folder", False)
+    def _compare_folder(self, folder, expectation_folder_path, output_folder_path):
+        """Compares contents of a single folder."""
 
-            if not os.path.isdir(new_report_path):
-                os.mkdir(new_report_path)
-                LOGGER.info(f"Created directory {new_report_path}")
+        LOGGER.info(f"Comparing results for {folder}")
+        new_report_folder = os.path.join(self.reports_path, folder)
 
-            if os.path.exists(expected_file_path):
-                self.compare_and_save_report(
-                    input_file_name, output_file_path, expected_file_path, new_report_path, os.path.basename(output_folder_path)
-                )
-            else:
-                LOGGER.warning(f"No expectation file found for {input_file_name}")
+        if not os.path.isdir(new_report_folder):
+            os.mkdir(new_report_folder)
+            LOGGER.info(f"Created directory {new_report_folder}")
 
-    @handle_exceptions("Unexpected error reading files", True)
-    def compare_and_save_report(self, input_file_name, output_file_path, expected_file_path, report_path, folder):
-        """Compare an output file with its expected counterpart and save the report."""
+        if os.path.isdir(output_folder_path):
+            for output_file in os.listdir(output_folder_path):
+                self._compare_file(output_folder_path, expectation_folder_path, output_file, new_report_folder, folder)
+        else:
+            LOGGER.error(f"Output directory does not exist: {output_folder_path}")
+
+    def _compare_file(self, output_folder_path, expectation_folder_path, output_file, new_report_folder, folder_name):
+        """Compares a single output file against the expected file."""
+        input_file_name, _ = os.path.splitext(output_file)
+        expected_file_path = os.path.join(expectation_folder_path, f"{input_file_name}.json")
+        output_file_path = os.path.join(output_folder_path, output_file)
+        if os.path.exists(expected_file_path):
+            self._compare_and_generate_report(
+                input_file_name, output_file_path, expected_file_path, new_report_folder, folder_name
+            )
+
+    def _compare_and_generate_report(self, input_file_name, output_file_path, expected_file_path, new_report_folder, folder_name):
+        """Compares an output file with its expected counterpart and generates detailed report if differences are found."""
+        report_dir = os.path.join(new_report_folder, f"{input_file_name}_comparison")
         if not (output_file_path.endswith(".json") and expected_file_path.endswith(".json")):
             return
         output_data = load_json_file(output_file_path).get("data")
         expected_data = load_json_file(expected_file_path).get("data")
 
         if not self.no_preprocessing:
-            # Preprocess the data to normalize dynamic file names
-            output_data = self.preprocess_data(output_data)
-            expected_data = self.preprocess_data(expected_data)
+            output_data = self._preprocess_data(output_data)
+            expected_data = self._preprocess_data(expected_data)
+
         if output_data and expected_data:
-            report = {
-                "timestamp": datetime.now().strftime("%Y%m%d%H%M%S%f"),
-                "request_id": output_data.get("requestId", "N/A"),
-                "output_file": output_file_path,
-                "expected_output_file": expected_file_path,
-            }
-            exclude_regex = [re.compile(path) for path in self.ignore_paths]
-
-            diff = DeepDiff(
-                expected_data,
-                output_data,
-                ignore_order=True,
-                report_repetition=True,
-                exclude_regex_paths=exclude_regex,
-                cutoff_intersection_for_pairs=1,
-                get_deep_distance=True,
-                max_passes=3,
-                cache_size=5000,
-                log_frequency_in_sec=10,
-                progress_logger=LOGGER.warning,
-            )
+            diff = self._calculate_diff(output_data, expected_data)
             if diff:
-                delta = Delta(diff, bidirectional=True)
-                flat_dicts = delta.to_flat_dicts()
-                report["diff"] = flat_dicts
-
                 # If differences are found, prepare a dedicated folder for this comparison
-                dedicated_folder_path = os.path.join(report_path, f"{input_file_name}_comparison")
-                os.makedirs(dedicated_folder_path, exist_ok=True)
+                os.makedirs(report_dir, exist_ok=True)
+                request_id = output_data.get("requestId", "N/A")
+                self._handle_differences(diff, input_file_name, output_file_path, expected_file_path, report_dir, request_id)
+                self._copy_files_for_review(input_file_name, output_file_path, expected_file_path, report_dir, folder_name)
 
-                # Save the comparison report in the dedicated folder
-                file_name = f"{input_file_name}_comparison.json"
-                report_path = os.path.join(dedicated_folder_path, file_name)
-                save_json_file(report, report_path)
-
-                # Copy the input, expected and output files to the dedicated folder
-                input_name = f"input_{input_file_name}.json"
-                input_path = os.path.join(dedicated_folder_path, input_name)
-                shutil.copy(os.path.join(self.inputs_path, folder, f"{input_file_name}.json"), input_path)
-                expected_name = f"expected_{input_file_name}.json"
-                expected_path = os.path.join(dedicated_folder_path, expected_name)
-                shutil.copy(expected_file_path, expected_path)
-                output_name = f"output_{input_file_name}.json"
-                output_path = os.path.join(dedicated_folder_path, output_name)
-                shutil.copy(output_file_path, output_path)
-
-                self.process_csv(input_file_name, expected_file_path, output_file_path, dedicated_folder_path)
-                self.report_paths.append(report_path)
-                LOGGER.info(f"Comparison report generated for {input_file_name}")
             else:
                 LOGGER.info(f"No difference found in output for {input_file_name}")
+        else:
+            LOGGER.warning(f"Missing data for comparison in {input_file_name}")
 
-    def process_csv(self, input_file_name, expected_file_path, output_file_path, dedicated_folder_path):
+    def _calculate_diff(self, expected_data, output_data):
+        """Calculate differences between expected and actual data."""
+        exclude_regex = [re.compile(path) for path in self.ignore_paths]
+        return DeepDiff(
+            expected_data,
+            output_data,
+            ignore_order=True,
+            report_repetition=True,
+            exclude_regex_paths=exclude_regex,
+            cutoff_intersection_for_pairs=1,
+            get_deep_distance=True,
+            max_passes=3,
+            cache_size=5000,
+            log_frequency_in_sec=10,
+            progress_logger=LOGGER.warning,
+        )
 
-        self.copy_csv("expected_", input_file_name, expected_file_path, dedicated_folder_path)
-        self.copy_csv("output_", input_file_name, output_file_path, dedicated_folder_path)
+    def _handle_differences(self, diff, input_file_name, output_file_path, expected_file_path, report_dir, request_id):
+        """Handles the found differences by creating detailed reports and copying relevant files."""
+        delta = Delta(diff, bidirectional=True)
+        flat_dicts = delta.to_flat_dicts()
+        report = {
+            "timestamp": datetime.now().strftime("%Y%m%d%H%M%S%f"),
+            "request_id": request_id,
+            "output_file": output_file_path,
+            "expected_output_file": expected_file_path,
+            "diff": flat_dicts,
+        }
 
-    def copy_csv(self, arg0, input_file_name, file_path, dedicated_folder_path):
-        # Copy the expected and output csv files to the dedicated folder
+        # Save the comparison report in the dedicated folder
+        file_name = f"{input_file_name}_comparison.json"
+        report_path = os.path.join(report_dir, file_name)
+        save_json_file(report, report_path)
+        self._process_csv(input_file_name, expected_file_path, output_file_path, report_dir)
+
+        self.report_paths.append(report_path)
+        LOGGER.info(f"Comparison report generated for {input_file_name}")
+
+    def _copy_files_for_review(self, input_file_name, output_file_path, expected_file_path, report_dir, folder_name):
+        """Copy input, expected, and output files to the report directory for further review."""
+        input_name = f"input_{input_file_name}.json"
+        input_path = os.path.join(report_dir, input_name)
+        shutil.copy(os.path.join(self.inputs_path, folder_name, f"{input_file_name}.json"), input_path)
+        expected_name = f"expected_{input_file_name}.json"
+        expected_path = os.path.join(report_dir, expected_name)
+        shutil.copy(expected_file_path, expected_path)
+        output_name = f"output_{input_file_name}.json"
+        output_path = os.path.join(report_dir, output_name)
+        shutil.copy(output_file_path, output_path)
+
+    def _process_csv(self, input_file_name, expected_file_path, output_file_path, dedicated_folder_path):
+        """process the expected and output csv files"""
+        self._copy_csv("expected_", input_file_name, expected_file_path, dedicated_folder_path)
+        self._copy_csv("output_", input_file_name, output_file_path, dedicated_folder_path)
+
+    def _copy_csv(self, arg0, input_file_name, file_path, dedicated_folder_path):
+        """Copy the expected and output csv files to the dedicated folder."""
         csv_name = f"{arg0}{input_file_name}.csv"
         csv_path = os.path.join(dedicated_folder_path, csv_name)
         expected_csv = file_path.replace(".json", ".csv")
@@ -144,7 +161,7 @@ class Compare:
                 csv_path = os.path.join(dedicated_folder_path, csv_name)
                 json_to_csv(data.get("data", {}).get("data", None), csv_path)
 
-    def preprocess_data(self, data):
+    def _preprocess_data(self, data):
         """Preprocess data to normalize dynamic content like file names within the `figures` section."""
         if "figures" in data:
             data["figures"] = self.traverse_and_normalize_figures(data["figures"])

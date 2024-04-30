@@ -19,7 +19,9 @@ async def login(username, password, server_path):
 
 
 def handle_cookies(response_cookies):
-    """Extracts and formats required cookies from the HTTPX response."""
+    """Extracts and formats required cookies from the HTTPX response.
+    Returns: Formatted cookies string, access token, csrf token
+    """
     access_token_cookie = response_cookies.get("access_token_cookie")
     csrf_token = response_cookies.get("csrf_access_token")
 

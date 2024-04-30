@@ -20,7 +20,8 @@ class WiserTester:
             username (str): Username for login.
             password (str): Password for login.
             request_timeout (int): Timeout for waiting on reports.
-            config: Config file dictionary
+            config (dict): Config file dictionary
+            exclude_inputs (lst): List of input files to exclude
         """
         self.socket = socketio.AsyncClient(reconnection_attempts=10)
         self.http_client = httpx.AsyncClient()
@@ -112,6 +113,7 @@ class WiserTester:
         await self.socket.connect(self.server_path, wait_timeout=10, transports=["websocket", "polling"])
 
     async def get_version_info(self):
+        """retrieve the wiser version information from server"""
         request_id, _ = await self.send_request_get_response("get_version")
         if request_id:
             self.pending_requests.add(request_id)
@@ -153,9 +155,11 @@ class WiserTester:
     @handle_exceptions("Request failed", False)
     async def send_request_get_response(self, json_request_path):
         """
-        Sends a request to the server using the data in the specified JSON file.
+        Sends a request to the server and waits for the response.
+        Args:
+            json_request_path (str): Path to the JSON file with request data.
         Returns:
-            tuple: A tuple containing the request ID and the server's response object.
+            tuple: (request_id, response) if successful, None otherwise.
         """
         self.report_event.clear()  # Reset the event for the next report
 
@@ -179,7 +183,11 @@ class WiserTester:
     # Report handling methods
 
     async def process_report(self, data):
-        """Process incoming reports, either in order or handling late reports."""
+        """
+        Processes an incoming report by updating internal states and handling data accordingly.
+        Args:
+            report_data (dict): The report data received from the server.
+        """
         report_id = data.get("id")
         if not report_id:
             LOGGER.error("Report ID missing in data")
@@ -210,6 +218,12 @@ class WiserTester:
             LOGGER.error(f"Report ID {report_id} not found in request mapping")
 
     async def handle_late_report(self, report_id, data):
+        """
+        Handles specific late report data based on the id received.
+        Args:
+            report_id (str): The unique identifier for the report.
+            report_data (dict): The report data.
+        """
         inp_dir = self.request_to_input_dir_map.get(report_id)
         input_folder = os.path.basename(inp_dir)
         path = os.path.join(self.outputs_dir, input_folder)
@@ -217,6 +231,7 @@ class WiserTester:
         await self.save_output({"data": data, "id": report_id}, path)
 
     async def wait_for_report(self, request_id):
+        """wait for specific report from server, if timeout occurs, issue warning"""
         try:
             await asyncio.wait_for(self.report_event.wait(), timeout=self.request_timeout)
         except asyncio.TimeoutError:
@@ -292,6 +307,11 @@ class WiserTester:
     # Utilities
 
     async def make_output_dir(self):
+        """
+        creates a new directory in the `outputs_dir` based on the current input directory and copies a version info file into it.
+        :return: The `make_output_dir` method returns the path of the newly created output directory.
+        """
+
         input_folder = os.path.basename(self.current_input_dir)
         path = os.path.join(self.outputs_dir, input_folder)
         if not os.path.isdir(path):
@@ -323,6 +343,12 @@ class WiserTester:
 
     @handle_exceptions("An error occurred during csv checks", False)
     def handle_csv(self, output_data, output_dir, input_file_name):
+        """This function handles CSV data by converting JSON data to a CSV file.
+        Args:
+            output_data: Output data containing information to be processed
+            output_dir: The directory where the CSV file will be saved after the conversion from JSON to CSV is completed
+            input_file_name: The name of the input file being processed.
+        """
         if contains_csv_data(output_data):
             csv_data = output_data.get("data", {}).get("data", None)
             csv_path = os.path.join(output_dir, f"{input_file_name}.csv")

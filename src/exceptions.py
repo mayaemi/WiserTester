@@ -1,10 +1,10 @@
-# Error Handling Decorator
 import asyncio
 from functools import wraps
 from src.configure import LOGGER
 
 
 def handle_exceptions(log_message, should_raise=True):
+    # Error Handling Decorator
     def decorator(func):
         if asyncio.iscoroutinefunction(func):
 

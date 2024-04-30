@@ -65,7 +65,6 @@ def contains_csv_data(data):
             if csv_data != []:
                 return isinstance(csv_data, list) and all(isinstance(item, dict) for item in csv_data)
 
-        # print(struct)
         return False
     except ValueError as e:
         # Handle the case where JSON is invalid

@@ -16,7 +16,7 @@ def setup_directory(path, name):
 def load_template(template_path):
     """Load a JSON request folder template."""
     templates = [os.path.join(template_path, f) for f in os.listdir(template_path) if f.endswith(".json")]
-    return {os.path.splitext(os.path.basename(f))[0]: json.load(open(f, "r")) for f in templates}
+    return {os.path.splitext(os.path.basename(f))[0].split("_", 1)[1]: json.load(open(f, "r")) for f in templates}
 
 
 def process_req_data(data, report_type):
@@ -39,7 +39,8 @@ def save_request(data, directory, identifier):
 def save_requests(templates, generate, directory):
     """Save multiple requests based on the templates and generate list."""
     for report_type in generate:
-        if report_type in templates:
+        result = [(key, value) for key, value in templates.items() if (report_type in key)]
+        if result:
             data = process_req_data(templates[report_type], report_type)
             save_request(data, directory, report_type)
 
@@ -56,7 +57,10 @@ def create_recording():
 
     # Load the template
     template_data = load_template(args.template)
+    import pprint
 
+    pp = pprint.PrettyPrinter()
+    pp.pprint(template_data)
     # Set up the directory based on the report type
     directory = setup_directory(args.output, args.name)
 

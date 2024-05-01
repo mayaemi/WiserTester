@@ -19,10 +19,10 @@ class HarFileProcessor:
 
     def __init__(self, har_paths, config_path="config.json", excluded_request_types=None):
         with open(config_path, "r") as config_file:
-            config = json.load(config_file)
+            self.config = json.load(config_file)
         self.har_paths = har_paths
-        self.inputs_dir = config.get("inputs_dir")
-        self.page_title = f'{config.get("origin")}/'
+        self.inputs_dir = self.config.get("inputs_dir", "./outputs")
+        self.page_title = f'{self.config.get("origin")}/'
         self.excluded_request_types = excluded_request_types or []
         self.logger = self.setup_logger()
 

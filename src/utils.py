@@ -30,7 +30,7 @@ def save_json_file(data, file_path):
 
 def extract_timestamp_from_filename(filename):
     """Extracts the timestamp from the filename."""
-    # Assuming filename format is "%m%d%H%M%S%f_messageType.json"
+    # Assuming filename format is "ts_messageType.json"
     timestamp_str, _ = filename.split("_", 1)
     return int(timestamp_str)  # Convert to integer for sorting
 

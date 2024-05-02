@@ -1,0 +1,51 @@
+{
+    "messageType": "chronicDiseaseCohorts.genReport",
+    "cohortId": "c_f74b9c92bc0517005234279f26646e4a",
+    "report": {
+        "type": "tracks",
+        "timeScope": [
+            {
+                "day": 1,
+                "month": 1,
+                "year": 2004
+            },
+            {
+                "day": 1,
+                "month": 1,
+                "year": 2018
+            }
+        ],
+        "timeBreaks": [
+            -1825,
+            -1460,
+            -1095,
+            -730,
+            -365,
+            0,
+            365,
+            730,
+            1095,
+            1460,
+            1825
+        ],
+        "ageBreaks": [
+            60,
+            70
+        ],
+        "colors": {
+            "case.male": "#3366cc",
+            "case.female": "#dc3912",
+            "control.male": "#6c7381",
+            "control.female": "#595656"
+        },
+        "tracks": "lab.scores.GFR_MDRD",
+        "background": {
+            "requiredFilter": [],
+            "excludeFilter": [],
+            "matching": [],
+            "id": "c_7d76ae34df881364c7fd689b00949958",
+            "status": "built"
+        },
+        "forExport": true
+    }
+}

@@ -111,6 +111,7 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
 
 <h2 id="generate-recordings">Generate Recordings of Queries</h2>
 
+# process HAR files
 The `HAR_request_extractor.py` script is designed to process HAR files, extracting POST request data and saving it as JSON files. This can be useful for analyzing and replaying wiser interactions.
 
 #### Single HAR File
@@ -126,7 +127,7 @@ python HAR_request_extractor.py --har_paths "path/to/your_file1.har" "path/to/yo
 ```bash 
 python HAR_request_extractor.py --har_dir "path/to/directory" --config path/to/config.json --exclude_request_types type1 type2
 ```
-  - Example: `python HAR_request_extractor.py --har_dir "data/har_files" --config config.json --exclude_request_types getData userCohortCatalog`
+  - Example: `python tools/HAR_request_extractor.py --config config/config_weizmann.json --exclude_request_types getData userCohortCatalog`
 
 #### Using the Standalone Executable
   Command Line Arguments: Similar to the Python version, with the .exe extension.\
@@ -154,7 +155,41 @@ python HAR_request_extractor.py --har_dir "path/to/directory" --config path/to/c
 **Output**
 Processed files will be saved in the directory specified in the config.json file under inputs_dir, organized by the stem name of each HAR file processed.
 
+# JSON Request Manager
+## Overview
+The JSON Request Manager is a versatile Python script designed to manage JSON request bundles. It supports creating, modifying, and managing JSON files based on templates. The script allows users to add, remove, or modify JSON files within a specified directory, offering flexible data management for various applications.
+
+## Features
+- **Add JSON Files**: Add specific JSON files or all files from a template directory to a target directory.
+- **Remove JSON Files**: Remove specified JSON files from a target directory.
+- **Modify JSON Files**: Apply modifications to existing JSON files in a target directory.
+
+## Usage
+### Running the Script
+Use the following command to run the script with the necessary arguments:
+
+```bash
+python path_to_script/recording_builder.py --directory path_to_output_directory [options]
+```
+
+### Options
+-**`--template`**: Specifies the path to the folder containing JSON template files.
+-**`--directory`**: Required. Specifies the output directory to manage the requests.
+-**`--copy_all`**: Flag to copy all files from the template directory to the specified directory.
+-**`--add`**: A list of filenames to add from the template to the directory. Specify "all" to add all files.
+-**`--remove`**: A list of filenames to remove from the directory.
+-**`--modify`**: Pairs of filename and value to modify existing requests, e.g., --modify filename key=value.
+
+### examples
+Copy All Templates to Directory
+```bash
+python tools/recording_builder.py --template data/inputs/template --directory data/inputs/new_rec --copy_all```
+
+Add Specific Files
+
+
 <h2 id="versioning-and-comparisons">Versioning and Comparisons</h2>
+
 
 ### Versioning
 Upon each test run, the WiserTester fetches and saves the version info of the application being tested. This information is stored within each output directory, allowing for version tracking alongside test results.

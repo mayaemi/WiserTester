@@ -82,9 +82,9 @@ class HarFileProcessor:
             msg_type = json_req.get("messageType").replace("chronicDiseaseCohorts.", "")
             if "genReport" in msg_type:
                 report_type = json_req.get("report").get("type")
-                name = f'{entry.startTime.strftime("%m%d%H%M%S%f")[:-3]}_{msg_type}_{report_type}.json'
+                name = f'{entry.startTime.strftime("%H%M%S%f")[:-3]}_{msg_type}_{report_type}.json'
             else:
-                name = f'{entry.startTime.strftime("%m%d%H%M%S%f")[:-3]}_{msg_type}.json'
+                name = f'{entry.startTime.strftime("%H%M%S%f")[:-3]}_{msg_type}.json'
             if msg_type not in self.excluded_request_types:
                 self.save_request_file(new_rec_dir, json_req, name)
 
@@ -101,7 +101,7 @@ def main():
     """Entry point of the script. Parses command-line arguments and processes the HAR file."""
     parser = argparse.ArgumentParser(description="Process HAR files and extract POST requests.")
     parser.add_argument("--har_paths", nargs="*", help="Paths to the HAR files")
-    parser.add_argument("--har_dir", help="Path to a dir containing HAR files", default="data/har_files")
+    parser.add_argument("--har_dir", help="Path to a dir containing HAR files", default="data/temps/har_files")
     parser.add_argument("--config", required=True, help="Path to the configuration file")
     parser.add_argument("--exclude_request_types", nargs="*", help="List of request types to exclude from saving", default=[])
 

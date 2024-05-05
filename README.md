@@ -188,7 +188,7 @@ python tools/request_manager.py --template data/inputs/template --directory data
 
 Add Specific Files
 ```bash
-python ./request_manager.py --template data/inputs/template --directory ./requests --add report1.json report2.json
+python ./request_manager.py --template data/inputs/template --directory ./requests --add report1 report2
 ```
 
 Modify an existing request:

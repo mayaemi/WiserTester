@@ -111,7 +111,7 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
 
 <h2 id="generate-recordings">Generate Recordings of Queries</h2>
 
-# process HAR files
+## process HAR files
 The `HAR_request_extractor.py` script is designed to process HAR files, extracting POST request data and saving it as JSON files. This can be useful for analyzing and replaying wiser interactions.
 
 #### Single HAR File
@@ -155,24 +155,24 @@ python HAR_request_extractor.py --har_dir "path/to/directory" --config path/to/c
 **Output**
 Processed files will be saved in the directory specified in the config.json file under inputs_dir, organized by the stem name of each HAR file processed.
 
-# JSON Request Manager
-## Overview
+## JSON Request Manager
+### Overview
 The JSON Request Manager is a Python script designed to manage JSON request bundles. It supports creating, modifying, and managing JSON files based on templates. The script allows users to add, remove, or modify JSON files within a specified directory.
 
-## Features
+### Features
 - **Add JSON Files**: Add specific JSON files or all files from a template directory to a target directory.
 - **Remove JSON Files**: Remove specified JSON files from a target directory.
 - **Modify JSON Files**: Apply modifications to existing JSON files in a target directory.
 
-## Usage
-### Running the Script
+### Usage
+#### Running the Script
 Use the following command to run the script with the necessary arguments:
 
 ```bash
 python path_to_script/request_manager.py --directory path_to_output_directory [options]
 ```
 
-### Options
+#### Options
 -**`--template`**: Specifies the path to the folder containing JSON template files.
 -**`--directory`**: Required. Specifies the output directory to manage the requests.
 -**`--copy_all`**: Flag to copy all files from the template directory to the specified directory.
@@ -180,7 +180,7 @@ python path_to_script/request_manager.py --directory path_to_output_directory [o
 -**`--remove`**: A list of filenames to remove from the directory.
 -**`--modify`**: Pairs of filename and value to modify existing requests, e.g., --modify filename key=value.
 
-### examples
+#### examples
 Copy All Templates to Directory
 ```bash
 python tools/request_manager.py --template data/inputs/template --directory data/inputs/new_rec --copy_all

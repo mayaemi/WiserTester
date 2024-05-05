@@ -8,7 +8,11 @@ from src.configure import LOG_CONFIG, LOGGER
 async def login(username, password, server_path):
     """
     Logs into the application using provided credentials.
-    Returns: HTTPX response object and cookies after successful login.
+    Returns:
+        httpx.Response: The HTTP response object after successful login.
+        dict: Cookies obtained from the login response.
+    Raises:
+        HTTPError: If the login request fails.
     """
     url = f"{server_path}{LOG_CONFIG['LOGIN_URL']}"
     data = {"username": username, "password": password}

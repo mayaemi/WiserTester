@@ -47,10 +47,11 @@ class WiserTester:
         self.pending_requests = set()
         self.version_info = None
         self.is_csv = []
+
         # Define event handlers for the socket events
         self._define_event_handlers()
 
-    async def start_test(self, specific_inputs=None):
+    async def start_test(self, input_directories=None):
         """
         Starts the testing process. Tests either all inputs or a specific list of inputs.
         Args:
@@ -65,7 +66,7 @@ class WiserTester:
         await self.get_version_info()
         await self.save_version_info()
 
-        await self.test_inputs(specific_inputs)
+        await self.test_inputs(input_directories)
 
         # await self.socket.wait()
 

@@ -16,16 +16,16 @@ def load_configuration(file_path):
 @handle_exceptions("An unexpected error occurred", True)
 async def run_tests_and_comparison(config, args, tester):
     """Run tests and comparisons based on provided arguments."""
-    specific = args.specific_list.split(",") if args.specific_list else None
+    input_directories = args.input_directories.split(",") if args.input_directories else None
     if args.mode != TestMode.COMPARE_ONLY:
-        await tester.start_test(specific)
+        await tester.start_test(input_directories)
     if not args.no_comparison:
         LOGGER.info("Comparing outputs")
         comparison = Compare(
             config,
             args.expected_output,
             args.comparison_reports,
-            specific,
+            input_directories,
         )
         report_paths = comparison.compare_outputs_with_expectations(args.no_preprocessing)
         LOGGER.info(f"Comparison reports: {report_paths}")

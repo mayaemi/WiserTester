@@ -1,19 +1,32 @@
-import asyncio
+from asyncio import iscoroutinefunction
 from functools import wraps
+from typing import Any, Callable, Union
 from src.configure import LOGGER
 
 
-def handle_exceptions(log_message, should_raise=True):
-    # Error Handling Decorator
-    def decorator(func):
-        if asyncio.iscoroutinefunction(func):
+def handle_exceptions(log_message: str, should_raise: bool = True, log_level: str = "error") -> Callable:
+    """
+    A decorator that handles exceptions by logging and optionally re-raising them.
+    Supports both synchronous and asynchronous functions.
+
+    Args:
+    log_message (str): Message to log on exception.
+    should_raise (bool): If True, re-raises the exception after logging.
+    log_level (str): Logging level ('info', 'warning', 'error').
+
+    Returns:
+    Callable: A wrapped function that handles exceptions as described.
+    """
+
+    def decorator(func: Callable) -> Callable:
+        if iscoroutinefunction(func):
 
             @wraps(func)
-            async def async_wrapper(*args, **kwargs):
+            async def async_wrapper(*args: Any, **kwargs: Any) -> Any:
                 try:
                     return await func(*args, **kwargs)
                 except Exception as e:
-                    LOGGER.error(f"{log_message}: {e}")
+                    getattr(LOGGER, log_level)(f"{log_message}: {e}")
                     if should_raise:
                         raise
 
@@ -21,11 +34,11 @@ def handle_exceptions(log_message, should_raise=True):
         else:
 
             @wraps(func)
-            def sync_wrapper(*args, **kwargs):
+            def sync_wrapper(*args: Any, **kwargs: Any) -> Any:
                 try:
                     return func(*args, **kwargs)
                 except Exception as e:
-                    LOGGER.error(f"{log_message}: {e}")
+                    getattr(LOGGER, log_level)(f"{log_message}: {e}")
                     if should_raise:
                         raise
 

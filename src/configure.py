@@ -18,6 +18,13 @@ LOG_CONFIG = {
 
 
 def setup_logging(level=logging.INFO):
+    """
+    Sets up and returns a configured logger with both stdout and file handlers.
+    Args:
+        level (int): Logging level.
+    Returns:
+        logging.Logger: Configured logger.
+    """
     if not os.path.isdir("logs"):
         os.mkdir("logs")
 

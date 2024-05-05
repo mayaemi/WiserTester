@@ -14,7 +14,7 @@ def parse_args():
     parser.add_argument("--password", type=str, required=True, help="Password for login")
     parser.add_argument("--config", type=str, required=True, help="Path to the configuration file")
     parser.add_argument("--mode", type=test_mode_type, choices=list(TestMode), help="Testing mode")
-    parser.add_argument("--specific_list", type=str, help="Specific list of input directories")
+    parser.add_argument("--input_directories", type=str, help="Specific list of input directories")
     parser.add_argument("--expected_output", type=str, default=os.path.join("data", "expectations"), help="Path to expectations")
     parser.add_argument("--no_comparison", action="store_true", help="Don't compare to previous outputs")
     parser.add_argument(

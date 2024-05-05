@@ -157,7 +157,7 @@ Processed files will be saved in the directory specified in the config.json file
 
 # JSON Request Manager
 ## Overview
-The JSON Request Manager is a versatile Python script designed to manage JSON request bundles. It supports creating, modifying, and managing JSON files based on templates. The script allows users to add, remove, or modify JSON files within a specified directory, offering flexible data management for various applications.
+The JSON Request Manager is a Python script designed to manage JSON request bundles. It supports creating, modifying, and managing JSON files based on templates. The script allows users to add, remove, or modify JSON files within a specified directory.
 
 ## Features
 - **Add JSON Files**: Add specific JSON files or all files from a template directory to a target directory.
@@ -169,7 +169,7 @@ The JSON Request Manager is a versatile Python script designed to manage JSON re
 Use the following command to run the script with the necessary arguments:
 
 ```bash
-python path_to_script/recording_builder.py --directory path_to_output_directory [options]
+python path_to_script/request_manager.py --directory path_to_output_directory [options]
 ```
 
 ### Options
@@ -183,10 +183,23 @@ python path_to_script/recording_builder.py --directory path_to_output_directory 
 ### examples
 Copy All Templates to Directory
 ```bash
-python tools/recording_builder.py --template data/inputs/template --directory data/inputs/new_rec --copy_all```
+python tools/request_manager.py --template data/inputs/template --directory data/inputs/new_rec --copy_all
+```
 
 Add Specific Files
+```bash
+python ./request_manager.py --template data/inputs/template --directory ./requests --add report1.json report2.json
+```
 
+Modify an existing request:
+```bash
+python ./request_manager.py --directory ./requests --modify report1.json '{"new_key": "new_value"}'
+```
+
+Remove files:
+```bash
+python ./request_manager.py --directory ./requests --remove outdated_report.json
+```
 
 <h2 id="versioning-and-comparisons">Versioning and Comparisons</h2>
 

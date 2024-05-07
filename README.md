@@ -60,6 +60,14 @@ Build using the batch script:
 .\buildNewExe.bat
 ```
 
+### Building and Packaging New Releases with `buildNewPkg`
+
+This script automates the creation of executables for the `wiser_tester.py` and the `HAR_request_extractor.py` tools, packaging them with necessary configuration and data files, as well as the batch run files. 
+
+```bash
+.\buildNewPkg.bat
+```
+
 ### Using the Standalone Executable
 
 Run at Weizmann:

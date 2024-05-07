@@ -1,6 +1,5 @@
 import argparse
 import os
-from .configure import test_mode_type, TestMode
 
 
 def parse_args():

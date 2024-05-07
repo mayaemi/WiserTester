@@ -105,6 +105,7 @@ or using the batch file:
 
 ## Config File
 
+*make sure the config file fits your environment*
 - `host`: Host name of the web application, e.g., `localhost:5000`.
 - `origin`: Origin URL to test against, e.g., `http://localhost:5050`.
 - `inputs_dir`: Directory for input files, e.g., `data/inputs`.

@@ -17,14 +17,14 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
 
 ## Prerequisites
 
-- Python 3.8 - Verify with `python3 --version`
+- Python 3.8 or higher (Verify with `python3 --version`)
 - Dependencies from `requirements.txt` file
 
 ## Setup and Execution Instructions
 
 ### Creating Environment
 
-Set up a virtual environment (recommended):
+Set up a virtual environment top isolate requirements (recommended):
 
 ```bash
 python -m venv env
@@ -42,9 +42,9 @@ wiser_tester.py --username USERNAME --password PASSWORD --config CONFIG_FILE_PAT
 
 Example:
 
-```bash
+``
 python wiser_tester.py --username maya --password mayah --config config/config_weizmann.json
-```
+``
 
 ### Creating A New Executable
 

@@ -105,11 +105,14 @@ or using the batch file:
 ### Optional Arguments
 
 - `--mode`: Testing mode, default is `all`.
-- `--specific_list`: Comma-separated list of specific input directories to test.
+- `--input_directories`: Comma-separated list of specific input directories to test.
 - `--expected_output`: Path for expected output files, defaults to `data/expectations`.
-- `--compare`: Comparison to previous outputs, default is `yes`.
+- `--no_comparison`: Flag to disable the comparison component.
 - `--comparison_reports`: Path for saving comparison reports, defaults to `data/comparison_reports`.
 - `--request_timeout`: Request timeout in seconds, defaults to 60.
+- `--exclude_inputs`: List of input files to exclude from test.
+- `--no_preprocessing`: Flag to disable the preprocessing of data to normalize dynamic content like file names before comparison
+
 
 ## Config File
 

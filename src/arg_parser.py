@@ -22,6 +22,6 @@ def parse_args():
     )
     parser.add_argument("--request_timeout", type=int, default=60, help="Request timeout in seconds")
     parser.add_argument("--exclude_inputs", nargs="+", default=[], help="List of input files to exclude from sending")
-    parser.add_argument("--no_preprocessing", action="store_true", help="Don't preprocess outputs")
+    parser.add_argument("--no_preprocessing", action="store_true", help="Don't preprocess outputs before comparison")
 
     return parser.parse_args()

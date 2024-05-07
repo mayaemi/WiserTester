@@ -17,7 +17,7 @@ def load_configuration(file_path):
 async def run_tests_and_comparison(config, args, tester):
     """Run tests and comparisons based on provided arguments."""
     input_directories = args.input_directories.split(",") if args.input_directories else None
-    if args.mode != TestMode.COMPARE_ONLY:
+    if not args.compare_only:
         await tester.start_test(input_directories)
     if not args.no_comparison:
         LOGGER.info("Comparing outputs")

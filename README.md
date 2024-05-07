@@ -104,9 +104,9 @@ or using the batch file:
 
 ### Optional Arguments
 
-- `--mode`: Testing mode, default is `all`.
 - `--input_directories`: Comma-separated list of specific input directories to test.
 - `--expected_output`: Path for expected output files, defaults to `data/expectations`.
+- `--compare_only`: Flag to only run comparison.
 - `--no_comparison`: Flag to disable the comparison component.
 - `--comparison_reports`: Path for saving comparison reports, defaults to `data/comparison_reports`.
 - `--request_timeout`: Request timeout in seconds, defaults to 60.

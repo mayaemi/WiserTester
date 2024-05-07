@@ -43,19 +43,3 @@ def setup_logging(level=logging.INFO):
 
 
 LOGGER = setup_logging()
-
-
-# configure testing modes
-
-
-class TestMode(Enum):
-    ALL = auto()
-    SPECIFIC = auto()
-    COMPARE_ONLY = auto()
-
-
-def test_mode_type(value):
-    try:
-        return TestMode[value]
-    except KeyError as e:
-        raise argparse.ArgumentTypeError(f"{value} is not a valid TestMode") from e

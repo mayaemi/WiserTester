@@ -53,9 +53,9 @@ class WiserTester:
 
     async def start_test(self, input_directories=None):
         """
-        Starts the testing process. Tests either all inputs or a specific list of inputs.
+        Starts the testing process. Tests either all inputs or a specific list of input directories.
         Args:
-            specific_inputs (list, optional): A list of specific inputs to be tested. If None, all inputs will be tested.
+            input_directories (list, optional): A list of specific inputs to be tested. If None, all inputs will be tested.
         """
         # Perform login and store cookies
         _, self.cookies = await login(self.username, self.password, self.server_path)

@@ -25,17 +25,18 @@ class Compare:
 
     def _handle_existing_reports(self):
         """Rename existing report directories to include a timestamp before generating new ones."""
-        if os.path.exists(self.reports_path):
-            already_renamed_pattern = re.compile(r"^z_.*_\d{8}_\d{6}$")  # Regex to check if already renamed
-            for folder in os.listdir(self.reports_path):
-                if already_renamed_pattern.match(folder):
-                    continue  # Skip this folder if it matches the renamed pattern
-                folder_path = os.path.join(self.reports_path, folder)
-                if os.path.isdir(folder_path):
-                    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                    new_name = f"z_{folder}_{timestamp}"
-                    new_path = os.path.join(self.reports_path, new_name)
-                    shutil.move(folder_path, new_path)
+        if not os.path.exists(self.reports_path):
+            return
+        already_renamed_pattern = re.compile(r"^z_.*_\d{8}_\d{6}$")  # Regex to check if already renamed
+        for folder in os.listdir(self.reports_path):
+            if already_renamed_pattern.match(folder):
+                continue  # Skip this folder if it matches the renamed pattern
+            folder_path = os.path.join(self.reports_path, folder)
+            if os.path.isdir(folder_path):
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                new_name = f"z_{folder}_{timestamp}"
+                new_path = os.path.join(self.reports_path, new_name)
+                shutil.move(folder_path, new_path)
 
     @handle_exceptions("Comparison error", False)
     def compare_outputs_with_expectations(self, no_preprocessing):

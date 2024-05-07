@@ -118,39 +118,35 @@ Process HAR files and save POST request data as JSON:
 ```bash
 python ./HAR_request_extractor.py --har_paths "path/to/your_file1.har" "path/to/your_file2.har" --config path/to/config.json --exclude_request_types type1 type2
 ```
-  - Example: `python tools\HAR_request_extractor.py --har_path "data\har_files\cohort_builder_example.har" --config config.json --exclude_request_types getData userCohortCatalog`
 
-#### Directory of HAR Files
-***To process all HAR files within a directory:***
+***Directory of HAR Files***
 ```bash 
 python HAR_request_extractor.py --har_dir "path/to/directory" --config path/to/config.json --exclude_request_types type1 type2
 ```
-  - Example: `python tools/HAR_request_extractor.py --config config/config_weizmann.json --exclude_request_types getData userCohortCatalog`
+Example: ``python tools/HAR_request_extractor.py --config config/config_weizmann.json --exclude_request_types getData userCohortCatalog``
 
 #### Using the Standalone Executable
-  Command Line Arguments: Similar to the Python version, with the .exe extension.\
-  Make sure config file is set correctly for the environment
 
-  **Run the exe at Weizmann**
-  - ***using only the exe***
+  **Run the exe in Weizmann**
+  - *using only the exe*
     ```bash
         HAR_request_extractor.exe --config config_weizmann.json --har_dir "data/har_files"
     ```
-  - ***using the batch file***
+  - *using the batch file*
     ```bash
         .\RunRequestExtractorWeizmann.bat
     ```
 
-  **Run the exe at Clalit**
-  - ***using only the exe***
+  **Run the exe in Clalit**
+  - *using only the exe*
     ```bash
         HAR_request_extractor.exe --config config_clalit.json --har_dir "data/har_files"
     ```
-  - ***using the batch file***
+  - *using the batch file*
     ```bash
         .\RunRequestExtractorClalit.bat
     ```
-**Output**
+**Output**\
 Processed files will be saved in the directory specified in the config.json file under inputs_dir, organized by the stem name of each HAR file processed.
 
 ## JSON Request Manager
@@ -171,12 +167,12 @@ python path_to_script/request_manager.py --directory path_to_output_directory [o
 ```
 
 #### Options
--**`--template`**: Specifies the path to the folder containing JSON template files.
--**`--directory`**: Required. Specifies the output directory to manage the requests.
--**`--copy_all`**: Flag to copy all files from the template directory to the specified directory.
--**`--add`**: A list of filenames to add from the template to the directory. Specify "all" to add all files.
--**`--remove`**: A list of filenames to remove from the directory.
--**`--modify`**: Pairs of filename and value to modify existing requests, e.g., --modify filename key=value.
+-`--template`: Specifies the path to the folder containing JSON template files.
+-`--directory`: Required. Specifies the output directory to manage the requests.
+-`--copy_all`: Flag to copy all files from the template directory to the specified directory.
+-`--add`: A list of filenames to add from the template to the directory. Specify "all" to add all files.
+-`--remove`: A list of filenames to remove from the directory.
+-`--modify`: Pairs of filename and value to modify existing requests, e.g., --modify filename key=value.
 
 #### examples
 Copy All Templates to Directory

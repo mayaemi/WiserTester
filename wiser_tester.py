@@ -1,5 +1,5 @@
 import asyncio
-from src.configure import LOGGER, TestMode
+from src.configure import LOGGER
 from src.exceptions import handle_exceptions
 from src.compare import Compare
 from src.tester import WiserTester

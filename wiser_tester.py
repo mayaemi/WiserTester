@@ -13,7 +13,7 @@ def load_configuration(file_path):
     return load_json_file(file_path)
 
 
-@handle_exceptions("An unexpected error occurred", True)
+@handle_exceptions("An unexpected error occurred during the test", False)
 async def run_tests_and_comparison(config, args, tester):
     """Run tests and comparisons based on provided arguments."""
     input_directories = args.input_directories.split(",") if args.input_directories else None

@@ -157,7 +157,7 @@ Processed files will be saved in the directory specified in the config.json file
 
 ## JSON Request Manager
 ### Overview
-The JSON Request Manager is a Python script designed to manage JSON request bundles. It supports creating, modifying, and managing JSON files based on templates. The script allows users to add, remove, or modify JSON files within a specified directory.
+The JSON Request Manager is a Python script designed to manage JSON request bundles. The script allows users to add, remove, or modify JSON files within a specified directory based on templates.
 
 ### Features
 - **Add JSON Files**: Add specific JSON files or all files from a template directory to a target directory.
@@ -188,17 +188,17 @@ python tools/request_manager.py --template data/inputs/template --directory data
 
 Add Specific Files
 ```bash
-python ./request_manager.py --template data/inputs/template --directory ./requests --add report1 report2
+python ./request_manager.py --template data/inputs/template --directory data/inputs/new_rec --add report1 report2
 ```
 
 Modify an existing request:
 ```bash
-python ./request_manager.py --directory ./requests --modify report1.json '{"new_key": "new_value"}'
+python ./request_manager.py --directory data/inputs/new_rec --modify report1.json '{"new_key": "new_value"}'
 ```
 
 Remove files:
 ```bash
-python ./request_manager.py --directory ./requests --remove outdated_report.json
+python ./request_manager.py --directory data/inputs/new_rec --remove outdated_report.json
 ```
 
 <h2 id="versioning-and-comparisons">Versioning and Comparisons</h2>

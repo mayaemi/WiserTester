@@ -155,7 +155,7 @@ python HAR_request_extractor.py --har_input "path/to/directory" --output path/to
 ```
 Example: ``python tools/HAR_request_extractor.py --config config/config_weizmann.json --exclude_request_types getData userCohortCatalog``
 
-#### Using the Standalone Executable
+***Using the Standalone Executable***
 
   **Run the exe in Weizmann**
   - *using only the exe*

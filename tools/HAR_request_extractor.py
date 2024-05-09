@@ -17,11 +17,11 @@ class HarFileProcessor:
         excluded_request_types (list): list of request types to ignore
     """
 
-    def __init__(self, har_paths, config_path="config.json", excluded_request_types=None):
+    def __init__(self, har_paths, config_path="config.json", output_dir=None, excluded_request_types=None):
         with open(config_path, "r") as config_file:
             self.config = json.load(config_file)
         self.har_paths = har_paths
-        self.inputs_dir = self.config.get("inputs_dir", "./outputs")
+        self.output_dir = output_dir or self.config.get("input_dir")
         self.page_title = f'{self.config.get("origin")}/'
         self.excluded_request_types = excluded_request_types or []
         self.logger = self.setup_logger()
@@ -48,7 +48,7 @@ class HarFileProcessor:
 
     def make_dir(self, file_path):
         """Creates a directory for storing processed files, if it does not already exist."""
-        path = os.path.join(self.inputs_dir, Path(file_path).stem)
+        path = os.path.join(self.output_dir, Path(file_path).stem)
         if not os.path.isdir(path):
             os.mkdir(path)
             self.logger.info(f"Created dir {path}")
@@ -100,20 +100,27 @@ def find_har_files(dir):
 def main():
     """Entry point of the script. Parses command-line arguments and processes the HAR file."""
     parser = argparse.ArgumentParser(description="Process HAR files and extract POST requests.")
-    parser.add_argument("--har_paths", nargs="*", help="Paths to the HAR files")
-    parser.add_argument("--har_dir", help="Path to a dir containing HAR files", default="data/temps/har_files")
+    parser.add_argument(
+        "--har_input",
+        help="Path to an HAR file/Comma separated list of files/directory containing HAR files",
+        default="data/temps/har_files",
+    )
+    parser.add_argument("--output", help="The desired location of the output")
     parser.add_argument("--config", required=True, help="Path to the configuration file")
     parser.add_argument("--exclude_request_types", nargs="*", help="List of request types to exclude from saving", default=[])
 
     args = parser.parse_args()
     paths = []
-    if args.har_dir:
-        paths += find_har_files(args.har_dir)
-    if args.har_paths:
-        paths += args.har_paths
+    har_list = args.har_input.split(",") if "," in args.har_input else [args.har_input]
+    for value in har_list:
+        if os.path.isdir(value):
+            paths += find_har_files(value)
+        elif os.path.isfile(value) and value.endswith(".har"):
+            paths += value
     processor = HarFileProcessor(
         har_paths=paths,
         config_path=args.config,
+        output_dir=args.output,
         excluded_request_types=args.exclude_request_types,
     )
     processor.process_files()

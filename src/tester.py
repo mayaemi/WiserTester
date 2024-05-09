@@ -13,7 +13,7 @@ from src.utils import contains_csv_data, json_to_csv, load_json_file, save_json_
 
 
 class WiserTester:
-    def __init__(self, username, password, request_timeout, config, exclude_inputs):
+    def __init__(self, username, password, request_timeout, config, exclude_inputs, input_dir=None, output_dir=None):
         """
         Initializes the WiserTester instance.
         Args:
@@ -29,8 +29,8 @@ class WiserTester:
         self.password = password
         self.host = config["host"]
         self.origin = config["origin"]
-        self.inputs_dir = config["inputs_dir"]
-        self.outputs_dir = config["outputs_dir"]
+        self.input_dir = input_dir or config["input_dir"]
+        self.output_dirs = output_dir or config["output_dir"]
         self.exclude_inputs = exclude_inputs
         self.server_path = f"http://{self.host}/"
         self.request_timeout = request_timeout  # seconds
@@ -51,11 +51,11 @@ class WiserTester:
         # Define event handlers for the socket events
         self._define_event_handlers()
 
-    async def start_test(self, input_directories=None):
+    async def start_test(self, specific_inputs=None):
         """
         Starts the testing process. Tests either all inputs or a specific list of input directories.
         Args:
-            input_directories (list, optional): A list of specific inputs to be tested. If None, all inputs will be tested.
+            specific_inputs (list, optional): A list of specific inputs to be tested. If None, all inputs will be tested.
         """
         # Perform login and store cookies
         _, self.cookies = await login(self.username, self.password, self.server_path)
@@ -66,7 +66,7 @@ class WiserTester:
         await self.get_version_info()
         await self.save_version_info()
 
-        await self.test_inputs(input_directories)
+        await self.test_inputs(specific_inputs)
 
         # await self.socket.wait()
 
@@ -227,7 +227,7 @@ class WiserTester:
         """
         inp_dir = self.request_to_input_dir_map.get(report_id)
         input_folder = os.path.basename(inp_dir)
-        path = os.path.join(self.outputs_dir, input_folder)
+        path = os.path.join(self.output_dirs, input_folder)
         LOGGER.warning(f"Late report received for ID {report_id} which should be in {inp_dir}")
         await self.save_output({"data": data, "id": report_id}, path)
 
@@ -263,10 +263,10 @@ class WiserTester:
         """
         if inputs_list is None:  # If inputs_list is not provided, test all inputs
             LOGGER.info("Started testing all inputs")
-            directories = [os.path.join(self.inputs_dir, f) for f in os.listdir(self.inputs_dir) if f != ".gitkeep"]
+            directories = [os.path.join(self.input_dir, f) for f in os.listdir(self.input_dir) if f != ".gitkeep"]
         else:  # If inputs_list is provided, test only those inputs
             LOGGER.info(f"Started testing inputs {inputs_list}")
-            directories = [os.path.join(self.inputs_dir, rec) for rec in inputs_list]
+            directories = [os.path.join(self.input_dir, rec) for rec in inputs_list]
 
         for rec_dir in directories:
             await self.test_input(rec_dir)
@@ -314,11 +314,11 @@ class WiserTester:
         """
 
         input_folder = os.path.basename(self.current_input_dir)
-        path = os.path.join(self.outputs_dir, input_folder)
+        path = os.path.join(self.output_dirs, input_folder)
         if not os.path.isdir(path):
             os.mkdir(path)
             LOGGER.info(f"created dir {path}")
-            version_info_src = os.path.join(self.outputs_dir, "version_info.json")
+            version_info_src = os.path.join(self.output_dirs, "version_info.json")
             version_info_dest = os.path.join(path, "version_info.json")
             shutil.copy(version_info_src, version_info_dest)
             LOGGER.info(f"Copied version info to {path}")
@@ -360,7 +360,7 @@ class WiserTester:
         Saves the version information to a JSON file in a designated location.
         """
         if self.version_info:
-            version_info_path = os.path.join(self.outputs_dir, "version_info.json")
+            version_info_path = os.path.join(self.output_dirs, "version_info.json")
             with open(version_info_path, "w") as file:
                 json.dump(self.version_info, file)
             LOGGER.info("Version information saved.")

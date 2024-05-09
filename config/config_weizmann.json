@@ -1,6 +1,7 @@
 {
-  "inputs_dir": "data/inputs",
-  "outputs_dir": "data/outputs",
+  "input_dir": "data/inputs",
+  "output_dir": "data/outputs",
+  "expected_dir": "data/expectations",
   "host": "localhost:5000",
   "origin": "http://localhost:5050",
   "request_headers":

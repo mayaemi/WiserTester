@@ -16,16 +16,18 @@ def load_configuration(file_path):
 @handle_exceptions("An unexpected error occurred during the test", False)
 async def run_tests_and_comparison(config, args, tester):
     """Run tests and comparisons based on provided arguments."""
-    input_directories = args.input_directories.split(",") if args.input_directories else None
+    specific_list = args.specific_inputs
     if not args.compare_only:
-        await tester.start_test(input_directories)
+        await tester.start_test(specific_list)
     if not args.no_comparison:
         LOGGER.info("Comparing outputs")
         comparison = Compare(
-            config,
-            args.expected_output,
-            args.comparison_reports,
-            input_directories,
+            config=config,
+            reports_path=args.comparison_reports,
+            input_dir=args.input_dir,
+            output_dir=args.output_dir,
+            expected_dir=args.expected_dir,
+            specific_list=specific_list,
         )
         report_paths = comparison.compare_outputs_with_expectations(args.no_preprocessing)
         LOGGER.info(f"Comparison reports: {report_paths}")
@@ -49,7 +51,9 @@ async def shutdown(loop, tester):
 if __name__ == "__main__":
     args = parse_args()
     config = load_configuration(args.config)
-    tester = WiserTester(args.username, args.password, args.request_timeout, config, args.exclude_inputs)
+    tester = WiserTester(
+        args.username, args.password, args.request_timeout, config, args.exclude_inputs, args.input_dir, args.output_dir
+    )
     loop = asyncio.get_event_loop()
 
     try:

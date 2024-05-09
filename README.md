@@ -3,9 +3,10 @@
   &#xa0;
   <a href="#about">About</a> •
   <a href="#prerequisites">Prerequisites</a> •
-  <a href="#setup-and-execution-instructions">Setup</a> •
+  <a href="#setup-instructions">Setup</a> •
   <a href="#cli-options">CLI Options</a> •
   <a href="#config-file">Config File</a> •
+  <a href="#execution-instructions">Execution Instructions</a> •
   <a href="#generate-recordings">Generate Recordings</a> •
   <a href="#versioning-and-comparisons">Versioning and Comparisons</a> •
   <a href="#post-run-analysis">Analysis</a>
@@ -20,7 +21,7 @@ Wiser Tester is a tool designed to automate the testing of wiser by simulating v
 - Python 3.8 or higher (Verify with `python3 --version`)
 - Dependencies from `requirements.txt` file
 
-## Setup and Execution Instructions
+## Setup Instructions
 
 ### Creating Environment
 
@@ -31,20 +32,6 @@ python -m venv env
 env\Scripts\activate
 pip install -r requirements.txt
 ```
-
-### Running the Script
-
-Activate the environment, then run:
-
-```bash
-wiser_tester.py --username USERNAME --password PASSWORD --config CONFIG_FILE_PATH [options]
-```
-
-Example:
-
-``
-python wiser_tester.py --username maya --password mayah --config config/config_weizmann.json
-``
 
 ### Creating A New Executable
 
@@ -67,6 +54,52 @@ This script automates the creation of executables for the `wiser_tester.py` and 
 ```bash
 .\buildNewPkg.bat
 ```
+
+## CLI Options
+
+### Required Arguments
+
+- `--username`: Username for login authentication.
+- `--password`: Password for login authentication.
+- `--config`: Path to the configuration file containing test settings.
+
+### Optional Arguments
+
+- `--input_dir`: Location of input directories where test files are stored. If not provided, the default location specified in the configuration file will be used.
+- `--output_dir`: Location where test outputs will be stored. If not provided, the default location specified in the configuration file will be used.
+- `--expected_dir`: Location where expected outputs are stored for comparison. If not provided, the default location specified in the configuration file will be used.
+- `--specific_inputs`: List of specific input files to test. Provide as space-separated values.
+- `--compare_only`: If set, the program will only run comparisons and skip any new tests.
+- `--no_comparison`: If set, disables the comparison against previous outputs.
+- `--comparison_reports`: Path where comparison reports will be saved. Defaults to `data/comparison_reports`.
+- `--request_timeout`: Sets the request timeout in seconds. Defaults to 60 seconds.
+- `--exclude_inputs`: List of input files to exclude from testing. Provide as space-separated values.
+- `--no_preprocessing`: If set, disables preprocessing of data to normalize dynamic content like file names before comparison.
+
+## Config File
+
+*make sure the config file fits your environment*
+- `input_dir`: Location of input directories where test files are stored, e.g.,  `data/inputs`
+- `output_dir`: Location where test outputs will be stored, e.g.,  `data/outputs`
+- `expected_dir`: Location where expected outputs are stored for comparison, e.g.,  `data/expectations`
+- `host`: Host name of the web application, e.g., `localhost:5000`.
+- `origin`: Origin URL to test against, e.g., `http://localhost:5050`.
+
+## Execution Instructions
+
+### Running the Script
+
+Activate the environment, then run:
+
+```bash
+wiser_tester.py --username USERNAME --password PASSWORD --config CONFIG_FILE_PATH [options]
+```
+
+Example:
+
+``
+python wiser_tester.py --username maya --password mayah --config config/config_weizmann.json
+``
 
 ### Using the Standalone Executable
 
@@ -94,46 +127,31 @@ or using the batch file:
 .\RunWiserTesterInClalit.bat
 ```
 
-## CLI Options
-
-### Required Arguments
-
-- `--username`: Username for login authentication.
-- `--password`: Password for login authentication.
-- `--config`: Path to the configuration file containing test settings.
-
-### Optional Arguments
-
-- `--input_directories`: Comma-separated list of specific input directories to test.
-- `--expected_output`: Path for expected output files, defaults to `data/expectations`.
-- `--compare_only`: Flag to only run comparison.
-- `--no_comparison`: Flag to disable the comparison component.
-- `--comparison_reports`: Path for saving comparison reports, defaults to `data/comparison_reports`.
-- `--request_timeout`: Request timeout in seconds, defaults to 60.
-- `--exclude_inputs`: List of input files to exclude from test.
-- `--no_preprocessing`: Flag to disable the preprocessing of data to normalize dynamic content like file names before comparison
-
-
-## Config File
-
-*make sure the config file fits your environment*
-- `host`: Host name of the web application, e.g., `localhost:5000`.
-- `origin`: Origin URL to test against, e.g., `http://localhost:5050`.
-- `inputs_dir`: Directory for input files, e.g., `data/inputs`.
-- `outputs_dir`: Directory for output files, e.g., `data/outputs`.
 
 ## Generate Recordings
 
 Process HAR files and save POST request data as JSON:
 
+### Command-Line Arguments
+
+- `--har_input`: Specifies the path to an HAR file, a comma-separated list of HAR files, or a directory containing HAR files. Default is `"data/temps/har_files"`.
+- `--output`: Specifies the desired location for the output JSON files. If not provided, the default location specified in the configuration file will be used.
+- `--config`: **Required.** Path to the configuration file.
+- `--exclude_request_types`: A list of request types to exclude from saving. This can be used to ignore certain types of POST requests that do not contain relevant data.
+
+***To process a specific HAR file:***
+```bash
+python har_file_processor.py --har_input path/to/har_file --output path/to/output --config path/to/config.json --exclude_request_types type1 type2
+```
+
 ***To process specific HAR files:***
 ```bash
-python ./HAR_request_extractor.py --har_paths "path/to/your_file1.har" "path/to/your_file2.har" --config path/to/config.json --exclude_request_types type1 type2
+python ./HAR_request_extractor.py --har_input "path/to/your_file1.har, path/to/your_file2.har" --output path/to/output --config path/to/config.json --exclude_request_types type1 type2
 ```
 
 ***Directory of HAR Files***
 ```bash 
-python HAR_request_extractor.py --har_dir "path/to/directory" --config path/to/config.json --exclude_request_types type1 type2
+python HAR_request_extractor.py --har_input "path/to/directory" --output path/to/output --config path/to/config.json  --exclude_request_types type1 type2
 ```
 Example: ``python tools/HAR_request_extractor.py --config config/config_weizmann.json --exclude_request_types getData userCohortCatalog``
 

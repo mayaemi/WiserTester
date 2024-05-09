@@ -11,10 +11,10 @@ from deepdiff import DeepDiff, Delta
 class Compare:
     """A class for comparing output files with expected files and generating reports."""
 
-    def __init__(self, config, expectations_path, reports_path, specific_list=None):
-        self.outputs_path = config["outputs_dir"]
-        self.inputs_path = config["inputs_dir"]
-        self.expectations_path = expectations_path
+    def __init__(self, config, reports_path, input_dir=None, output_dir=None, expected_dir=None, specific_list=None):
+        self.input_dir = input_dir or config["input_dir"]
+        self.output_dir = output_dir or config["output_dir"]
+        self.expected_dir = expected_dir or config["expected_dir"]
         self.reports_path = reports_path
         self.report_paths = []
         self.ignore_paths = self.ignore_paths = config.get("ignore_paths", [])
@@ -47,12 +47,12 @@ class Compare:
         """
         LOGGER.info("Comparing outputs to expectations")
         self.no_preprocessing = no_preprocessing
-        target_folders = self.specific_list if self.specific_list is not None else os.listdir(self.outputs_path)
+        target_folders = self.specific_list if self.specific_list is not None else os.listdir(self.output_dir)
         LOGGER.info(f"target folders: {target_folders}")
         for folder in target_folders:
-            expectation_folder_path = os.path.join(self.expectations_path, folder)
+            expectation_folder_path = os.path.join(self.expected_dir, folder)
             if os.path.isdir(expectation_folder_path):
-                output_folder_path = os.path.join(self.outputs_path, folder)
+                output_folder_path = os.path.join(self.output_dir, folder)
                 self._compare_folder(folder, output_folder_path, expectation_folder_path)
         return self.generate_summary_report()
 
@@ -151,7 +151,7 @@ class Compare:
         """Copy input, expected, and output files to the report directory for further review."""
         input_name = f"input_{input_file_name}.json"
         input_path = os.path.join(report_dir, input_name)
-        shutil.copy(os.path.join(self.inputs_path, folder_name, f"{input_file_name}.json"), input_path)
+        shutil.copy(os.path.join(self.input_dir, folder_name, f"{input_file_name}.json"), input_path)
         expected_name = f"expected_{input_file_name}.json"
         expected_path = os.path.join(report_dir, expected_name)
         shutil.copy(expected_file_path, expected_path)
@@ -198,7 +198,7 @@ class Compare:
     @handle_exceptions("Failed to generate summary report", False)
     def generate_summary_report(self):
         """Generate a summary report of all comparisons."""
-        version_info = load_json_file(os.path.join(self.outputs_path, "version_info.json"))
+        version_info = load_json_file(os.path.join(self.output_dir, "version_info.json"))
         summary = {"output_version_info": version_info, "total_comparisons": len(self.report_paths), "differences": []}
 
         for report_path in self.report_paths:

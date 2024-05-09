@@ -192,12 +192,12 @@ python path_to_script/request_manager.py --directory path_to_output_directory [o
 ```
 
 #### Options
--`--template`: Specifies the path to the folder containing JSON template files.
--`--directory`: Required. Specifies the output directory to manage the requests.
--`--copy_all`: Flag to copy all files from the template directory to the specified directory.
--`--add`: A list of filenames to add from the template to the directory. Specify "all" to add all files.
--`--remove`: A list of filenames to remove from the directory.
--`--modify`: Pairs of filename and value to modify existing requests, e.g., --modify filename key=value.
+- `--template`: Specifies the path to the folder containing JSON template files.
+- `--directory`: Required. Specifies the output directory to manage the requests.
+- `--copy_all`: Flag to copy all files from the template directory to the specified directory.
+- `--add`: A list of filenames to add from the template to the directory. Specify "all" to add all files.
+- `--remove`: A list of filenames to remove from the directory.
+- `--modify`: Pairs of filename and value to modify existing requests, e.g., --modify filename key=value.
 
 #### examples
 ```bash

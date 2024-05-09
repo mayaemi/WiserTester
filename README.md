@@ -183,11 +183,6 @@ Processed files will be saved in the directory specified in the config.json file
 ### Overview
 The JSON Request Manager is a Python script designed to manage JSON request bundles. The script allows users to add, remove, or modify JSON files within a specified directory based on templates.
 
-### Features
-- **Add JSON Files**: Add specific JSON files or all files from a template directory to a target directory.
-- **Remove JSON Files**: Remove specified JSON files from a target directory.
-- **Modify JSON Files**: Apply modifications to existing JSON files in a target directory.
-
 ### Usage
 #### Running the Script
 Use the following command to run the script with the necessary arguments:
@@ -205,40 +200,27 @@ python path_to_script/request_manager.py --directory path_to_output_directory [o
 -`--modify`: Pairs of filename and value to modify existing requests, e.g., --modify filename key=value.
 
 #### examples
-Copy All Templates to Directory
 ```bash
-python tools/request_manager.py --template data/inputs/template --directory data/inputs/new_rec --copy_all
+python ./request_manager.py --template data/inputs/template --directory data/inputs/new_rec --add report_type1 report_type2
 ```
 
-Add Specific Files
-```bash
-python ./request_manager.py --template data/inputs/template --directory data/inputs/new_rec --add report1 report2
-```
-
-Modify an existing request:
 ```bash
 python ./request_manager.py --directory data/inputs/new_rec --modify report1.json '{"new_key": "new_value"}'
 ```
-
-Remove files:
-```bash
-python ./request_manager.py --directory data/inputs/new_rec --remove outdated_report.json
-```
-
 ## Versioning and Comparisons
 
 ### Versioning
 Upon each test run, the WiserTester fetches and saves the version info of the application being tested. This information is stored within each output directory, allowing for version tracking alongside test results.
 
 ### Dynamic Comparisons
-The Compare class has been enhanced to preprocess output and expected data, normalizing dynamic content such as file names within the figures section. This ensures that comparisons focus on meaningful data changes, disregarding variations in identifiers or timestamps. 
-this option can be disabled using --
+The Compare class has been enhanced to process output and expected data before comparison, normalizing dynamic content such as file names within the figures section. This ensures that comparisons focus on meaningful data changes, disregarding variations in identifiers or timestamps. 
+this option can be disabled using --no_preprocessing
 
 ## Post-Run Analysis and Error Handling
 This section will guide you on investigating comparisons, understanding how errors are handled, and interpreting the log files after running the WiserTester script.
 
 ### Investigating Comparisons
-If the `--compare` option is set to `yes` (as is the default), the script compares the generated outputs against expected results stored in the specified expectations directory. The comparison reports are saved in the directory defined by the `--comparison_reports` argument. Here's how to investigate the comparison results:
+If the `--no_comparison` flag isn't raised (as is the default), the script compares the generated outputs against expected results stored in the specified expectations directory. The comparison reports are saved in the directory defined by the `--comparison_reports` argument. Here's how to investigate the comparison results:
 
 1. **Review Comparison Reports**: Navigate to the comparison reports directory. Each report details the differences between the output and the expected result for a specific test case.
    

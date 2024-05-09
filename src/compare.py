@@ -26,6 +26,7 @@ class Compare:
     def _handle_existing_reports(self):
         """Rename existing report directories to include a timestamp before generating new ones."""
         if not os.path.exists(self.reports_path):
+            os.mkdir(self.reports_path)
             return
         already_renamed_pattern = re.compile(r"^z_.*_\d{8}_\d{6}$")  # Regex to check if already renamed
         for folder in os.listdir(self.reports_path):

@@ -12,15 +12,15 @@ class HarFileProcessor:
     A class to process HTTP Archive (HAR) files, extracting and saving POST request data as json files.
 
     Attributes:
-        har_paths (list): The HAR file list to be processed.
+        har_input (list): The HAR file list to be processed.
         config_path (str): The path to the config file.
         excluded_request_types (list): list of request types to ignore
     """
 
-    def __init__(self, har_paths, config_path="config.json", output_dir=None, excluded_request_types=None):
+    def __init__(self, har_input, config_path="config.json", output_dir=None, excluded_request_types=None):
         with open(config_path, "r") as config_file:
             self.config = json.load(config_file)
-        self.har_paths = har_paths
+        self.har_input = har_input
         self.output_dir = output_dir or self.config.get("input_dir")
         self.page_title = f'{self.config.get("origin")}/'
         self.excluded_request_types = excluded_request_types or []
@@ -89,7 +89,7 @@ class HarFileProcessor:
                 self.save_request_file(new_rec_dir, json_req, name)
 
     def process_files(self):
-        for har_path in self.har_paths:
+        for har_path in self.har_input:
             self.process_har_file(har_path)
 
 
@@ -113,12 +113,14 @@ def main():
     paths = []
     har_list = args.har_input.split(",") if "," in args.har_input else [args.har_input]
     for value in har_list:
-        if os.path.isdir(value):
+        value = value.strip()
+        if os.path.isfile(value) and value.endswith(".har"):
+            paths.append(value)
+        elif os.path.isdir(value):
             paths += find_har_files(value)
-        elif os.path.isfile(value) and value.endswith(".har"):
-            paths += value
+
     processor = HarFileProcessor(
-        har_paths=paths,
+        har_input=paths,
         config_path=args.config,
         output_dir=args.output,
         excluded_request_types=args.exclude_request_types,

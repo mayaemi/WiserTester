@@ -74,7 +74,7 @@ This script automates the creation of executables for the `wiser_tester.py` and 
 - `--comparison_reports`: Path where comparison reports will be saved. Defaults to `data/comparison_reports`.
 - `--request_timeout`: Sets the request timeout in seconds. Defaults to 60 seconds.
 - `--exclude_inputs`: List of input files to exclude from testing. Provide as space-separated values.
-- `--no_preprocessing`: If set, disables preprocessing of data to normalize dynamic content like file names before comparison.
+- `--no_preprocessing`: If set, disables preprocessing of data to normalize dynamic content like file names before comparison. e.g., `"figures": "bffd359a-5ac5-40d1-ac36-612c89465fef.c_c_f74b9c92bc0517005234279f26646e4a.cluster_heatmap_.png"` is replaced by `PLACEHOLDER.c_c_f74b9c92bc0517005234279f26646e4a.cluster_heatmap_.png`
 
 ## Config File
 
@@ -82,8 +82,8 @@ This script automates the creation of executables for the `wiser_tester.py` and 
 - `input_dir`: Location of input directories where test files are stored, e.g.,  `data/inputs`
 - `output_dir`: Location where test outputs will be stored, e.g.,  `data/outputs`
 - `expected_dir`: Location where expected outputs are stored for comparison, e.g.,  `data/expectations`
-- `host`: Host name of the web application, e.g., `localhost:5000`.
-- `origin`: Origin URL to test against, e.g., `http://localhost:5050`.
+- `host`: Host name of the web application, the domain the request is being sent to. e.g., `localhost:5000`.
+- `origin`: Origin URL to test from, where the request originates from. e.g., `http://localhost:5050`.
 
 ## Execution Instructions
 
@@ -130,7 +130,7 @@ or using the batch file:
 
 ## Generate Recordings
 
-Process HAR files and save POST request data as JSON:
+Process HAR files and save POST request data from the relevant debug tab as JSON files:
 
 ### Command-Line Arguments
 

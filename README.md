@@ -74,7 +74,8 @@ This script automates the creation of executables for the `wiser_tester.py` and 
 - `--comparison_reports`: Path where comparison reports will be saved. Defaults to `data/comparison_reports`.
 - `--request_timeout`: Sets the request timeout in seconds. Defaults to 60 seconds.
 - `--exclude_inputs`: List of input files to exclude from testing. Provide as space-separated values.
-- `--no_preprocessing`: If set, disables preprocessing of data to normalize dynamic content like file names before comparison. e.g., `"figures": "bffd359a-5ac5-40d1-ac36-612c89465fef.c_c_f74b9c92bc0517005234279f26646e4a.cluster_heatmap_.png"` is replaced by `PLACEHOLDER.c_c_f74b9c92bc0517005234279f26646e4a.cluster_heatmap_.png`
+- `--no_preprocessing`: If set, disables preprocessing of data to normalize dynamic content like file names before comparison. e.g., 
+  `"figures": "bffd359a-5ac5-40d1-ac36-612c89465fef.c_c_f74b9c92bc0517005234279f26646e4a.cluster_heatmap_.png"` is replaced by `PLACEHOLDER.c_c_f74b9c92bc0517005234279f26646e4a.cluster_heatmap_.png`
 
 ## Config File
 

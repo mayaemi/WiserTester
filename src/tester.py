@@ -23,21 +23,21 @@ class WiserTester:
             config (dict): Config file dictionary
             exclude_inputs (lst): List of input files to exclude
         """
-        self.socket = socketio.AsyncClient(reconnection_attempts=10)
+        self.socket_client = socketio.AsyncClient(reconnection_attempts=10)
         self.http_client = httpx.AsyncClient()
         self.username = username
         self.password = password
-        self.host = config["host"]
-        self.origin = config["origin"]
+        self.server_host = config["host"]
+        self.request_origin = config["origin"]
         self.input_dir = input_dir or config["input_dir"]
-        self.output_dirs = output_dir or config["output_dir"]
+        self.output_dir = output_dir or config["output_dir"]
         self.exclude_inputs = exclude_inputs
-        self.server_path = f"http://{self.host}/"
+        self.server_url = f"http://{self.server_host}/"
         self.request_timeout = request_timeout  # seconds
         self.config = config
-        self.s_id, self.cookies = None, None
+        self.session_id, self.cookies = None, None
         self.current_input_dir, self.current_output_dir = None, None
-        self.is_connected = False
+        self.is_server_connected = False
         self.request_to_input_map = {}  # dictionary to map request IDs to input file names
         self.request_to_input_dir_map = {}  # Map request IDs to input directories
         self.request_mapping_event = asyncio.Event()
@@ -51,45 +51,47 @@ class WiserTester:
         # Define event handlers for the socket events
         self._define_event_handlers()
 
-    async def start_test(self, specific_inputs=None):
+    # Initial setup methods
+
+    async def start_testing(self, specific_inputs=None):
         """
         Starts the testing process. Tests either all inputs or a specific list of input directories.
         Args:
             specific_inputs (list, optional): A list of specific inputs to be tested. If None, all inputs will be tested.
         """
         # Perform login and store cookies
-        _, self.cookies = await login(self.username, self.password, self.server_path)
+        _, self.cookies = await login(self.username, self.password, self.server_url)
         LOGGER.info(f"Logged in and obtained cookies {self.cookies}")
 
         await self.connect_to_server()
 
-        await self.get_version_info()
+        await self.fetch_version_info()
         await self.save_version_info()
 
         await self.test_inputs(specific_inputs)
 
-        # await self.socket.wait()
+        # await self.socket_client.wait()
 
     def _define_event_handlers(self):
         """Define event handlers for socket events."""
 
-        @self.socket.event
+        @self.socket_client.event
         async def connect():
             LOGGER.info("Socket connected")
-            self.s_id = self.socket.get_sid()
-            LOGGER.info(f"sid: {self.s_id}")
-            self.is_connected = True
+            self.session_id = self.socket_client.get_sid()
+            LOGGER.info(f"sid: {self.session_id}")
+            self.is_server_connected = True
 
-        @self.socket.event
+        @self.socket_client.event
         async def disconnect():
             LOGGER.info("Socket disconnected")
-            self.is_connected = False
+            self.is_server_connected = False
 
-        @self.socket.event
+        @self.socket_client.event
         async def report_ready(data):
             await self._handle_report_ready(data)
 
-        @self.socket.event
+        @self.socket_client.event
         async def error(data):
             await self._handle_error(data)
 
@@ -111,11 +113,11 @@ class WiserTester:
     @handle_exceptions("Socket connection failed.", True)
     async def connect_to_server(self):
         """Establishes connection to the server."""
-        await self.socket.connect(self.server_path, wait_timeout=10, transports=["websocket", "polling"])
+        await self.socket_client.connect(self.server_url, wait_timeout=10, transports=["websocket", "polling"])
 
-    async def get_version_info(self):
+    async def fetch_version_info(self):
         """retrieve the wiser version information from server"""
-        request_id, _ = await self.send_request_get_response("get_version")
+        request_id, _ = await self.send_request_wait_for_response("get_version")
         if request_id:
             self.pending_requests.add(request_id)
             await self.wait_for_report(request_id)
@@ -128,17 +130,17 @@ class WiserTester:
         cookies_str, access_token_cookie_value, csrf_access_token_value = handle_cookies(self.cookies)
         req_headers = self.config["request_headers"]
         req_headers["Cookie"] = f"{cookies_str}"
-        req_headers["Host"] = f"{self.host}"
-        req_headers["Origin"] = f"{self.origin}"
-        req_headers["Referer"] = f"{self.origin}/"
-        req_headers["S_ID"] = f"{self.s_id}"
+        req_headers["Host"] = f"{self.server_host}"
+        req_headers["Origin"] = f"{self.request_origin}"
+        req_headers["Referer"] = f"{self.request_origin}/"
+        req_headers["S_ID"] = f"{self.session_id}"
         req_headers["X-CSRF-TOKEN"] = f"{csrf_access_token_value}"
         req_headers["Cookie"] = f"{cookies_str}"
         return json_request, req_headers
 
     async def send_request(self, json_request, headers, input_file_name):
         """sends request using http post, returns request_id, response object."""
-        response = await self.http_client.post(f"{self.server_path}report", json=json_request, headers=headers)
+        response = await self.http_client.post(f"{self.server_url}report", json=json_request, headers=headers)
         response.raise_for_status()
         response_json = response.json()
         request_id = response_json.get("id")
@@ -154,7 +156,7 @@ class WiserTester:
             return None, None
 
     @handle_exceptions("Request failed", False)
-    async def send_request_get_response(self, json_request_path):
+    async def send_request_wait_for_response(self, json_request_path):
         """
         Sends a request to the server and waits for the response.
         Args:
@@ -165,7 +167,7 @@ class WiserTester:
         self.report_event.clear()  # Reset the event for the next report
 
         # Wait for the socket to be connected before proceeding
-        while not self.is_connected:
+        while not self.is_server_connected:
             LOGGER.info("Waiting for socket to reconnect...")
             await asyncio.sleep(1)  # Check connection status every second
 
@@ -214,11 +216,11 @@ class WiserTester:
                 self.report_event.set()
 
             else:
-                await self.handle_late_report(report_id, report_data)
+                await self.handle_delayed_report(report_id, report_data)
         else:
             LOGGER.error(f"Report ID {report_id} not found in request mapping")
 
-    async def handle_late_report(self, report_id, data):
+    async def handle_delayed_report(self, report_id, data):
         """
         Handles specific late report data based on the id received.
         Args:
@@ -227,7 +229,7 @@ class WiserTester:
         """
         inp_dir = self.request_to_input_dir_map.get(report_id)
         input_folder = os.path.basename(inp_dir)
-        path = os.path.join(self.output_dirs, input_folder)
+        path = os.path.join(self.output_dir, input_folder)
         LOGGER.warning(f"Late report received for ID {report_id} which should be in {inp_dir}")
         await self.save_output({"data": data, "id": report_id}, path)
 
@@ -284,7 +286,7 @@ class WiserTester:
         """
         LOGGER.info(f"testing {inp_dir}")
         self.current_input_dir = inp_dir
-        self.current_output_dir = await self.make_output_dir()
+        self.current_output_dir = await self.create_output_directory()
         LOGGER.info(f"made directory {self.current_output_dir}")
         lst = os.listdir(inp_dir)
         files_sorted = sorted(lst, key=lambda x: extract_timestamp_from_filename(x))
@@ -300,25 +302,25 @@ class WiserTester:
 
     async def process_request_file(self, file_path):
         LOGGER.info(f"sending request for file: {file_path}")
-        request_id, _ = await self.send_request_get_response(file_path)
+        request_id, _ = await self.send_request_wait_for_response(file_path)
         if request_id:
             self.pending_requests.add(request_id)
             await self.wait_for_report(request_id)
 
     # Utilities
 
-    async def make_output_dir(self):
+    async def create_output_directory(self):
         """
         creates a new directory in the `outputs_dir` based on the current input directory and copies a version info file into it.
         :return: The `make_output_dir` method returns the path of the newly created output directory.
         """
 
         input_folder = os.path.basename(self.current_input_dir)
-        path = os.path.join(self.output_dirs, input_folder)
+        path = os.path.join(self.output_dir, input_folder)
         if not os.path.isdir(path):
             os.mkdir(path)
             LOGGER.info(f"created dir {path}")
-            version_info_src = os.path.join(self.output_dirs, "version_info.json")
+            version_info_src = os.path.join(self.output_dir, "version_info.json")
             version_info_dest = os.path.join(path, "version_info.json")
             shutil.copy(version_info_src, version_info_dest)
             LOGGER.info(f"Copied version info to {path}")
@@ -360,7 +362,7 @@ class WiserTester:
         Saves the version information to a JSON file in a designated location.
         """
         if self.version_info:
-            version_info_path = os.path.join(self.output_dirs, "version_info.json")
+            version_info_path = os.path.join(self.output_dir, "version_info.json")
             with open(version_info_path, "w") as file:
                 json.dump(self.version_info, file)
             LOGGER.info("Version information saved.")
@@ -371,8 +373,8 @@ class WiserTester:
 
     async def close(self):
         """Closes the WebSocket connection and HTTP client they are open."""
-        if self.socket:
-            await self.socket.disconnect()
+        if self.socket_client:
+            await self.socket_client.disconnect()
 
         if self.http_client:
             await self.http_client.aclose()

@@ -18,7 +18,7 @@ async def run_tests_and_comparison(config, args, tester):
     """Run tests and comparisons based on provided arguments."""
     specific_list = args.specific_inputs
     if not args.compare_only:
-        await tester.start_test(specific_list)
+        await tester.start_testing(specific_list)
     if not args.no_comparison:
         LOGGER.info("Comparing outputs")
         comparison = Compare(

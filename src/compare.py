@@ -103,7 +103,7 @@ class Compare:
                 os.makedirs(report_dir, exist_ok=True)
                 request_id = output_data.get("requestId", "N/A")
                 self._handle_differences(diff, input_file_name, output_file_path, expected_file_path, report_dir, request_id)
-                self._copy_files_for_review(input_file_name, output_file_path, expected_file_path, report_dir, folder_name)
+                self._copy_json_files_for_review(input_file_name, output_file_path, expected_file_path, report_dir, folder_name)
 
             else:
                 LOGGER.info(f"No difference found in output for {input_file_name}")
@@ -148,17 +148,17 @@ class Compare:
         self.report_paths.append(report_path)
         LOGGER.info(f"Comparison report generated for {input_file_name}")
 
-    def _copy_files_for_review(self, input_file_name, output_file_path, expected_file_path, report_dir, folder_name):
+    def _copy_json_files_for_review(self, input_file_name, output_file_path, expected_file_path, report_dir, folder_name):
         """Copy input, expected, and output files to the report directory for further review."""
-        input_name = f"input_{input_file_name}.json"
-        input_path = os.path.join(report_dir, input_name)
-        shutil.copy(os.path.join(self.input_dir, folder_name, f"{input_file_name}.json"), input_path)
-        expected_name = f"expected_{input_file_name}.json"
-        expected_path = os.path.join(report_dir, expected_name)
-        shutil.copy(expected_file_path, expected_path)
-        output_name = f"output_{input_file_name}.json"
-        output_path = os.path.join(report_dir, output_name)
-        shutil.copy(output_file_path, output_path)
+        new_input_name = f"input_{input_file_name}.json"
+        copy_input_to = os.path.join(report_dir, new_input_name)
+        shutil.copy(os.path.join(self.input_dir, folder_name, f"{input_file_name}.json"), copy_input_to)
+        new_expected_name = f"expected_{input_file_name}.json"
+        copy_expected_to = os.path.join(report_dir, new_expected_name)
+        shutil.copy(expected_file_path, copy_expected_to)
+        new_output_name = f"output_{input_file_name}.json"
+        copy_output_to = os.path.join(report_dir, new_output_name)
+        shutil.copy(output_file_path, copy_output_to)
 
     def _process_csv(self, input_file_name, expected_file_path, output_file_path, dedicated_folder_path):
         """process the expected and output csv files"""
